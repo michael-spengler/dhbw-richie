@@ -1,6 +1,36 @@
-<h1>Angular Router</h1>
 <nav>
-  <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>
-  <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+  <div class="title">DHBW RICHIE</div>
+  <div class="routes">
+    <a routerLink="/home" routerLinkActive="active"
+      ><i class="fa fa-home"></i>Home</a
+    >
+    <a routerLink="/add" routerLinkActive="active"
+      ><i class="fa fa-plus"></i>Add
+      <div class="type">pro</div>
+    </a>
+    <a routerLink="/review" routerLinkActive="active"
+      ><i class="fas fa-check-double"></i>Review</a
+    >
+    <a routerLink="/search" routerLinkActive="active"
+      ><i class="fa fa-search"></i>Search</a
+    >
+    <a routerLink="/telegram" routerLinkActive="active"
+      ><i class="fab fa-telegram-plane"></i>Telegram
+      <div class="type">neu</div></a
+    >
+    <a routerLink="/admin" routerLinkActive="active"
+      ><i class="fas fa-user-cog"></i>Admin</a
+    >
+  </div>
+  <div class="hotlinks">
+    <a href="#">Impressum</a>
+    <a href="#">Legal</a>
+  </div>
 </nav>
+<header>
+  <div class="user">
+    <div class="name">Timo Scheuermann</div>
+    <div class="icon">TS</div>
+  </div>
+</header>
 <router-outlet></router-outlet>

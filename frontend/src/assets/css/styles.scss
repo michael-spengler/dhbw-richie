@@ -1,1 +1,170 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("../fonts/fontfaces.css");
+
+html,
+body {
+  margin: 0;
+  background: #eee;
+  font-family: "SF Pro Display", sans-serif;
+  color: #333;
+}
+body {
+  padding-left: 220px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 220px;
+  background: #3d404a;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+  display: block;
+  color: #fff;
+  user-select: none;
+
+  .title {
+    display: inline-block;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .hotlinks {
+    position: absolute;
+    margin: 5px;
+    width: 210px;
+    bottom: 0;
+    a {
+      font-size: 0.8em;
+      display: inline-block;
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+      margin: 5px;
+      transition: 0.2s ease;
+      &:hover {
+        box-shadow: inset 0px -1px rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+
+  .routes {
+    a {
+      display: inline-block;
+      color: #ddd;
+      width: calc(100% - 30px);
+      padding: 10px 15px;
+      height: 20px;
+      line-height: 20px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.2s ease;
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      svg {
+        margin-right: 10px;
+      }
+
+      .type {
+        color: #3d404a;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 10px;
+        padding: 0px 10px;
+        font-size: 0.8em;
+        float: right;
+        text-transform: capitalize;
+      }
+    }
+    .active {
+      color: #fff;
+      background: #08f;
+      &:hover {
+        background: #08f !important;
+      }
+    }
+  }
+}
+
+header {
+  display: block;
+  position: sticky;
+  top: 0;
+
+  height: 50px;
+  padding: 0px 10px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(7px);
+  text-align: right;
+
+  .user {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    user-select: none;
+
+    .name {
+      display: inline-block;
+    }
+    .icon {
+      display: inline-block;
+      background: #bbb;
+      margin: 10px;
+      line-height: 30px;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      border-radius: 15px;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}
+
+.landing {
+  background: url("../img/landing.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-top: -50px;
+  padding-top: 100px;
+  min-height: 180px;
+  h1,
+  h2 {
+    color: #fff;
+    text-align: center;
+    line-height: 1.5em;
+  }
+  h1 {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+  }
+  h2 {
+    &:before,
+    &:after {
+      content: "\23AF";
+      padding: 0 10px;
+    }
+  }
+}
+
+.paragraph {
+  border-radius: 5px;
+  margin: 0px 30px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.1);
+
+  margin-top: -30px;
+}
