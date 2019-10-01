@@ -1,5 +1,5 @@
 # DHBW Richie  
-This is an education and fun project for Duale Hochschule Baden Württemberg Mannheim  
+This is an education and fun project for [Duale Hochschule Baden Württemberg Mannheim](https://www.mannheim.dhbw.de).  
 
 ## Building Blocks 
 - [Acceptance Tests](https://github.com/michael-spengler/dhbw-richie/tree/master/acceptance-tests)  
