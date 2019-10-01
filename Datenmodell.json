@@ -1,0 +1,26 @@
+collection Data {
+  "_id": string;
+  "question": string;
+  "answer": string;
+  "comment": string;
+  "lecture": {
+	"name": string,
+	"semester": string, // Macht das Sinn? (optional?)
+	"source": string
+  };
+  "isReviewed": boolean;
+  "creationDate": Date; // Automatisch
+  "reviewDate": Date; // Automatisch
+  "updateDate": Date; // Automatisch
+  "creator": User; // Name? E-Mail? Kürzel?
+  "modifier": User; // lastModifiedBy, ...
+  "archived": boolean;
+}
+
+collection User {
+  "email": string;
+  "username": string;
+  "password": string;
+  "isAdmin": boolean; // Rechte: isReviewer + Reviewer bestimmen, Löschen (Archivieren), evtl. Benachrichtigungen/Berichte per Mail/Inbox...
+  "isReviewer": boolean; // Rechte: Neue Fragen (Data) eintragen, Data reviewen & bestätigen/ablehnen (endgültig eintragen)
+}
