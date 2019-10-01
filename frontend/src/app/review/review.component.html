@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <title>Page Title</title>
     <style>
         table,
         th,
@@ -18,52 +17,63 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        /* The Modal (background) */
         .modal {
             display: none;
-            /* Hidden by default */
             position: fixed;
-            /* Stay in place */
-            z-index: 1;
-            /* Sit on top */
-            padding-top: 100px;
-            /* Location of the box */
+            padding-top: 50px;
             left: 0;
             top: 0;
             width: 100%;
-            /* Full width */
             height: 100%;
-            /* Full height */
-            overflow: auto;
-            /* Enable scroll if needed */
             background-color: rgb(0, 0, 0);
-            /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Black w/ opacity */
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
-        /* Modal Content */
         .modal-content {
-            background-color: #fefefe;
-            margin: auto;
+            position: relative;
+            background-color: white;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+            margin: auto;
+            width: 75%;
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
         }
 
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
+        .close-btn {
             float: right;
-            font-size: 28px;
+            color: lightgray;
+            font-size: 24px;
             font-weight: bold;
         }
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+        .close-btn:hover {
+            color: darkgray;
+        }
+
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
         }
     </style>
 </head>
@@ -73,7 +83,7 @@
     <h1>Zu überprüfende Fragen</h1>
 
     <table style="width:90%">
-        <tr id="myRow">
+        <tr onclick="rowClicked">
             <td><span
                     style="background: rgb(52, 199, 89); border-radius: 20px; padding: 1px 5px; color: #fff;">Neu</span>
             </td>
@@ -111,41 +121,27 @@
         </tr>
     </table>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
+    <button id="modal-btn"> click me, I make a modal</button>
+    <div class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+            <span class="close-btn">&times;</span>
+            <p>this is the text inside the modal</p>
         </div>
-
     </div>
 
     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the row that opens the modal
-        var row = document.getElementById("myRow");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
-        row.onclick = function () {
-            modal.style.display = "block";
+        let modalBtn = document.getElementById("modal-btn")
+        let modal = document.querySelector(".modal")
+        let closeBtn = document.querySelector(".close-btn")
+        modalBtn.onclick = function () {
+            modal.style.display = "block"
         }
-
-        // When the user clicks on <span> (x), close the modal
-        row.onclick = function () {
-            modal.style.display = "none";
+        closeBtn.onclick = function () {
+            modal.style.display = "none"
         }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+        window.onclick = function (e) {
+            if (e.target == modal) {
+                modal.style.display = "none"
             }
         }
     </script>
