@@ -1,151 +1,66 @@
-<!DOCTYPE html>
-<html>
+<div class="landing">
+  <h1>Review-Management</h1>
+</div>
 
-<head>
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            border-left: none;
-            border-right: none;
-            padding: 5px;
-        }
+<div class="paragraph">
+  <h1>Zu überprüfende Fragen</h1>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+  <table style="width:90%">
+    <tr onclick="rowClicked">
+      <td>
+        <span
+          style="background: rgb(52, 199, 89); border-radius: 20px; padding: 1px 5px; color: #fff;"
+          >Neu</span
+        >
+      </td>
+      <td>F:</td>
+      <td>Was ist der Sinn des Leben?</td>
+      <td>A:</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>
+        <span
+          style="background: rgb(255, 149, 0); border-radius: 20px; padding: 1px 5px; color: #fff;"
+          >Änderung</span
+        >
+      </td>
+      <td>Frage:</td>
+      <td>Was ist der Sinn des Leben?</td>
+      <td>Antwort:</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>
+        <span
+          style="background: rgb(0, 122, 255); border-radius: 20px; padding: 1px 5px; color: #fff;"
+          >Feedback</span
+        >
+      </td>
+      <td>Frage:</td>
+      <td>Was ist der Sinn des Leben?</td>
+      <td>Antwort:</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>
+        <span
+          style="background: rgb(255, 59, 48); border-radius: 20px; padding: 1px 5px; color: #fff;"
+          >Löschen</span
+        >
+      </td>
+      <td>Frage:</td>
+      <td>Was ist der Sinn des Leben?</td>
+      <td>Antwort:</td>
+      <td>42</td>
+    </tr>
+  </table>
 
-        .modal {
-            display: none;
-            position: fixed;
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: white;
-            padding: 20px;
-            margin: auto;
-            width: 75%;
-            -webkit-animation-name: animatetop;
-            -webkit-animation-duration: 0.4s;
-            animation-name: animatetop;
-            animation-duration: 0.4s
-        }
-
-        .close-btn {
-            float: right;
-            color: lightgray;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .close-btn:hover {
-            color: darkgray;
-        }
-
-        @-webkit-keyframes animatetop {
-            from {
-                top: -300px;
-                opacity: 0
-            }
-
-            to {
-                top: 0;
-                opacity: 1
-            }
-        }
-
-        @keyframes animatetop {
-            from {
-                top: -300px;
-                opacity: 0
-            }
-
-            to {
-                top: 0;
-                opacity: 1
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <h1>Zu überprüfende Fragen</h1>
-
-    <table style="width:90%">
-        <tr onclick="rowClicked">
-            <td><span
-                    style="background: rgb(52, 199, 89); border-radius: 20px; padding: 1px 5px; color: #fff;">Neu</span>
-            </td>
-            <td>F:</td>
-            <td>Was ist der Sinn des Leben?</td>
-            <td>A:</td>
-            <td>42</td>
-        </tr>
-        <tr>
-            <td><span
-                    style="background: rgb(255, 149, 0); border-radius: 20px; padding: 1px 5px; color: #fff;">Änderung</span>
-            </td>
-            <td>Frage:</td>
-            <td>Was ist der Sinn des Leben?</td>
-            <td>Antwort:</td>
-            <td>42</td>
-        </tr>
-        <tr>
-            <td><span
-                    style="background: rgb(0, 122, 255); border-radius: 20px; padding: 1px 5px; color: #fff;">Feedback</span>
-            </td>
-            <td>Frage:</td>
-            <td>Was ist der Sinn des Leben?</td>
-            <td>Antwort:</td>
-            <td>42</td>
-        </tr>
-        <tr>
-            <td><span
-                    style="background: rgb(255, 59, 48); border-radius: 20px; padding: 1px 5px; color: #fff;">Löschen</span>
-            </td>
-            <td>Frage:</td>
-            <td>Was ist der Sinn des Leben?</td>
-            <td>Antwort:</td>
-            <td>42</td>
-        </tr>
-    </table>
-
-    <button id="modal-btn"> click me, I make a modal</button>
-    <div class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <p>this is the text inside the modal</p>
-        </div>
+  <button (click)="togglePopUp()">click me, I make a modal</button>
+  <div class="modal" [ngStyle]="display">
+    <div class="modal-content">
+      <span (click)="togglePopUp()" class="close-btn">&times;</span>
+      <p>this is the text inside the modal</p>
     </div>
-
-    <script>
-        let modalBtn = document.getElementById("modal-btn")
-        let modal = document.querySelector(".modal")
-        let closeBtn = document.querySelector(".close-btn")
-        modalBtn.onclick = function () {
-            modal.style.display = "block"
-        }
-        closeBtn.onclick = function () {
-            modal.style.display = "none"
-        }
-        window.onclick = function (e) {
-            if (e.target == modal) {
-                modal.style.display = "none"
-            }
-        }
-    </script>
-
-</body>
-
-</html>
+  </div>
+</div>
