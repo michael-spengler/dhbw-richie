@@ -1,6 +1,6 @@
 import { Controller, Post, UseGuards, Get, Body } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthenticatedUser } from 'src/passport';
+import { AuthenticatedUser } from '../../passport';
 import { RegisterModel } from '../models/register.model';
 
 @Controller('login')
