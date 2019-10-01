@@ -1,0 +1,36 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 80%;
+  }
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+.search-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 75%;
+  }
+  
+.Searchbar {
+    width: 95%;
+    display: grid;
+    grid-template-columns: 95% auto auto;
+    padding: 10px;
+}
+
+.search-Icon { 
+    display: flex;  
+    align-items: center;
+}
+
+.container {
+    padding: 2px 16px;
+  }
+
+.button {
+    background-color:  red;
+    color: white;
+}
