@@ -1,12 +1,29 @@
-import { Controller, Post, UseGuards } from '@nestjs/common';
-import { LocalStrategy } from '../../passport';
+import { Controller, Post, UseGuards, Get, Body } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { AuthenticatedUser } from 'src/passport';
+import { RegisterModel } from '../models/register.model';
 
 @Controller('login')
 export class LoginController {
 
     @Post()
-    @UseGuards(LocalStrategy)
-    public async login() {
-        console.log('login')
+    @UseGuards(AuthGuard('local'))
+    public async login(
+        @AuthenticatedUser() user
+    ) {
+        console.log('login', user)
+    }
+
+    @Get()
+    @UseGuards(AuthGuard('jwt'))
+    public async refresh() {
+
+    }
+
+    @Post()
+    public async register(
+        @Body() registerModel: RegisterModel
+    ) {
+        console.log(registerModel);
     }
 }
