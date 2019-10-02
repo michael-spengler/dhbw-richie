@@ -10,6 +10,8 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { ReviewComponent } from "./review/review.component";
 import { SearchComponent } from "./search/search.component";
 import { TelegramComponent } from "./telegram/telegram.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 
 const appRoutes: Routes = [
   {
@@ -31,6 +33,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

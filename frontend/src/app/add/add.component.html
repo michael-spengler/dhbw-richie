@@ -1,32 +1,41 @@
-<h3>Gday cunt!</h3>
+
+<h3 style="text-align: center">Add</h3>
 
 <div style="text-align: center">
-<div class="question" style="display: inline-block;">
-  <textarea placeholder="Please enter question"></textarea>
+<div class="questionInput" style="display: inline-block;">
+  <input id="questionInput" placeholder="please enter question" [(ngModel)]="questionInput"
+  style="height: 1cm;width: 5cm;">
 </div>
 
-<div class="answer" style="display: inline-block;">
-	<textarea placeholder="Please enter answer"></textarea>
+
+<div class="answerInput" style="display: inline-block;">
+  <input id="answerInput" placeholder="Please enter answer" [(ngModel)]="answerInput"
+  style="height: 1cm;width: 5cm">
 </div>
 </div>
 
 <div style="text-align: center">
-<div class="lecture" style="display: inline-block">
-  <select name="lectureSelect">
-    <option value="" disabled selected>lecture</option>
-    <option>Hallo</option>
-    <option>Goodbye</option>
-  </select>
+
+<div class="lectureInput" style="display: inline-block">
+
+    <select id="lectureInput" [(ngModel)]="lectureInput" >
+      <option value="" disabled selected>please select lecture</option>
+      <option>Programmieren</option>
+      <option>Mathe</option>
+    </select>
+
 </div>
 
-<div class="source" style="display:inline-block">
-  <textarea placeholder="Please enter source" style="height: 0.5cm"></textarea>
+<div class="sourceInput" style="display:inline-block">
+  <input id="sourceInput" placeholder="Please enter source" [(ngModel)]="sourceInput"
+  style="height: 0.5cm" >
 </div>
+
 </div>
+
+
 <div class="addButton" style="text-align: right">
   <button (click)="onAdd()">add</button>
 </div>
-
-
 
 
