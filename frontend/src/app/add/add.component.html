@@ -6,19 +6,30 @@
   <div class="paragraph">
     <h1>Formular</h1>
 
-
-<h3 style="text-align: center">Add</h3>
-
 <div style="text-align: center">
-<div class="questionInput" style="display: inline-block;">
-  <input id="questionInput" placeholder="please enter question" [(ngModel)]="questionInput"
-  style="height: 1cm;width: 5cm;">
+
+
+<div class="questionInput" style="display: inline-block; border: 1cm">
+<fieldset id="questionSet" style="border: none">
+  <legend>Question</legend>
+
+  <textarea id="questionInput" placeholder="please enter question" [(ngModel)]="questionInput"
+  style="height: 1cm;width: 5cm; " ></textarea>
+
+</fieldset>
 </div>
 
 
+
 <div class="answerInput" style="display: inline-block;">
-  <input id="answerInput" placeholder="Please enter answer" [(ngModel)]="answerInput"
-  style="height: 1cm;width: 5cm">
+
+  <fieldset id="answerSet"style="border-style: none;">
+    <legend>Answer</legend>
+
+    <textarea id="answerInput" placeholder="Please enter answer" [(ngModel)]="answerInput"
+    style="height: 1cm;width: 5cm;"></textarea>
+
+</fieldset>
 </div>
 </div>
 
@@ -34,16 +45,24 @@
 
 </div>
 
+
 <div class="sourceInput" style="display:inline-block">
-  <input id="sourceInput" placeholder="Please enter source" [(ngModel)]="sourceInput"
-  style="height: 0.5cm" >
+  <fieldset id="sourceSet" style="">
+
+    <legend >Source</legend>
+  <textarea id="sourceInput" placeholder="Please enter source" [(ngModel)]="sourceInput"
+  style="height: 0.5cm" ></textarea>
+</fieldset>
 </div>
 
 </div>
 
+<p> {{questionInput}} </p>
 
 <div class="addButton" style="text-align: right">
   <button (click)="onAdd()">add</button>
 </div>
 
 </div>
+
+

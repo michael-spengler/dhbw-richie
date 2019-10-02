@@ -10,12 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
-  //Q&A Inputfields
+  // Q&A Inputfields
   questionInput;
   answerInput;
   sourceInput;
 
-  //Dropdown
+  // Dropdown
   lectureInput;
   lectureOutput;
 

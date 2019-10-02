@@ -1,1 +1,36 @@
+textarea {
+  padding:1ex;
+  font-size:1em;
+  box-sizing:border-box;
+  border-color:white;
+  position: relative;
+}
+fieldset{
+  box-sizing: border-box;
+  border-color:white;
+}
+#questionInput{
+  right:0,5cm;
+}
+#questionSet{
+  right:0,5cm;
+}
 
+#answerInput{
+  left:0,5cm;
+}
+#answerSet{
+  left:0,5cm;
+}
+#sourceInput{
+  left: 1cm;
+  height: 1.5cm;
+  width: 5cm;
+  font-size: 0.7em;
+}
+#sourceSet{
+  left:2cm ;
+}
+#legend{
+  left: 2cm;
+}
