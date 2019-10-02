@@ -6,24 +6,27 @@
 <div class="paragraph">
   <h2>
     Bekannte Gruppen
-    <a
-      class="startChatting"
-      style="float: right;"
-      href="tg://resolve?domain=dhbw_richie_bot"
+    <a class="startChatting" style="float: right;" [href]="globals.botURL"
       ><i class="fab fa-telegram-plane"></i>Mit Richie Chatten</a
     >
   </h2>
-  <table>
-    <tr *ngFor="let channel of telegramChannels" (click)="openURL(channel.url)">
-      <td><img src="{{ channel.img }}" /></td>
-      <td class="trtitle">{{ channel.title }}</td>
-      <td class="trmember">
-        {{ channel.member }} <i class="fas fa-user-friends"></i>
-      </td>
-      <td class="trdescription">{{ channel.description }}</td>
-      <td>
-        <a><i class="fa fa-sign-in"></i></a>
-      </td>
-    </tr>
-  </table>
+  <div class="tableContainer">
+    <table>
+      <tr
+        *ngFor="let channel of telegramChannels"
+        (click)="openURL(channel.url)"
+        title="Gruppe beitreten"
+      >
+        <td><img src="{{ channel.img }}" /></td>
+        <td class="trtitle">{{ channel.title }}</td>
+        <td class="trmember">
+          {{ channel.member }} <i class="fas fa-user-friends"></i>
+        </td>
+        <td class="trdescription">{{ channel.description }}</td>
+        <td>
+          <a><i class="fa fa-sign-in"></i></a>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

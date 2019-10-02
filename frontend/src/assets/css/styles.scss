@@ -20,6 +20,34 @@ a {
   }
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  position: absolute !important;
+  border-radius: 4px;
+  transition: 0.2s ease;
+}
+
+::-webkit-scrollbar:hover {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+  transition: 0.2s ease;
+  &:hover {
+    background: #888;
+    transition: 0.2s ease;
+    cursor: grabbing;
+  }
+}
+
 .splitter {
   margin: 30px 0px;
   height: 1px;
@@ -173,21 +201,55 @@ header {
   backdrop-filter: blur(7px);
   text-align: right;
 
-  .user {
+  line-height: 50px;
+  user-select: none;
+  color: #ddd;
+
+  * {
     display: inline-block;
-    height: 50px;
-    line-height: 50px;
-    cursor: pointer;
-    user-select: none;
-
     outline: none;
-
-    .name {
+    * {
       display: inline-block;
-      color: #ddd;
+      outline: none;
+      cursor: pointer;
+      transition: 0.2s ease;
     }
+  }
+
+  .registerLogin {
+    margin-right: 20px;
+    svg {
+      margin-left: 5px;
+    }
+    .signIn {
+      line-height: 20px;
+      height: 20px;
+      margin: 15px 0px;
+      &:hover {
+        color: #fff;
+        box-shadow: inset 0px -1px #fff;
+      }
+    }
+    .register {
+      line-height: 30px;
+      height: 30px;
+      margin: 10px 0px;
+      margin-right: 20px;
+      padding: 0px 15px;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      &:hover {
+        color: #fff;
+        border-color: #fff;
+      }
+    }
+  }
+
+  .user {
+    cursor: pointer;
+
     .icon {
-      display: inline-block;
       background: #bbb;
       margin: 10px;
       line-height: 30px;

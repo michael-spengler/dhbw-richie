@@ -1,19 +1,17 @@
 <div class="landing">
   <h1>Willkommen zurück!</h1>
+  <h2>Login and go</h2>
 </div>
 
 <div class="paragraph">
   <h2>
     Login
     <span style="margin-left: 20px; display: inline-block; font-size: 16px;"
-      ><a href="">Passwort vergessen?</a></span
+      ><a [routerLink]="['/resetpassword']">Passwort vergessen?</a></span
     >
   </h2>
 
-  <form
-    [formGroup]="changePasswordForm"
-    (ngSubmit)="submitPWChange(changePasswordForm.value)"
-  >
+  <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)">
     <div>
       <label for="username">
         Benutzername / E-Mail
@@ -40,7 +38,10 @@
 <div class="paragraph">
   <h2>
     Du hast noch keinen Account?
-    <a class="startChatting" style="float: right;" [routerLink]="['/register']"
+    <a
+      class="startChatting"
+      style="position: absolute; right: 90px;"
+      [routerLink]="['/register']"
       ><i class="fas fa-sign-in-alt"></i>Jetzt kostenlos registrieren</a
     >
   </h2>

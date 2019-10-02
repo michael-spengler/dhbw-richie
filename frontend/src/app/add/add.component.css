@@ -1,23 +1,19 @@
 textarea {
-  padding:1ex;
+  padding: 1ex;
   font-size: 1em;
-  box-sizing:border-box;
-  border-color:white;
-  position: relative;
-}
-fieldset{
-  border:1px;
   box-sizing: border-box;
-  border-color:lightsteelblue;
+  border-color: white;
   position: relative;
 }
-#sourceInput{
+fieldset {
+  border: 1px;
+  box-sizing: border-box;
+  border-color: lightsteelblue;
   position: relative;
 }
-#lectureInput{
+#sourceInput {
   position: relative;
-
 }
-#paragraph{
-  text-align: center;
+#lectureInput {
+  position: relative;
 }

@@ -18,8 +18,11 @@
       ><i class="fab fa-telegram-plane"></i>Telegram
       <div class="type">neu</div></a
     >
-    <a routerLink="/admin" routerLinkActive="active"
-      ><i class="fas fa-user-cog"></i>Admin</a
+    <a
+      *ngIf="globals.user.group === 'Admin'"
+      routerLink="/admin"
+      routerLinkActive="active"
+      ><i class="fas fa-user-cog"></i>Administration</a
     >
   </div>
   <div class="hotlinks">
@@ -28,9 +31,22 @@
   </div>
 </nav>
 <header>
-  <div class="user" [routerLink]="['/settings']">
-    <div class="name">Timo Scheuermann</div>
-    <div class="icon">TS</div>
-  </div>
+  <div *ngIf="globals.user.signed_in; then signedIn; else signedOut"></div>
+
+  <ng-template #signedOut>
+    <div class="registerLogin">
+      <div class="register" [routerLink]="['/register']">Registrieren</div>
+      <div class="signIn" [routerLink]="['/login']">
+        Anmelden<i class="fas fa-sign-in-alt"></i>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #signedIn>
+    <div class="user" [routerLink]="['/settings']">
+      <div class="name">{{ globals.user.name }}</div>
+      <div class="icon">{{ globals.user.abbreviation() }}</div>
+    </div>
+  </ng-template>
 </header>
 <router-outlet></router-outlet>
