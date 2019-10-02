@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { AddComponent } from "./add/add.component";
@@ -16,6 +15,8 @@ import { RegisterComponent } from "./register/register.component";
 import { ReviewComponent } from "./review/review.component";
 import { SearchComponent } from "./search/search.component";
 import { TelegramComponent } from "./telegram/telegram.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
 
 const appRoutes: Routes = [
   {
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
