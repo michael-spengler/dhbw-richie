@@ -8,7 +8,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { EditProfileComponent } from "./edit-profile/edit-profile.component";
 import { HomeComponent } from "./home/home.component";
+import { ImpressumComponent } from "./impressum/impressum.component";
+import { LegalComponent } from "./legal/legal.component";
+import { LoginComponent } from "./login/login.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { RegisterComponent } from "./register/register.component";
 import { ReviewComponent } from "./review/review.component";
 import { SearchComponent } from "./search/search.component";
 import { TelegramComponent } from "./telegram/telegram.component";
@@ -25,6 +29,10 @@ const appRoutes: Routes = [
   { path: "telegram", component: TelegramComponent },
   { path: "admin", component: AdminComponent },
   { path: "settings", component: EditProfileComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "legal", component: LegalComponent },
+  { path: "impressum", component: ImpressumComponent },
 
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
@@ -49,7 +57,11 @@ const appRoutes: Routes = [
     TelegramComponent,
     PageNotFoundComponent,
     AdminComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ImpressumComponent,
+    LegalComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,16 @@ body {
 body {
   padding-left: 220px;
 }
+
+a {
+  color: #08f;
+  text-decoration: none;
+  transition: 0.2s ease;
+  &:not([routerLink]):hover {
+    box-shadow: inset 0px -1px #08f;
+  }
+}
+
 .splitter {
   margin: 30px 0px;
   height: 1px;
@@ -143,6 +153,7 @@ nav {
     .active {
       color: #fff;
       background: #08f;
+      transition: 0.6s ease;
       &:hover {
         background: #08f !important;
       }
@@ -172,6 +183,7 @@ header {
 
     .name {
       display: inline-block;
+      color: #ddd;
     }
     .icon {
       display: inline-block;
@@ -269,5 +281,33 @@ form {
     &:active {
       filter: brightness(115%);
     }
+  }
+}
+
+.startChatting {
+  display: inline-block;
+  color: #08f !important;
+  font-size: 16px;
+  background: #fff;
+  border: 1px solid #08f;
+  text-decoration: none;
+  transition: 0.2s ease;
+  padding: 5px 20px;
+  padding-left: 10px;
+  border-radius: 40px;
+  margin-bottom: 15px;
+  user-select: none;
+  cursor: pointer;
+
+  svg {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background: #08f;
+    color: #fff !important;
+  }
+  &:active {
+    filter: brightness(115%);
   }
 }

@@ -16,3 +16,31 @@
 .landing .mail::before {
   content: "Deine E-Mail-Adresse lautet ";
 }
+
+.logout {
+  display: inline-block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(7px);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 40px;
+  padding: 10px 25px !important;
+  margin: 0 !important;
+  margin-top: -45px !important;
+  right: 90px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0);
+  transition: 0.2s ease;
+}
+
+.logout:hover {
+  filter: brightness(115%);
+  border: 1px solid #fff;
+}
+
+.logout svg {
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-left: 10px !important;
+}
