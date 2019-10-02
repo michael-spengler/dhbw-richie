@@ -1,1 +1,273 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("../fonts/fontfaces.css");
+
+html,
+body {
+  margin: 0;
+  background: #eee;
+  font-family: "SF Pro Display", sans-serif;
+  color: #333;
+}
+body {
+  padding-left: 220px;
+}
+.splitter {
+  margin: 30px 0px;
+  height: 1px;
+  width: 100%;
+  background: #bbb;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 220px;
+
+  background-image: linear-gradient(
+      102deg,
+      rgba(249, 249, 249, 0.1) 0%,
+      rgba(249, 249, 249, 0.1) 14%,
+      rgba(161, 161, 161, 0.1) 14%,
+      rgba(161, 161, 161, 0.1) 100%
+    ),
+    linear-gradient(
+      310deg,
+      rgba(26, 26, 26, 0.03) 0%,
+      rgba(26, 26, 26, 0.03) 71%,
+      rgba(189, 189, 189, 0.03) 71%,
+      rgba(189, 189, 189, 0.03) 100%
+    ),
+    linear-gradient(
+      133deg,
+      rgba(132, 132, 132, 0.1) 0%,
+      rgba(132, 132, 132, 0.1) 8%,
+      rgba(95, 95, 95, 0.1) 8%,
+      rgba(95, 95, 95, 0.1) 100%
+    ),
+    linear-gradient(
+      142deg,
+      rgba(110, 110, 110, 0.03) 0%,
+      rgba(110, 110, 110, 0.03) 46%,
+      rgba(8, 8, 8, 0.03) 46%,
+      rgba(8, 8, 8, 0.03) 100%
+    ),
+    linear-gradient(
+      346deg,
+      rgba(231, 231, 231, 0.05) 0%,
+      rgba(231, 231, 231, 0.05) 6%,
+      rgba(71, 71, 71, 0.05) 6%,
+      rgba(71, 71, 71, 0.05) 100%
+    ),
+    linear-gradient(
+      118deg,
+      rgba(251, 251, 251, 0.07) 0%,
+      rgba(251, 251, 251, 0.07) 72%,
+      rgba(24, 24, 24, 0.07) 72%,
+      rgba(24, 24, 24, 0.07) 100%
+    ),
+    linear-gradient(
+      338deg,
+      rgba(75, 75, 75, 0.08) 0%,
+      rgba(75, 75, 75, 0.08) 37%,
+      rgba(213, 213, 213, 0.08) 37%,
+      rgba(213, 213, 213, 0.08) 100%
+    ),
+    linear-gradient(90deg, #202020, #111);
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+  display: block;
+  color: #fff;
+  user-select: none;
+
+  .title {
+    display: inline-block;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    filter: brightness(110%);
+    letter-spacing: 1px;
+  }
+
+  .hotlinks {
+    position: absolute;
+    margin: 5px;
+    width: 210px;
+    bottom: 0;
+    a {
+      font-size: 0.8em;
+      font-weight: 400;
+      display: inline-block;
+      color: #fff;
+      opacity: 0.7;
+      text-decoration: none;
+      margin: 5px;
+      transition: 0.2s ease;
+      &:hover {
+        opacity: 1;
+        box-shadow: inset 0px -1px #fff;
+      }
+    }
+  }
+
+  .routes {
+    a {
+      display: inline-block;
+      color: #ddd;
+      width: calc(100% - 30px);
+      padding: 10px 15px;
+      height: 20px;
+      line-height: 20px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.2s ease;
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      svg {
+        margin-right: 10px;
+      }
+
+      .type {
+        color: #3d404a;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 10px;
+        padding: 0px 10px;
+        font-size: 0.8em;
+        float: right;
+        text-transform: capitalize;
+      }
+    }
+    .active {
+      color: #fff;
+      background: #08f;
+      &:hover {
+        background: #08f !important;
+      }
+    }
+  }
+}
+
+header {
+  display: block;
+  position: sticky;
+  top: 0;
+
+  height: 50px;
+  padding: 0px 10px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(7px);
+  text-align: right;
+
+  .user {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    user-select: none;
+
+    outline: none;
+
+    .name {
+      display: inline-block;
+    }
+    .icon {
+      display: inline-block;
+      background: #bbb;
+      margin: 10px;
+      line-height: 30px;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      border-radius: 15px;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}
+
+.landing {
+  text-align: center;
+  background: url("../img/landing.jpg");
+  background-size: cover;
+  background-position-y: bottom;
+  padding: 100px 0px;
+  min-height: 50px;
+  margin: -50px 0px;
+  user-select: none;
+
+  h1,
+  h2 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+  }
+
+  h1 {
+    font-weight: 700;
+    text-shadow: 1px 1px 10px #444;
+  }
+  h2 {
+    font-weight: 650;
+    color: #eee;
+
+    &:before,
+    &:after {
+      content: "\23AF";
+      padding: 0 10px;
+    }
+  }
+}
+
+.paragraph {
+  background: linear-gradient(to bottom right, #fff, #fdfdfd);
+  padding: 10px 50px;
+  margin: 20px 60px;
+  border-radius: 5px;
+  transition: 1s ease;
+  box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  margin-left: 20px;
+  margin-bottom: 60px;
+  max-width: 500px;
+  div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: auto;
+    margin-bottom: 5px;
+
+    input {
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid #eee;
+      padding: 5px;
+      width: 100%;
+    }
+    label {
+      color: #666;
+    }
+  }
+  button {
+    float: right;
+    background: #fff;
+    border-radius: 50px;
+    outline: none;
+    border: 1px solid #08f;
+    padding: 5px 20px;
+    color: #08f;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: 600;
+    &:hover {
+      background: #08f;
+      color: #fff;
+    }
+    &:active {
+      filter: brightness(115%);
+    }
+  }
+}
