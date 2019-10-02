@@ -1,4 +1,4 @@
-import {Entity, ObjectID, ObjectIdColumn, Column} from "typeorm";
+import { Entity, ObjectID, ObjectIdColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Lecture } from "./lecture.entity";
 import { User } from "./user.entity";
 
@@ -23,13 +23,13 @@ export class Data {
     @Column()
     isReviewed: boolean;
 
-    @Column()
+    @CreateDateColumn()
     creationDate: Date; // Automatisch
 
-    @Column()
+    @CreateDateColumn()
     reviewDate: Date; // Automatisch
 
-    @Column()
+    @UpdateDateColumn()
     updateDate: Date; // Automatisch
 
     @Column(type => User)

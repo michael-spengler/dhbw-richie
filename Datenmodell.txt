@@ -4,15 +4,14 @@ collection Data {
   "answer": string;
   "comment": string;
   "lecture": {
-	"name": string,
-	"semester": string, // Macht das Sinn? (optional?)
-	"source": string
+	  "name": string,
+	  "source": string
   };
   "isReviewed": boolean;
   "creationDate": Date; // Automatisch
   "reviewDate": Date; // Automatisch
   "updateDate": Date; // Automatisch
-  "creator": User; // Name? E-Mail? Kürzel?
+  "creator": User; // Username
   "modifier": User; // lastModifiedBy, ...
   "archived": boolean;
 }
