@@ -10,15 +10,11 @@ body {
 body {
   padding-left: 220px;
 }
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 0;
-  margin-bottom: 10px;
+.splitter {
+  margin: 30px 0px;
+  height: 1px;
+  width: 100%;
+  background: #bbb;
 }
 
 nav {
@@ -193,22 +189,30 @@ header {
 }
 
 .landing {
+  text-align: center;
   background: url("../img/landing.jpg");
   background-size: cover;
-  background-position: center;
-  margin-top: -50px;
-  padding-top: 120px;
-  min-height: 160px;
+  background-position-y: bottom;
+  padding: 100px 0px;
+  min-height: 50px;
+  margin: -50px 0px;
+  user-select: none;
+
   h1,
   h2 {
+    margin: 0;
+    padding: 0;
     color: #fff;
-    text-align: center;
-    line-height: 1.5em;
   }
+
   h1 {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+    font-weight: 700;
+    text-shadow: 1px 1px 10px #444;
   }
   h2 {
+    font-weight: 650;
+    color: #eee;
+
     &:before,
     &:after {
       content: "\23AF";
@@ -218,10 +222,52 @@ header {
 }
 
 .paragraph {
+  background: linear-gradient(to bottom right, #fff, #fdfdfd);
+  padding: 10px 50px;
+  margin: 20px 60px;
   border-radius: 5px;
-  margin: 0px 30px;
-  padding: 30px;
-  background: #fff;
-  box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.1);
-  margin-top: -30px;
+  transition: 1s ease;
+  box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  margin-left: 20px;
+  margin-bottom: 60px;
+  max-width: 500px;
+  div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: auto;
+    margin-bottom: 5px;
+
+    input {
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid #eee;
+      padding: 5px;
+      width: 100%;
+    }
+    label {
+      color: #666;
+    }
+  }
+  button {
+    float: right;
+    background: #fff;
+    border-radius: 50px;
+    outline: none;
+    border: 1px solid #08f;
+    padding: 5px 20px;
+    color: #08f;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: 600;
+    &:hover {
+      background: #08f;
+      color: #fff;
+    }
+    &:active {
+      filter: brightness(115%);
+    }
+  }
 }

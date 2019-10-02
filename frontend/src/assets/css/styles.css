@@ -11,14 +11,11 @@ body {
   padding-left: 220px;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 0;
-  margin-bottom: 10px;
+.splitter {
+  margin: 30px 0px;
+  height: 1px;
+  width: 100%;
+  background: #bbb;
 }
 
 nav {
@@ -158,23 +155,34 @@ header .user .icon {
 }
 
 .landing {
+  text-align: center;
   background: url("../img/landing.jpg");
   background-size: cover;
-  background-position: center;
-  margin-top: -50px;
-  padding-top: 120px;
-  min-height: 160px;
+  background-position-y: bottom;
+  padding: 100px 0px;
+  min-height: 50px;
+  margin: -50px 0px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .landing h1,
 .landing h2 {
+  margin: 0;
+  padding: 0;
   color: #fff;
-  text-align: center;
-  line-height: 1.5em;
 }
 
 .landing h1 {
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+  font-weight: 700;
+  text-shadow: 1px 1px 10px #444;
+}
+
+.landing h2 {
+  font-weight: 650;
+  color: #eee;
 }
 
 .landing h2:before, .landing h2:after {
@@ -183,12 +191,65 @@ header .user .icon {
 }
 
 .paragraph {
+  background: -webkit-gradient(linear, left top, right bottom, from(#fff), to(#fdfdfd));
+  background: linear-gradient(to bottom right, #fff, #fdfdfd);
+  padding: 10px 50px;
+  margin: 20px 60px;
   border-radius: 5px;
-  margin: 0px 30px;
-  padding: 30px;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  -webkit-box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  margin-left: 20px;
+  margin-bottom: 60px;
+  max-width: 500px;
+}
+
+form div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  width: auto;
+  margin-bottom: 5px;
+}
+
+form div input {
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #eee;
+  padding: 5px;
+  width: 100%;
+}
+
+form div label {
+  color: #666;
+}
+
+form button {
+  float: right;
   background: #fff;
-  -webkit-box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.1);
-  margin-top: -30px;
+  border-radius: 50px;
+  outline: none;
+  border: 1px solid #08f;
+  padding: 5px 20px;
+  color: #08f;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  font-weight: 600;
+}
+
+form button:hover {
+  background: #08f;
+  color: #fff;
+}
+
+form button:active {
+  -webkit-filter: brightness(115%);
+          filter: brightness(115%);
 }
 /*# sourceMappingURL=styles.css.map */

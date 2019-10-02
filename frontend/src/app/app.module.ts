@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { AddComponent } from "./add/add.component";
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
