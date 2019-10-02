@@ -10,7 +10,7 @@
   position: fixed;
   padding: 20px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(7px);
   width: 500px;
   top: 50%;
@@ -19,6 +19,7 @@
   z-index: 40;
   display: block;
   text-align: center;
+  user-select: none;
 }
 
 .title {

@@ -6,10 +6,7 @@
 <div class="paragraph">
   <h2>Neuen Account erstellen</h2>
 
-  <form
-    [formGroup]="changePasswordForm"
-    (ngSubmit)="submitPWChange(changePasswordForm.value)"
-  >
+  <form [formGroup]="registerForm" (ngSubmit)="submit(registerForm.value)">
     <div>
       <label for="username">
         Benutzername
@@ -42,7 +39,10 @@
 <div class="paragraph">
   <h2>
     Du hast bereits ein Account?
-    <a [routerLink]="['/login']" class="startChatting" style="float: right;"
+    <a
+      [routerLink]="['/login']"
+      class="startChatting"
+      style="position: absolute; right: 90px;"
       ><i class="fas fa-sign-in-alt"></i>Zum Login</a
     >
   </h2>

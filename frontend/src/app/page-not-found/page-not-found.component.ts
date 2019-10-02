@@ -16,7 +16,7 @@ export class PageNotFoundComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.httpClient
       .get(
-        "https://api.giphy.com/v1/gifs/random?api_key=0UTRbFtkMxAplrohufYco5IY74U8hOes&tag=wolf-of-wall-street&rating=R"
+        "https://api.giphy.com/v1/gifs/random?api_key=0UTRbFtkMxAplrohufYco5IY74U8hOes&tag=wolf%20of%20wall%20street&rating=R"
       )
       .subscribe(data => {
         this.ngZone.run(() => {

@@ -23,6 +23,39 @@ a:not([routerLink]):hover {
           box-shadow: inset 0px -1px #08f;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  position: absolute !important;
+  border-radius: 4px;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+::-webkit-scrollbar:hover {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
 .splitter {
   margin: 30px 0px;
   height: 1px;
@@ -138,27 +171,68 @@ header {
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);
   text-align: right;
-}
-
-header .user {
-  display: inline-block;
-  height: 50px;
   line-height: 50px;
-  cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  outline: none;
-}
-
-header .user .name {
-  display: inline-block;
   color: #ddd;
 }
 
-header .user .icon {
+header * {
   display: inline-block;
+  outline: none;
+}
+
+header * * {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+header .registerLogin {
+  margin-right: 20px;
+}
+
+header .registerLogin svg {
+  margin-left: 5px;
+}
+
+header .registerLogin .signIn {
+  line-height: 20px;
+  height: 20px;
+  margin: 15px 0px;
+}
+
+header .registerLogin .signIn:hover {
+  color: #fff;
+  -webkit-box-shadow: inset 0px -1px #fff;
+          box-shadow: inset 0px -1px #fff;
+}
+
+header .registerLogin .register {
+  line-height: 30px;
+  height: 30px;
+  margin: 10px 0px;
+  margin-right: 20px;
+  padding: 0px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+header .registerLogin .register:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+header .user {
+  cursor: pointer;
+}
+
+header .user .icon {
   background: #bbb;
   margin: 10px;
   line-height: 30px;
