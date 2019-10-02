@@ -131,6 +131,7 @@ header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 19;
   height: 50px;
   padding: 0px 10px;
   background: rgba(255, 255, 255, 0.2);
