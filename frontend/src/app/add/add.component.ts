@@ -32,7 +32,13 @@ export class AddComponent implements OnInit {
 
   onAdd() {
     // tslint:disable-next-line: max-line-length
-    window.alert('This nibba has been added');
+
+    window.alert('Question: ' + this.questionInput + '\nAnswer: ' + this.answerInput+ '\nSource: ' + this.sourceInput);
+    this.questionInput = '';
+    this.lectureInput = '';
+    this.sourceInput = '';
+    this.answerInput = '';
+
   }
 
 }

@@ -9,7 +9,7 @@
   <div class="lectureInput" style="display: inline-block" >
       <fieldset style="border-style: double;">
         <legend>Lecture</legend>
-      <select id="lectureInput" [(ngModel)]="lectureInput" style="font-size:1em; width: 5cm ">
+      <select required id="lectureInput" [(ngModel)]="lectureInput" style="font-size:1em; width: 5cm ">
         <option value="" disabled selected>please select lecture</option>
         <option>Programmieren</option>
         <option>Mathe</option>
@@ -67,6 +67,6 @@
 
 
   <div class="addButton" style="text-align: right">
-    <button (click)="onAdd()">add</button>
+    <button id="addButton" type="submit" (click)="onAdd()" >add</button>
   </div>
 </div>
