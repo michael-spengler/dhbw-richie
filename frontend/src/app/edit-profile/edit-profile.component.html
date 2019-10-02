@@ -1,0 +1,72 @@
+<div class="landing">
+  <div class="name">Timo Scheuermann</div>
+  <div class="mail">max.mustermann@mail.de</div>
+</div>
+<div class="paragraph" style="z-index: 9000;">
+  <h1>Account</h1>
+  <h3>Informationen</h3>
+  <form
+    [formGroup]="updateEmailForm"
+    (ngSubmit)="submitEmailChange(updateEmailForm.value)"
+  >
+    <div>
+      <label>
+        Benutzername
+      </label>
+      <label>Timo Scheuermann</label>
+    </div>
+    <div>
+      <label>
+        Account erstellt am
+      </label>
+      <label>01.10.2019</label>
+    </div>
+    <div>
+      <label>
+        Rang
+      </label>
+      <label>Admin</label>
+    </div>
+
+    <div>
+      <label for="newMail">
+        E-Mail-Adresse
+      </label>
+      <input required id="newMail" type="mail" formControlName="newMail" />
+    </div>
+
+    <button type="submit">Speichern</button>
+  </form>
+</div>
+
+<div class="paragraph">
+  <h1>Management</h1>
+  <h3>Passwort ändern?</h3>
+
+  <form
+    [formGroup]="changePasswordForm"
+    (ngSubmit)="submitPWChange(changePasswordForm.value)"
+  >
+    <div>
+      <label for="newPW">
+        Neues Passwort eingeben
+      </label>
+      <input required id="newPW" type="password" formControlName="newPW" />
+    </div>
+
+    <div>
+      <label for="newPWr">
+        Neues Passwort wiederholen
+      </label>
+      <input required id="newPWr" type="password" formControlName="newPWr" />
+    </div>
+
+    <div>
+      <label for="oldPW">
+        Altes Passwort eingeben
+      </label>
+      <input required id="oldPW" type="password" formControlName="oldPW" />
+    </div>
+    <button type="submit">Speichern</button>
+  </form>
+</div>

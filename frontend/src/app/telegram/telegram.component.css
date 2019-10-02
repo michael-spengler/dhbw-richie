@@ -1,0 +1,63 @@
+table {
+  border-collapse: collapse;
+  max-width: 100%;
+  width: 100%;
+}
+
+tr:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+td {
+  height: 30px;
+  padding: 10px;
+  line-height: 30px;
+  max-height: 30px;
+  text-overflow: ellipsis;
+}
+
+tr {
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+tr:hover a {
+  color: #08f;
+}
+
+tr:hover {
+  background: #eee;
+}
+
+a {
+  color: #ccc;
+}
+a:active {
+  filter: brightness(110%);
+}
+
+img {
+  height: 40px;
+  margin: -5px;
+  background: #eee;
+  border-radius: 20px;
+  user-select: none;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.1);
+}
+.trtitle {
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+.trdescription {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  max-width: 600px;
+}
+
+.trmember {
+  opacity: 0.75;
+}
