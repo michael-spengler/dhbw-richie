@@ -3,60 +3,68 @@
   <h2>Anderen Helfen</h2>
 </div>
 
-<div class="paragraph">
+<div class="paragraph" id="paragraph">
   <h1>Formular</h1>
+
+  <div class="lectureInput" style="display: inline-block" >
+      <fieldset style="border-style: double;">
+        <legend>Lecture</legend>
+      <select id="lectureInput" [(ngModel)]="lectureInput" style="font-size:1em; width: 5cm ">
+        <option value="" disabled selected>please select lecture</option>
+        <option>Programmieren</option>
+        <option>Mathe</option>
+      </select>
+    </fieldset>
+    </div>
+
+    <p></p>
+
 
   <div style="text-align: center">
     <div class="questionInput" style="display: inline-block; border: 1cm">
-      <fieldset id="questionSet" style="border: none">
+      <fieldset id="questionSet" style="border-style: double">
         <legend>Question</legend>
 
         <textarea
           id="questionInput"
           placeholder="please enter question"
           [(ngModel)]="questionInput"
-          style="height: 1cm;width: 5cm; "
+          style="height: 1.5cm;width: 7cm; "
         ></textarea>
       </fieldset>
     </div>
 
     <div class="answerInput" style="display: inline-block;">
-      <fieldset id="answerSet" style="border-style: none;">
+      <fieldset id="answerSet" style="border-style: double">
         <legend>Answer</legend>
 
         <textarea
           id="answerInput"
           placeholder="Please enter answer"
           [(ngModel)]="answerInput"
-          style="height: 1cm;width: 5cm;"
+          style="height: 1.5cm;width: 7cm;"
         ></textarea>
       </fieldset>
     </div>
   </div>
 
-  <div style="text-align: center">
-    <div class="lectureInput" style="display: inline-block">
-      <select id="lectureInput" [(ngModel)]="lectureInput">
-        <option value="" disabled selected>please select lecture</option>
-        <option>Programmieren</option>
-        <option>Mathe</option>
-      </select>
-    </div>
 
-    <div class="sourceInput" style="display:inline-block">
-      <fieldset id="sourceSet" style="">
+  <div class="sourceInput" style="display:inline-block">
+      <fieldset id="sourceSet" style="border-style: double">
         <legend>Source</legend>
         <textarea
           id="sourceInput"
           placeholder="Please enter source"
           [(ngModel)]="sourceInput"
-          style="height: 0.5cm"
+          style="height: 01cm; font-size: 0,7em"
         ></textarea>
       </fieldset>
     </div>
-  </div>
 
-  <p>{{ questionInput }}</p>
+
+
+
+
 
   <div class="addButton" style="text-align: right">
     <button (click)="onAdd()">add</button>
