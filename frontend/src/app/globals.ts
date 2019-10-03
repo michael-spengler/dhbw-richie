@@ -22,32 +22,36 @@ export class Globals {
   }
 
   public sendNotification(message: string, type: NotificationType) {
-    let options;
-    if (type === NotificationType.INFORMATION) {
-      options = { cssClass: "notification inf", icon: "fas fa-info-circle" };
-    } else if (type === NotificationType.ERROR) {
-      options = {
-        cssClass: "notification err",
-        icon: "fas fa-exclamation-circle"
-      };
-    } else if (type === NotificationType.SUCCESS) {
-      options = { cssClass: "notification suc", icon: "fas fa-check-circle" };
-    } else return;
+    let cssClass = "";
+    let icon = "";
 
-    this.notification = {};
+    if (type == NotificationType.SUCCESS) {
+      cssClass = "notification suc";
+      icon = "fas fa-check-circle";
+    } else if (type == NotificationType.INFORMATION) {
+      cssClass = "notification inf";
+      icon = "fas fa-info-circle";
+    } else if (type == NotificationType.ERROR) {
+      cssClass = "notification err";
+      icon = "fas fa-exclamation-circle";
+    } else {
+      return;
+    }
+
+    this.notification.style = {};
     setTimeout(() => {
       this.notification = {
         type: type,
         message: message,
-        class: options.cssClass,
-        icon: options.icon,
+        class: cssClass,
+        icon: icon,
         style: {
           animation:
             "notification-animation 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
           "letter-spacing": Math.random()
         }
       };
-    });
+    }, 50);
     console.log(this.notification);
   }
 

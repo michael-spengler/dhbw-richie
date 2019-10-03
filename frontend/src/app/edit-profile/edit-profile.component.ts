@@ -43,8 +43,8 @@ export class EditProfileComponent {
   submitPWChange(passwordChange) {
     this.changePasswordForm.reset();
     this.globals.sendNotification(
-      "Passwörter stimmen nicht überein!",
-      NotificationType.ERROR
+      "Passwort erfolgreich geändert!",
+      NotificationType.SUCCESS
     );
   }
 }

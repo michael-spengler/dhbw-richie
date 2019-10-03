@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
-import { Globals } from "../globals";
+import { Globals, NotificationType } from "../globals";
 
 @Component({
   selector: "app-password-reset",
@@ -19,6 +19,10 @@ export class PasswordResetComponent implements OnInit {
 
   submit(userInformation) {
     this.resetPasswordForm.reset();
+    this.globals.sendNotification(
+      "Username und E-Mail stimmen nicht überein",
+      NotificationType.ERROR
+    );
   }
   ngOnInit() {}
 }
