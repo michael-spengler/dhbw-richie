@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
+import { AboutComponent } from "./about/about.component";
 import { AddComponent } from "./add/add.component";
 import { AdminComponent } from "./admin/admin.component";
 import { AppRoutingModule } from "./app-routing.module";
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
   { path: "resetpassword", component: PasswordResetComponent },
   { path: "legal", component: LegalComponent },
   { path: "impressum", component: ImpressumComponent },
+  { path: "about", component: AboutComponent },
 
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
@@ -69,7 +71,8 @@ const appRoutes: Routes = [
     LegalComponent,
     RegisterComponent,
     LoginComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    AboutComponent
   ],
   providers: [Globals],
   bootstrap: [AppComponent]

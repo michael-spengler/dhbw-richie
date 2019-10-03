@@ -1,15 +1,106 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.css"]
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
+  constructor() {}
 
-  constructor() { }
+  activeUser = {
+    name: "Timo Scheuermann",
+    mail: "max.mustermann@mail.de",
+    rank: "Admin",
+    enabled: true,
+    created: new Date(1569939205000)
+  };
+  overlayStyle = { display: "none" };
+  cardStyle = { animation: "none" };
 
-  ngOnInit() {
+  openUserCard(userIndex) {
+    this.overlayStyle = {
+      display: "block"
+    };
+    this.cardStyle = {
+      animation: "overlay-animation 0.4s linear both"
+    };
+    this.activeUser = this.users[userIndex];
+    this.activeUser["id"] = userIndex;
+  }
+  closeUserCard() {
+    this.overlayStyle = { display: "none" };
+    this.cardStyle = { animation: "none" };
+  }
+  toggleUserActivation() {
+    this.users[this.activeUser["id"]].enabled = !this.users[
+      this.activeUser["id"]
+    ].enabled;
   }
 
+  users = [
+    {
+      name: "Timo Scheuermann",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      created: new Date(1569939205000),
+      enabled: true
+    },
+    {
+      name: "Nicolas Fürhaupter",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    },
+    {
+      name: "Moritz Jürgens",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    },
+    {
+      name: "Jan Gruebener",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    },
+    {
+      name: "Aaron Schweig",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    },
+    {
+      name: "Eger Jan",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    },
+    {
+      name: "Troy Kessler",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    },
+    {
+      name: "Mr. Flo",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    },
+    {
+      name: "Prinz Marcus",
+      mail: "max.mustermann@mail.de",
+      rank: "Admin",
+      enabled: true,
+      created: new Date(1569939205000)
+    }
+  ];
 }

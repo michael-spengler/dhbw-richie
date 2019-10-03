@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   submit(userInformation) {
     this.loginForm.reset();
     this.globals.logIn();
+    this.router.navigate(["/home"]);
   }
   ngOnInit() {}
 }

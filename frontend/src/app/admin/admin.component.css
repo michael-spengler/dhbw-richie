@@ -1,0 +1,166 @@
+.stats {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  text-align: center;
+  overflow-x: auto;
+  margin-bottom: 10px;
+}
+.stat[ng-reflect-router-link] {
+  cursor: pointer;
+}
+.stat {
+  display: inline-grid;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  background-color: #eee;
+  user-select: none;
+}
+.stat h1 {
+  font-size: 18px;
+}
+.stat svg {
+  width: 100%;
+  font-size: 60px;
+  margin: 5px 0px;
+  margin-bottom: 10px;
+}
+.stat span {
+  color: #08f;
+  font-weight: 600;
+  font-size: 25px;
+  margin: 10px 0px;
+}
+.close {
+  width: 40px;
+  height: 40px;
+  right: 5px;
+  top: 5px;
+  border-radius: 40px;
+  position: absolute;
+  font-size: 38px;
+  line-height: 40px;
+  text-align: center;
+  transition: 0.1s ease;
+  cursor: pointer;
+  opacity: 0.4;
+}
+.close:hover {
+  opacity: 0.8;
+}
+
+.close::before,
+.close::after {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 40px;
+  background: #222;
+}
+.close::before {
+  transform: rotate(45deg) scale(0.7);
+}
+.close::after {
+  transform: rotate(-45deg) scale(0.7);
+}
+
+.overlay {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+}
+
+.userCard {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  padding: 30px;
+  background: #fff;
+  overflow-x: auto;
+  display: block;
+  text-align: center;
+}
+.userCard h2 {
+  margin-top: 0;
+}
+.userCard .stats {
+  margin-bottom: 0;
+}
+.userCard .information {
+  display: grid;
+  grid-template-columns: 120px 400px 120px;
+  grid-gap: 20px;
+  margin: 0px calc(50% - 320px);
+}
+
+.userCard .status {
+  display: inline-grid;
+  height: 100%;
+  width: 100%;
+}
+.userCard .active {
+  color: rgb(52, 199, 89);
+}
+.userCard .disabled {
+  color: rgb(255, 59, 48);
+}
+.userCard .statusTitle {
+  font-weight: 600;
+  user-select: none;
+}
+.userCard .toggle {
+  color: #666;
+  transition: 0.2s ease;
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 0.8em;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  user-select: none;
+}
+.userCard .toggle:hover {
+  color: #08f;
+}
+.userCard .toggle:active {
+  filter: brightness(115%);
+}
+
+.userCard .status svg {
+  font-size: 30px;
+  width: 100%;
+}
+
+.userCard .icon svg {
+  height: 100%;
+  width: 100%;
+  opacity: 0.8;
+  display: inline-grid;
+}
+.userCard table {
+  border-collapse: collapse;
+}
+.userCard table tr {
+  height: 25px;
+}
+.userCard table tr:not(:first-child) {
+  border-top: 1px solid #ccc;
+}
+
+@keyframes overlay-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
