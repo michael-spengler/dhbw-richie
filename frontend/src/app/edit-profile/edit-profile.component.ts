@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Globals } from "../globals";
+import { Globals, NotificationType } from "../globals";
 
 @Component({
   selector: "app-edit-profile",
@@ -34,9 +34,17 @@ export class EditProfileComponent {
 
   submitEmailChange(newEmail) {
     this.updateEmailForm.reset();
+    this.globals.sendNotification(
+      "Wir haben dir eine Bestätigungs-E-Mail geschickt",
+      NotificationType.INFORMATION
+    );
   }
 
   submitPWChange(passwordChange) {
     this.changePasswordForm.reset();
+    this.globals.sendNotification(
+      "Passwörter stimmen nicht überein!",
+      NotificationType.ERROR
+    );
   }
 }

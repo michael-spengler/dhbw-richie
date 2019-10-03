@@ -7,5 +7,5 @@ import { Globals } from "../globals";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent {
-  constructor(public globals: Globals) {}
+  constructor(private globals: Globals) {}
 }

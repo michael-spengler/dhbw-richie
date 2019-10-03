@@ -1,0 +1,84 @@
+.notificationWrapper {
+  position: fixed;
+  left: 50%;
+  transform: translate(calc(-50% + 100px), 0);
+  bottom: 30px;
+  user-select: none;
+}
+.notification {
+  display: inline-block;
+  transform: scale(0);
+  height: 40px;
+  line-height: 40px;
+  padding-right: 20px;
+  padding-left: 40px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(7px);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  color: #333;
+  border-radius: 20px;
+  font-size: 1em;
+  font-weight: 600;
+  overflow: hidden;
+}
+.message {
+  margin-left: 5px;
+}
+
+.notification svg {
+  position: absolute;
+  height: 40px;
+  line-height: 40px;
+  margin-left: -35px;
+  font-size: 30px;
+}
+
+.inf svg {
+  color: #08f;
+}
+
+.err svg {
+  color: #fc5c65;
+}
+.suc svg {
+  color: #34c759;
+}
+
+@keyframes notification-animation {
+  0% {
+    transform: translateZ(-1400px) translateY(800px) scale(1);
+    max-width: 0;
+    padding: 0;
+    padding-left: 40px;
+  }
+
+  10% {
+    transform: translateZ(0) translateY(0);
+    max-width: 0;
+    padding: 0;
+    padding-left: 40px;
+    letter-spacing: -0.5em;
+  }
+  20% {
+    max-width: 100%;
+    padding-left: 40px;
+    padding-right: 20px;
+    letter-spacing: normal;
+  }
+  90% {
+    max-width: 100%;
+    padding-left: 40px;
+    padding-right: 20px;
+    transform: scale(1);
+    letter-spacing: normal;
+    opacity: 1;
+  }
+  100% {
+    max-width: 100%;
+    padding-left: 40px;
+    padding-right: 20px;
+    transform: scale(0);
+    letter-spacing: normal;
+    opacity: 0;
+  }
+}

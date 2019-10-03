@@ -15,9 +15,40 @@ export class Globals {
       ).replace("undefined", "");
     }
   };
+  notification: any = { style: { display: "none" }, css: "" };
 
   public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  public sendNotification(message: string, type: NotificationType) {
+    let options;
+    if (type === NotificationType.INFORMATION) {
+      options = { cssClass: "notification inf", icon: "fas fa-info-circle" };
+    } else if (type === NotificationType.ERROR) {
+      options = {
+        cssClass: "notification err",
+        icon: "fas fa-exclamation-circle"
+      };
+    } else if (type === NotificationType.SUCCESS) {
+      options = { cssClass: "notification suc", icon: "fas fa-check-circle" };
+    } else return;
+
+    this.notification = {};
+    setTimeout(() => {
+      this.notification = {
+        type: type,
+        message: message,
+        class: options.cssClass,
+        icon: options.icon,
+        style: {
+          animation:
+            "notification-animation 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+          "letter-spacing": Math.random()
+        }
+      };
+    });
+    console.log(this.notification);
   }
 
   public logOut() {
@@ -27,6 +58,10 @@ export class Globals {
     this.user.created = null;
     this.user.signed_in = false;
     this.router.navigate(["/home"]);
+    this.sendNotification(
+      "Du wurdest erfolgreich abgemeldet!",
+      NotificationType.INFORMATION
+    );
   }
   public logIn() {
     this.user.name = "Timo Scheuermann";
@@ -34,5 +69,15 @@ export class Globals {
     this.user.group = "Admin";
     this.user.created = new Date(1569939205000);
     this.user.signed_in = true;
+    this.sendNotification(
+      `Willkommen zurück, ${this.user.name}!`,
+      NotificationType.INFORMATION
+    );
   }
+}
+
+export enum NotificationType {
+  INFORMATION,
+  ERROR,
+  SUCCESS
 }

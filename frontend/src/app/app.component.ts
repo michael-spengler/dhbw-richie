@@ -10,6 +10,5 @@ export class AppComponent {
   constructor(public globals: Globals) {
     globals.logIn();
   }
-
   title = "frontend";
 }
