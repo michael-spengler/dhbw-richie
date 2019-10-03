@@ -7,16 +7,23 @@ import { Globals, NotificationType } from "../globals";
   styleUrls: ["./review.component.css"]
 })
 export class ReviewComponent implements OnInit {
-
   myItems: any[]; //just for testing purposes
 
   constructor(private globals: Globals) {
     this.myItems = [
       { status: "Neu", question: "Was ist der Sinn des Lebens", answer: 42 },
-      { status: "Änderung", question: "Warum ist die Banane krumm", answer: "Sonne" },
-      { status: "Feedback", question: "Wie viele Sandkörner gibt es am Strand", answer: 42000 },
-      { status: "Löschen", question: "Was ist der Sinn des Lebens", answer: 42 },
-    ]
+      {
+        status: "Änderung",
+        question: "Warum ist die Banane krumm",
+        answer: "Sonne"
+      },
+      {
+        status: "Feedback",
+        question: "Wie viele Sandkörner gibt es am Strand",
+        answer: 42000
+      },
+      { status: "Löschen", question: "Was ist der Sinn des Lebens", answer: 42 }
+    ];
   }
 
   ngOnInit() {}
@@ -49,8 +56,11 @@ export class ReviewComponent implements OnInit {
     this.sourceInput = "";
     this.answerInput = "";
 
-    this.display.display="none";
+    this.display.display = "none";
 
-    this.globals.sendNotification("Frage wurde geändert", NotificationType.INFORMATION)
+    this.globals.sendNotification(
+      "Frage wurde geändert",
+      NotificationType.INFORMATION
+    );
   }
 }

@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 export class Globals {
   constructor(private sanitizer: DomSanitizer, private router: Router) {}
 
-  botURL = this.getSantizeUrl("tg://resolve?domain=dhbw_richie_bots");
+  botURL = this.getSantizeUrl("tg://resolve?domain=dhbw_richie_bot");
   user: any = {
     abbreviation: function(): string {
       return (this.name.split(" ").length > 1
