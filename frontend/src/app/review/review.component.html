@@ -5,21 +5,23 @@
 <div class="paragraph">
     <h2>Zu überprüfende Fragen: {{ this.myItems.length }}</h2>
 
-    <table id="itemsTable" style="width:100%">
-        <tr *ngFor="let item of myItems; let i = index" (click)="togglePopUp()">
-            <td>
-                <span class="{{ item.status }}"></span>
-            </td>
-            <td>F:</td>
-            <td>{{ item.question }}</td>
-            <td>A:</td>
-            <td>{{ item.answer }}</td>
-        </tr>
-    </table>
+    <div class="tablewrapper">
+        <table id="itemsTable" style="width:100%">
+            <tr *ngFor="let item of myItems; let i = index" (click)="togglePopUp(item)">
+                <td>
+                    <span class="{{ item.status }}"></span>
+                </td>
+                <td>F:</td>
+                <td>{{ item.question }}</td>
+                <td>A:</td>
+                <td>{{ item.answer }}</td>
+            </tr>
+        </table>
+    </div>
 
     <div class="modal" [ngStyle]="display">
         <div class="modal-content">
-            <span (click)="togglePopUp()" class="close-btn">&times;</span>
+            <span (click)="togglePopUp(item)" class="close-btn">&times;</span>
             <div>
 
                 <div>
