@@ -1,66 +1,75 @@
 <div class="landing">
-  <h1>Review-Management</h1>
+    <h1>Review-Management</h1>
 </div>
 
 <div class="paragraph">
-  <h2>Zu überprüfende Fragen</h2>
+    <h2>Zu überprüfende Fragen: {{ this.myItems.length }}</h2>
 
-  <table style="width:90%">
-    <tr onclick="rowClicked">
-      <td>
-        <span
-          style="background: rgb(52, 199, 89); border-radius: 20px; padding: 1px 5px; color: #fff;"
-          >Neu</span
-        >
-      </td>
-      <td>F:</td>
-      <td>Was ist der Sinn des Leben?</td>
-      <td>A:</td>
-      <td>42</td>
-    </tr>
-    <tr>
-      <td>
-        <span
-          style="background: rgb(255, 149, 0); border-radius: 20px; padding: 1px 5px; color: #fff;"
-          >Änderung</span
-        >
-      </td>
-      <td>Frage:</td>
-      <td>Was ist der Sinn des Leben?</td>
-      <td>Antwort:</td>
-      <td>42</td>
-    </tr>
-    <tr>
-      <td>
-        <span
-          style="background: rgb(0, 122, 255); border-radius: 20px; padding: 1px 5px; color: #fff;"
-          >Feedback</span
-        >
-      </td>
-      <td>Frage:</td>
-      <td>Was ist der Sinn des Leben?</td>
-      <td>Antwort:</td>
-      <td>42</td>
-    </tr>
-    <tr>
-      <td>
-        <span
-          style="background: rgb(255, 59, 48); border-radius: 20px; padding: 1px 5px; color: #fff;"
-          >Löschen</span
-        >
-      </td>
-      <td>Frage:</td>
-      <td>Was ist der Sinn des Leben?</td>
-      <td>Antwort:</td>
-      <td>42</td>
-    </tr>
-  </table>
+    <table id="itemsTable" style="width:100%">
+        <tr *ngFor="let item of myItems; let i = index" (click)="togglePopUp()">
+            <td>
+                <span class="{{ item.status }}"></span>
+            </td>
+            <td>F:</td>
+            <td>{{ item.question }}</td>
+            <td>A:</td>
+            <td>{{ item.answer }}</td>
+        </tr>
+    </table>
 
-  <button (click)="togglePopUp()">click me, I make a modal</button>
-  <div class="modal" [ngStyle]="display">
-    <div class="modal-content">
-      <span (click)="togglePopUp()" class="close-btn">&times;</span>
-      <p>this is the text inside the modal</p>
+    <div class="modal" [ngStyle]="display">
+        <div class="modal-content">
+            <span (click)="togglePopUp()" class="close-btn">&times;</span>
+            <div>
+
+                <div>
+                    <h2 style=display:inline-block>Frage überprüfen</h2>
+
+                    <div class="lectureInput" style="float: right;">
+                        <fieldset style="border-style: double;">
+                            <legend>Lecture</legend>
+                            <select required id="lectureInput" [(ngModel)]="lectureInput" style="font-size:1em; width: 3.5cm ">
+                <option value="" disabled selected>please select lecture</option>
+                <option>Programmieren</option>
+                <option>Mathe</option>
+              </select>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+                <div style="text-align: center">
+                    <div style="text-align: center">
+                        <div class="questionInput" style="display: inline-block; border: 1cm">
+                            <fieldset id="questionSet" style="border-style: double">
+                                <legend>Question</legend>
+
+                                <textarea id="questionInput" placeholder="please enter question" [(ngModel)]="questionInput" style="height: 1.5cm;width: 7cm; "></textarea>
+                            </fieldset>
+                        </div>
+
+                        <div class="answerInput" style="display: inline-block;">
+                            <fieldset id="answerSet" style="border-style: double">
+                                <legend>Answer</legend>
+
+                                <textarea id="answerInput" placeholder="Please enter answer" [(ngModel)]="answerInput" style="height: 1.5cm;width: 7cm;"></textarea>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="sourceInput" style="display:inline-block">
+                        <fieldset id="sourceSet" style="border-style: double">
+                            <legend>Source</legend>
+                            <textarea id="sourceInput" placeholder="Please enter source" [(ngModel)]="sourceInput" style="height: 01cm; font-size: 0,7em"></textarea>
+                        </fieldset>
+                    </div>
+
+                    <div class="changeButton" style="display: inline-flexbox">
+                        <button id="changeButton" type="submit" (click)="onChange()">Ändern</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
