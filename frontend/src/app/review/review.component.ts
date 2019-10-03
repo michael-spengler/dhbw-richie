@@ -44,18 +44,12 @@ export class ReviewComponent implements OnInit {
   onChange() {
     // tslint:disable-next-line: max-line-length
 
-    window.alert(
-      "Question: " +
-        this.questionInput +
-        "\nAnswer: " +
-        this.answerInput +
-        "\nSource: " +
-        this.sourceInput
-    );
     this.questionInput = "";
     this.lectureInput = "";
     this.sourceInput = "";
     this.answerInput = "";
+
+    this.display.display="none";
 
     this.globals.sendNotification("Frage wurde geändert", NotificationType.INFORMATION)
   }

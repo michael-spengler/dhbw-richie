@@ -25,6 +25,7 @@ body {
     float: left;
     text-transform: capitalize;
     color: #fff;
+    transform: scale(1.1);
 }
 
 .Neu::before {
@@ -79,12 +80,40 @@ body {
     animation-duration: 0.4s;
 }
 
-.close-btn {
-    float: right;
-    color: lightgray;
-    font-size: 24px;
-    font-weight: bold;
+.close {
+    width: 40px;
+    height: 40px;
+    right: 5px;
+    top: 5px;
+    border-radius: 40px;
+    position: absolute;
+    font-size: 38px;
+    line-height: 40px;
+    text-align: center;
+    transition: 0.1s ease;
     cursor: pointer;
+    opacity: 0.4;
+}
+
+.close:hover {
+    opacity: 0.8;
+}
+
+.close::before,
+.close::after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 40px;
+    background: #222;
+}
+
+.close::before {
+    transform: rotate(45deg) scale(0.7);
+}
+
+.close::after {
+    transform: rotate(-45deg) scale(0.7);
 }
 
 .close-btn:hover {
