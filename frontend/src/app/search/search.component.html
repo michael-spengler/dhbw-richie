@@ -1,28 +1,40 @@
-<html lang="en">
-    <div class="search-card">
-         <div class="Searchbar">
-             <input  class="Searchbar" type="text" name="UsersSearch" placeholder="Search... "><br>
-             <button style="background-image: path(../assets/img/search-icon.svg)" alt="Search-icon"></button>
+<div class="landing">
+  <h1>Nach einer Antwort suchen</h1>
+  <h2>Fragen beantworten</h2>
+</div>
+
+<div class="searchBar">
+  <form [formGroup]="searchForm" (ngSubmit)="startSearch(searchForm.value)">
+    <input type="text" formControlName="query" />
+    <button type="submit" title="Suche starten">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+</div>
+
+<div class="paragraph">
+  <div class="row">
+    <div class="collom">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Frage</h5>
+          <p class="card-text">Antwort</p>
+          <button class="button" (click)="(Bearbeitungsvorschlageinreichen)">
+            Bearbeitungsvorschlag
+          </button>
         </div>
+      </div>
     </div>
-    <p></p>
-    <div class="row">
-            <div class="collom">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Frage</h5>
-                  <p class="card-text">Antwort</p>
-                  <button class="button" (click)="Bearbeitungsvorschlageinreichen">Bearbeitungsvorschlag</button>                </div>
-              </div>
-            </div>
-            <div class="collom">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Frage</h5>
-                  <p class="card-text">Antwort</p>
-                  <button  class="button" (click)="Bearbeitungsvorschlageinreichen">Bearbeitungsvorschlag</button>
-                </div>
-              </div>
-            </div>
-          </div>
-</html>
+    <div class="collom">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Frage</h5>
+          <p class="card-text">Antwort</p>
+          <button class="button" (click)="(Bearbeitungsvorschlageinreichen)">
+            Bearbeitungsvorschlag
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

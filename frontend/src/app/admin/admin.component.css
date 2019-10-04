@@ -27,12 +27,50 @@
   margin: 5px 0px;
   margin-bottom: 10px;
 }
-.stat span {
+.stat span,
+select {
   color: #08f;
   font-weight: 600;
   font-size: 25px;
-  margin: 10px 0px;
+  background: none;
+  border: none;
+  appearance: none;
+  outline: none;
 }
+select {
+  font-weight: 550;
+  width: 100%;
+  text-align-last: center;
+}
+select option {
+  background: #ccc;
+  color: #222;
+  font-family: "SF Pro Display", sans-serif;
+  font-weight: 500;
+  text-align-last: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.userSearch {
+  display: inline-block;
+  color: #222;
+  font-size: 16px;
+  border: 1px solid #eee;
+  text-decoration: none;
+  transition: 0.2s ease;
+  padding: 5px 20px;
+  border-radius: 40px;
+  margin-right: 15px;
+  outline: none;
+}
+.userSearch:focus,
+.userSearch:hover {
+  background: #eee;
+}
+
 .close {
   width: 40px;
   height: 40px;
@@ -108,10 +146,10 @@
   height: 100%;
   width: 100%;
 }
-.userCard .active {
+.active {
   color: rgb(52, 199, 89);
 }
-.userCard .disabled {
+.disabled {
   color: rgb(255, 59, 48);
 }
 .userCard .statusTitle {

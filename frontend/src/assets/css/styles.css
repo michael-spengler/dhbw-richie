@@ -291,6 +291,7 @@ header .user .icon {
   background: linear-gradient(to bottom right, #fff, #fdfdfd);
   padding: 10px 50px;
   margin: 20px 60px;
+  margin-bottom: 40px;
   border-radius: 5px;
   -webkit-transition: 1s ease;
   transition: 1s ease;

@@ -9,22 +9,22 @@
     <div class="stat">
       <h1>Registrierte Benutzer</h1>
       <i class="fas fa-users"></i>
-      <span class="number">10</span>
+      <span>10</span>
     </div>
     <div class="stat">
       <h1>Fragen eingereicht</h1>
       <i class="fas fa-atlas"></i>
-      <span class="number">234</span>
+      <span>234</span>
     </div>
     <div class="stat">
       <h1>Fragen gestellt</h1>
       <i class="fas fa-question"></i>
-      <span class="number">45902</span>
+      <span>45902</span>
     </div>
     <div class="stat" [routerLink]="['/telegram']">
       <h1>Telegram Channel</h1>
       <i class="fab fa-telegram"></i>
-      <span class="number">5</span>
+      <span>5</span>
     </div>
   </div>
 </div>
@@ -75,22 +75,25 @@
       <div class="stat">
         <h1>Benutzer-<br />Nummer</h1>
         <i class="fab fa-slack-hash"></i>
-        <span class="number">{{ activeUser.id }}</span>
+        <span>{{ activeUser.id + 1 }}</span>
       </div>
       <div class="stat">
         <h1>Benutzer-<br />Gruppe</h1>
         <i class="fas fa-theater-masks"></i>
-        <span class="number">{{ activeUser.rank }}</span>
+        <select id="activeUsersRank" [(ngModel)]="activeUser.rank">
+          <option value="Admin">Admin</option>
+          <option value="Pro">Pro</option>
+        </select>
       </div>
       <div class="stat">
         <h1>Fragen<br />eingereicht</h1>
         <i class="fas fa-atlas"></i>
-        <span class="number">2</span>
+        <span>2</span>
       </div>
       <div class="stat">
         <h1>Fragen<br />gestellt</h1>
         <i class="fas fa-question"></i>
-        <span class="number">134</span>
+        <span>134</span>
       </div>
     </div>
   </div>
@@ -99,7 +102,12 @@
 <div class="paragraph">
   <h2>Benutzerverwaltung</h2>
   <h3>Benutzer suchen</h3>
-  <p><i>Hier kommt noch eine Suche hin</i></p>
+
+  <input type="text" class="userSearch" [(ngModel)]="userSearch" />
+  <div class="startChatting" (click)="searchPlayer()">
+    <i class="fas fa-search"></i>Suche starten
+  </div>
+
   <h3>Ergebnisse</h3>
   <div class="tablewrapper">
     <table>
@@ -108,6 +116,10 @@
         <td>{{ user.mail }}</td>
         <td>{{ user.created | date: "dd.MM.yyyy" }}</td>
         <td>{{ user.rank }}</td>
+        <td *ngIf="user.enabled"><i class="fas fa-user-check active"></i></td>
+        <td *ngIf="!user.enabled">
+          <i class="fas fa-user-times disabled"></i>
+        </td>
       </tr>
     </table>
   </div>
@@ -118,10 +130,14 @@
   <div class="tablewrapper">
     <table>
       <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
-        <td>#{{ i }}</td>
+        <td>#{{ i + 1 }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.mail }}</td>
         <td>{{ user.rank }}</td>
+        <td *ngIf="user.enabled"><i class="fas fa-user-check active"></i></td>
+        <td *ngIf="!user.enabled">
+          <i class="fas fa-user-times disabled"></i>
+        </td>
       </tr>
     </table>
   </div>

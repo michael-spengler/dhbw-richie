@@ -1,38 +1,93 @@
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 80%;
-  }
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-
-.search-card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 75%;
-    text-align: center;
-    margin: 0 auto;
-  }
-  
-.Searchbar {
-    width: 95%;
-    display: grid;
-    grid-template-columns: 95% auto auto;
-    padding: 10px;
+.searchBar {
+  display: block;
+  background: rgba(200, 200, 200, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 0px 100px;
+  margin-bottom: 50px;
+  border-radius: 80px;
+  transition: 1s ease;
+  box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
+}
+.searchBar form {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+}
+.searchBar input {
+  background: none;
+  border: none;
+  width: calc(100vw - 465px);
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 40px;
+  margin: 0 !important;
+  padding: 0;
+}
+.searchBar button {
+  display: inline-block;
+  position: absolute;
+  right: 105px;
+  margin-top: -40px;
+  color: #fff;
+  background: none;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
 }
 
-.search-Icon { 
-    display: flex;  
-    align-items: center;
+/*
+  Hier fängt dein alter Teil an. Oben ist lediglich die Suchbar :)
+*/
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 80%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.search-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 75%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/*
+  
+Oben bereits verwendet für die Searchbar
+  
+.Searchbar {
+  width: 95%;
+  display: grid;
+  grid-template-columns: 95% auto auto;
+  padding: 10px;
+}
+
+*/
+
+.search-Icon {
+  display: flex;
+  align-items: center;
 }
 
 .container {
-    padding: 2px 16px;
-  }
+  padding: 2px 16px;
+}
 
 .button {
-    background-color:  red;
-    color: white;
+  background-color: red;
+  color: white;
 }

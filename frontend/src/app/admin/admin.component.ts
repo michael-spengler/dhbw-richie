@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Globals, NotificationType } from "../globals";
 
 @Component({
   selector: "app-admin",
@@ -6,7 +7,7 @@ import { Component } from "@angular/core";
   styleUrls: ["./admin.component.css"]
 })
 export class AdminComponent {
-  constructor() {}
+  constructor(public globals: Globals) {}
 
   activeUser = {
     name: "Timo Scheuermann",
@@ -17,6 +18,14 @@ export class AdminComponent {
   };
   overlayStyle = { display: "none" };
   cardStyle = { animation: "none" };
+  userSearch = "";
+
+  searchPlayer() {
+    this.globals.sendNotification(
+      `Die Suche nach dem Nutzer ${this.userSearch} ergab keine Treffer`,
+      NotificationType.ERROR
+    );
+  }
 
   openUserCard(userIndex) {
     this.overlayStyle = {
