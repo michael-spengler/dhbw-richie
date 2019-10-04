@@ -109,7 +109,11 @@
     [(ngModel)]="userSearch"
     (keydown)="onInputKeyDown($event)"
   />
-  <div class="startChatting" (click)="searchPlayer()">
+  <div
+    class="startChatting"
+    style="display: inline-block"
+    (click)="searchPlayer()"
+  >
     <i class="fas fa-search"></i>Suche starten
   </div>
 
