@@ -1,13 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import nodemailer from 'nodemailer';
+import { Data } from './entities/data.entity';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  public async getHello(): Promise<string> {
+  @Get('/test')
+  public async getTest(): Promise<Data[]> {
     console.log('test');
     let transporter = nodemailer.createTransport({
       host: 'smtp.office365.com', // Office 365 server
@@ -33,6 +34,6 @@ export class AppController {
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
 
-    return this.appService.getHello();
+    return this.appService.getTest();
   }
 }
