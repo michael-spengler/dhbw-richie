@@ -52,11 +52,17 @@
 </header>
 
 <div class="notificationWrapper">
-  <div
-    [ngClass]="globals.notification.class"
-    [ngStyle]="globals.notification.style"
-  >
-    <i [ngClass]="globals.notification.icon"></i>
+  <div [ngStyle]="globals.notification.style" class="notification">
+    <span *ngIf="globals.notification.type == '2'" class="suc">
+      <i class="fas fa-check-circle"></i>
+    </span>
+    <span *ngIf="globals.notification.type == '0'" class="inf">
+      <i class="fas fa-info-circle"></i>
+    </span>
+    <span *ngIf="globals.notification.type == '1'" class="err">
+      <i class="fas fa-exclamation-circle"></i>
+    </span>
+
     <span class="message">{{ globals.notification.message }}</span>
   </div>
 </div>

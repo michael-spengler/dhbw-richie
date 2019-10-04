@@ -15,41 +15,29 @@ export class Globals {
       ).replace("undefined", "");
     }
   };
-  notification: any = { style: { display: "none" }, css: "" };
+  notification = {
+    style: {
+      display: "none",
+      animation: "none"
+    },
+    type: null,
+    message: null
+  };
 
   public getSantizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   public sendNotification(message: string, type: NotificationType) {
-    let cssClass = "";
-    let icon = "";
-
-    if (type == NotificationType.SUCCESS) {
-      cssClass = "notification suc";
-      icon = "fas fa-check-circle";
-    } else if (type == NotificationType.INFORMATION) {
-      cssClass = "notification inf";
-      icon = "fas fa-info-circle";
-    } else if (type == NotificationType.ERROR) {
-      cssClass = "notification err";
-      icon = "fas fa-exclamation-circle";
-    } else {
-      return;
-    }
-
-    this.notification.style = {};
+    this.notification.type = type.toString();
+    this.notification.message = message;
+    console.log(type);
+    this.notification.style = { display: "none", animation: "none" };
     setTimeout(() => {
-      this.notification = {
-        type: type,
-        message: message,
-        class: cssClass,
-        icon: icon,
-        style: {
-          animation:
-            "notification-animation 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
-          "letter-spacing": Math.random()
-        }
+      this.notification.style = {
+        display: "block",
+        animation:
+          "notification-animation 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
       };
     }, 50);
     console.log(this.notification);
