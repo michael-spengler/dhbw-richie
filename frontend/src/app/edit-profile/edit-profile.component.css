@@ -34,6 +34,24 @@
   transition: 0.2s ease;
 }
 
+@media only screen and (max-width: 1100px) {
+  .landing * {
+    padding-left: 0;
+    text-align: center !important;
+  }
+  .logout {
+    margin-top: 5px !important;
+    right: calc(50% - 300px);
+    transform: translateX(50%);
+  }
+}
+@media only screen and (max-width: 850px) {
+  .logout {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
 .logout:hover {
   filter: brightness(115%);
   border: 1px solid #fff;

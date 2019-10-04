@@ -1,11 +1,28 @@
+@media only screen and (max-width: 850px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20px;
+  }
+  .userCard {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+@media only screen and (min-width: 850px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 10px;
+  }
+  .userCard {
+    transform: translate(-50%, -50%);
+  }
+}
+
 .stats {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   text-align: center;
   overflow-x: auto;
-  margin-bottom: 10px;
 }
 .stat[ng-reflect-router-link] {
   cursor: pointer;
@@ -120,7 +137,6 @@ select option {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   z-index: 10001;
   padding: 30px;
   background: #fff;

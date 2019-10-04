@@ -20,6 +20,10 @@ export class AdminComponent {
   cardStyle = { animation: "none" };
   userSearch = "";
 
+  onInputKeyDown(event) {
+    if (event.key == "Enter") this.searchPlayer();
+  }
+
   searchPlayer() {
     this.globals.sendNotification(
       `Die Suche nach dem Nutzer ${this.userSearch} ergab keine Treffer`,

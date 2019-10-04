@@ -103,7 +103,12 @@
   <h2>Benutzerverwaltung</h2>
   <h3>Benutzer suchen</h3>
 
-  <input type="text" class="userSearch" [(ngModel)]="userSearch" />
+  <input
+    type="text"
+    class="userSearch"
+    [(ngModel)]="userSearch"
+    (keydown)="onInputKeyDown($event)"
+  />
   <div class="startChatting" (click)="searchPlayer()">
     <i class="fas fa-search"></i>Suche starten
   </div>

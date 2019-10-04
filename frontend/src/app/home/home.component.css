@@ -8,5 +8,19 @@
   width: 80px;
   border-radius: 40px;
   position: absolute;
-  right: 80px;
+}
+
+@media only screen and (max-width: 850px) {
+  .thatsMe::before {
+    right: 30px;
+  }
+  .thatsMe {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .thatsMe::before {
+    right: 80px;
+  }
 }

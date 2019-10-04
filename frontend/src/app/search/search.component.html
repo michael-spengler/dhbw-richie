@@ -1,15 +1,21 @@
 <div class="landing">
   <h1>Nach einer Antwort suchen</h1>
   <h2>Fragen beantworten</h2>
-</div>
 
-<div class="searchBar">
-  <form [formGroup]="searchForm" (ngSubmit)="startSearch(searchForm.value)">
-    <input type="text" formControlName="query" />
-    <button type="submit" title="Suche starten">
-      <i class="fas fa-search"></i>
-    </button>
-  </form>
+  <div class="searchWrapper">
+    <div class="searchBar">
+      <div class="inputWrapper">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (keydown)="onInputKeyDown($event)"
+        />
+      </div>
+      <div class="search" (click)="startSearch()">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="paragraph">
