@@ -122,3 +122,55 @@
         opacity: 1;
     }
 }
+
+
+
+textarea {
+  padding: 1ex;
+  font-size: 1em;
+  box-sizing: border-box;
+  border-color: white;
+  position: relative;
+}
+fieldset {
+  border: 1px;
+  box-sizing: border-box;
+  border-color: lightsteelblue;
+  position: relative;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+#sourceInput {
+  position: relative;
+}
+#lectureInput {
+
+  float:inline-end;
+}
+#addButton{
+    float: right;
+    background: #fff;
+    border-radius: 50px;
+    outline: none;
+    border: 1px solid #08f;
+    padding: 5px 20px;
+    color: #08f;
+    cursor: pointer;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
+    font-weight: 600;
+    position: absolute;
+    right: 2.5cm;
+    top: 7.5cm;
+
+}
+legend{
+  color:#08f ;
+  border: solid 1px #08f;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.8em;
+}

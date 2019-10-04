@@ -30,19 +30,23 @@
 <ng-template #addParagraph>
   <div class="paragraph">
 
+    <div>
+
       <h2 style="display:inline-block">Formular</h2>
+
+    </div>
 
     <div>
       <div class="lectureInput" style="float: right;">
         <fieldset style="border-style: double; top: 0.2cm">
-          <legend>Lecture</legend>
+          <legend> Lecture </legend>
           <select
             required
             id="lectureInput"
             [(ngModel)]="lectureInput"
             style="font-size:1em; width: 4.5cm "
           >
-            <option value="" disabled selected>please select lecture</option>
+            <option value="" disabled selected>Please select lecture</option>
             <option>Programmieren</option>
             <option>Mathe</option>
           </select>
@@ -52,7 +56,7 @@
 
       <div class="sourceInput">
       <fieldset id="sourceSet" style="border-style: double">
-        <legend>Source</legend>
+        <legend> Source </legend>
         <textarea
           id="sourceInput"
           placeholder="Please enter source"
@@ -66,7 +70,7 @@
       <div >
         <div class="questionInput" >
           <fieldset id="questionSet" style="border-style: double">
-            <legend>Question</legend>
+            <legend> Question </legend>
 
             <textarea
               id="questionInput"
@@ -79,7 +83,7 @@
 
         <div class="answerInput" >
           <fieldset id="answerSet" style="border-style: double">
-            <legend>Answer</legend>
+            <legend> Answer </legend>
 
             <textarea
               id="answerInput"

@@ -38,3 +38,12 @@ fieldset {
     top: 7.5cm;
 
 }
+legend{
+  color:#08f ;
+  border: solid 1px #08f;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.8em;
+}
