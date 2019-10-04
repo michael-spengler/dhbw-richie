@@ -135,7 +135,7 @@ textarea {
 fieldset {
   border: 1px;
   box-sizing: border-box;
-  border-color: lightsteelblue;
+  border-color: #08f;
   position: relative;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -173,4 +173,5 @@ legend{
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.8em;
+  padding:3px 15px;
 }
