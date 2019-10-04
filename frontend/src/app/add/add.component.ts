@@ -22,7 +22,7 @@ export class AddComponent implements OnInit {
 
   onAdd() {
     // tslint:disable-next-line: max-line-length
-
+    // this.globals.sendNotification('Your entry has been added', NotificationType.SUCCESS);
     window.alert(
       "Question: " +
         this.questionInput +
