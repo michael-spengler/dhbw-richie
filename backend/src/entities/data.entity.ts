@@ -1,43 +1,52 @@
-import { Entity, ObjectID, ObjectIdColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
-import { Lecture } from "./lecture.entity";
-import { User } from "./user.entity";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Lecture } from './lecture.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Data {
+  @ObjectIdColumn()
+  _id: ObjectID;
 
-    @ObjectIdColumn()
-    _id: ObjectID;
+  @Column()
+  question: string;
 
-    @Column()
-    question: string;
+  @Column()
+  answer: string;
 
-    @Column()
-    answer: string;
+  @Column()
+  comment: string;
 
-    @Column()
-    comment: string;
+  @Column(() => Lecture)
+  lecture: Lecture;
 
-    @Column(type => Lecture)
-    lecture: Lecture;
+  @Column()
+  isReviewed: boolean;
 
-    @Column()
-    isReviewed: boolean;
+  @CreateDateColumn()
+  creationDate: Date; // Automatisch
 
-    @CreateDateColumn()
-    creationDate: Date; // Automatisch
+  @Column({
+    type: 'date',
+    default: Date.now(),
+  })
+  reviewDate: Date; // Automatisch
 
-    @CreateDateColumn()
-    reviewDate: Date; // Automatisch
+  @UpdateDateColumn()
+  updateDate: Date; // Automatisch
 
-    @UpdateDateColumn()
-    updateDate: Date; // Automatisch
+  @Column(() => User)
+  creator: User; // Username
 
-    @Column(type => User)
-    creator: User; // Username
+  @Column(() => User)
+  modifier: User; // lastModifiedBy, ...
 
-    @Column(type => User)
-    modifier: User; // lastModifiedBy, ...
-
-    @Column()
-    archived: boolean;
+  @Column()
+  archived: boolean;
 }
