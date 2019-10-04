@@ -3,37 +3,96 @@
   <h2>Anderen Helfen</h2>
 </div>
 
-<div class="paragraph">
-  <h1>Formular</h1>
-  <h3>Gday cunt!</h3>
+<div
+  *ngIf="globals.user.signed_in; then addParagraph; else notSignedInParagraph"
+></div>
 
-  <div style="text-align: center">
-    <div class="question" style="display: inline-block;">
-      <textarea placeholder="Please enter question"></textarea>
+<ng-template #notSignedInParagraph class="paragraph">
+  <div class="paragraph">
+    <h2>Nicht angemeldet!</h2>
+    <p>
+      Um neue Fragen und Antworten einreichen zu können musst du angemeldet
+      sein. Solltest du noch keinen Account haben kannst du ganz einfach einen
+      kostenlosen Account erstellen.
+    </p>
+    <a
+      [routerLink]="['/register']"
+      class="startChatting"
+      style="margin-right: 25px"
+      ><i class="fa fa-sign-in-alt"></i>Registrieren</a
+    >
+    <a [routerLink]="['/login']" class="startChatting"
+      ><i class="fa fa-sign-in-alt"></i>Anmelden</a
+    >
+  </div>
+</ng-template>
+
+<ng-template #addParagraph>
+  <div class="paragraph">
+    <div>
+      <h2 style="display:inline-block">Formular</h2>
+
+      <div class="lectureInput" style="float: right;">
+        <fieldset style="border-style: double;">
+          <legend>Lecture</legend>
+          <select
+            required
+            id="lectureInput"
+            [(ngModel)]="lectureInput"
+            style="font-size:1em; width: 3.5cm "
+          >
+            <option value="" disabled selected>please select lecture</option>
+            <option>Programmieren</option>
+            <option>Mathe</option>
+          </select>
+        </fieldset>
+      </div>
     </div>
 
-    <div class="answer" style="display: inline-block;">
-      <textarea placeholder="Please enter answer"></textarea>
+    <div style="text-align: center">
+      <div style="text-align: center">
+        <div class="questionInput" style="display: inline-block; border: 1cm">
+          <fieldset id="questionSet" style="border-style: double">
+            <legend>Question</legend>
+
+            <textarea
+              id="questionInput"
+              placeholder="please enter question"
+              [(ngModel)]="questionInput"
+              style="height: 1.5cm;width: 7cm; "
+            ></textarea>
+          </fieldset>
+        </div>
+
+        <div class="answerInput" style="display: inline-block;">
+          <fieldset id="answerSet" style="border-style: double">
+            <legend>Answer</legend>
+
+            <textarea
+              id="answerInput"
+              placeholder="Please enter answer"
+              [(ngModel)]="answerInput"
+              style="height: 1.5cm;width: 7cm;"
+            ></textarea>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="sourceInput" style="display:inline-block">
+        <fieldset id="sourceSet" style="border-style: double">
+          <legend>Source</legend>
+          <textarea
+            id="sourceInput"
+            placeholder="Please enter source"
+            [(ngModel)]="sourceInput"
+            style="height: 01cm; font-size: 0,7em"
+          ></textarea>
+        </fieldset>
+      </div>
+
+      <div class="addButton" style="display: inline-flexbox">
+        <button id="addButton" type="submit" (click)="onAdd()">add</button>
+      </div>
     </div>
   </div>
-
-  <div style="text-align: center">
-    <div class="lecture" style="display: inline-block">
-      <select name="lectureSelect">
-        <option value="" disabled selected>lecture</option>
-        <option>Hallo</option>
-        <option>Goodbye</option>
-      </select>
-    </div>
-
-    <div class="source" style="display:inline-block">
-      <textarea
-        placeholder="Please enter source"
-        style="height: 0.5cm"
-      ></textarea>
-    </div>
-  </div>
-  <div class="addButton" style="text-align: right">
-    <button (click)="onAdd()">add</button>
-  </div>
-</div>
+</ng-template>

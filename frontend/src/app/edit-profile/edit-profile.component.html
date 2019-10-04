@@ -1,6 +1,10 @@
 <div class="landing">
-  <div class="name">Timo Scheuermann</div>
-  <div class="mail">max.mustermann@mail.de</div>
+  <div class="name">{{ globals.user.name }}</div>
+  <div class="mail">{{ globals.user.email }}</div>
+  <div class="logout" (click)="globals.logOut()">
+    Ausloggen
+    <i class="fas fa-sign-out-alt"></i>
+  </div>
 </div>
 <div class="paragraph" style="z-index: 9000;">
   <h1>Account</h1>
@@ -13,26 +17,32 @@
       <label>
         Benutzername
       </label>
-      <label>Timo Scheuermann</label>
+      <label>{{ globals.user.name }}</label>
     </div>
     <div>
       <label>
         Account erstellt am
       </label>
-      <label>01.10.2019</label>
+      <label>{{ globals.user.created | date: "dd.MM.yyyy" }}</label>
     </div>
     <div>
       <label>
         Rang
       </label>
-      <label>Admin</label>
+      <label>{{ globals.user.group }}</label>
     </div>
 
     <div>
       <label for="newMail">
         E-Mail-Adresse
       </label>
-      <input required id="newMail" type="mail" formControlName="newMail" />
+      <input
+        required
+        id="newMail"
+        [placeholder]="globals.user.email"
+        type="mail"
+        formControlName="newMail"
+      />
     </div>
 
     <button type="submit">Speichern</button>

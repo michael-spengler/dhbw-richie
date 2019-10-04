@@ -1,31 +1,12 @@
-table {
-  border-collapse: collapse;
-  max-width: 100%;
-  width: 100%;
-}
-
-tr:not(:last-child) {
-  border-bottom: 1px solid #ccc;
-}
-
 td {
   height: 30px;
   padding: 10px;
   line-height: 30px;
-  max-height: 30px;
   text-overflow: ellipsis;
 }
 
-tr {
-  cursor: pointer;
-  transition: 0.2s ease;
-}
 tr:hover a {
   color: #08f;
-}
-
-tr:hover {
-  background: #eee;
 }
 
 a {
@@ -45,19 +26,13 @@ img {
 }
 .trtitle {
   font-weight: 600;
-  text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
-  display: block;
 }
 .trdescription {
-  text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
-  display: block;
-  max-width: 600px;
 }
 
 .trmember {
   opacity: 0.75;
+  white-space: nowrap;
 }

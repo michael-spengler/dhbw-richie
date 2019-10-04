@@ -1,1 +1,128 @@
-<p>admin works!</p>
+<div class="landing">
+  <h1>Administrationsöberfläche</h1>
+  <h2>Verwaltung & Management</h2>
+</div>
+
+<div class="paragraph">
+  <h2>Statistik</h2>
+  <div class="stats">
+    <div class="stat">
+      <h1>Registrierte Benutzer</h1>
+      <i class="fas fa-users"></i>
+      <span class="number">10</span>
+    </div>
+    <div class="stat">
+      <h1>Fragen eingereicht</h1>
+      <i class="fas fa-atlas"></i>
+      <span class="number">234</span>
+    </div>
+    <div class="stat">
+      <h1>Fragen gestellt</h1>
+      <i class="fas fa-question"></i>
+      <span class="number">45902</span>
+    </div>
+    <div class="stat" [routerLink]="['/telegram']">
+      <h1>Telegram Channel</h1>
+      <i class="fab fa-telegram"></i>
+      <span class="number">5</span>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" [ngStyle]="overlayStyle">
+  <div class="userCard" [ngStyle]="cardStyle">
+    <div class="close" (click)="closeUserCard()"></div>
+    <h2>Informationen</h2>
+    <div class="information">
+      <div class="icon">
+        <i class="far fa-address-card"></i>
+      </div>
+      <table>
+        <tr>
+          <td>Username</td>
+          <td>{{ activeUser.name }}</td>
+        </tr>
+        <tr>
+          <td>E-Mail-Adresse</td>
+          <td>{{ activeUser.mail }}</td>
+        </tr>
+        <tr>
+          <td>Erstellt am</td>
+          <td>{{ activeUser.created | date: "dd.MM.yyyy" }}</td>
+        </tr>
+      </table>
+
+      <div *ngIf="activeUser.enabled" class="status">
+        <i class="fas fa-user-check active"></i>
+        <div class="statusTitle active">Aktiv</div>
+        <div class="toggle" (click)="toggleUserActivation()">
+          Deaktivieren
+        </div>
+      </div>
+
+      <div *ngIf="!activeUser.enabled" class="status">
+        <i class="fas fa-user-times disabled"></i>
+        <div class="statusTitle disabled">Deaktiviert</div>
+        <div class="toggle" (click)="toggleUserActivation()">
+          Aktivieren
+        </div>
+      </div>
+    </div>
+
+    <div class="splitter"></div>
+    <h2>Statistik</h2>
+    <div class="stats">
+      <div class="stat">
+        <h1>Benutzer-<br />Nummer</h1>
+        <i class="fab fa-slack-hash"></i>
+        <span class="number">{{ activeUser.id }}</span>
+      </div>
+      <div class="stat">
+        <h1>Benutzer-<br />Gruppe</h1>
+        <i class="fas fa-theater-masks"></i>
+        <span class="number">{{ activeUser.rank }}</span>
+      </div>
+      <div class="stat">
+        <h1>Fragen<br />eingereicht</h1>
+        <i class="fas fa-atlas"></i>
+        <span class="number">2</span>
+      </div>
+      <div class="stat">
+        <h1>Fragen<br />gestellt</h1>
+        <i class="fas fa-question"></i>
+        <span class="number">134</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h2>Benutzerverwaltung</h2>
+  <h3>Benutzer suchen</h3>
+  <p><i>Hier kommt noch eine Suche hin</i></p>
+  <h3>Ergebnisse</h3>
+  <div class="tablewrapper">
+    <table>
+      <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
+        <td>{{ user.name }}</td>
+        <td>{{ user.mail }}</td>
+        <td>{{ user.created | date: "dd.MM.yyyy" }}</td>
+        <td>{{ user.rank }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h2>Administratoren</h2>
+  <div class="tablewrapper">
+    <table>
+      <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
+        <td>#{{ i }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.mail }}</td>
+        <td>{{ user.rank }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

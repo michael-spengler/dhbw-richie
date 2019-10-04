@@ -1,0 +1,48 @@
+<div class="landing">
+  <h1>Willkommen zurück!</h1>
+  <h2>Login and go</h2>
+</div>
+
+<div class="paragraph">
+  <h2>
+    Login
+    <span style="margin-left: 20px; display: inline-block; font-size: 16px;"
+      ><a [routerLink]="['/resetpassword']">Passwort vergessen?</a></span
+    >
+  </h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)">
+    <div>
+      <label for="username">
+        Benutzername / E-Mail
+      </label>
+      <input required id="username" type="text" formControlName="username" />
+    </div>
+
+    <div>
+      <label for="password">
+        Passwort
+      </label>
+      <input
+        required
+        id="password"
+        type="password"
+        formControlName="password"
+      />
+    </div>
+
+    <button type="submit">Einloggen</button>
+  </form>
+</div>
+
+<div class="paragraph">
+  <h2>
+    Du hast noch keinen Account?
+    <a
+      class="startChatting"
+      style="position: absolute; right: 90px;"
+      [routerLink]="['/register']"
+      ><i class="fas fa-sign-in-alt"></i>Jetzt kostenlos registrieren</a
+    >
+  </h2>
+</div>

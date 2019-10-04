@@ -4,71 +4,29 @@
 </div>
 
 <div class="paragraph">
-  <h1>Bekannte Gruppen</h1>
-  <table>
-    <tr>
-      <td><img src="../../assets/tmp/telegram_demo.jpg" /></td>
-      <td class="trtitle">WWI 18 SEC #1 Year</td>
-      <td class="trmember">64 <i class="fas fa-user-friends"></i></td>
-      <td class="trdescription">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit vero
-        tempore quasi doloribus dolore nihil consequatur minima facere odit
-        temporibus beatae culpa quas, labore eveniet repellendus ullam hic,
-        libero fuga.
-      </td>
-
-      <td class="trjoin"></td>
-      <td>
-        <a href="#"><i class="fa fa-sign-in"></i></a>
-      </td>
-    </tr>
-    <tr>
-      <td><img src="../../assets/tmp/telegram_demo2.jpg" /></td>
-      <td class="trtitle">Webentwicklung WWISEC18</td>
-      <td class="trmember">64 <i class="fas fa-user-friends"></i></td>
-      <td class="trdescription">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit vero
-        tempore quasi doloribus dolore nihil consequatur minima facere odit
-        temporibus beatae culpa quas, labore eveniet repellendus ullam hic,
-        libero fuga.
-      </td>
-
-      <td class="trjoin"></td>
-      <td>
-        <a href="#"><i class="fa fa-sign-in"></i></a>
-      </td>
-    </tr>
-    <tr>
-      <td><img src="../../assets/tmp/telegram_demo3.jpg" /></td>
-      <td class="trtitle">Advanced DB (Cassandra)</td>
-      <td class="trmember">64 <i class="fas fa-user-friends"></i></td>
-      <td class="trdescription">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit vero
-        tempore quasi doloribus dolore nihil consequatur minima facere odit
-        temporibus beatae culpa quas, labore eveniet repellendus ullam hic,
-        libero fuga.
-      </td>
-
-      <td class="trjoin"></td>
-      <td>
-        <a href="#"><i class="fa fa-sign-in"></i></a>
-      </td>
-    </tr>
-    <tr>
-      <td><img src="../../assets/tmp/telegram_demo4.jpg" /></td>
-      <td class="trtitle">Moritz mehlige Malstube</td>
-      <td class="trmember">64 <i class="fas fa-user-friends"></i></td>
-      <td class="trdescription">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit vero
-        tempore quasi doloribus dolore nihil consequatur minima facere odit
-        temporibus beatae culpa quas, labore eveniet repellendus ullam hic,
-        libero fuga.
-      </td>
-
-      <td class="trjoin"></td>
-      <td>
-        <a href="#"><i class="fa fa-sign-in"></i></a>
-      </td>
-    </tr>
-  </table>
+  <h2>
+    Bekannte Gruppen
+    <a class="startChatting" style="float: right;" [href]="globals.botURL"
+      ><i class="fab fa-telegram-plane"></i>Mit Richie Chatten</a
+    >
+  </h2>
+  <div class="tablewrapper">
+    <table>
+      <tr
+        *ngFor="let channel of telegramChannels"
+        (click)="openURL(channel.url)"
+        title="Gruppe beitreten"
+      >
+        <td><img src="{{ channel.img }}" /></td>
+        <td class="trtitle">{{ channel.title }}</td>
+        <td class="trmember">
+          {{ channel.member }} <i class="fas fa-user-friends"></i>
+        </td>
+        <td class="trdescription">{{ channel.description }}</td>
+        <td>
+          <a><i class="fa fa-sign-in"></i></a>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

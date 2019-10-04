@@ -18,19 +18,47 @@
       ><i class="fab fa-telegram-plane"></i>Telegram
       <div class="type">neu</div></a
     >
-    <a routerLink="/admin" routerLinkActive="active"
-      ><i class="fas fa-user-cog"></i>Admin</a
+    <a
+      *ngIf="globals.user.group === 'Admin'"
+      routerLink="/admin"
+      routerLinkActive="active"
+      ><i class="fas fa-user-cog"></i>Administration</a
     >
   </div>
   <div class="hotlinks">
-    <a href="#">Impressum</a>
-    <a href="#">Legal</a>
+    <a routerLink="/impressum">Impressum</a>
+    <a routerLink="/legal">Legal</a>
+    <a routerLink="/about">About</a>
   </div>
 </nav>
 <header>
-  <div class="user" [routerLink]="['/settings']">
-    <div class="name">Timo Scheuermann</div>
-    <div class="icon">TS</div>
-  </div>
+  <div *ngIf="globals.user.signed_in; then signedIn; else signedOut"></div>
+
+  <ng-template #signedOut>
+    <div class="registerLogin">
+      <div class="register" [routerLink]="['/register']">Registrieren</div>
+      <div class="signIn" [routerLink]="['/login']">
+        Anmelden<i class="fas fa-sign-in-alt"></i>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #signedIn>
+    <div class="user" [routerLink]="['/settings']">
+      <div class="name">{{ globals.user.name }}</div>
+      <div class="icon">{{ globals.user.abbreviation() }}</div>
+    </div>
+  </ng-template>
 </header>
+
+<div class="notificationWrapper">
+  <div
+    [ngClass]="globals.notification.class"
+    [ngStyle]="globals.notification.style"
+  >
+    <i [ngClass]="globals.notification.icon"></i>
+    <span class="message">{{ globals.notification.message }}</span>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
