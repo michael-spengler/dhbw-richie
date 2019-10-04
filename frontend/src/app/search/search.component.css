@@ -9,6 +9,49 @@
   transition: 1s ease;
   box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
 }
+
+.questionwrapper {
+  display: block;
+  text-align: center;
+}
+.questionanswer {
+  display: inline-block;
+  text-align: left;
+  padding: 15px;
+  width: 300px;
+  border-radius: 5px;
+  margin: 5px;
+  background: #eee;
+}
+.question {
+  font-weight: 700;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+.question::before {
+  content: "Q: ";
+  font-weight: 800;
+  opacity: 0.8;
+}
+
+.answer::before,
+.answer::after {
+  content: '"';
+}
+.feedback {
+  text-align: right;
+  margin-bottom: -5px;
+  font-size: 0.8em;
+  color: #999;
+  cursor: pointer;
+}
+.feedback:hover {
+  color: #777;
+}
+.feedback::before {
+  content: "Feedback";
+}
+
 .searchBar form {
   display: inline-block;
   width: 100%;
