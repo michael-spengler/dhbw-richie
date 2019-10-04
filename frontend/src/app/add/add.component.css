@@ -6,9 +6,9 @@ textarea {
   position: relative;
 }
 fieldset {
-  border: 1px;
+  border: solid 1px ;
   box-sizing: border-box;
-  border-color: lightsteelblue;
+  border-color: #08f;
   position: relative;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -41,9 +41,10 @@ fieldset {
 legend{
   color:#08f ;
   border: solid 1px #08f;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
   font-weight: 600;
   font-size: 0.8em;
+  padding: 3px 15px;
 }
