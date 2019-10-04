@@ -10,6 +10,9 @@ fieldset {
   box-sizing: border-box;
   border-color: lightsteelblue;
   position: relative;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
 }
 #sourceInput {
   position: relative;
@@ -32,6 +35,6 @@ fieldset {
     font-weight: 600;
     position: absolute;
     right: 2.5cm;
-    top: 12cm;
+    top: 7.5cm;
 
 }

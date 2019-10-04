@@ -29,17 +29,18 @@
 
 <ng-template #addParagraph>
   <div class="paragraph">
-    <div>
+
       <h2 style="display:inline-block">Formular</h2>
 
+    <div>
       <div class="lectureInput" style="float: right;">
-        <fieldset style="border-style: double;">
+        <fieldset style="border-style: double; top: 0.2cm">
           <legend>Lecture</legend>
           <select
             required
             id="lectureInput"
             [(ngModel)]="lectureInput"
-            style="font-size:1em; width: 3.5cm "
+            style="font-size:1em; width: 4.5cm "
           >
             <option value="" disabled selected>please select lecture</option>
             <option>Programmieren</option>
@@ -47,11 +48,23 @@
           </select>
         </fieldset>
       </div>
+
+
+      <div class="sourceInput">
+      <fieldset id="sourceSet" style="border-style: double">
+        <legend>Source</legend>
+        <textarea
+          id="sourceInput"
+          placeholder="Please enter source"
+          [(ngModel)]="sourceInput"
+          style="height: 01cm; font-size: 0,7em; width:13.75cm"
+        ></textarea>
+      </fieldset>
+      </div>
     </div>
 
-    <div style="text-align: center">
-      <div style="text-align: center">
-        <div class="questionInput" style="display: inline-block; border: 1cm">
+      <div >
+        <div class="questionInput" >
           <fieldset id="questionSet" style="border-style: double">
             <legend>Question</legend>
 
@@ -59,12 +72,12 @@
               id="questionInput"
               placeholder="please enter question"
               [(ngModel)]="questionInput"
-              style="height: 1.5cm;width: 7cm; "
+              style="height: 1.5cm;width: 20cm; "
             ></textarea>
           </fieldset>
         </div>
 
-        <div class="answerInput" style="display: inline-block;">
+        <div class="answerInput" >
           <fieldset id="answerSet" style="border-style: double">
             <legend>Answer</legend>
 
@@ -72,27 +85,17 @@
               id="answerInput"
               placeholder="Please enter answer"
               [(ngModel)]="answerInput"
-              style="height: 1.5cm;width: 7cm;"
+              style="height: 1.5cm;width: 20cm;"
             ></textarea>
           </fieldset>
         </div>
       </div>
 
-      <div class="sourceInput" style="display:inline-block">
-        <fieldset id="sourceSet" style="border-style: double">
-          <legend>Source</legend>
-          <textarea
-            id="sourceInput"
-            placeholder="Please enter source"
-            [(ngModel)]="sourceInput"
-            style="height: 01cm; font-size: 0,7em"
-          ></textarea>
-        </fieldset>
-      </div>
+
 
       <div class="addButton" style="display: inline-flexbox">
         <button id="addButton" type="submit" (click)="onAdd()">add</button>
       </div>
-    </div>
+
   </div>
 </ng-template>
