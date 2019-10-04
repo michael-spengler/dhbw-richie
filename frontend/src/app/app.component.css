@@ -1,7 +1,18 @@
+/* Phones */
+@media only screen and (max-width: 850px) {
+  .notificationWrapper {
+    transform: translate(-50%, 0);
+  }
+}
+@media only screen and (min-width: 850px) {
+  .notificationWrapper {
+    transform: translate(calc(-50% + 100px), 0);
+  }
+}
+
 .notificationWrapper {
   position: fixed;
   left: 50%;
-  transform: translate(calc(-50% + 100px), 0);
   bottom: 30px;
   user-select: none;
   z-index: 10010;
