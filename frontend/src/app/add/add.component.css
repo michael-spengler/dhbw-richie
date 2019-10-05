@@ -4,11 +4,12 @@ textarea {
   box-sizing: border-box;
   border-color: white;
   position: relative;
+  resize: none;
 }
 fieldset {
-  border: solid 1px ;
+  border: none ;
   box-sizing: border-box;
-  border-color: #08f;
+  border-color: none;
   position: relative;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -35,17 +36,18 @@ fieldset {
     font-weight: 600;
     font-size: 1.25em;
     position: absolute;
-    right: 10%;
+    right: 5%;
     top: 39%;
 
 }
 legend{
-  color:#08f ;
-  border: solid 1px #08f;
+  color:black ;
+  border: solid 1px lightgrey;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 0.8em;
   padding: 3px 15px;
+  -webkit-user-select: none;
 }
