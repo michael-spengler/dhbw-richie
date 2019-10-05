@@ -12,14 +12,18 @@
 
 .notificationWrapper {
   position: fixed;
+  display: flex;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
   left: 50%;
   bottom: 30px;
   user-select: none;
   z-index: 10010;
-  max-width: 100%;
+  width: 100%;
 }
 .notification {
-  display: inline-block;
+  display: inline-flexbox;
   transform: scale(0);
   height: 40px;
   line-height: 40px;

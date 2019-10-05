@@ -31,7 +31,6 @@ export class Globals {
   public sendNotification(message: string, type: NotificationType) {
     this.notification.type = type.toString();
     this.notification.message = message;
-    console.log(type);
     this.notification.style = { display: "none", animation: "none" };
     setTimeout(() => {
       this.notification.style = {
@@ -40,7 +39,6 @@ export class Globals {
           "notification-animation 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
       };
     }, 50);
-    console.log(this.notification);
   }
 
   public logOut() {

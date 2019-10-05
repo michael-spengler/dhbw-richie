@@ -353,6 +353,9 @@ header {
   .landing {
     background-position-y: center;
   }
+  .landing h1 {
+    word-wrap: break-word;
+  }
 }
 @media only screen and (min-width: 850px) {
   .landing {
