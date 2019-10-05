@@ -123,32 +123,36 @@
     }
 }
 
-
-
 textarea {
-  padding: 1ex;
-  font-size: 1em;
-  box-sizing: border-box;
-  border-color: white;
-  position: relative;
+    padding: 1ex;
+    font-size: 1em;
+    box-sizing: border-box;
+    border-color: white;
+    position: relative;
+    height: 10%;
+    width: 90%;
 }
-fieldset {
-  border: 1px;
-  box-sizing: border-box;
-  border-color: #08f;
-  position: relative;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-}
-#sourceInput {
-  position: relative;
-}
-#lectureInput {
 
-  float:inline-end;
+fieldset {
+    border: 1px;
+    box-sizing: border-box;
+    border-color: #08f;
+    position: relative;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
-#addButton{
+
+#sourceInput {
+    position: relative;
+}
+
+#lectureInput {
+    float: inline-end;
+    z-index: 1;
+}
+
+#addButton {
     float: right;
     background: #fff;
     border-radius: 50px;
@@ -163,15 +167,15 @@ fieldset {
     position: absolute;
     right: 2.5cm;
     top: 7.5cm;
-
 }
-legend{
-  color:#08f ;
-  border: solid 1px #08f;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8em;
-  padding:3px 15px;
+
+legend {
+    color: #08f;
+    border: solid 1px #08f;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8em;
+    padding: 3px 15px;
 }
