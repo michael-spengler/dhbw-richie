@@ -1,10 +1,15 @@
 import { Injectable } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { ThemeService } from "./theme/theme.service";
 
 @Injectable()
 export class Globals {
-  constructor(private sanitizer: DomSanitizer, private router: Router) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private themeService: ThemeService
+  ) {}
 
   botURL = this.getSantizeUrl("tg://resolve?domain=dhbw_richie_bot");
   user: any = {
@@ -63,6 +68,15 @@ export class Globals {
       `Willkommen zurück, ${this.user.name}!`,
       NotificationType.INFORMATION
     );
+  }
+
+  toggleTheme() {
+    const active = this.themeService.getActiveTheme();
+    if (active.name == "light") {
+      this.themeService.setTheme("dark");
+    } else {
+      this.themeService.setTheme("light");
+    }
   }
 }
 

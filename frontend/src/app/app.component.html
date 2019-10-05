@@ -1,77 +1,79 @@
-<nav>
-  <div class="toggleButton" (click)="toggleNavbar()">
-    <i class="fas fa-bars"></i>
-  </div>
-
-  <div class="navwrapper" [ngStyle]="navwrapperStyle">
-    <div class="title">DHBW RICHIE</div>
-    <div class="routes">
-      <a routerLink="/home" routerLinkActive="active"
-        ><i class="fa fa-home"></i>Home</a
-      >
-      <a routerLink="/add" routerLinkActive="active"
-        ><i class="fa fa-plus"></i>Add
-        <div class="type">pro</div>
-      </a>
-      <a routerLink="/review" routerLinkActive="active"
-        ><i class="fas fa-check-double"></i>Review</a
-      >
-      <a routerLink="/search" routerLinkActive="active"
-        ><i class="fa fa-search"></i>Search</a
-      >
-      <a routerLink="/telegram" routerLinkActive="active"
-        ><i class="fab fa-telegram-plane"></i>Telegram
-        <div class="type">neu</div></a
-      >
-      <a
-        *ngIf="globals.user.group === 'Admin'"
-        routerLink="/admin"
-        routerLinkActive="active"
-        ><i class="fas fa-user-cog"></i>Administration</a
-      >
+<body app-theme>
+  <nav>
+    <div class="toggleButton" (click)="toggleNavbar()">
+      <i class="fas fa-bars"></i>
     </div>
-    <div class="hotlinks">
-      <a routerLink="/impressum">Impressum</a>
-      <a routerLink="/legal">Legal</a>
-      <a routerLink="/about">About</a>
-    </div>
-  </div>
-</nav>
 
-<header>
-  <div *ngIf="globals.user.signed_in; then signedIn; else signedOut"></div>
-
-  <ng-template #signedOut>
-    <div class="registerLogin">
-      <div class="register" [routerLink]="['/register']">Registrieren</div>
-      <div class="signIn" [routerLink]="['/login']">
-        Anmelden<i class="fas fa-sign-in-alt"></i>
+    <div class="navwrapper" [ngStyle]="navwrapperStyle">
+      <div class="title" (click)="globals.toggleTheme()">DHBW RICHIE</div>
+      <div class="routes">
+        <a routerLink="/home" routerLinkActive="active"
+          ><i class="fa fa-home"></i>Home</a
+        >
+        <a routerLink="/add" routerLinkActive="active"
+          ><i class="fa fa-plus"></i>Add
+          <div class="type">pro</div>
+        </a>
+        <a routerLink="/review" routerLinkActive="active"
+          ><i class="fas fa-check-double"></i>Review</a
+        >
+        <a routerLink="/search" routerLinkActive="active"
+          ><i class="fa fa-search"></i>Search</a
+        >
+        <a routerLink="/telegram" routerLinkActive="active"
+          ><i class="fab fa-telegram-plane"></i>Telegram
+          <div class="type">neu</div></a
+        >
+        <a
+          *ngIf="globals.user.group === 'Admin'"
+          routerLink="/admin"
+          routerLinkActive="active"
+          ><i class="fas fa-user-cog"></i>Administration</a
+        >
+      </div>
+      <div class="hotlinks">
+        <a routerLink="/impressum">Impressum</a>
+        <a routerLink="/legal">Legal</a>
+        <a routerLink="/about">About</a>
       </div>
     </div>
-  </ng-template>
+  </nav>
 
-  <ng-template #signedIn>
-    <div class="user" [routerLink]="['/settings']">
-      <div class="name">{{ globals.user.name }}</div>
-      <div class="icon">{{ globals.user.abbreviation() }}</div>
+  <header>
+    <div *ngIf="globals.user.signed_in; then signedIn; else signedOut"></div>
+
+    <ng-template #signedOut>
+      <div class="registerLogin">
+        <div class="register" [routerLink]="['/register']">Registrieren</div>
+        <div class="signIn" [routerLink]="['/login']">
+          Anmelden<i class="fas fa-sign-in-alt"></i>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #signedIn>
+      <div class="user" [routerLink]="['/settings']">
+        <div class="name">{{ globals.user.name }}</div>
+        <div class="icon">{{ globals.user.abbreviation() }}</div>
+      </div>
+    </ng-template>
+  </header>
+
+  <div class="notificationWrapper">
+    <div [ngStyle]="globals.notification.style" class="notification">
+      <span *ngIf="globals.notification.type == '2'" class="suc">
+        <i class="fas fa-check-circle"></i>
+      </span>
+      <span *ngIf="globals.notification.type == '0'" class="inf">
+        <i class="fas fa-info-circle"></i>
+      </span>
+      <span *ngIf="globals.notification.type == '1'" class="err">
+        <i class="fas fa-exclamation-circle"></i>
+      </span>
+
+      <span class="message">{{ globals.notification.message }}</span>
     </div>
-  </ng-template>
-</header>
-
-<div class="notificationWrapper">
-  <div [ngStyle]="globals.notification.style" class="notification">
-    <span *ngIf="globals.notification.type == '2'" class="suc">
-      <i class="fas fa-check-circle"></i>
-    </span>
-    <span *ngIf="globals.notification.type == '0'" class="inf">
-      <i class="fas fa-info-circle"></i>
-    </span>
-    <span *ngIf="globals.notification.type == '1'" class="err">
-      <i class="fas fa-exclamation-circle"></i>
-    </span>
-
-    <span class="message">{{ globals.notification.message }}</span>
   </div>
-</div>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</body>

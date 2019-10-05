@@ -32,7 +32,7 @@
   background: rgba(200, 200, 200, 0.3);
   backdrop-filter: blur(10px);
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-  color: #333;
+  color: var(--font-color);
   border-radius: 20px;
   font-size: 1em;
   font-weight: 600;

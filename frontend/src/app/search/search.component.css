@@ -22,17 +22,18 @@
   grid-gap: 20px;
   overflow: auto;
 }
+
 .questionanswer {
   display: inline-grid;
   text-align: left;
   padding: 15px;
   border-radius: 5px;
-  background: #eee;
+  background: var(--background);
 }
 .question {
   font-weight: 700;
   margin-bottom: 5px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--input-border);
 }
 .question::before {
   content: "Q: ";
@@ -48,11 +49,12 @@
   text-align: right;
   margin-bottom: -5px;
   font-size: 0.8em;
-  color: #999;
+  color: var(--font-color);
   cursor: pointer;
+  opacity: 0.5;
 }
 .feedback:hover {
-  color: #777;
+  opacity: 0.75;
 }
 .feedback::before {
   content: "Feedback";

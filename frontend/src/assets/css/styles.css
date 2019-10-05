@@ -1,19 +1,19 @@
 @import url("../fonts/fontfaces.css");
-:root {
-  --phone-screen-max: ;
-}
-
 html,
 body {
   margin: 0;
-  background: #eee;
+  background: var(--background);
   font-family: "SF Pro Display", sans-serif;
-  color: #333;
+  color: var(--font-color);
+}
+
+body {
+  min-height: 100%;
 }
 
 @media only screen and (min-width: 850px) {
   body {
-    padding-left: 220px;
+    padding-left: 110px;
   }
 }
 
@@ -31,6 +31,10 @@ a {
 a:not([routerLink]):hover {
   -webkit-box-shadow: inset 0px -1px #08f;
           box-shadow: inset 0px -1px #08f;
+}
+
+.removeWhite {
+  height: 1px;
 }
 
 ::-webkit-scrollbar {
@@ -128,7 +132,12 @@ nav .hotlinks a:hover {
   color: #fff;
 }
 
-nav .routes a {
+nav .routes span {
+  margin-top: 20px;
+}
+
+nav .routes a,
+nav .routes span {
   display: inline-block;
   color: #ddd;
   width: calc(100% - 30px);
@@ -141,15 +150,18 @@ nav .routes a {
   transition: 0.2s ease;
 }
 
-nav .routes a:hover {
+nav .routes a:hover,
+nav .routes span:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
-nav .routes a svg {
+nav .routes a svg,
+nav .routes span svg {
   margin-right: 10px;
 }
 
-nav .routes a .type {
+nav .routes a .type,
+nav .routes span .type {
   color: #3d404a;
   background: rgba(255, 255, 255, 0.75);
   border-radius: 10px;
@@ -230,6 +242,7 @@ nav .routes .active:hover {
     height: 0%;
     background: #000;
     z-index: 600;
+    overflow-y: auto;
   }
   nav .hotlinks {
     width: 100%;
@@ -251,9 +264,11 @@ header {
   position: sticky;
   top: 0;
   z-index: 19;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
   height: 50px;
   padding: 0px 10px;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--header);
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);
   text-align: right;
@@ -400,8 +415,7 @@ header .user .icon {
 }
 
 .paragraph {
-  background: -webkit-gradient(linear, left top, right bottom, from(#fff), to(#fdfdfd));
-  background: linear-gradient(to bottom right, #fff, #fdfdfd);
+  background: var(--paragraph);
   border-radius: 5px;
   -webkit-transition: 1s ease;
   transition: 1s ease;
@@ -432,18 +446,21 @@ form div {
 form div input {
   border-radius: 5px;
   outline: none;
-  border: 1px solid #eee;
+  border: 1px solid var(--input-border);
+  background: var(--paragraph);
   padding: 5px;
   width: 100%;
+  color: var(--font-color);
 }
 
 form div label {
-  color: #666;
+  color: var(--font-color);
+  opacity: 0.8;
 }
 
 form button {
   float: right;
-  background: #fff;
+  background: var(--paragraph);
   border-radius: 50px;
   outline: none;
   border: 1px solid #08f;
@@ -492,7 +509,7 @@ form button:active {
 .startChatting {
   color: #08f !important;
   font-size: 16px;
-  background: #fff;
+  background: transparent;
   border: 1px solid #08f;
   text-decoration: none;
   -webkit-transition: 0.2s ease;
@@ -557,7 +574,7 @@ form button:active {
 }
 
 .tablewrapper table tr:hover {
-  background: #eee;
+  background: var(--background);
 }
 
 .tablewrapper table tr:not(:last-child) {

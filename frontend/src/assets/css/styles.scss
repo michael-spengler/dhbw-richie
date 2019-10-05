@@ -1,19 +1,18 @@
 @import url("../fonts/fontfaces.css");
 
-:root {
-  --phone-screen-max: ;
-}
-
 html,
 body {
   margin: 0;
-  background: #eee;
+  background: var(--background);
   font-family: "SF Pro Display", sans-serif;
-  color: #333;
+  color: var(--font-color);
+}
+body {
+  min-height: 100%;
 }
 @media only screen and (min-width: 850px) {
   body {
-    padding-left: 220px;
+    padding-left: 110px;
   }
 }
 
@@ -28,6 +27,10 @@ a {
   &:not([routerLink]):hover {
     box-shadow: inset 0px -1px #08f;
   }
+}
+
+.removeWhite {
+  height: 1px;
 }
 
 ::-webkit-scrollbar {
@@ -110,7 +113,11 @@ nav {
   }
 
   .routes {
-    a {
+    span {
+      margin-top: 20px;
+    }
+    a,
+    span {
       display: inline-block;
       color: #ddd;
       width: calc(100% - 30px);
@@ -259,6 +266,7 @@ nav {
       height: 0%;
       background: #000;
       z-index: 600;
+      overflow-y: auto;
     }
     .hotlinks {
       width: 100%;
@@ -281,9 +289,11 @@ header {
   top: 0;
   z-index: 19;
 
+  transition: 0.5s ease;
+
   height: 50px;
   padding: 0px 10px;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--header);
   backdrop-filter: blur(7px);
   text-align: right;
 
@@ -413,7 +423,7 @@ header {
 }
 
 .paragraph {
-  background: linear-gradient(to bottom right, #fff, #fdfdfd);
+  background: var(--paragraph);
   border-radius: 5px;
   transition: 1s ease;
   box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
@@ -437,17 +447,20 @@ form {
     input {
       border-radius: 5px;
       outline: none;
-      border: 1px solid #eee;
+      border: 1px solid var(--input-border);
+      background: var(--paragraph);
       padding: 5px;
       width: 100%;
+      color: var(--font-color);
     }
     label {
-      color: #666;
+      color: var(--font-color);
+      opacity: 0.8;
     }
   }
   button {
     float: right;
-    background: #fff;
+    background: var(--paragraph);
     border-radius: 50px;
     outline: none;
     border: 1px solid #08f;
@@ -492,7 +505,7 @@ form {
 .startChatting {
   color: #08f !important;
   font-size: 16px;
-  background: #fff;
+  background: transparent;
   border: 1px solid #08f;
   text-decoration: none;
   transition: 0.2s ease;
@@ -546,7 +559,7 @@ form {
       transition: 0.2s ease;
 
       &:hover {
-        background: #eee;
+        background: var(--background);
       }
 
       &:not(:last-child) {

@@ -1,75 +1,100 @@
 <div class="landing">
-    <h1>Review-Management</h1>
+  <h1>Review-Management</h1>
 </div>
 
 <div class="paragraph">
-    <h2>Zu überprüfende Fragen: {{ this.myItems.length }}</h2>
+  <h2>Zu überprüfende Fragen: {{ this.myItems.length }}</h2>
 
-    <div class="tablewrapper">
-        <table id="itemsTable" style="width:100%">
-            <tr *ngFor="let item of myItems; let i = index" (click)="togglePopUp(item)">
-                <td>
-                    <span class="{{ item.status }}"></span>
-                </td>
-                <td>F:</td>
-                <td>{{ item.question }}</td>
-                <td>A:</td>
-                <td>{{ item.answer }}</td>
-            </tr>
-        </table>
-    </div>
+  <div class="tablewrapper">
+    <table id="itemsTable" style="width:100%">
+      <tr
+        *ngFor="let item of myItems; let i = index"
+        (click)="togglePopUp(item)"
+      >
+        <td>
+          <span class="{{ item.status }}"></span>
+        </td>
+        <td>F:</td>
+        <td>{{ item.question }}</td>
+        <td>A:</td>
+        <td>{{ item.answer }}</td>
+      </tr>
+    </table>
+  </div>
 
-    <div class="modal" [ngStyle]="display">
-        <div class="modal-content">
-            <div (click)="togglePopUp(item)" class="close"></div>
-            <div>
-                <div>
-                    <h2 style="display:inline-block">Frage überprüfen</h2>
+  <div class="modal" [ngStyle]="display">
+    <div class="modal-content">
+      <div (click)="togglePopUp(item)" class="close"></div>
+      <div>
+        <div>
+          <h2 style="display:inline-block">Frage überprüfen</h2>
 
-                    <div>
-                        <div class="lectureInput" style="float: right;top:0.2cm">
-                            <fieldset style="border-style: double; ">
-                                <legend> Lecture </legend>
-                                <select required id="lectureInput" [(ngModel)]="lectureInput" style="font-size:1em; width: 100%; position: relative; float: right">
-                  <option value="" disabled selected>Please select lecture</option>
+          <div>
+            <div class="lectureInput" style="float: right;top:0.2cm">
+              <fieldset style="border-style: double; ">
+                <legend>Lecture</legend>
+                <select
+                  required
+                  id="lectureInput"
+                  [(ngModel)]="lectureInput"
+                  style="font-size:1em; width: 100%; position: relative; float: right"
+                >
+                  <option value="" disabled selected
+                    >Please select lecture</option
+                  >
                   <option>Programmieren</option>
                   <option>Mathe</option>
                 </select>
-                            </fieldset>
-                        </div>
-
-                        <div class="sourceInput">
-                            <fieldset id="sourceSet" style="border-style: double">
-                                <legend> Source </legend>
-                                <textarea id="sourceInput" placeholder="Please enter source" [(ngModel)]="sourceInput" style="font-size: 0,7em"></textarea>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="questionInput">
-                        <fieldset id="questionSet" style="border-style: double">
-                            <legend> Question </legend>
-
-                            <textarea id="questionInput" placeholder="please enter question" [(ngModel)]="questionInput"></textarea>
-                        </fieldset>
-                    </div>
-
-                    <div class="answerInput">
-                        <fieldset id="answerSet" style="border-style: double">
-                            <legend> Answer </legend>
-
-                            <textarea id="answerInput" placeholder="Please enter answer" [(ngModel)]="answerInput"></textarea>
-                        </fieldset>
-                    </div>
-                </div>
-
-
-                <div class="changeButton" style="display: inline-flexbox">
-                    <button id="changeButton" type="submit" (click)="onChange()">
-              Ändern
-            </button>
-                </div>
+              </fieldset>
             </div>
+
+            <div class="sourceInput">
+              <fieldset id="sourceSet" style="border-style: double">
+                <legend>Source</legend>
+                <textarea
+                  id="sourceInput"
+                  placeholder="Please enter source"
+                  [(ngModel)]="sourceInput"
+                  style="font-size: 0,7em"
+                ></textarea>
+              </fieldset>
+            </div>
+          </div>
         </div>
+        <div>
+          <div class="questionInput">
+            <fieldset id="questionSet" style="border-style: double">
+              <legend>Question</legend>
+
+              <textarea
+                id="questionInput"
+                placeholder="please enter question"
+                [(ngModel)]="questionInput"
+              ></textarea>
+            </fieldset>
+          </div>
+
+          <div class="answerInput">
+            <fieldset id="answerSet" style="border-style: double">
+              <legend>Answer</legend>
+
+              <textarea
+                id="answerInput"
+                placeholder="Please enter answer"
+                [(ngModel)]="answerInput"
+              ></textarea>
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="changeButton" style="display: inline-flexbox">
+          <button id="changeButton" type="submit" (click)="onChange()">
+            Ändern
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="removeWhite"></div>

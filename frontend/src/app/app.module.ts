@@ -1,3 +1,4 @@
+import { LayoutModule } from "@angular/cdk/layout";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -20,6 +21,9 @@ import { RegisterComponent } from "./register/register.component";
 import { ReviewComponent } from "./review/review.component";
 import { SearchComponent } from "./search/search.component";
 import { TelegramComponent } from "./telegram/telegram.component";
+import { darkTheme } from "./theme/dark-theme";
+import { lightTheme } from "./theme/light-theme";
+import { ThemeModule } from "./theme/theme.module";
 
 const appRoutes: Routes = [
   {
@@ -55,7 +59,12 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ThemeModule.forRoot({
+      themes: [lightTheme, darkTheme],
+      active: "light"
+    }),
+    LayoutModule
   ],
   declarations: [
     AppComponent,
