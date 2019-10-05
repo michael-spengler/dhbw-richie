@@ -23,15 +23,17 @@ export class AddComponent implements OnInit {
   ngOnInit() {}
 
   onAdd() {
-    if (this.questionInput !== undefined && this.sourceInput !== undefined && this.answerInput !== undefined) {
-      this.globals.sendNotification('Your entry has been added', NotificationType.SUCCESS);
+    if (this.questionInput !== undefined && this.sourceInput !== undefined &&
+      this.answerInput !== undefined && this.lectureInput !== undefined) {
+        this.questionInput = undefined;
+        this.lectureInput = undefined;
+        this.sourceInput = undefined;
+        this.answerInput = undefined;
+        this.globals.sendNotification('Your entry has been added', NotificationType.SUCCESS);
     } else {
       this.globals.sendNotification('Please fill out every form', NotificationType.ERROR);
     }
     // window.alert(this.questionInput);
-    this.questionInput = undefined;
-    this.lectureInput = undefined;
-    this.sourceInput = undefined;
-    this.answerInput = undefined;
+
   }
 }
