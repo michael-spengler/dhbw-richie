@@ -29,8 +29,8 @@
   </div>
 </div>
 
-<div class="overlay" [ngStyle]="overlayStyle">
-  <div class="userCard" [ngStyle]="cardStyle">
+<div class="overlay" [ngStyle]="overlayStyle" (click)="closeUserCard()">
+  <div class="userCard" [ngStyle]="cardStyle" (click)="onClick($event)">
     <div class="close" (click)="closeUserCard()"></div>
     <h2>Informationen</h2>
     <div class="information">
@@ -54,7 +54,7 @@
 
       <div *ngIf="activeUser.enabled" class="status">
         <i class="fas fa-user-check active"></i>
-        <div class="statusTitle active">Aktiv</div>
+        <div class="statusTitle active">Freigeschaltet</div>
         <div class="toggle" (click)="toggleUserActivation()">
           Deaktivieren
         </div>
@@ -70,6 +70,7 @@
     </div>
 
     <div class="splitter"></div>
+
     <h2>Statistik</h2>
     <div class="stats">
       <div class="stat">

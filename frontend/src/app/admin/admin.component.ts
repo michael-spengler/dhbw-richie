@@ -23,6 +23,9 @@ export class AdminComponent {
   onInputKeyDown(event) {
     if (event.key == "Enter") this.searchPlayer();
   }
+  onClick(event) {
+    event.stopPropagation();
+  }
 
   searchPlayer() {
     this.globals.sendNotification(
@@ -41,10 +44,13 @@ export class AdminComponent {
     this.activeUser = this.users[userIndex];
     this.activeUser["id"] = userIndex;
   }
+
   closeUserCard() {
+    console.log("close");
     this.overlayStyle = { display: "none" };
     this.cardStyle = { animation: "none" };
   }
+
   toggleUserActivation() {
     this.users[this.activeUser["id"]].enabled = !this.users[
       this.activeUser["id"]

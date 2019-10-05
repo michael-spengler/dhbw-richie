@@ -91,10 +91,11 @@ select {
 select {
   font-weight: 550;
   width: 100%;
+  cursor: pointer;
   text-align-last: center;
 }
 select option {
-  background: #ccc;
+  background: var(--background);
   color: var(--font-color);
   font-family: "SF Pro Display", sans-serif;
   font-weight: 500;

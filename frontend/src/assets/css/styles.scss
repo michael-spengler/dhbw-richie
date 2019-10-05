@@ -29,6 +29,12 @@ a {
   }
 }
 
+.gradient {
+  background-image: linear-gradient(to bottom right, #08f, #34e985);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .removeWhite {
   height: 1px;
 }
@@ -36,27 +42,23 @@ a {
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
-  position: absolute !important;
   border-radius: 4px;
   transition: 0.2s ease;
-}
-
-::-webkit-scrollbar:hover {
-  width: 4px;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-track {
-  background: #ccc;
+  background: var(--background);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #aaa;
+  background: var(--scrollbar-thumb-nograb);
   border-radius: 4px;
   transition: 0.2s ease;
+  opacity: 0.7;
   &:hover {
-    background: #888;
-    transition: 0.2s ease;
+    background: var(--scrollbar-thumb-grab);
     cursor: grabbing;
   }
 }
@@ -147,7 +149,7 @@ nav {
     }
     .active {
       color: #fff;
-      background: #08f;
+      background-image: linear-gradient(to right, #08f, rgb(78, 167, 245));
       transition: 0.6s ease;
       &:hover {
         background: #08f !important;
@@ -165,60 +167,79 @@ nav {
       display: none;
     }
 
+    .title {
+      background-image: linear-gradient(to bottom right, #08f, #34e985);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .navwrapper {
       display: block;
+      z-index: 1;
+    }
+
+    .richie {
+      display: none;
     }
 
     background-image: linear-gradient(
-        102deg,
-        rgba(249, 249, 249, 0.1) 0%,
-        rgba(249, 249, 249, 0.1) 14%,
-        rgba(161, 161, 161, 0.1) 14%,
-        rgba(161, 161, 161, 0.1) 100%
+        126deg,
+        rgba(101, 101, 101, 0.09) 0%,
+        rgba(101, 101, 101, 0.09) 68%,
+        rgba(200, 200, 200, 0.09) 68%,
+        rgba(200, 200, 200, 0.09) 100%
       ),
       linear-gradient(
-        310deg,
-        rgba(26, 26, 26, 0.03) 0%,
-        rgba(26, 26, 26, 0.03) 71%,
-        rgba(189, 189, 189, 0.03) 71%,
-        rgba(189, 189, 189, 0.03) 100%
+        164deg,
+        rgba(238, 238, 238, 0.03) 0%,
+        rgba(238, 238, 238, 0.03) 90%,
+        rgba(14, 14, 14, 0.03) 90%,
+        rgba(14, 14, 14, 0.03) 100%
       ),
       linear-gradient(
-        133deg,
-        rgba(132, 132, 132, 0.1) 0%,
-        rgba(132, 132, 132, 0.1) 8%,
-        rgba(95, 95, 95, 0.1) 8%,
-        rgba(95, 95, 95, 0.1) 100%
+        27deg,
+        rgba(214, 214, 214, 0.04) 0%,
+        rgba(214, 214, 214, 0.04) 34%,
+        rgba(104, 104, 104, 0.04) 34%,
+        rgba(104, 104, 104, 0.04) 100%
       ),
       linear-gradient(
-        142deg,
-        rgba(110, 110, 110, 0.03) 0%,
-        rgba(110, 110, 110, 0.03) 46%,
-        rgba(8, 8, 8, 0.03) 46%,
-        rgba(8, 8, 8, 0.03) 100%
+        175deg,
+        rgba(20, 20, 20, 0.01) 0%,
+        rgba(20, 20, 20, 0.01) 4%,
+        rgba(9, 9, 9, 0.01) 4%,
+        rgba(9, 9, 9, 0.01) 100%
       ),
       linear-gradient(
-        346deg,
-        rgba(231, 231, 231, 0.05) 0%,
-        rgba(231, 231, 231, 0.05) 6%,
-        rgba(71, 71, 71, 0.05) 6%,
-        rgba(71, 71, 71, 0.05) 100%
+        257deg,
+        rgba(14, 14, 14, 0.01) 0%,
+        rgba(14, 14, 14, 0.01) 28%,
+        rgba(164, 164, 164, 0.01) 28%,
+        rgba(164, 164, 164, 0.01) 100%
       ),
       linear-gradient(
-        118deg,
-        rgba(251, 251, 251, 0.07) 0%,
-        rgba(251, 251, 251, 0.07) 72%,
-        rgba(24, 24, 24, 0.07) 72%,
-        rgba(24, 24, 24, 0.07) 100%
+        311deg,
+        rgba(68, 68, 68, 0.07) 0%,
+        rgba(68, 68, 68, 0.07) 33%,
+        rgba(213, 213, 213, 0.07) 33%,
+        rgba(213, 213, 213, 0.07) 100%
       ),
       linear-gradient(
-        338deg,
-        rgba(75, 75, 75, 0.08) 0%,
-        rgba(75, 75, 75, 0.08) 37%,
-        rgba(213, 213, 213, 0.08) 37%,
-        rgba(213, 213, 213, 0.08) 100%
+        244deg,
+        rgba(43, 43, 43, 0.02) 0%,
+        rgba(43, 43, 43, 0.02) 80%,
+        rgba(161, 161, 161, 0.02) 80%,
+        rgba(161, 161, 161, 0.02) 100%
       ),
-      linear-gradient(90deg, #202020, #111);
+      linear-gradient(
+        130deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(255, 255, 255, 0.04) 49%,
+        rgba(105, 105, 105, 0.04) 49%,
+        rgba(105, 105, 105, 0.04) 100%
+      ),
+      linear-gradient(90deg, #000, #000);
+
     box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
 
     .hotlinks {
@@ -234,6 +255,14 @@ nav {
   }
 }
 
+@media only screen and (max-height: 330px) {
+  nav {
+    .hotlinks {
+      position: initial;
+    }
+  }
+}
+
 // Phones
 @media only screen and (max-width: 850px) {
   nav {
@@ -242,6 +271,18 @@ nav {
     color: #fff;
     user-select: none;
     position: absolute;
+
+    .richie {
+      position: absolute;
+      left: 50px;
+      top: 0px;
+      height: 50px;
+      line-height: 50px;
+      width: 100px;
+      font-weight: 600;
+      z-index: 500;
+      cursor: pointer;
+    }
 
     .toggleButton {
       position: fixed;
@@ -361,7 +402,7 @@ header {
 
 @media only screen and (max-width: 850px) {
   .landing {
-    background-position-y: center;
+    //background-position-y: center;
   }
   .landing h1 {
     word-wrap: break-word;
@@ -369,14 +410,15 @@ header {
 }
 @media only screen and (min-width: 850px) {
   .landing {
-    background-position-y: bottom !important;
+    //background-position-y: bottom !important;
   }
 }
 
 .landing {
   text-align: center;
-  background: url("../img/landing.jpg");
+  background: var(--landing-bg);
   background-size: cover;
+  background-position: center;
   padding: 100px 10px;
   min-height: 50px;
   margin: -50px 0px;
@@ -427,6 +469,31 @@ header {
   border-radius: 5px;
   transition: 1s ease;
   box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
+  h3 {
+    opacity: 0.8;
+  }
+
+  .media {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    height: 40px;
+    margin: 20px 0px 10px 0px;
+    svg {
+      display: inline-flex;
+      width: 30px;
+      height: 30px;
+      opacity: 0.75;
+      transition: 0.4s ease;
+      cursor: pointer;
+      &:not(:hover) {
+        color: var(--font-color) !important;
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 @media only screen and (min-width: 850px) {
@@ -445,13 +512,18 @@ form {
     margin-bottom: 5px;
 
     input {
-      border-radius: 5px;
+      border-radius: 50px;
       outline: none;
       border: 1px solid var(--input-border);
       background: var(--paragraph);
-      padding: 5px;
+      padding: 5px 10px;
       width: 100%;
       color: var(--font-color);
+      transition: 0.2s ease;
+      &:hover,
+      &:active {
+        background: var(--input-border);
+      }
     }
     label {
       color: var(--font-color);
