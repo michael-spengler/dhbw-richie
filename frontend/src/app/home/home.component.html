@@ -15,19 +15,19 @@
   </p>
   <div class="spliter"></div>
   <div class="media">
-    <span (click)="(return)">
+    <span (click)="openURL(this.globals.telegramURL)">
       <i style="color: #0088cc" class="fab fa-telegram-plane"></i>
     </span>
-    <span (click)="(return)">
+    <span (click)="openURL(this.globals.youtubeURL)">
       <i style="color: #ff0000" class="fab fa-youtube"></i>
     </span>
-    <span (click)="(return)">
+    <span (click)="openURL(this.globals.twitterURL)">
       <i style="color: #1da1f2" class="fab fa-twitter"></i>
     </span>
-    <span (click)="(return)">
+    <span (click)="openURL(this.globals.facebookURL)">
       <i style="color: #3b5998" class="fab fa-facebook"></i>
     </span>
-    <span (click)="(return)">
+    <span (click)="openURL(this.globals.instagramURL)">
       <i style="color: #e1306c" class="fab fa-instagram"></i>
     </span>
   </div>
@@ -35,7 +35,7 @@
 
 <div class="paragraph">
   <h2>Du hast Fragen zu einer Klausur?</h2>
-  <a class="startChatting" [href]="globals.botURL"
+  <a class="iconButton" [href]="globals.botURL"
     ><i class="fab fa-telegram-plane"></i>Stell sie mir</a
   >
 </div>

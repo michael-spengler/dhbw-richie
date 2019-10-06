@@ -15,10 +15,10 @@
       sein. Solltest du noch keinen Account haben kannst du ganz einfach einen
       kostenlosen Account erstellen.
     </p>
-    <a [routerLink]="['/register']" class="startChatting startChattingNextTo"
+    <a [routerLink]="['/register']" class="iconButton iconButtonNextTo"
       ><i class="fa fa-sign-in-alt"></i>Registrieren</a
     >
-    <a [routerLink]="['/login']" class="startChatting"
+    <a [routerLink]="['/login']" class="iconButton"
       ><i class="fa fa-sign-in-alt"></i>Anmelden</a
     >
   </div>
@@ -31,24 +31,23 @@
     </div>
 
     <div>
+      <div class="sourceInputDiv" style="display: inline-flex">
+        <fieldset id="sourceSet">
+          <legend>Source</legend>
+          <textarea
+            id="sourceInput"
+            placeholder="Professor, Website, etc..."
+            [(ngModel)]="sourceInput"
+            style="height: 6%; font-size: 0,7em; width:90%"
+          ></textarea>
+        </fieldset>
+      </div>
 
-        <div class="sourceInputDiv" style="display: inline-flex">
-            <fieldset id="sourceSet" >
-              <legend>Source</legend>
-              <textarea
-                id="sourceInput"
-                placeholder="Professor, Website, etc..."
-                [(ngModel)]="sourceInput"
-                style="height: 6%; font-size: 0,7em; width:90%"
-              ></textarea>
-            </fieldset>
-          </div>
-
-          <div style="display:inline-flex; padding: 2%"></div>
+      <div style="display:inline-flex; padding: 2%"></div>
 
       <div class="lectureInput" style="display: inline-flex">
         <fieldset>
-          <legend >Lecture</legend>
+          <legend>Lecture</legend>
           <select
             required
             id="lectureInput"
@@ -63,11 +62,11 @@
       </div>
     </div>
 
-    <div class="splitter" > </div>
+    <div class="splitter"></div>
 
     <div>
       <div class="questionInput">
-        <fieldset id="questionSet" >
+        <fieldset id="questionSet">
           <legend>Question</legend>
 
           <textarea
@@ -95,12 +94,18 @@
       </div>
     </div>
 
-    <div class="splitter"></div>
-
-    <div class="addButton" style="text-align: center" >
-      <button id="addButton" type="submit" (click)="onAdd()">Submit Your Entry</button>
+    <!--
+    <div class="addButton" style="text-align: center">
+      <button id="addButton" type="submit" (click)="onAdd()">
+        Submit Your Entry
+      </button>
     </div>
-
+-->
+    <div style="display: block; text-align: center; margin-top: 10px;">
+      <div class="iconButton">
+        <i class="fab fa-wpforms"></i>Frage & Antwort einreichen
+      </div>
+    </div>
   </div>
 </ng-template>
 

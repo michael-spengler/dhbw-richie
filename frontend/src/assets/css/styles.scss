@@ -1,5 +1,8 @@
 @import url("../fonts/fontfaces.css");
 
+$phoneMax: 850px;
+$phoneMax-1: 849px;
+
 html,
 body {
   margin: 0;
@@ -10,7 +13,7 @@ body {
 body {
   min-height: 100%;
 }
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: $phoneMax) {
   body {
     padding-left: 110px;
   }
@@ -158,7 +161,7 @@ nav {
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: $phoneMax) {
   nav {
     width: 220px;
     height: 100%;
@@ -168,6 +171,7 @@ nav {
     }
 
     .title {
+      font-weight: 700;
       background-image: linear-gradient(to bottom right, #08f, #34e985);
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -264,7 +268,7 @@ nav {
 }
 
 // Phones
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: $phoneMax-1) {
   nav {
     height: 50px;
     width: 50px;
@@ -278,7 +282,7 @@ nav {
       top: 0px;
       height: 50px;
       line-height: 50px;
-      width: 100px;
+      width: 200px;
       font-weight: 600;
       z-index: 500;
       cursor: pointer;
@@ -400,17 +404,9 @@ header {
   }
 }
 
-@media only screen and (max-width: 850px) {
-  .landing {
-    //background-position-y: center;
-  }
+@media only screen and (max-width: $phoneMax-1) {
   .landing h1 {
     word-wrap: break-word;
-  }
-}
-@media only screen and (min-width: 850px) {
-  .landing {
-    //background-position-y: bottom !important;
   }
 }
 
@@ -423,6 +419,7 @@ header {
   min-height: 50px;
   margin: -50px 0px;
   user-select: none;
+  transition: 2.5s ease;
 
   h1,
   h2 {
@@ -446,14 +443,14 @@ header {
     }
   }
 }
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: $phoneMax) {
   .paragraph {
     margin: 20px 60px;
     margin-bottom: 40px;
     padding: 10px 50px;
   }
 }
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: $phoneMax-1) {
   .paragraph {
     margin: 20px 10px;
     padding: 1px 20px;
@@ -496,7 +493,7 @@ header {
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: $phoneMax) {
   form {
     margin-left: 20px;
   }
@@ -551,30 +548,30 @@ form {
   }
 }
 
-@media only screen and (max-width: 850px) {
-  .startChatting {
+@media only screen and (max-width: $phoneMax-1) {
+  .iconButton {
     display: block;
     text-align: center;
     margin: 0;
   }
-  .startChattingRight {
+  .iconButtonRight {
     margin-top: 10px;
   }
 }
-@media only screen and (min-width: 850px) {
-  .startChatting {
+@media only screen and (min-width: $phoneMax) {
+  .iconButton {
     display: inline-block;
   }
-  .startChattingRight {
+  .iconButtonRight {
     position: absolute;
     right: 90px;
   }
-  .startChattingNextTo {
+  .iconButtonNextTo {
     margin-right: 25px;
   }
 }
 
-.startChatting {
+.iconButton {
   color: #08f !important;
   font-size: 16px;
   background: transparent;
@@ -601,14 +598,14 @@ form {
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: $phoneMax-1) {
   .tablewrapper table td {
     height: 20px;
     padding: 10px;
     line-height: 20px;
   }
 }
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: $phoneMax) {
   .tablewrapper table td {
     height: 30px;
     padding: 10px;

@@ -48,11 +48,11 @@
   width: 100%;
 }
 
-.startChatting {
+.iconButton {
   background: rgba(0, 0, 0, 0);
   margin-bottom: 0;
   display: inline-block !important;
 }
-.startChatting:hover {
+.iconButton:hover {
   background: #08f !important;
 }

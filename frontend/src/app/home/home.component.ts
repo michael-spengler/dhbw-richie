@@ -8,4 +8,8 @@ import { Globals } from "../globals";
 })
 export class HomeComponent {
   constructor(private globals: Globals) {}
+
+  openURL(url) {
+    window.open(url, "_blank");
+  }
 }

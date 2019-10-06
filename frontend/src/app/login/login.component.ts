@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Globals } from "../globals";
@@ -8,7 +8,7 @@ import { Globals } from "../globals";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements AfterViewInit {
   loginForm;
 
   constructor(
@@ -16,21 +16,21 @@ export class LoginComponent implements OnInit {
     private globals: Globals,
     private router: Router
   ) {
-    if (globals.user["signed_in"]) {
-      router.navigate(["/settings"]);
-      return;
-    }
-
     this.loginForm = this.formBuilder.group({
       username: "",
       password: ""
     });
   }
 
+  ngAfterViewInit(): void {
+    if (this.globals.user["signed_in"]) {
+      this.router.navigate(["/settings"]);
+      return;
+    }
+  }
+
   submit(userInformation) {
     this.loginForm.reset();
     this.globals.logIn();
-    this.router.navigate(["/home"]);
   }
-  ngOnInit() {}
 }

@@ -197,6 +197,7 @@ nav .routes .active:hover {
     display: none;
   }
   nav .title {
+    font-weight: 700;
     background-image: -webkit-gradient(linear, left top, right bottom, from(#08f), to(#34e985));
     background-image: linear-gradient(to bottom right, #08f, #34e985);
     background-clip: text;
@@ -226,7 +227,7 @@ nav .routes .active:hover {
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 849px) {
   nav {
     height: 50px;
     width: 50px;
@@ -243,7 +244,7 @@ nav .routes .active:hover {
     top: 0px;
     height: 50px;
     line-height: 50px;
-    width: 100px;
+    width: 200px;
     font-weight: 600;
     z-index: 500;
     cursor: pointer;
@@ -375,7 +376,7 @@ header .user .icon {
   font-weight: 600;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 849px) {
   .landing h1 {
     word-wrap: break-word;
   }
@@ -393,6 +394,8 @@ header .user .icon {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  -webkit-transition: 2.5s ease;
+  transition: 2.5s ease;
 }
 
 .landing h1,
@@ -425,7 +428,7 @@ header .user .icon {
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 849px) {
   .paragraph {
     margin: 20px 10px;
     padding: 1px 20px;
@@ -545,31 +548,31 @@ form button:active {
           filter: brightness(115%);
 }
 
-@media only screen and (max-width: 850px) {
-  .startChatting {
+@media only screen and (max-width: 849px) {
+  .iconButton {
     display: block;
     text-align: center;
     margin: 0;
   }
-  .startChattingRight {
+  .iconButtonRight {
     margin-top: 10px;
   }
 }
 
 @media only screen and (min-width: 850px) {
-  .startChatting {
+  .iconButton {
     display: inline-block;
   }
-  .startChattingRight {
+  .iconButtonRight {
     position: absolute;
     right: 90px;
   }
-  .startChattingNextTo {
+  .iconButtonNextTo {
     margin-right: 25px;
   }
 }
 
-.startChatting {
+.iconButton {
   color: #08f !important;
   font-size: 16px;
   background: transparent;
@@ -588,21 +591,21 @@ form button:active {
   cursor: pointer;
 }
 
-.startChatting svg {
+.iconButton svg {
   margin-right: 8px;
 }
 
-.startChatting:hover {
+.iconButton:hover {
   background: #08f;
   color: #fff !important;
 }
 
-.startChatting:active {
+.iconButton:active {
   -webkit-filter: brightness(115%);
           filter: brightness(115%);
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 849px) {
   .tablewrapper table td {
     height: 20px;
     padding: 10px;

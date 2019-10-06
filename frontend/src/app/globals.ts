@@ -1,3 +1,4 @@
+import { Location } from "@angular/common";
 import { Injectable } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -8,9 +9,15 @@ export class Globals {
   constructor(
     private sanitizer: DomSanitizer,
     private router: Router,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private location: Location
   ) {}
 
+  telegramURL = "https://t.me/dhbw_richie_bot";
+  youtubeURL = "https://youtube.com";
+  twitterURL = "https://twitter.com";
+  facebookURL = "https://facebook.com";
+  instagramURL = "https://instagram.com";
   botURL = this.getSantizeUrl("tg://resolve?domain=dhbw_richie_bot");
   user: any = {
     abbreviation: function(): string {
@@ -68,6 +75,7 @@ export class Globals {
       `Willkommen zurück, ${this.user.name}!`,
       NotificationType.INFORMATION
     );
+    this.router.navigate(["/home"]);
   }
 
   toggleTheme() {
