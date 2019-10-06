@@ -23,7 +23,6 @@ fieldset {
   float:inline-end;
 }
 #addButton{
-    float: right;
     background-color: white;
     border-radius: 50px;
     outline: none;
@@ -35,10 +34,8 @@ fieldset {
     transition: 0.2s ease;
     font-weight: 600;
     font-size: 1.25em;
-    position: absolute;
-    right: 5%;
-    top: 39%;
-
+    position: relative;
+    width: 100%;
 }
 legend{
   color:black ;
