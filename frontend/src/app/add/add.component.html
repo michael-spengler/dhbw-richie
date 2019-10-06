@@ -31,9 +31,24 @@
     </div>
 
     <div>
-      <div class="lectureInput" style="float: right;">
-        <fieldset >
-          <legend>Lecture</legend>
+
+        <div class="sourceInputDiv" style="display: inline-flex">
+            <fieldset id="sourceSet" >
+              <legend>Source</legend>
+              <textarea
+                id="sourceInput"
+                placeholder="Professor, Website, etc..."
+                [(ngModel)]="sourceInput"
+                style="height: 6%; font-size: 0,7em; width:90%"
+              ></textarea>
+            </fieldset>
+          </div>
+
+          <div style="display:inline-flex; padding: 2%"></div>
+
+      <div class="lectureInput" style="display: inline-flex">
+        <fieldset>
+          <legend >Lecture</legend>
           <select
             required
             id="lectureInput"
@@ -44,18 +59,6 @@
             <option>Programmieren</option>
             <option>Mathe</option>
           </select>
-        </fieldset>
-      </div>
-
-      <div class="sourceInput">
-        <fieldset id="sourceSet" >
-          <legend>Source</legend>
-          <textarea
-            id="sourceInput"
-            placeholder="Professor, Website, etc..."
-            [(ngModel)]="sourceInput"
-            style="height: 6%; font-size: 0,7em; width:100%"
-          ></textarea>
         </fieldset>
       </div>
     </div>

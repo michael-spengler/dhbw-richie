@@ -2,44 +2,45 @@ textarea {
   padding: 1ex;
   font-size: 1em;
   box-sizing: border-box;
-  border-color: white;
+  border: none;
   position: relative;
   resize: none;
+  background-color: #eee;
 }
 fieldset {
-  border: none ;
+  border: solid 1px lightgrey ;
   box-sizing: border-box;
   border-color: none;
   position: relative;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
-}
-#sourceInput {
-  position: relative;
+  background-color: #eee;
 }
 #lectureInput {
 
   float:inline-end;
 }
 #addButton{
-    background-color: white;
-    border-radius: 50px;
-    outline: none;
-    border: 1px solid #08f;
-    padding: 5px 20px;
-    color: #08f;
-    cursor: pointer;
-    -webkit-transition: 0.2s ease;
-    transition: 0.2s ease;
-    font-weight: 600;
-    font-size: 1.25em;
-    position: relative;
-    width: 100%;
+  background-color: white;
+  border-radius: 50px;
+  outline: none;
+  border: 1px solid #08f;
+  padding: 5px 20px;
+  color: #08f;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  font-weight: 600;
+  font-size: 1.25em;
+  position: relative;
+  width: 100%;
 }
 legend{
   color:black ;
-  border: solid 1px lightgrey;
+  border-top: solid 1px lightgrey;
+  border-left: solid lightgrey 1px;
+  border-left-style: none;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
@@ -47,4 +48,18 @@ legend{
   font-size: 0.8em;
   padding: 3px 15px;
   -webkit-user-select: none;
+  background-color: #eee;
+}
+.sourceInputDiv{
+  width:60%;
+}
+#sourceSet{
+  width: 100%;
+}
+#sourceInput {
+  position: relative;
+  width: 100%;
+}
+.lectureInput{
+  height: 11.46666%;
 }
