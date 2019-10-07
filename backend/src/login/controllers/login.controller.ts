@@ -1,29 +1,52 @@
-import { Controller, Post, UseGuards, Get, Body } from '@nestjs/common';
+import { Controller, Post, UseGuards, Get, Body, Req } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthenticatedUser } from '../../passport';
 import { RegisterModel } from '../models/register.model';
 
-@Controller('login')
+@Controller('auth')
 export class LoginController {
 
-    @Post()
-    @UseGuards(AuthGuard('local'))
-    public async login(
-        @AuthenticatedUser() user
-    ) {
-        console.log('login', user)
+    @Get('google')
+    @UseGuards(AuthGuard('google'))
+    googleLogin() {
+      // initiates the Google OAuth2 login flow
     }
 
-    @Get()
+    @Get('google/callback')
+    @UseGuards(AuthGuard('google'))
+    googleLoginCallback(@Req() req) {
+      const jwt: string = req.user.jwt;
+      if (jwt) {
+        return `<html><body><script>window.opener.postMessage('${jwt}', 'http://localhost:4200')</script></body></html>`;
+      } else {
+        return 'There was a problem signing in...';
+      }
+    }
+
+    @Get('protected')
     @UseGuards(AuthGuard('jwt'))
-    public async refresh() {
-
+    protectedResource() {
+      return 'JWT is working!';
     }
 
-    @Post()
-    public async register(
-        @Body() registerModel: RegisterModel
-    ) {
-        console.log(registerModel);
-    }
+    // @Post()
+    // @UseGuards(AuthGuard('local'))
+    // public async login(
+    //     @AuthenticatedUser() user
+    // ) {
+    //     console.log('login', user)
+    // }
+
+    // @Get()
+    // @UseGuards(AuthGuard('jwt'))
+    // public async refresh() {
+
+    // }
+
+    // @Post()
+    // public async register(
+    //     @Body() registerModel: RegisterModel
+    // ) {
+    //     console.log(registerModel);
+    // }
 }

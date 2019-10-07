@@ -3,6 +3,8 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
+import { GoogleStrategy } from './strategies/google.strategy';
+import { AuthService } from './auth.service';
 
 const EXPIRE_IN = "61m";
 export const SECRET = "WoopThisIsASecret:D"
@@ -19,6 +21,6 @@ export const SECRET = "WoopThisIsASecret:D"
     }),
   ],
   exports: [JwtModule],
-  providers: [LocalStrategy, JwtStrategy],
+  providers: [LocalStrategy, JwtStrategy, GoogleStrategy, AuthService],
 })
 export class PassportModule {}

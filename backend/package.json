@@ -35,7 +35,8 @@
     "bcrypt": "^3.0.6",
     "@nestjs/typeorm": "^6.2.0",
     "mongodb": "^3.3.2",
-    "typeorm": "^0.2.19"
+    "typeorm": "^0.2.19",
+    "passport-google-oauth20": "^1.0.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^6.0.0",
