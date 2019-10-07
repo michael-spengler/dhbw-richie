@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -23,4 +23,13 @@ jobs:
           INPUT_TARGET_BRANCH: gh-pages
           INPUT_BUILD_DIR: frontend/dist/frontend
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy-Backend
+        run: |
+          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3
+          
 
+        
+          
+    
+ 
+          
