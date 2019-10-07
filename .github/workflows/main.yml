@@ -25,7 +25,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy-Backend
         run: |
-          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -t -t -o stricthostkeychecking=no --noprofile --norc -eo pipefail {0}
+          echo hello world
+          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -t -t -o stricthostkeychecking=no
+          echo hello space
         shell: bash
           
 
