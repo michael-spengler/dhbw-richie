@@ -28,6 +28,11 @@ jobs:
           echo hello world
           sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -t -t -o stricthostkeychecking=no
           echo hello space
+          cd dhbw-richie
+          git pull
+          cd backend
+          npm i
+          npm run build
         shell: bash
           
 
