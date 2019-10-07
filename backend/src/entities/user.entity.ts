@@ -9,14 +9,20 @@ export class User {
   email: string;
 
   @Column()
-  username: string;
+  isAdmin: boolean;
 
   @Column()
-  password: string;
+  isReviewer: boolean;
 
   @Column()
-  isAdmin: boolean; // Rechte: isReviewer + Reviewer bestimmen, Löschen (Archivieren), evtl. Benachrichtigungen/Berichte per Mail/Inbox...
+  familyName: string;
 
   @Column()
-  isReviewer: boolean; // Rechte: Neue Fragen (Data) eintragen, Data reviewen & bestätigen/ablehnen (endgültig eintragen)
+  givenName: string;
+
+  @Column()
+  picture: string;
+
+  @Column()
+  googleId: number;
 }
