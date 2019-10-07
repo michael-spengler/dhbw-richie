@@ -1,0 +1,35 @@
+name: CI/CD
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+      - name: Build
+        run: |
+          cd frontend
+          npm install
+          npm run build
+      - name: Deploy
+        if: success()
+        uses: docker://crazymax/ghaction-github-pages
+        env:
+          INPUT_TARGET_BRANCH: gh-pages
+          INPUT_BUILD_DIR: frontend/dist/frontend
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy-Backend
+        run: |
+          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3
+          
+
+        
+          
+    
+ 
+          
