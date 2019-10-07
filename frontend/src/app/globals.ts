@@ -67,7 +67,7 @@ export class Globals {
   }
   public logIn() {
     this.user.name = "Timo Scheuermann";
-    this.user.email = "max.mustermann@mail.de 2000";
+    this.user.email = "max.mustermann@mail.de";
     this.user.group = "Admin";
     this.user.created = new Date(1569939205000);
     this.user.signed_in = true;
@@ -75,7 +75,7 @@ export class Globals {
       `Willkommen zurück, ${this.user.name}!`,
       NotificationType.INFORMATION
     );
-    this.router.navigate(["/home"]);
+    //this.router.navigate(["/home"]);
   }
 
   toggleTheme() {

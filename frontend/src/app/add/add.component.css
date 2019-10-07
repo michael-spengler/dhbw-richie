@@ -1,65 +1,32 @@
+input,
 textarea {
-  padding: 1ex;
-  font-size: 1em;
-  box-sizing: border-box;
-  border: none;
-  position: relative;
-  resize: none;
-  background-color: #eee;
-}
-fieldset {
-  border: solid 1px lightgrey ;
-  box-sizing: border-box;
-  border-color: none;
-  position: relative;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  background-color: #eee;
-}
-#lectureInput {
-
-  float:inline-end;
-}
-#addButton{
-  background-color: white;
-  border-radius: 50px;
+  border-radius: 10px;
   outline: none;
-  border: 1px solid #08f;
-  padding: 5px 20px;
-  color: #08f;
-  cursor: pointer;
-  -webkit-transition: 0.2s ease;
+  border: 1px solid var(--input-border);
+  background: var(--paragraph);
+  padding: 5px 10px;
+  width: 100%;
+  color: var(--font-color);
   transition: 0.2s ease;
-  font-weight: 600;
-  font-size: 1.25em;
-  position: relative;
-  width: 100%;
 }
-legend{
-  color:black ;
-  border-top: solid 1px lightgrey;
-  border-left: solid lightgrey 1px;
-  border-left-style: none;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.8em;
-  padding: 3px 15px;
-  -webkit-user-select: none;
-  background-color: #eee;
+input:hover,
+input:active,
+textarea:hover,
+textarea:active {
+  background: var(--input-border);
 }
-.sourceInputDiv{
-  width:60%;
+
+textarea {
+  resize: none;
 }
-#sourceSet{
-  width: 100%;
+
+.inputWrapper {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 20px;
+  margin-top: -20px;
 }
-#sourceInput {
-  position: relative;
-  width: 100%;
-}
-.lectureInput{
-  height: 11.46666%;
+
+.input {
+  display: inline-grid;
 }

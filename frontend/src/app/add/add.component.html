@@ -26,81 +26,29 @@
 
 <ng-template #addParagraph>
   <div class="paragraph">
-    <div>
-      <h2 style="display:inline-block">Formular</h2>
-    </div>
+    <h2>Formular</h2>
 
-    <div>
-      <div class="sourceInputDiv" style="display: inline-flex">
-        <fieldset id="sourceSet">
-          <legend>Source</legend>
-          <textarea
-            id="sourceInput"
-            placeholder="Professor, Website, etc..."
-            [(ngModel)]="sourceInput"
-            style="height: 6%; font-size: 0,7em; width:90%"
-          ></textarea>
-        </fieldset>
-      </div>
-
-      <div style="display:inline-flex; padding: 2%"></div>
-
-      <div class="lectureInput" style="display: inline-flex">
-        <fieldset>
-          <legend>Lecture</legend>
-          <select
-            required
-            id="lectureInput"
-            [(ngModel)]="lectureInput"
-            style="font-size:1em; width: 4.5cm "
-          >
-            <option value="" disabled selected>Please select lecture</option>
-            <option>Programmieren</option>
-            <option>Mathe</option>
-          </select>
-        </fieldset>
-      </div>
-    </div>
+    <h3>Frage</h3>
+    <textarea rows="5" placeholder="Moin Servus Moin"></textarea>
 
     <div class="splitter"></div>
 
-    <div>
-      <div class="questionInput">
-        <fieldset id="questionSet">
-          <legend>Question</legend>
+    <h3>Antwort</h3>
+    <textarea rows="5" placeholder="Moin Servus Moin"></textarea>
 
-          <textarea
-            id="questionInput"
-            placeholder="Example: Why is the sky blue?"
-            [(ngModel)]="questionInput"
-            style="height: 8%;width: 100%; "
-          ></textarea>
-        </fieldset>
+    <div class="splitter"></div>
+
+    <div class="inputWrapper">
+      <div class="input">
+        <h3>Quelle</h3>
+        <input type="text" placeholder="Moin Servus Moin" />
       </div>
-
-      <div class="splitter"></div>
-
-      <div class="answerInput">
-        <fieldset id="answerSet">
-          <legend>Answer</legend>
-
-          <textarea
-            id="answerInput"
-            placeholder="Example: Because I watered it"
-            [(ngModel)]="answerInput"
-            style="height: 8%; width: 100%"
-          ></textarea>
-        </fieldset>
+      <div class="input">
+        <h3>Vorlesung</h3>
+        <input type="text" placeholder="Moin Servus Moin" />
       </div>
     </div>
 
-    <!--
-    <div class="addButton" style="text-align: center">
-      <button id="addButton" type="submit" (click)="onAdd()">
-        Submit Your Entry
-      </button>
-    </div>
--->
     <div style="display: block; text-align: center; margin-top: 10px;">
       <div class="iconButton">
         <i class="fab fa-wpforms"></i>Frage & Antwort einreichen
