@@ -25,7 +25,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy-Backend
         run: |
-          sudo apt-get install sshpass
           sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3
           
 
