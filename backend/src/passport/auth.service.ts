@@ -1,5 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { sign } from 'jsonwebtoken';
+import { SECRET } from './passport.module';
 
 export enum Provider {
   GOOGLE = 'google',
@@ -12,7 +13,7 @@ export class AuthService {
           return sign({
             thirdPartyId,
             provider,
-          }, 'WOOOP', {
+          }, SECRET, {
             expiresIn: 3600,
           });
         } catch (err) {
