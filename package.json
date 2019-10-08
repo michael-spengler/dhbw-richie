@@ -23,6 +23,8 @@
     "pretty-quick": "^1.11.1"
   },
   "husky": {
-    "pre-commit": "pretty-quick --staged && npm run test"
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
   }
 }
