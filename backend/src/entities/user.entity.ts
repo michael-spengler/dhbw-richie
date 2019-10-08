@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ObjectID, ObjectIdColumn, CreateDateColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -25,4 +25,7 @@ export class User {
 
   @Column()
   googleId: number;
+
+  @Column()
+  created: number;
 }

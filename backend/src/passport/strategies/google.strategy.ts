@@ -35,6 +35,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
             googleId: profile._json.sub,
           },
         })) || new User();
+      dbUser.created = dbUser.created || new Date().getTime();
       dbUser.email = profile._json.email;
       dbUser.familyName = profile._json.family_name;
       dbUser.givenName = profile._json.given_name;

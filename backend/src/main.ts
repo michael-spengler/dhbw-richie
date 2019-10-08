@@ -9,4 +9,5 @@ async function bootstrap() {
   app.use(cookieParser());
   await app.listen(3000);
 }
+process.env.TZ = 'Europe/Amsterdam';
 bootstrap();
