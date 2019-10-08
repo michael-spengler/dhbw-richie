@@ -16,6 +16,9 @@ export class AdminComponent implements OnInit {
   activeUser = {};
   overlayStyle = { display: "none" };
   cardStyle = { animation: "none" };
+
+  selectionStyle: any = { opacity: 0.7 };
+
   userSearch = "";
   users;
 
@@ -25,6 +28,29 @@ export class AdminComponent implements OnInit {
 
   onClick(event) {
     event.stopPropagation();
+  }
+
+  toggleSelection() {
+    if (this.selectionStyle.opacity === 1) {
+      this.hideSelection();
+    } else {
+      this.selectionStyle.opacity = 1;
+      this.selectionStyle.transform = "scale(1)";
+    }
+  }
+  hideSelection() {
+    this.selectionStyle.opacity = 0;
+    this.selectionStyle.transform = "scale(0)";
+  }
+
+  setRankToAdmin() {
+    this.activeUser["rank"] = "Admin";
+  }
+  setRankToReviewer() {
+    this.activeUser["rank"] = "Reviewer";
+  }
+  setRankToPro() {
+    this.activeUser["rank"] = "Pro";
   }
 
   searchPlayer() {
@@ -49,6 +75,7 @@ export class AdminComponent implements OnInit {
     console.log("close");
     this.overlayStyle = { display: "none" };
     this.cardStyle = { animation: "none" };
+    this.hideSelection();
   }
 
   toggleUserActivation() {

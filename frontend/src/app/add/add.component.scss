@@ -24,9 +24,39 @@ textarea {
   display: inline-grid;
 }
 
+@media only screen and (min-width: 800px) {
+  .inputWrapper {
+    grid-template-columns: 3fr 1fr;
+  }
+  .selectionWrapper {
+    margin-left: -50px;
+    margin-top: -80px;
+  }
+}
+@media only screen and (max-width: 799px) {
+  .inputWrapper {
+    grid-template-columns: 1fr;
+  }
+  .selectionWrapper {
+    margin-top: -150px;
+  }
+}
+
 .inputWrapper {
   display: grid;
-  grid-template-columns: 4fr 1fr;
   grid-gap: 20px;
-  margin-top: -20px;
+  //margin-top: -20px;
+}
+
+.lecture {
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  user-select: none;
+
+  i {
+    margin-right: 10px;
+  }
 }

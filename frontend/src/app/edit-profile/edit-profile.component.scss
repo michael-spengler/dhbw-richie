@@ -57,7 +57,7 @@
   border: 1px solid #fff;
 }
 
-.logout svg {
+.logout i {
   padding: 0 !important;
   margin: 0 !important;
   margin-left: 10px !important;
@@ -66,11 +66,13 @@
 @media only screen and (max-width: 749px) {
   .informations {
     grid-template-columns: 1fr;
+    margin-top: -10px;
   }
 }
 @media only screen and (min-width: 750px) {
   .informations {
     grid-template-columns: 1fr 300px;
+    margin-top: -20px;
   }
 }
 

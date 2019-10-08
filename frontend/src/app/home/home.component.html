@@ -40,13 +40,13 @@
   >
 </div>
 
-<div class="paragraph">
+<div class="paragraph" *ngIf="!globals.user.signed_in">
   <h2>Go <span class="gradient">Pro</span>, unterrichte Richie!</h2>
   <p>
     Du möchtest, eine neue Frage einreichen, die häufig gestellt wird und durch
     einen kurzen Text beantworten? Dann erstelle dir ganz einfach einen Account
     und unterstütze dadurch deine Kommilitonen der DHBW.
-    <a [routerLink]="['/register']">Ich möchte ein Pro werden!</a>
+    <a [routerLink]="['/login']">Ich möchte ein Pro werden!</a>
   </p>
 </div>
 

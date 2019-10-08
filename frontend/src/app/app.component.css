@@ -1,15 +1,3 @@
-/* Phones */
-@media only screen and (max-width: 850px) {
-  .notificationWrapper {
-    transform: translate(-50%, 0);
-  }
-}
-@media only screen and (min-width: 850px) {
-  .notificationWrapper {
-    transform: translate(calc(-50% + 50px), 0);
-  }
-}
-
 .notificationWrapper {
   position: fixed;
   display: flex;
@@ -17,6 +5,7 @@
   align-items: center;
   justify-content: center;
   left: 50%;
+  transform: translateX(-50%);
   bottom: 30px;
   user-select: none;
   z-index: 10010;
@@ -42,7 +31,7 @@
   margin-left: 5px;
 }
 
-.notification svg {
+.notification i {
   position: absolute;
   height: 40px;
   line-height: 40px;
@@ -50,14 +39,14 @@
   font-size: 30px;
 }
 
-.inf svg {
+.inf i {
   color: #08f;
 }
 
-.err svg {
+.err i {
   color: #fc5c65;
 }
-.suc svg {
+.suc i {
   color: #34c759;
 }
 

@@ -28,7 +28,7 @@ const appRoutes: Routes = [
   {
     path: "home",
     component: HomeComponent,
-    data: { title: "Heroes List" }
+    data: { title: `${title}Home` }
   },
   {
     path: "add",

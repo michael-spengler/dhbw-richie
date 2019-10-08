@@ -10,11 +10,11 @@
       <div class="title" (click)="globals.toggleTheme()"></div>
       <div class="routes">
         <a routerLink="/home" routerLinkActive="active">
-          <i class="fa fa-home"></i>
+          <i class="fad fa-home"></i>
           <div class="name">Home</div>
         </a>
         <a routerLink="/add" routerLinkActive="active">
-          <i class="fa fa-plus"></i>
+          <i class="fad fa-layer-plus"></i>
           <div class="name">Add</div>
           <div class="type">pro</div>
         </a>
@@ -23,11 +23,11 @@
           routerLink="/review"
           routerLinkActive="active"
         >
-          <i class="fas fa-check-double"></i>
+          <i class="fad fa-check-double"></i>
           <div class="name">Review</div>
         </a>
         <a routerLink="/search" routerLinkActive="active">
-          <i class="fa fa-search"></i>
+          <i class="fad fa-search"></i>
           <div class="name">Search</div>
         </a>
         <a routerLink="/telegram" routerLinkActive="active">
@@ -40,7 +40,7 @@
           routerLink="/admin"
           routerLinkActive="active"
         >
-          <i class="fas fa-user-cog"></i>
+          <i class="fad fa-user-cog"></i>
           <div class="name">Administration</div>
         </a>
       </div>
@@ -58,19 +58,14 @@
     <ng-template #signedOut>
       <div class="registerLogin">
         <div class="signIn" [routerLink]="['/login']">
-          Anmelden<i class="fas fa-sign-in-alt"></i>
+          Anmelden<i class="fad fa-sign-in"></i>
         </div>
       </div>
     </ng-template>
 
     <ng-template #signedIn>
-      <div class="user" [routerLink]="['/settings']">
-        <div class="name">
-          {{ globals.user.givenName }} {{ globals.user.familyName }}
-        </div>
-        <div class="icon">
-          {{ globals.user.givenName[0] }}{{ globals.user.familyName[0] }}
-        </div>
+      <div class="user" [routerLink]="['/settings']" [ngStyle]="userIcon">
+        {{ globals.user.givenName }} {{ globals.user.familyName }}
       </div>
     </ng-template>
   </header>
@@ -78,13 +73,13 @@
   <div class="notificationWrapper">
     <div [ngStyle]="globals.notification.style" class="notification">
       <span *ngIf="globals.notification.type == '2'" class="suc">
-        <i class="fas fa-check-circle"></i>
+        <i class="fad fa-check-circle"></i>
       </span>
       <span *ngIf="globals.notification.type == '0'" class="inf">
-        <i class="fas fa-info-circle"></i>
+        <i class="fad fa-info-circle"></i>
       </span>
       <span *ngIf="globals.notification.type == '1'" class="err">
-        <i class="fas fa-exclamation-circle"></i>
+        <i class="fad fa-exclamation-circle"></i>
       </span>
 
       <span class="message">{{ globals.notification.message }}</span>

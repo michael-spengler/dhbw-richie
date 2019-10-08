@@ -54,6 +54,7 @@ export class Globals {
     this.user.isReviewer = false;
     this.user.created = null;
     this.user.signed_in = false;
+    this.user.icon = null;
     this.router.navigate(["/home"]);
     this.sendNotification(
       "Du wurdest erfolgreich abgemeldet!",
@@ -68,6 +69,7 @@ export class Globals {
     this.user.isReviewer = true;
     this.user.created = new Date(1569939205000);
     this.user.signed_in = true;
+    this.user.icon = "https://avatars2.githubusercontent.com/u/48986503";
     this.sendNotification(
       `Willkommen zurück, ${this.user.givenName} ${this.user.familyName}!`,
       NotificationType.INFORMATION

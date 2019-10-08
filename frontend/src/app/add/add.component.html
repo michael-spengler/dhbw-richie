@@ -21,22 +21,24 @@
 </ng-template>
 
 <ng-template #addParagraph>
-  <div class="paragraph">
+  <div class="paragraph" (click)="hideSelection()">
     <h2>Formular</h2>
 
     <h3>Frage</h3>
     <textarea
       tabindex="1"
       rows="5"
+      [(ngModel)]="formData[0]"
       placeholder="Beispiel: Wie verschlüssel ich eine Nachricht mit Hilfe des RSA-Algorithmus"
     ></textarea>
 
-    <div class="splitter"></div>
+    <div class="splitter_"></div>
 
     <h3>Antwort</h3>
     <textarea
       tabindex="2"
       rows="5"
+      [(ngModel)]="formData[1]"
       placeholder="Der Klartext wird als Binärzahl m Element {0, ..., n-1} aufgefasst. Ist der Klartext zu lang, so wird er in mehrere Stücke zerlegt, die jeweils für sich verschlüsselt werden.
       Es sind:
         n	 	öffentliche Zahl
@@ -51,7 +53,7 @@
       Hierbei ist φ(n) = (p-1)(q-1) die Anzahl der zu n teilerfremden Zahlen, die kleiner als n sind."
     ></textarea>
 
-    <div class="splitter"></div>
+    <div class="splitter_"></div>
 
     <div class="inputWrapper">
       <div class="input">
@@ -59,17 +61,35 @@
         <input
           tabindex="3"
           type="text"
+          [(ngModel)]="formData[2]"
           placeholder="http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm"
         />
       </div>
       <div class="input">
         <h3>Vorlesung</h3>
-        <input tabindex="4" type="text" placeholder="Logik & Algebra" />
+        <div class="lecture" (click)="toggleSelection(); onClick($event)">
+          <span *ngIf="formData[3].length > 0">{{ formData[3] }}</span>
+          <span style="opacity: .6" *ngIf="formData[3].length <= 0">
+            <i class="fad fa-list-ul"></i>Bitte wähle eine Vorlesung
+          </span>
+        </div>
+
+        <div class="selectionWrapper" [ngStyle]="selectionStyle">
+          <div class="selection" sTitle="Vorlesung wählen">
+            <div
+              *ngFor="let lecture of lectures"
+              class="item"
+              (click)="setLecture(lecture)"
+            >
+              {{ lecture }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div style="display: block; text-align: center; margin-top: 10px;">
-      <div tabindex="5" class="iconButton">
+      <div tabindex="5" class="iconButton" (click)="submitQuestion()">
         <i class="fab fa-wpforms"></i>Frage & Antwort einreichen
       </div>
     </div>

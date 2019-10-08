@@ -28,4 +28,5 @@ img {
 .trmember {
   opacity: 0.75;
   white-space: nowrap;
+  text-align: right;
 }

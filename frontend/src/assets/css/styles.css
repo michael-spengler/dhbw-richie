@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("../fonts/fontfaces.css");
+@import url("../fontawesome/css/all.min.css");
 html,
 body {
   margin: 0;
@@ -161,13 +162,11 @@ nav .routes a .name {
   overflow: hidden;
 }
 
-nav .routes a svg {
+nav .routes a i {
   display: -ms-inline-grid;
   display: inline-grid;
   font-size: 20px;
-  text-align: center;
-  width: 35px;
-  padding-top: 10px;
+  line-height: 40px;
   overflow: hidden;
 }
 
@@ -356,24 +355,27 @@ header {
 }
 
 header * {
-  display: inline-block;
   outline: none;
+  cursor: pointer;
 }
 
 header * * {
-  display: inline-block;
   outline: none;
   cursor: pointer;
-  -webkit-transition: 0.2s ease;
-  transition: 0.2s ease;
 }
 
 header .registerLogin {
   margin-right: 20px;
 }
 
-header .registerLogin svg {
-  margin-left: 5px;
+header .registerLogin * {
+  display: inline-block;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+header .registerLogin i {
+  margin-left: 10px;
 }
 
 header .registerLogin .signIn {
@@ -392,19 +394,24 @@ header .registerLogin .signIn:hover {
 }
 
 header .user {
-  cursor: pointer;
+  padding-right: 50px;
+  padding-left: 10px;
+  margin-right: -10px;
+  display: inline-block;
+  background-size: 0;
 }
 
-header .user .icon {
-  background: #bbb;
-  margin: 10px;
-  line-height: 30px;
-  height: 30px;
+header .user::after {
+  position: absolute;
+  content: " ";
   width: 30px;
-  text-align: center;
+  margin: 10px;
+  height: 30px;
   border-radius: 15px;
-  color: #fff;
-  font-weight: 600;
+  background: #08f;
+  background-image: inherit;
+  background-position: center;
+  background-size: cover;
 }
 
 @media only screen and (max-width: 849px) {
@@ -491,26 +498,25 @@ header .user .icon {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 40px;
-  margin: 20px 0px 10px 0px;
+  margin: 30px 0px 10px 0px;
 }
 
-.paragraph .media svg {
+.paragraph .media i {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  width: 30px;
-  height: 30px;
+  font-size: 30px;
   opacity: 0.75;
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
   cursor: pointer;
 }
 
-.paragraph .media svg:not(:hover) {
+.paragraph .media i:not(:hover) {
   color: var(--font-color) !important;
 }
 
-.paragraph .media svg:hover {
+.paragraph .media i:hover {
   opacity: 1;
 }
 
@@ -557,8 +563,9 @@ header .user .icon {
   cursor: pointer;
 }
 
-.iconButton svg {
+.iconButton i {
   margin-right: 8px;
+  font-weight: 400;
 }
 
 .iconButton:hover, .iconButton:focus {
@@ -619,6 +626,18 @@ header .user .icon {
   color: var(--font-color);
 }
 
+.container {
+  opacity: 1;
+  max-width: 100%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.selection {
+  z-index: 1000019;
+  text-align: left;
+}
+
 .selection .selected::after {
   content: "\f054";
   font-family: "Font Awesome 5 Free";
@@ -626,7 +645,7 @@ header .user .icon {
   display: none;
 }
 
-.selection .selected svg {
+.selection .selected i {
   padding-left: 5px;
   font-size: 0.8em;
   color: #08f;
@@ -639,22 +658,14 @@ header .user .icon {
           user-select: none;
   display: none;
   position: absolute;
-  padding-left: 70px;
+  padding-left: 160px;
   margin-top: -120px;
   font-size: 1.3em;
-  -webkit-transition: 1s ease;
-  transition: 1s ease;
 }
 
-.selection .items:hover {
-  display: block;
-}
-
-.selection .items:hover .container {
-  opacity: 1;
-  max-width: 100%;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+.selection .items .wrapper {
+  overflow-y: auto;
+  max-height: 200px;
 }
 
 .selection .items .container {
@@ -664,10 +675,8 @@ header .user .icon {
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: hidden;
   white-space: nowrap;
-  -webkit-transition: 0.6s ease;
-  transition: 0.6s ease;
   max-width: 0px;
   opacity: 0.7;
   -webkit-transform: scale(0);
@@ -675,7 +684,7 @@ header .user .icon {
 }
 
 .selection .items .container::before {
-  content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
+  content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
   font-weight: 600;
   display: block;
   opacity: 0.9;
@@ -688,6 +697,7 @@ header .user .icon {
   font-size: 0.9em;
   padding: 5px 0px;
   padding-left: 10px;
+  margin: 1px 0px;
   display: list-item;
   list-style: none;
   -webkit-transition: 0.2s ease;
@@ -705,7 +715,7 @@ header .user .icon {
   display: none;
 }
 
-.selection .items .container .item svg {
+.selection .items .container .item i {
   color: #08f;
   font-size: 0.8em;
   padding-right: 10px;
@@ -720,12 +730,82 @@ header .user .icon {
   background-image: linear-gradient(to right, #08f, #4ea7f5);
 }
 
-.selection .items .container .item:hover svg, .selection .items .container .item:focus svg {
+.selection .items .container .item:hover i, .selection .items .container .item:focus i {
   color: #fff;
 }
 
-.selection .container:hover ~ .items,
-.selection .selected:active ~ .items {
+.selectionWrapper {
   display: block;
+  position: absolute;
+  font-size: 1.3em;
+  background: var(--popupBackground);
+  -webkit-box-shadow: 2px 4px 10px var(--popupShadow);
+          box-shadow: 2px 4px 10px var(--popupShadow);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+  border-radius: 10px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.selectionWrapper .selection {
+  overflow-y: auto;
+  max-height: 200px;
+  min-width: 200px;
+}
+
+.selectionWrapper .selection::before {
+  content: attr(sTitle);
+  font-weight: 600;
+  display: block;
+  opacity: 0.9;
+  line-height: 35px;
+  font-size: 0.9em;
+  padding: 0px 10px;
+  word-wrap: none;
+}
+
+.selectionWrapper .selection .item {
+  font-size: 0.9em;
+  padding: 5px 10px;
+  margin: 1px 0px;
+  display: list-item;
+  list-style: none;
+  background: transparent;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.selectionWrapper .selection .item:before {
+  content: "\f054";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  display: none;
+}
+
+.selectionWrapper .selection .item i {
+  color: var(--font-color);
+  font-size: 0.8em;
+  padding-right: 10px;
+  opacity: 0.4;
+}
+
+.selectionWrapper .selection .item:hover, .selectionWrapper .selection .item:focus {
+  color: #fff;
+  opacity: 1;
+  background: -webkit-gradient(linear, left top, right top, from(#08f), to(#4ea7f5));
+  background: linear-gradient(to right, #08f, #4ea7f5);
+}
+
+.selectionWrapper .selection .item:hover i, .selectionWrapper .selection .item:focus i {
+  color: #fff;
 }
 /*# sourceMappingURL=styles.css.map */

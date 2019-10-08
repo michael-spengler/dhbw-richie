@@ -8,7 +8,7 @@
 
 @media only screen and (min-width: 850px) {
   .info {
-    left: calc(50% + 110px);
+    left: calc(50%);
   }
 }
 @media only screen and (max-width: 850px) {

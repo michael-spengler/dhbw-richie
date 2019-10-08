@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
 
   navVisible: boolean = false;
   navwrapperStyle = null;
+  userIcon: any;
 
   ngOnInit(): void {
     this.breakpointObserver
@@ -45,6 +46,10 @@ export class AppComponent implements OnInit {
           this.themeService.setTheme("light");
         }
       });
+    this.userIcon = {
+      "background-image": `url('${this.globals.user.icon}')`
+    };
+    console.log(this.userIcon);
   }
 
   @HostListener("window:resize", ["$event"])

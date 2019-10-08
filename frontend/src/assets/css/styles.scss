@@ -1,4 +1,5 @@
 @import url("../fonts/fontfaces.css");
+@import url("../fontawesome/css/all.min.css");
 
 $phoneMax: 850px;
 $phoneMax-1: 849px;
@@ -138,12 +139,10 @@ nav {
         overflow: hidden;
       }
 
-      svg {
+      i {
         display: inline-grid;
         font-size: 20px;
-        text-align: center;
-        width: 35px;
-        padding-top: 10px;
+        line-height: 40px;
         overflow: hidden;
       }
 
@@ -391,20 +390,24 @@ header {
   color: #ddd;
 
   * {
-    display: inline-block;
     outline: none;
+    cursor: pointer;
     * {
-      display: inline-block;
       outline: none;
       cursor: pointer;
-      transition: 0.2s ease;
     }
   }
 
   .registerLogin {
     margin-right: 20px;
-    svg {
-      margin-left: 5px;
+
+    * {
+      display: inline-block;
+      transition: 0.2s ease;
+    }
+
+    i {
+      margin-left: 10px;
     }
     .signIn {
       line-height: 30px;
@@ -422,18 +425,23 @@ header {
   }
 
   .user {
-    cursor: pointer;
+    padding-right: 50px;
+    padding-left: 10px;
+    margin-right: -10px;
+    display: inline-block;
+    background-size: 0;
 
-    .icon {
-      background: #bbb;
-      margin: 10px;
-      line-height: 30px;
-      height: 30px;
+    &::after {
+      position: absolute;
+      content: " ";
       width: 30px;
-      text-align: center;
+      margin: 10px;
+      height: 30px;
       border-radius: 15px;
-      color: #fff;
-      font-weight: 600;
+      background: #08f;
+      background-image: inherit;
+      background-position: center;
+      background-size: cover;
     }
   }
 }
@@ -509,11 +517,10 @@ header {
     width: 100%;
     justify-content: space-around;
     height: 40px;
-    margin: 20px 0px 10px 0px;
-    svg {
+    margin: 30px 0px 10px 0px;
+    i {
       display: inline-flex;
-      width: 30px;
-      height: 30px;
+      font-size: 30px;
       opacity: 0.75;
       transition: 0.4s ease;
       cursor: pointer;
@@ -564,8 +571,9 @@ header {
   user-select: none;
   cursor: pointer;
 
-  svg {
+  i {
     margin-right: 8px;
+    font-weight: 400;
   }
 
   &:hover,
@@ -623,8 +631,15 @@ header {
     }
   }
 }
+.container {
+  opacity: 1;
+  max-width: 100%;
+  transform: scale(1);
+}
 
 .selection {
+  z-index: 1000019;
+  text-align: left;
   .selected {
     &::after {
       content: "\f054";
@@ -632,7 +647,7 @@ header {
       font-weight: 900;
       display: none;
     }
-    svg {
+    i {
       padding-left: 5px;
       font-size: 0.8em;
       color: #08f;
@@ -642,18 +657,13 @@ header {
     user-select: none;
     display: none;
     position: absolute;
-    padding-left: 70px;
+    padding-left: 160px;
     margin-top: -120px;
     font-size: 1.3em;
-    transition: 1s ease;
 
-    &:hover {
-      display: block;
-      .container {
-        opacity: 1;
-        max-width: 100%;
-        transform: scale(1);
-      }
+    .wrapper {
+      overflow-y: auto;
+      max-height: 200px;
     }
 
     .container {
@@ -661,16 +671,15 @@ header {
       box-shadow: 2px 4px 10px var(--popupShadow);
       backdrop-filter: blur(7px);
       border-radius: 10px;
-      overflow: hidden;
+      overflow-x: hidden;
       white-space: nowrap;
 
-      transition: 0.6s ease;
       max-width: 0px;
       opacity: 0.7;
       transform: scale(0);
 
       &::before {
-        content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
+        content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
         font-weight: 600;
         display: block;
         opacity: 0.9;
@@ -682,6 +691,7 @@ header {
         font-size: 0.9em;
         padding: 5px 0px;
         padding-left: 10px;
+        margin: 1px 0px;
         display: list-item;
         list-style: none;
         transition: 0.2s ease;
@@ -696,7 +706,7 @@ header {
           display: none;
         }
 
-        svg {
+        i {
           color: #08f;
           font-size: 0.8em;
           padding-right: 10px;
@@ -708,16 +718,81 @@ header {
           opacity: 1;
           transition: 0.2s ease;
           background-image: linear-gradient(to right, #08f, rgb(78, 167, 245));
-          svg {
+          i {
             color: #fff;
           }
         }
       }
     }
   }
+}
 
-  .container:hover ~ .items,
-  .selected:active ~ .items {
-    display: block;
+.selectionWrapper {
+  display: block;
+  position: absolute;
+
+  font-size: 1.3em;
+
+  background: var(--popupBackground);
+  box-shadow: 2px 4px 10px var(--popupShadow);
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  user-select: none;
+
+  transform: scale(0);
+  transition: 0.2s ease;
+
+  .selection {
+    overflow-y: auto;
+    max-height: 200px;
+    min-width: 200px;
+
+    &::before {
+      content: attr(sTitle);
+      font-weight: 600;
+      display: block;
+      opacity: 0.9;
+      line-height: 35px;
+      font-size: 0.9em;
+      padding: 0px 10px;
+      word-wrap: none;
+    }
+
+    .item {
+      font-size: 0.9em;
+      padding: 5px 10px;
+      margin: 1px 0px;
+      display: list-item;
+      list-style: none;
+      background: transparent;
+      opacity: 0.7;
+      cursor: pointer;
+
+      &:before {
+        content: "\f054";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        display: none;
+      }
+
+      i {
+        color: var(--font-color);
+        font-size: 0.8em;
+        padding-right: 10px;
+        opacity: 0.4;
+      }
+
+      &:hover,
+      &:focus {
+        color: #fff;
+        opacity: 1;
+        background: linear-gradient(to right, #08f, rgb(78, 167, 245));
+        i {
+          color: #fff;
+        }
+      }
+    }
   }
 }
