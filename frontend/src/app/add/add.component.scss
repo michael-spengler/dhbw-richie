@@ -7,33 +7,26 @@ textarea {
   padding: 5px 10px;
   width: 100%;
   color: var(--font-color);
-  -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
   font-size: 1em;
   font-family: "SF Pro Display", sans-serif;
-}
 
-input:focus, input:hover,
-textarea:focus,
-textarea:hover {
-  background: var(--input-border);
+  &:focus,
+  &:hover {
+    background: var(--input-border);
+  }
 }
 
 textarea {
   resize: none;
 }
-
 .input {
-  display: -ms-inline-grid;
   display: inline-grid;
 }
 
 .inputWrapper {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 4fr 1fr;
-      grid-template-columns: 4fr 1fr;
+  grid-template-columns: 4fr 1fr;
   grid-gap: 20px;
   margin-top: -20px;
 }
-/*# sourceMappingURL=add.component.css.map */

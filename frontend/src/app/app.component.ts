@@ -1,6 +1,7 @@
 import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { Component, HostListener, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+import { NavigationEnd, Router } from "@angular/router";
 import { Globals } from "./globals";
 import { ThemeService } from "./theme/theme.service";
 
@@ -10,19 +11,29 @@ import { ThemeService } from "./theme/theme.service";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  navVisible: boolean = false;
-
   constructor(
     public globals: Globals,
     public router: Router,
     public breakpointObserver: BreakpointObserver,
-    private themeService: ThemeService
+    public themeService: ThemeService,
+    public titleService: Title
   ) {
     globals.logIn();
-    router.events.subscribe(() => {
+    router.events.subscribe(event => {
       if (window.innerWidth <= 850 && this.navVisible) this.toggleNavbar();
+
+      if (event instanceof NavigationEnd) {
+        var title = this.getTitle(
+          router.routerState,
+          router.routerState.root
+        ).join("-");
+        titleService.setTitle(title);
+      }
     });
   }
+
+  navVisible: boolean = false;
+  navwrapperStyle = null;
 
   ngOnInit(): void {
     this.breakpointObserver
@@ -45,7 +56,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  navwrapperStyle = null;
   toggleNavbar() {
     this.navVisible = !this.navVisible;
     if (this.navVisible) {
@@ -55,5 +65,15 @@ export class AppComponent implements OnInit {
     }
   }
 
-  title = "frontend";
+  getTitle(state, parent) {
+    var data = [];
+    if (parent && parent.snapshot.data && parent.snapshot.data.title) {
+      data.push(parent.snapshot.data.title);
+    }
+
+    if (state && parent) {
+      data.push(...this.getTitle(state, state.firstChild(parent)));
+    }
+    return data;
+  }
 }

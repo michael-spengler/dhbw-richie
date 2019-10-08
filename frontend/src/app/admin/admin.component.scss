@@ -1,0 +1,258 @@
+@media only screen and (max-width: 650px) {
+  .userCard {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    .information {
+      grid-gap: 20px;
+    }
+    table {
+      max-width: 100%;
+    }
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .stats {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 850px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20px;
+  }
+  .userCard {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+  }
+  .information {
+    grid-gap: 20px;
+    margin: 0px calc(50% - 320px);
+    grid-template-columns: 0px 1fr 120px;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 10px;
+  }
+  .userCard {
+    padding: 30px;
+    .information {
+      grid-template-columns: 120px 400px 120px;
+      grid-gap: 20px;
+      margin: 0px calc(50% - 320px);
+    }
+  }
+}
+
+.stats {
+  display: grid;
+  width: 100%;
+  grid-gap: 20px;
+  text-align: center;
+  overflow-x: auto;
+  [ng-reflect-router-link] {
+    cursor: pointer;
+  }
+}
+
+.stat {
+  display: inline-grid;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  background-color: var(--background);
+  user-select: none;
+  h1 {
+    font-size: 18px;
+  }
+  svg {
+    width: 100%;
+    font-size: 60px;
+    margin: 5px 0px;
+    margin-bottom: 10px;
+  }
+  span,
+  select {
+    color: #08f;
+    font-weight: 600;
+    font-size: 25px;
+    background: none;
+    border: none;
+    appearance: none;
+    outline: none;
+  }
+  select {
+    font-weight: 550;
+    width: 100%;
+    cursor: pointer;
+    text-align-last: center;
+    option {
+      background: var(--background);
+      color: var(--font-color);
+      font-family: "SF Pro Display", sans-serif;
+      font-weight: 500;
+      text-align-last: center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  }
+}
+
+.userSearch {
+  display: inline-block;
+  color: var(--font-color);
+  font-size: 16px;
+  border: 1px solid var(--input-border);
+  text-decoration: none;
+  transition: 0.2s ease;
+  padding: 5px 20px;
+  border-radius: 40px;
+  margin-right: 15px;
+  outline: none;
+  background: transparent;
+
+  &:focus,
+  &:hover {
+    background: var(--input-border);
+  }
+}
+
+.close {
+  width: 40px;
+  height: 40px;
+  right: 5px;
+  top: 5px;
+  border-radius: 40px;
+  position: absolute;
+  font-size: 38px;
+  line-height: 40px;
+  text-align: center;
+  transition: 0.1s ease;
+  cursor: pointer;
+  opacity: 0.4;
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 40px;
+    background: var(--font-color);
+  }
+  &::before {
+    transform: rotate(45deg) scale(0.7);
+  }
+  &::after {
+    transform: rotate(-45deg) scale(0.7);
+  }
+}
+
+.overlay {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+}
+
+.userCard {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10001;
+  background: var(--paragraph);
+  overflow-x: auto;
+  display: block;
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  h2 {
+    margin-top: 0;
+  }
+  .stats {
+    margin-bottom: 0;
+  }
+  .information {
+    display: grid;
+  }
+
+  .status {
+    display: inline-grid;
+    height: 100%;
+    width: 100%;
+    svg {
+      font-size: 30px;
+      width: 100%;
+    }
+  }
+  .statusTitle {
+    font-weight: 600;
+    user-select: none;
+  }
+  .toggle {
+    color: var(--font-color);
+    transition: 0.2s ease;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 0.8em;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    user-select: none;
+    opacity: 0.75;
+
+    &:hover {
+      color: #08f;
+      opacity: 1;
+    }
+    &:active {
+      filter: brightness(115%);
+    }
+  }
+
+  .icon svg {
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+    display: inline-grid;
+  }
+  table {
+    border-collapse: collapse;
+    tr {
+      height: 25px;
+      &:not(:first-child) {
+        border-top: 1px solid var(--input-border);
+      }
+    }
+  }
+}
+
+.active {
+  color: rgb(52, 199, 89);
+}
+.disabled {
+  color: rgb(255, 59, 48);
+}
+
+@keyframes overlay-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

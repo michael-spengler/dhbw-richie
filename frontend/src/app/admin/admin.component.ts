@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Globals, NotificationType } from "../globals";
 
 @Component({
@@ -6,17 +6,23 @@ import { Globals, NotificationType } from "../globals";
   templateUrl: "./admin.component.html",
   styleUrls: ["./admin.component.css"]
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
   constructor(public globals: Globals) {}
+
+  ngOnInit(): void {
+    this.__LOADUSERDATA();
+  }
 
   activeUser = {};
   overlayStyle = { display: "none" };
   cardStyle = { animation: "none" };
   userSearch = "";
+  users;
 
   onInputKeyDown(event) {
-    if (event.key == "Enter") this.searchPlayer();
+    if (event.keyCode == 13) this.searchPlayer();
   }
+
   onClick(event) {
     event.stopPropagation();
   }
@@ -51,69 +57,71 @@ export class AdminComponent {
     ].enabled;
   }
 
-  users = [
-    {
-      name: "Timo Scheuermann",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      created: new Date(1569939205000),
-      enabled: true
-    },
-    {
-      name: "Nicolas Fürhaupter",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    },
-    {
-      name: "Moritz Jürgens",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    },
-    {
-      name: "Jan Gruebener",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    },
-    {
-      name: "Aaron Schweig",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    },
-    {
-      name: "Eger Jan",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    },
-    {
-      name: "Troy Kessler",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    },
-    {
-      name: "Mr. Flo",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    },
-    {
-      name: "Prinz Marcus",
-      mail: "max.mustermann@mail.de",
-      rank: "Admin",
-      enabled: true,
-      created: new Date(1569939205000)
-    }
-  ];
+  __LOADUSERDATA() {
+    this.users = [
+      {
+        name: "Timo Scheuermann",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        created: new Date(1569939205000),
+        enabled: true
+      },
+      {
+        name: "Nicolas Fürhaupter",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      },
+      {
+        name: "Moritz Jürgens",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      },
+      {
+        name: "Jan Gruebener",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      },
+      {
+        name: "Aaron Schweig",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      },
+      {
+        name: "Eger Jan",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      },
+      {
+        name: "Troy Kessler",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      },
+      {
+        name: "Mr. Flo",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      },
+      {
+        name: "Prinz Marcus",
+        mail: "max.mustermann@mail.de",
+        rank: "Admin",
+        enabled: true,
+        created: new Date(1569939205000)
+      }
+    ];
+  }
 }

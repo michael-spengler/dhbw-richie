@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("../fonts/fontfaces.css");
 html,
 body {
@@ -219,6 +220,9 @@ nav .routes .active:hover {
     -webkit-transition: 0.5s ease;
     transition: 0.5s ease;
   }
+  nav:hover .title::before {
+    content: "DHBW Richie";
+  }
   nav:hover .routes a {
     -ms-grid-columns: 35px 1fr 40px;
         grid-template-columns: 35px 1fr 40px;
@@ -236,6 +240,9 @@ nav .routes .active:hover {
     background-image: linear-gradient(to bottom right, #08f, #34e985);
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  nav .title:before {
+    content: "RW";
   }
   nav .navwrapper {
     display: block;
@@ -271,6 +278,9 @@ nav .routes .active:hover {
         -ms-user-select: none;
             user-select: none;
     position: absolute;
+  }
+  nav .title::before {
+    content: "DHBW Richie";
   }
   nav .richie {
     position: absolute;
@@ -504,71 +514,6 @@ header .user .icon {
   opacity: 1;
 }
 
-@media only screen and (min-width: 850px) {
-  form {
-    margin-left: 20px;
-  }
-}
-
-form {
-  margin-bottom: 60px;
-  max-width: 500px;
-}
-
-form div {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  width: auto;
-  margin-bottom: 5px;
-}
-
-form div input {
-  border-radius: 50px;
-  outline: none;
-  border: 1px solid var(--input-border);
-  background: var(--paragraph);
-  padding: 5px 10px;
-  width: 100%;
-  color: var(--font-color);
-  -webkit-transition: 0.2s ease;
-  transition: 0.2s ease;
-}
-
-form div input:hover, form div input:active {
-  background: var(--input-border);
-}
-
-form div label {
-  color: var(--font-color);
-  opacity: 0.8;
-}
-
-form button {
-  float: right;
-  background: var(--paragraph);
-  border-radius: 50px;
-  outline: none;
-  border: 1px solid #08f;
-  padding: 5px 20px;
-  color: #08f;
-  cursor: pointer;
-  -webkit-transition: 0.2s ease;
-  transition: 0.2s ease;
-  font-weight: 600;
-}
-
-form button:hover {
-  background: #08f;
-  color: #fff;
-}
-
-form button:active {
-  -webkit-filter: brightness(115%);
-          filter: brightness(115%);
-}
-
 @media only screen and (max-width: 849px) {
   .iconButton {
     display: block;
@@ -616,9 +561,10 @@ form button:active {
   margin-right: 8px;
 }
 
-.iconButton:hover {
+.iconButton:hover, .iconButton:focus {
   background: #08f;
   color: #fff !important;
+  outline: none;
 }
 
 .iconButton:active {
@@ -671,5 +617,115 @@ form button:active {
 .tablewrapper table tr td {
   text-overflow: ellipsis;
   color: var(--font-color);
+}
+
+.selection .selected::after {
+  content: "\f054";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  display: none;
+}
+
+.selection .selected svg {
+  padding-left: 5px;
+  font-size: 0.8em;
+  color: #08f;
+}
+
+.selection .items {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: none;
+  position: absolute;
+  padding-left: 70px;
+  margin-top: -120px;
+  font-size: 1.3em;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+}
+
+.selection .items:hover {
+  display: block;
+}
+
+.selection .items:hover .container {
+  opacity: 1;
+  max-width: 100%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.selection .items .container {
+  background: rgba(var(--popupBackground), 0.75);
+  -webkit-box-shadow: 2px 4px 10px var(--popupShadow);
+          box-shadow: 2px 4px 10px var(--popupShadow);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+  border-radius: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-transition: 0.6s ease;
+  transition: 0.6s ease;
+  max-width: 0px;
+  opacity: 0.7;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.selection .items .container::before {
+  content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
+  font-weight: 600;
+  display: block;
+  opacity: 0.9;
+  font-size: 0.9em;
+  padding: 10px;
+  word-wrap: none;
+}
+
+.selection .items .container .item {
+  font-size: 0.9em;
+  padding: 5px 0px;
+  padding-left: 10px;
+  display: list-item;
+  list-style: none;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  opacity: 0.7;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(transparent));
+  background-image: linear-gradient(transparent, transparent);
+  cursor: pointer;
+}
+
+.selection .items .container .item:before {
+  content: "\f054";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  display: none;
+}
+
+.selection .items .container .item svg {
+  color: #08f;
+  font-size: 0.8em;
+  padding-right: 10px;
+}
+
+.selection .items .container .item:hover, .selection .items .container .item:focus {
+  color: #fff;
+  opacity: 1;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  background-image: -webkit-gradient(linear, left top, right top, from(#08f), to(#4ea7f5));
+  background-image: linear-gradient(to right, #08f, #4ea7f5);
+}
+
+.selection .items .container .item:hover svg, .selection .items .container .item:focus svg {
+  color: #fff;
+}
+
+.selection .container:hover ~ .items,
+.selection .selected:active ~ .items {
+  display: block;
 }
 /*# sourceMappingURL=styles.css.map */

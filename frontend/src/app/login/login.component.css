@@ -1,12 +1,26 @@
-.signInWith {
+.signInWiths {
   display: block;
-  height: 40px;
-  border: 1px solid transparent;
-  border-radius: 1000px;
-  margin-bottom: 10px;
-  transition: 0.2s ease;
+  width: 100%;
 }
-.signInWith:hover {
+
+.signInWiths .signInWith {
+  display: inline-block;
+  width: 200px;
+  margin: 0px 5px 10px 5px;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.signInWiths .signInWith img {
+  border-radius: 20px;
+  width: 100%;
+}
+
+.signInWiths .signInWith img:hover {
   cursor: pointer;
   border: 1px solid var(--input-border);
+  -webkit-box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
 }
+/*# sourceMappingURL=login.component.css.map */

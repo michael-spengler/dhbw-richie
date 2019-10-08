@@ -25,73 +25,46 @@
 
   <div class="modal" [ngStyle]="display">
     <div class="modal-content">
-      <div (click)="togglePopUp(item)" class="close"></div>
-      <div>
-        <div>
-          <h2 style="display:inline-block">Frage überprüfen</h2>
+      <div (click)="togglePopUp()" class="close"></div>
+      <h2>Formular</h2>
 
-          <div>
-            <div class="lectureInput" style="float: right;top:0.2cm">
-              <fieldset style="border-style: double; ">
-                <legend>Lecture</legend>
-                <select
-                  required
-                  id="lectureInput"
-                  [(ngModel)]="lectureInput"
-                  style="font-size:1em; width: 100%; position: relative; float: right"
-                >
-                  <option value="" disabled selected
-                    >Please select lecture</option
-                  >
-                  <option>Programmieren</option>
-                  <option>Mathe</option>
-                </select>
-              </fieldset>
-            </div>
+      <h3>Frage</h3>
+      <textarea [ngModel]="questionInput" tabindex="1" rows="5"></textarea>
 
-            <div class="sourceInput">
-              <fieldset id="sourceSet" style="border-style: double">
-                <legend>Source</legend>
-                <textarea
-                  id="sourceInput"
-                  placeholder="Please enter source"
-                  [(ngModel)]="sourceInput"
-                  style="font-size: 0,7em"
-                ></textarea>
-              </fieldset>
-            </div>
-          </div>
+      <div class="splitter"></div>
+
+      <h3>Antwort</h3>
+      <textarea [ngModel]="answerInput" tabindex="2" rows="5"></textarea>
+
+      <div class="splitter"></div>
+
+      <div class="inputWrapper">
+        <div class="input">
+          <h3>Quelle</h3>
+          <input [ngModel]="sourceInput" tabindex="3" type="text" />
         </div>
-        <div>
-          <div class="questionInput">
-            <fieldset id="questionSet" style="border-style: double">
-              <legend>Question</legend>
-
-              <textarea
-                id="questionInput"
-                placeholder="please enter question"
-                [(ngModel)]="questionInput"
-              ></textarea>
-            </fieldset>
-          </div>
-
-          <div class="answerInput">
-            <fieldset id="answerSet" style="border-style: double">
-              <legend>Answer</legend>
-
-              <textarea
-                id="answerInput"
-                placeholder="Please enter answer"
-                [(ngModel)]="answerInput"
-              ></textarea>
-            </fieldset>
-          </div>
+        <div class="input">
+          <h3>Vorlesung</h3>
+          <input [ngModel]="lectureInput" tabindex="4" type="text" />
         </div>
+      </div>
 
-        <div class="changeButton" style="display: inline-flexbox">
-          <button id="changeButton" type="submit" (click)="onChange()">
-            Ändern
-          </button>
+      <div style="display: block; text-align: center; margin-top: 10px;">
+        <div
+          tabindex="5"
+          class="iconButton"
+          id="delete"
+          (click)="deleteQuestion()"
+        >
+          <i class="fas fa-trash-alt"></i>Löschen
+        </div>
+        <div
+          tabindex="6"
+          class="iconButton"
+          id="accept"
+          (click)="acceptQuestion()"
+        >
+          <i class="fab fa-wpforms"></i>Frage & Antwort speichern
         </div>
       </div>
     </div>

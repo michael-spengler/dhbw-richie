@@ -1,0 +1,22 @@
+.signInWiths {
+  display: block;
+  width: 100%;
+
+  .signInWith {
+    display: inline-block;
+    width: 200px;
+    margin: 0px 5px 10px 5px;
+    transition: 0.2s ease;
+    border: 1px solid transparent;
+
+    img {
+      border-radius: 20px;
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+        border: 1px solid var(--input-border);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

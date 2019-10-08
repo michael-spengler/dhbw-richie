@@ -192,8 +192,9 @@ nav {
     &:hover {
       max-width: 220px;
       transition: 0.5s ease;
-    }
-    &:hover {
+      .title::before {
+        content: "DHBW Richie";
+      }
       .routes a {
         grid-template-columns: 35px 1fr 40px;
       }
@@ -211,6 +212,9 @@ nav {
       background-image: linear-gradient(to bottom right, #08f, #34e985);
       background-clip: text;
       -webkit-text-fill-color: transparent;
+      &:before {
+        content: "RW";
+      }
     }
 
     .navwrapper {
@@ -311,6 +315,10 @@ nav {
     color: #fff;
     user-select: none;
     position: absolute;
+
+    .title::before {
+      content: "DHBW Richie";
+    }
 
     .richie {
       position: absolute;
@@ -519,61 +527,6 @@ header {
   }
 }
 
-@media only screen and (min-width: $phoneMax) {
-  form {
-    margin-left: 20px;
-  }
-}
-
-form {
-  margin-bottom: 60px;
-  max-width: 500px;
-  div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: auto;
-    margin-bottom: 5px;
-
-    input {
-      border-radius: 50px;
-      outline: none;
-      border: 1px solid var(--input-border);
-      background: var(--paragraph);
-      padding: 5px 10px;
-      width: 100%;
-      color: var(--font-color);
-      transition: 0.2s ease;
-      &:hover,
-      &:active {
-        background: var(--input-border);
-      }
-    }
-    label {
-      color: var(--font-color);
-      opacity: 0.8;
-    }
-  }
-  button {
-    float: right;
-    background: var(--paragraph);
-    border-radius: 50px;
-    outline: none;
-    border: 1px solid #08f;
-    padding: 5px 20px;
-    color: #08f;
-    cursor: pointer;
-    transition: 0.2s ease;
-    font-weight: 600;
-    &:hover {
-      background: #08f;
-      color: #fff;
-    }
-    &:active {
-      filter: brightness(115%);
-    }
-  }
-}
-
 @media only screen and (max-width: $phoneMax-1) {
   .iconButton {
     display: block;
@@ -615,9 +568,11 @@ form {
     margin-right: 8px;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: #08f;
     color: #fff !important;
+    outline: none;
   }
   &:active {
     filter: brightness(115%);
@@ -666,5 +621,103 @@ form {
         color: var(--font-color);
       }
     }
+  }
+}
+
+.selection {
+  .selected {
+    &::after {
+      content: "\f054";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      display: none;
+    }
+    svg {
+      padding-left: 5px;
+      font-size: 0.8em;
+      color: #08f;
+    }
+  }
+  .items {
+    user-select: none;
+    display: none;
+    position: absolute;
+    padding-left: 70px;
+    margin-top: -120px;
+    font-size: 1.3em;
+    transition: 1s ease;
+
+    &:hover {
+      display: block;
+      .container {
+        opacity: 1;
+        max-width: 100%;
+        transform: scale(1);
+      }
+    }
+
+    .container {
+      background: rgba(var(--popupBackground), 0.75);
+      box-shadow: 2px 4px 10px var(--popupShadow);
+      backdrop-filter: blur(7px);
+      border-radius: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+
+      transition: 0.6s ease;
+      max-width: 0px;
+      opacity: 0.7;
+      transform: scale(0);
+
+      &::before {
+        content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
+        font-weight: 600;
+        display: block;
+        opacity: 0.9;
+        font-size: 0.9em;
+        padding: 10px;
+        word-wrap: none;
+      }
+      .item {
+        font-size: 0.9em;
+        padding: 5px 0px;
+        padding-left: 10px;
+        display: list-item;
+        list-style: none;
+        transition: 0.2s ease;
+        opacity: 0.7;
+        background-image: linear-gradient(transparent, transparent);
+        cursor: pointer;
+
+        &:before {
+          content: "\f054";
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          display: none;
+        }
+
+        svg {
+          color: #08f;
+          font-size: 0.8em;
+          padding-right: 10px;
+        }
+
+        &:hover,
+        &:focus {
+          color: #fff;
+          opacity: 1;
+          transition: 0.2s ease;
+          background-image: linear-gradient(to right, #08f, rgb(78, 167, 245));
+          svg {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .container:hover ~ .items,
+  .selected:active ~ .items {
+    display: block;
   }
 }

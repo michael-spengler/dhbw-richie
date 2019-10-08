@@ -7,6 +7,8 @@ export const darkTheme: Theme = {
     "--background": "#222",
     "--paragraph": "#111",
     "--input-border": "#333",
+    "--popupBackground": "44, 44, 44",
+    "--popupShadow": "rgba(255, 255, 255, .05)",
     "--scrollbar-thumb-nograb": "#888",
     "--scrollbar-thumb-grab": "#aaa",
     "--header": "rgba(0, 0, 0, 0.6)",

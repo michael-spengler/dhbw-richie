@@ -4,9 +4,6 @@
     height: calc(100% - 40px);
     padding: 20px;
   }
-  .stats {
-    margin-bottom: 20px;
-  }
   .userCard .information {
     grid-gap: 20px;
   }
@@ -14,87 +11,108 @@
     max-width: 100%;
   }
   .userCard .stats {
-    grid-template-columns: repeat(2, 1fr);
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  .stats {
+    margin-bottom: 20px;
   }
 }
 
 @media only screen and (min-width: 650px) and (max-width: 850px) {
   .stats {
-    grid-template-columns: repeat(2, 1fr);
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
     margin-bottom: 20px;
-  }
-  .userCard .information {
-    grid-gap: 20px;
-    margin: 0px calc(50% - 320px);
-    grid-template-columns: 0px 1fr 120px;
   }
   .userCard {
     width: calc(100% - 40px);
     height: calc(100% - 40px);
     padding: 20px;
   }
+  .information {
+    grid-gap: 20px;
+    margin: 0px calc(50% - 320px);
+    -ms-grid-columns: 0px 1fr 120px;
+        grid-template-columns: 0px 1fr 120px;
+  }
 }
 
 @media only screen and (min-width: 850px) {
   .stats {
-    grid-template-columns: repeat(4, 1fr);
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
     margin-bottom: 10px;
   }
   .userCard {
     padding: 30px;
   }
   .userCard .information {
-    grid-template-columns: 120px 400px 120px;
+    -ms-grid-columns: 120px 400px 120px;
+        grid-template-columns: 120px 400px 120px;
     grid-gap: 20px;
     margin: 0px calc(50% - 320px);
   }
 }
 
 .stats {
+  display: -ms-grid;
   display: grid;
   width: 100%;
   grid-gap: 20px;
   text-align: center;
   overflow-x: auto;
 }
-.stat[ng-reflect-router-link] {
+
+.stats [ng-reflect-router-link] {
   cursor: pointer;
 }
 
 .stat {
+  display: -ms-inline-grid;
   display: inline-grid;
   padding: 10px;
   border-radius: 5px;
   outline: none;
   background-color: var(--background);
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
+
 .stat h1 {
   font-size: 18px;
 }
+
 .stat svg {
   width: 100%;
   font-size: 60px;
   margin: 5px 0px;
   margin-bottom: 10px;
 }
+
 .stat span,
-select {
+.stat select {
   color: #08f;
   font-weight: 600;
   font-size: 25px;
   background: none;
   border: none;
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   outline: none;
 }
-select {
+
+.stat select {
   font-weight: 550;
   width: 100%;
   cursor: pointer;
   text-align-last: center;
 }
-select option {
+
+.stat select option {
   background: var(--background);
   color: var(--font-color);
   font-family: "SF Pro Display", sans-serif;
@@ -112,6 +130,7 @@ select option {
   font-size: 16px;
   border: 1px solid var(--input-border);
   text-decoration: none;
+  -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
   padding: 5px 20px;
   border-radius: 40px;
@@ -119,8 +138,8 @@ select option {
   outline: none;
   background: transparent;
 }
-.userSearch:focus,
-.userSearch:hover {
+
+.userSearch:focus, .userSearch:hover {
   background: var(--input-border);
 }
 
@@ -134,27 +153,32 @@ select option {
   font-size: 38px;
   line-height: 40px;
   text-align: center;
+  -webkit-transition: 0.1s ease;
   transition: 0.1s ease;
   cursor: pointer;
   opacity: 0.4;
 }
+
 .close:hover {
   opacity: 0.8;
 }
 
-.close::before,
-.close::after {
+.close::before, .close::after {
   position: absolute;
   content: "";
   width: 1px;
   height: 40px;
   background: var(--font-color);
 }
+
 .close::before {
-  transform: rotate(45deg) scale(0.7);
+  -webkit-transform: rotate(45deg) scale(0.7);
+          transform: rotate(45deg) scale(0.7);
 }
+
 .close::after {
-  transform: rotate(-45deg) scale(0.7);
+  -webkit-transform: rotate(-45deg) scale(0.7);
+          transform: rotate(-45deg) scale(0.7);
 }
 
 .overlay {
@@ -164,7 +188,8 @@ select option {
   left: 0;
   bottom: 0;
   right: 0;
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   background: rgba(0, 0, 0, 0.1);
   z-index: 10000;
 }
@@ -178,50 +203,28 @@ select option {
   overflow-x: auto;
   display: block;
   text-align: center;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
+
 .userCard h2 {
   margin-top: 0;
 }
+
 .userCard .stats {
   margin-bottom: 0;
 }
+
 .userCard .information {
+  display: -ms-grid;
   display: grid;
 }
 
 .userCard .status {
+  display: -ms-inline-grid;
   display: inline-grid;
   height: 100%;
   width: 100%;
-}
-.active {
-  color: rgb(52, 199, 89);
-}
-.disabled {
-  color: rgb(255, 59, 48);
-}
-.userCard .statusTitle {
-  font-weight: 600;
-  user-select: none;
-}
-.userCard .toggle {
-  color: var(--font-color);
-  transition: 0.2s ease;
-  cursor: pointer;
-  margin-top: 5px;
-  font-size: 0.8em;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  user-select: none;
-  opacity: 0.75;
-}
-.userCard .toggle:hover {
-  color: #08f;
-  opacity: 1;
-}
-.userCard .toggle:active {
-  filter: brightness(115%);
 }
 
 .userCard .status svg {
@@ -229,20 +232,75 @@ select option {
   width: 100%;
 }
 
+.userCard .statusTitle {
+  font-weight: 600;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.userCard .toggle {
+  color: var(--font-color);
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 0.8em;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  opacity: 0.75;
+}
+
+.userCard .toggle:hover {
+  color: #08f;
+  opacity: 1;
+}
+
+.userCard .toggle:active {
+  -webkit-filter: brightness(115%);
+          filter: brightness(115%);
+}
+
 .userCard .icon svg {
   height: 100%;
   width: 100%;
   opacity: 0.8;
+  display: -ms-inline-grid;
   display: inline-grid;
 }
+
 .userCard table {
   border-collapse: collapse;
 }
+
 .userCard table tr {
   height: 25px;
 }
+
 .userCard table tr:not(:first-child) {
   border-top: 1px solid var(--input-border);
+}
+
+.active {
+  color: #34c759;
+}
+
+.disabled {
+  color: #ff3b30;
+}
+
+@-webkit-keyframes overlay-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes overlay-animation {
@@ -253,3 +311,4 @@ select option {
     opacity: 1;
   }
 }
+/*# sourceMappingURL=admin.component.css.map */

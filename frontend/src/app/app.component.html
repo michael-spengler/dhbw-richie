@@ -7,7 +7,7 @@
     <div class="richie" (click)="toggleNavbar()">DHBW Richie</div>
 
     <div class="navwrapper" [ngStyle]="navwrapperStyle">
-      <div class="title" (click)="globals.toggleTheme()">DHBW RICHIE</div>
+      <div class="title" (click)="globals.toggleTheme()"></div>
       <div class="routes">
         <a routerLink="/home" routerLinkActive="active">
           <i class="fa fa-home"></i>
@@ -19,7 +19,7 @@
           <div class="type">pro</div>
         </a>
         <a
-          *ngIf="globals.user.group === 'Admin'"
+          *ngIf="globals.user.isAdmin || globals.user.isReviewer"
           routerLink="/review"
           routerLinkActive="active"
         >
@@ -36,7 +36,7 @@
           <div class="type">neu</div>
         </a>
         <a
-          *ngIf="globals.user.group === 'Admin'"
+          *ngIf="globals.user.isAdmin"
           routerLink="/admin"
           routerLinkActive="active"
         >
@@ -65,8 +65,12 @@
 
     <ng-template #signedIn>
       <div class="user" [routerLink]="['/settings']">
-        <div class="name">{{ globals.user.name }}</div>
-        <div class="icon">{{ globals.user.abbreviation() }}</div>
+        <div class="name">
+          {{ globals.user.givenName }} {{ globals.user.familyName }}
+        </div>
+        <div class="icon">
+          {{ globals.user.givenName[0] }}{{ globals.user.familyName[0] }}
+        </div>
       </div>
     </ng-template>
   </header>

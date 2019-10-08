@@ -23,25 +23,70 @@ import { darkTheme } from "./theme/dark-theme";
 import { lightTheme } from "./theme/light-theme";
 import { ThemeModule } from "./theme/theme.module";
 
+const title = "DHBW Richie | ";
 const appRoutes: Routes = [
   {
     path: "home",
     component: HomeComponent,
     data: { title: "Heroes List" }
   },
-  { path: "add", component: AddComponent },
-  { path: "review", component: ReviewComponent },
-  { path: "search", component: SearchComponent },
-  { path: "telegram", component: TelegramComponent },
-  { path: "admin", component: AdminComponent },
-  { path: "settings", component: EditProfileComponent },
-  { path: "login", component: LoginComponent },
-  { path: "legal", component: LegalComponent },
-  { path: "impressum", component: ImpressumComponent },
-  { path: "about", component: AboutComponent },
+  {
+    path: "add",
+    component: AddComponent,
+    data: { title: `${title}Neue Frage` }
+  },
+  {
+    path: "review",
+    component: ReviewComponent,
+    data: { title: `${title}Review` }
+  },
+  {
+    path: "search",
+    component: SearchComponent,
+    data: { title: `${title}Suche` }
+  },
+  {
+    path: "telegram",
+    component: TelegramComponent,
+    data: { title: `${title}Telegram` }
+  },
+  {
+    path: "admin",
+    component: AdminComponent,
+    data: { title: `${title}Administration` }
+  },
+  {
+    path: "settings",
+    component: EditProfileComponent,
+    data: { title: `${title}Account` }
+  },
+  {
+    path: "login",
+    component: LoginComponent,
+    data: { title: `${title}Log In` }
+  },
+  {
+    path: "legal",
+    component: LegalComponent,
+    data: { title: `${title}Legal` }
+  },
+  {
+    path: "impressum",
+    component: ImpressumComponent,
+    data: { title: `${title}Impressum` }
+  },
+  {
+    path: "about",
+    component: AboutComponent,
+    data: { title: `${title}About` }
+  },
 
   { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "**", component: PageNotFoundComponent }
+  {
+    path: "**",
+    component: PageNotFoundComponent,
+    data: { title: `${title}Oops` }
+  }
 ];
 
 @NgModule({

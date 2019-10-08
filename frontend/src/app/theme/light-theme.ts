@@ -7,6 +7,8 @@ export const lightTheme: Theme = {
     "--background": "#eee",
     "--paragraph": "#fff",
     "--input-border": "#ddd",
+    "--popupBackground": "211, 211, 211",
+    "--popupShadow": "rgba(0, 0, 0, .2)",
     "--scrollbar-thumb-nograb": "#777",
     "--scrollbar-thumb-grab": "#555",
     "--header": "rgba(0, 0, 0, 0.3)",

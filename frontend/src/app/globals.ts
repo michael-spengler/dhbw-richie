@@ -19,14 +19,7 @@ export class Globals {
   facebookURL = "https://facebook.com";
   instagramURL = "https://instagram.com";
   botURL = this.getSantizeUrl("tg://resolve?domain=dhbw_richie_bot");
-  user: any = {
-    abbreviation: function(): string {
-      return (this.name.split(" ").length > 1
-        ? this.name.split(" ")[0][0] + this.name.split(" ")[1][0]
-        : this.name[0] + this.name[1]
-      ).replace("undefined", "");
-    }
-  };
+  user: any = {};
   notification = {
     style: {
       display: "none",
@@ -54,9 +47,11 @@ export class Globals {
   }
 
   public logOut() {
-    this.user.name = "";
+    this.user.familyName = "";
+    this.user.givenName = "";
     this.user.email = "";
-    this.user.group = "";
+    this.user.isAdmin = false;
+    this.user.isReviewer = false;
     this.user.created = null;
     this.user.signed_in = false;
     this.router.navigate(["/home"]);
@@ -66,13 +61,15 @@ export class Globals {
     );
   }
   public logIn() {
-    this.user.name = "Timo Scheuermann";
+    this.user.familyName = "Scheuermann";
+    this.user.givenName = "Timo";
     this.user.email = "max.mustermann@mail.de";
-    this.user.group = "Admin";
+    this.user.isAdmin = true;
+    this.user.isReviewer = true;
     this.user.created = new Date(1569939205000);
     this.user.signed_in = true;
     this.sendNotification(
-      `Willkommen zurück, ${this.user.name}!`,
+      `Willkommen zurück, ${this.user.givenName} ${this.user.familyName}!`,
       NotificationType.INFORMATION
     );
     //this.router.navigate(["/home"]);

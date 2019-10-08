@@ -11,7 +11,7 @@ export class PageNotFoundComponent implements AfterViewInit {
 
   backgroundImage = {};
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.httpClient
       .get(
         "https://api.giphy.com/v1/gifs/random?api_key=0UTRbFtkMxAplrohufYco5IY74U8hOes&tag=wolf%20of%20wall%20street&rating=R"
@@ -21,7 +21,6 @@ export class PageNotFoundComponent implements AfterViewInit {
           this.backgroundImage = {
             "background-image": `url('${data["data"].image_original_url}')`
           };
-          console.log("hek", this.backgroundImage);
         });
       });
   }

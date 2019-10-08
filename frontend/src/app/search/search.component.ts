@@ -7,8 +7,24 @@ import { Globals, NotificationType } from "../globals";
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent {
-  searchQuery = "";
   constructor(public globals: Globals) {}
+
+  searchQuery = "";
+
+  resultsWrapper = {
+    "max-height": "0px",
+    overflow: "hidden"
+  };
+  landingWrapperStyle = {
+    overflow: "hidden",
+    "max-height": "100vh",
+    "margin-top": "-50px"
+  };
+  landingStyle = {
+    "min-height": "100%",
+    padding: "25% 10px",
+    margin: "-50px 0px"
+  };
 
   onInputKeyDown(event) {
     if (event.key == "Enter") this.startSearch();
@@ -27,19 +43,4 @@ export class SearchComponent {
     this.landingWrapperStyle.overflow = "visible";
     this.resultsWrapper["max-height"] = "unset";
   }
-
-  resultsWrapper = {
-    "max-height": "0px",
-    overflow: "hidden"
-  };
-  landingWrapperStyle = {
-    overflow: "hidden",
-    "max-height": "100vh",
-    "margin-top": "-50px"
-  };
-  landingStyle = {
-    "min-height": "100%",
-    padding: "25% 10px",
-    margin: "-50px 0px"
-  };
 }

@@ -25,28 +25,51 @@
     <h2>Formular</h2>
 
     <h3>Frage</h3>
-    <textarea rows="5" placeholder="Moin Servus Moin"></textarea>
+    <textarea
+      tabindex="1"
+      rows="5"
+      placeholder="Beispiel: Wie verschlüssel ich eine Nachricht mit Hilfe des RSA-Algorithmus"
+    ></textarea>
 
     <div class="splitter"></div>
 
     <h3>Antwort</h3>
-    <textarea rows="5" placeholder="Moin Servus Moin"></textarea>
+    <textarea
+      tabindex="2"
+      rows="5"
+      placeholder="Der Klartext wird als Binärzahl m Element {0, ..., n-1} aufgefasst. Ist der Klartext zu lang, so wird er in mehrere Stücke zerlegt, die jeweils für sich verschlüsselt werden.
+      Es sind:
+        n	 	öffentliche Zahl
+        e	 	öffentlicher Schlüssel des Empfängers
+        d	 	privater Schlüssel des Empfängers
+        m < n  	 	Klartext
+        c	 	Geheimtext
+      Zur Verschlüsselung berechnet der Sender: c = me mod n
+      und erhält damit den Geheimtext c. 1)
+      Die Zahl n ist das Produkt von zwei verschiedenen Primzahlen p und q, diese sind geheim. Wie können p und q geheim sein, wenn doch n = p·q öffentlich bekannt ist? Dies beruht nur darauf, dass die Primfaktorzerlegung von n zu rechenaufwendig ist, da n sehr groß ist (z.B. 512 Bit lang).
+      Für die Zahl e muss gelten: ggt(e, φ(n)) = 1
+      Hierbei ist φ(n) = (p-1)(q-1) die Anzahl der zu n teilerfremden Zahlen, die kleiner als n sind."
+    ></textarea>
 
     <div class="splitter"></div>
 
     <div class="inputWrapper">
       <div class="input">
         <h3>Quelle</h3>
-        <input type="text" placeholder="Moin Servus Moin" />
+        <input
+          tabindex="3"
+          type="text"
+          placeholder="http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm"
+        />
       </div>
       <div class="input">
         <h3>Vorlesung</h3>
-        <input type="text" placeholder="Moin Servus Moin" />
+        <input tabindex="4" type="text" placeholder="Logik & Algebra" />
       </div>
     </div>
 
     <div style="display: block; text-align: center; margin-top: 10px;">
-      <div class="iconButton">
+      <div tabindex="5" class="iconButton">
         <i class="fab fa-wpforms"></i>Frage & Antwort einreichen
       </div>
     </div>

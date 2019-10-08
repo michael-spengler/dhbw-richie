@@ -4,25 +4,41 @@ import { Globals, NotificationType } from "../globals";
 @Component({
   selector: "app-review",
   templateUrl: "./review.component.html",
-  styleUrls: ["./review.component.css"]
+  styleUrls: ["./review.component.css", "../add/add.component.css"]
 })
 export class ReviewComponent implements OnInit {
   myItems: any[]; //just for testing purposes
 
   constructor(private globals: Globals) {
     this.myItems = [
-      { status: "Neu", question: "Was ist der Sinn des Lebens", answer: 42 },
+      {
+        status: "Neu",
+        question: "Was ist der Sinn des Lebens",
+        answer: 42,
+        source: "",
+        lecture: ""
+      },
       {
         status: "Änderung",
         question: "Warum ist die Banane krumm",
-        answer: "Sonne"
+        answer: "Sonne",
+        source: "",
+        lecture: ""
       },
       {
         status: "Feedback",
         question: "Wie viele Sandkörner gibt es am Strand",
-        answer: 42000
+        answer: 42000,
+        source: "",
+        lecture: ""
       },
-      { status: "Löschen", question: "Was ist der Sinn des Lebens", answer: 42 }
+      {
+        status: "Löschen",
+        question: "Was ist der Sinn des Lebens",
+        answer: 42,
+        source: "",
+        lecture: ""
+      }
     ];
   }
 
@@ -30,13 +46,16 @@ export class ReviewComponent implements OnInit {
 
   public display = { display: "none" };
 
-  public togglePopUp(channel: any) {
+  public togglePopUp(item: any) {
     this.display = {
       display: this.display.display == "none" ? "block" : "none"
     };
-
-    this.questionInput = channel.question;
-    this.answerInput = channel.answer;
+    if (item && item != null) {
+      this.questionInput = item.question;
+      this.answerInput = item.answer;
+      this.sourceInput = item.source;
+      this.lectureInput = item.lecture;
+    }
   }
 
   // Q&A Inputfields
@@ -48,19 +67,26 @@ export class ReviewComponent implements OnInit {
   lectureInput;
   lectureOutput;
 
-  onChange() {
-    // tslint:disable-next-line: max-line-length
+  acceptQuestion() {
+    this.globals.sendNotification(
+      "Frage wurde eingetragen",
+      NotificationType.SUCCESS
+    );
+    this.initInputs();
+  }
+  deleteQuestion() {
+    this.globals.sendNotification(
+      "Frage wurde gelöscht",
+      NotificationType.ERROR
+    );
+    this.initInputs();
+  }
 
+  initInputs() {
+    this.display.display = "none";
     this.questionInput = "";
     this.lectureInput = "";
     this.sourceInput = "";
     this.answerInput = "";
-
-    this.display.display = "none";
-
-    this.globals.sendNotification(
-      "Frage wurde geändert",
-      NotificationType.INFORMATION
-    );
   }
 }

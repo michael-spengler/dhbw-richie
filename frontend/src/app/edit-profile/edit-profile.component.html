@@ -1,46 +1,55 @@
 <div class="landing">
-  <div class="name">{{ globals.user.name }}</div>
+  <div class="name">
+    {{ globals.user.givenName }} {{ globals.user.familyName }}
+  </div>
   <div class="mail">{{ globals.user.email }}</div>
   <div class="logout" (click)="globals.logOut()">
     Ausloggen
     <i class="fas fa-sign-out-alt"></i>
   </div>
 </div>
-<div class="paragraph" style="z-index: 9000;">
+<div class="paragraph">
   <h1>Account</h1>
-  <h3>Informationen</h3>
-  <form
-    [formGroup]="updateEmailForm"
-    (ngSubmit)="submitEmailChange(updateEmailForm.value)"
-  >
-    <div>
-      <label>
-        Benutzername
-      </label>
-      <label>{{ globals.user.name }}</label>
-    </div>
-    <div>
-      <label>
-        Account erstellt am
-      </label>
-      <label>{{ globals.user.created | date: "dd.MM.yyyy" }}</label>
-    </div>
-    <div>
-      <label>
-        Rang
-      </label>
-      <label>{{ globals.user.group }}</label>
-    </div>
 
-    <div>
-      <label for="newMail">
-        E-Mail-Adresse
-      </label>
-      <label>
-        {{ globals.user.email }}
-      </label>
+  <div class="informations">
+    <div class="information">
+      <h3>Informationen</h3>
+
+      <table>
+        <tr>
+          <td>Vorname</td>
+          <td>{{ globals.user.givenName }}</td>
+        </tr>
+        <tr>
+          <td>Nachname</td>
+          <td>{{ globals.user.familyName }}</td>
+        </tr>
+        <tr>
+          <td>Mitglied seit</td>
+          <td>{{ globals.user.created | date: "dd.MM.yyyy" }}</td>
+        </tr>
+        <tr>
+          <td>Rang</td>
+          <td>
+            <span *ngIf="globals.user.isAdmin">Admin</span>
+            <span *ngIf="!globals.user.isAdmin && globals.user.isReviewer"
+              >Reviewer</span
+            >
+            <span *ngIf="!globals.user.isAdmin && !globals.user.isReviewer"
+              ><div class="gradient">Pro</div></span
+            >
+          </td>
+        </tr>
+      </table>
     </div>
-  </form>
+    <div class="information">
+      <h3>Angemeldet mittels</h3>
+      <div class="signedInWith">
+        <img src="../../assets/signInWith/apple.png" />
+        <div class="email">{{ globals.user.email }}</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="removeWhite"></div>
