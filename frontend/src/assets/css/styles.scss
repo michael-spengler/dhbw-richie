@@ -15,7 +15,7 @@ body {
 }
 @media only screen and (min-width: $phoneMax) {
   body {
-    padding-left: 110px;
+    padding-left: 25px;
   }
 }
 
@@ -118,17 +118,14 @@ nav {
   }
 
   .routes {
-    span {
-      margin-top: 20px;
-    }
-    a,
-    span {
-      display: inline-block;
+    a {
+      display: grid;
+      grid-template-columns: 35px 1fr 40px;
+      padding: 0px 15px;
+      height: 40px;
+      line-height: 40px;
       color: #ddd;
       width: calc(100% - 30px);
-      padding: 10px 15px;
-      height: 20px;
-      line-height: 20px;
       font-weight: 500;
       text-decoration: none;
       transition: 0.2s ease;
@@ -136,17 +133,30 @@ nav {
         background: rgba(0, 0, 0, 0.1);
       }
 
+      .name {
+        display: inline-grid;
+        overflow: hidden;
+      }
+
       svg {
-        margin-right: 10px;
+        display: inline-grid;
+        font-size: 20px;
+        text-align: center;
+        width: 35px;
+        padding-top: 10px;
+        overflow: hidden;
       }
 
       .type {
+        display: inline-grid;
         color: #3d404a;
         background: rgba(255, 255, 255, 0.75);
         border-radius: 10px;
         padding: 0px 10px;
+        height: 18px;
+        margin-top: 11px;
+        line-height: 18px;
         font-size: 0.8em;
-        float: right;
         text-transform: capitalize;
       }
     }
@@ -155,7 +165,11 @@ nav {
       background-image: linear-gradient(to right, #08f, rgb(78, 167, 245));
       transition: 0.6s ease;
       &:hover {
-        background: #08f !important;
+        background-image: linear-gradient(
+          to right,
+          #08f,
+          rgb(78, 167, 245)
+        ) !important;
       }
     }
   }
@@ -166,6 +180,28 @@ nav {
     width: 220px;
     height: 100%;
 
+    max-width: 50px;
+    overflow: hidden;
+    z-index: 10000;
+    transition: 0.5s ease;
+
+    .hotlinks {
+      max-width: 0;
+      opacity: 0;
+    }
+    &:hover {
+      max-width: 220px;
+      transition: 0.5s ease;
+    }
+    &:hover {
+      .routes a {
+        grid-template-columns: 35px 1fr 40px;
+      }
+      .hotlinks {
+        max-width: 100%;
+        opacity: 1;
+      }
+    }
     .toggleButton {
       display: none;
     }
@@ -363,21 +399,11 @@ header {
       margin-left: 5px;
     }
     .signIn {
-      line-height: 20px;
-      height: 20px;
-      margin: 15px 0px;
-      &:hover {
-        color: #fff;
-        box-shadow: inset 0px -1px #fff;
-      }
-    }
-    .register {
       line-height: 30px;
       height: 30px;
       margin: 10px 0px;
-      margin-right: 20px;
       padding: 0px 15px;
-      border: 1px solid rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--input-border);
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       &:hover {
@@ -637,6 +663,7 @@ form {
 
       td {
         text-overflow: ellipsis;
+        color: var(--font-color);
       }
     }
   }

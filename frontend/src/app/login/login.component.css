@@ -1,0 +1,12 @@
+.signInWith {
+  display: block;
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 1000px;
+  margin-bottom: 10px;
+  transition: 0.2s ease;
+}
+.signInWith:hover {
+  cursor: pointer;
+  border: 1px solid var(--input-border);
+}

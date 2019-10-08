@@ -9,29 +9,40 @@
     <div class="navwrapper" [ngStyle]="navwrapperStyle">
       <div class="title" (click)="globals.toggleTheme()">DHBW RICHIE</div>
       <div class="routes">
-        <a routerLink="/home" routerLinkActive="active"
-          ><i class="fa fa-home"></i>Home</a
-        >
-        <a routerLink="/add" routerLinkActive="active"
-          ><i class="fa fa-plus"></i>Add
+        <a routerLink="/home" routerLinkActive="active">
+          <i class="fa fa-home"></i>
+          <div class="name">Home</div>
+        </a>
+        <a routerLink="/add" routerLinkActive="active">
+          <i class="fa fa-plus"></i>
+          <div class="name">Add</div>
           <div class="type">pro</div>
         </a>
-        <a routerLink="/review" routerLinkActive="active"
-          ><i class="fas fa-check-double"></i>Review</a
+        <a
+          *ngIf="globals.user.group === 'Admin'"
+          routerLink="/review"
+          routerLinkActive="active"
         >
-        <a routerLink="/search" routerLinkActive="active"
-          ><i class="fa fa-search"></i>Search</a
-        >
-        <a routerLink="/telegram" routerLinkActive="active"
-          ><i class="fab fa-telegram-plane"></i>Telegram
-          <div class="type">neu</div></a
-        >
+          <i class="fas fa-check-double"></i>
+          <div class="name">Review</div>
+        </a>
+        <a routerLink="/search" routerLinkActive="active">
+          <i class="fa fa-search"></i>
+          <div class="name">Search</div>
+        </a>
+        <a routerLink="/telegram" routerLinkActive="active">
+          <i class="fab fa-telegram-plane"></i>
+          <div class="name">Telegram</div>
+          <div class="type">neu</div>
+        </a>
         <a
           *ngIf="globals.user.group === 'Admin'"
           routerLink="/admin"
           routerLinkActive="active"
-          ><i class="fas fa-user-cog"></i>Administration</a
         >
+          <i class="fas fa-user-cog"></i>
+          <div class="name">Administration</div>
+        </a>
       </div>
       <div class="hotlinks">
         <a routerLink="/impressum">Impressum</a>
@@ -46,7 +57,6 @@
 
     <ng-template #signedOut>
       <div class="registerLogin">
-        <div class="register" [routerLink]="['/register']">Registrieren</div>
         <div class="signIn" [routerLink]="['/login']">
           Anmelden<i class="fas fa-sign-in-alt"></i>
         </div>

@@ -9,13 +9,7 @@ import { Globals, NotificationType } from "../globals";
 export class AdminComponent {
   constructor(public globals: Globals) {}
 
-  activeUser = {
-    name: "Timo Scheuermann",
-    mail: "max.mustermann@mail.de",
-    rank: "Admin",
-    enabled: true,
-    created: new Date(1569939205000)
-  };
+  activeUser = {};
   overlayStyle = { display: "none" };
   cardStyle = { animation: "none" };
   userSearch = "";

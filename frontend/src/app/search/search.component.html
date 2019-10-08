@@ -1,98 +1,74 @@
-<div class="landing">
-  <h1>Nach einer Antwort suchen</h1>
-  <h2>Fragen beantworten</h2>
+<div [ngStyle]="landingWrapperStyle">
+  <div class="landing" [ngStyle]="landingStyle">
+    <h1>Nach einer Antwort suchen</h1>
+    <h2>Fragen beantworten</h2>
 
-  <div class="searchWrapper">
-    <div class="searchBar">
-      <div class="inputWrapper">
-        <input
-          type="text"
-          [(ngModel)]="searchQuery"
-          (keydown)="onInputKeyDown($event)"
-        />
-      </div>
-      <div class="search" (click)="startSearch()">
-        <i class="fas fa-search"></i>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="paragraph">
-  <div class="questionwrapper">
-    <div class="questionanswer">
-      <div class="question">Was ist 1+1</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">1 mod x = 2</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">Was ist 1+1</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">Was ist 1+1</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">1 mod x = 2</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">Was ist 1+1</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">Was ist 1+1</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">1 mod x = 2</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-    <div class="questionanswer">
-      <div class="question">Was ist 1+1</div>
-      <div class="answer">Rel. ez. 1+1 = 2</div>
-      <div class="feedback"></div>
-    </div>
-  </div>
-</div>
-
-<div class="paragraph">
-  <div class="row">
-    <div class="collom">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Frage</h5>
-          <p class="card-text">Antwort</p>
-          <button class="button" (click)="(Bearbeitungsvorschlageinreichen)">
-            Bearbeitungsvorschlag
-          </button>
+    <div class="searchWrapper">
+      <div class="searchBar">
+        <div class="inputWrapper">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (keydown)="onInputKeyDown($event)"
+          />
         </div>
-      </div>
-    </div>
-    <div class="collom">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Frage</h5>
-          <p class="card-text">Antwort</p>
-          <button class="button" (click)="(Bearbeitungsvorschlageinreichen)">
-            Bearbeitungsvorschlag
-          </button>
+        <div class="search" (click)="startSearch()">
+          <i class="fas fa-search"></i>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="removeWhite"></div>
+<div [ngStyle]="resultsWrapper">
+  <div class="paragraph">
+    <div class="questionwrapper">
+      <div class="questionanswer">
+        <div class="question">Was ist 1+1</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">1 mod x = 2</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">Was ist 1+1</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">Was ist 1+1</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">1 mod x = 2</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">Was ist 1+1</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">Was ist 1+1</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">1 mod x = 2</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+      <div class="questionanswer">
+        <div class="question">Was ist 1+1</div>
+        <div class="answer">Rel. ez. 1+1 = 2</div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+  </div>
+  <div class="removeWhite"></div>
+</div>

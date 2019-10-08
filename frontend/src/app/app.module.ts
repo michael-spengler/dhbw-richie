@@ -16,8 +16,6 @@ import { ImpressumComponent } from "./impressum/impressum.component";
 import { LegalComponent } from "./legal/legal.component";
 import { LoginComponent } from "./login/login.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { PasswordResetComponent } from "./password-reset/password-reset.component";
-import { RegisterComponent } from "./register/register.component";
 import { ReviewComponent } from "./review/review.component";
 import { SearchComponent } from "./search/search.component";
 import { TelegramComponent } from "./telegram/telegram.component";
@@ -38,8 +36,6 @@ const appRoutes: Routes = [
   { path: "admin", component: AdminComponent },
   { path: "settings", component: EditProfileComponent },
   { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "resetpassword", component: PasswordResetComponent },
   { path: "legal", component: LegalComponent },
   { path: "impressum", component: ImpressumComponent },
   { path: "about", component: AboutComponent },
@@ -78,9 +74,7 @@ const appRoutes: Routes = [
     EditProfileComponent,
     ImpressumComponent,
     LegalComponent,
-    RegisterComponent,
     LoginComponent,
-    PasswordResetComponent,
     AboutComponent
   ],
   providers: [Globals],

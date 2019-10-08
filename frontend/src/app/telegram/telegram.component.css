@@ -5,15 +5,8 @@ td {
   text-overflow: ellipsis;
 }
 
-tr:hover a {
+tr:hover #join {
   color: #08f;
-}
-
-a {
-  color: #ccc;
-}
-a:active {
-  filter: brightness(110%);
 }
 
 img {

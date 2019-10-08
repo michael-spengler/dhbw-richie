@@ -13,7 +13,7 @@ body {
 
 @media only screen and (min-width: 850px) {
   body {
-    padding-left: 110px;
+    padding-left: 25px;
   }
 }
 
@@ -134,42 +134,53 @@ nav .hotlinks a:hover {
   color: #fff;
 }
 
-nav .routes span {
-  margin-top: 20px;
-}
-
-nav .routes a,
-nav .routes span {
-  display: inline-block;
+nav .routes a {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 35px 1fr 40px;
+      grid-template-columns: 35px 1fr 40px;
+  padding: 0px 15px;
+  height: 40px;
+  line-height: 40px;
   color: #ddd;
   width: calc(100% - 30px);
-  padding: 10px 15px;
-  height: 20px;
-  line-height: 20px;
   font-weight: 500;
   text-decoration: none;
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
 
-nav .routes a:hover,
-nav .routes span:hover {
+nav .routes a:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
-nav .routes a svg,
-nav .routes span svg {
-  margin-right: 10px;
+nav .routes a .name {
+  display: -ms-inline-grid;
+  display: inline-grid;
+  overflow: hidden;
 }
 
-nav .routes a .type,
-nav .routes span .type {
+nav .routes a svg {
+  display: -ms-inline-grid;
+  display: inline-grid;
+  font-size: 20px;
+  text-align: center;
+  width: 35px;
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+nav .routes a .type {
+  display: -ms-inline-grid;
+  display: inline-grid;
   color: #3d404a;
   background: rgba(255, 255, 255, 0.75);
   border-radius: 10px;
   padding: 0px 10px;
+  height: 18px;
+  margin-top: 11px;
+  line-height: 18px;
   font-size: 0.8em;
-  float: right;
   text-transform: capitalize;
 }
 
@@ -182,16 +193,39 @@ nav .routes .active {
 }
 
 nav .routes .active:hover {
-  background: #08f !important;
+  background-image: -webkit-gradient(linear, left top, right top, from(#08f), to(#4ea7f5)) !important;
+  background-image: linear-gradient(to right, #08f, #4ea7f5) !important;
 }
 
 @media only screen and (min-width: 850px) {
   nav {
     width: 220px;
     height: 100%;
+    max-width: 50px;
+    overflow: hidden;
+    z-index: 10000;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
     background-image: linear-gradient(126deg, rgba(101, 101, 101, 0.09) 0%, rgba(101, 101, 101, 0.09) 68%, rgba(200, 200, 200, 0.09) 68%, rgba(200, 200, 200, 0.09) 100%), linear-gradient(164deg, rgba(238, 238, 238, 0.03) 0%, rgba(238, 238, 238, 0.03) 90%, rgba(14, 14, 14, 0.03) 90%, rgba(14, 14, 14, 0.03) 100%), linear-gradient(27deg, rgba(214, 214, 214, 0.04) 0%, rgba(214, 214, 214, 0.04) 34%, rgba(104, 104, 104, 0.04) 34%, rgba(104, 104, 104, 0.04) 100%), linear-gradient(175deg, rgba(20, 20, 20, 0.01) 0%, rgba(20, 20, 20, 0.01) 4%, rgba(9, 9, 9, 0.01) 4%, rgba(9, 9, 9, 0.01) 100%), linear-gradient(257deg, rgba(14, 14, 14, 0.01) 0%, rgba(14, 14, 14, 0.01) 28%, rgba(164, 164, 164, 0.01) 28%, rgba(164, 164, 164, 0.01) 100%), linear-gradient(311deg, rgba(68, 68, 68, 0.07) 0%, rgba(68, 68, 68, 0.07) 33%, rgba(213, 213, 213, 0.07) 33%, rgba(213, 213, 213, 0.07) 100%), linear-gradient(244deg, rgba(43, 43, 43, 0.02) 0%, rgba(43, 43, 43, 0.02) 80%, rgba(161, 161, 161, 0.02) 80%, rgba(161, 161, 161, 0.02) 100%), linear-gradient(130deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.04) 49%, rgba(105, 105, 105, 0.04) 49%, rgba(105, 105, 105, 0.04) 100%), linear-gradient(90deg, #000, #000);
     -webkit-box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
             box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  nav .hotlinks {
+    max-width: 0;
+    opacity: 0;
+  }
+  nav:hover {
+    max-width: 220px;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+  }
+  nav:hover .routes a {
+    -ms-grid-columns: 35px 1fr 40px;
+        grid-template-columns: 35px 1fr 40px;
+  }
+  nav:hover .hotlinks {
+    max-width: 100%;
+    opacity: 1;
   }
   nav .toggleButton {
     display: none;
@@ -333,29 +367,16 @@ header .registerLogin svg {
 }
 
 header .registerLogin .signIn {
-  line-height: 20px;
-  height: 20px;
-  margin: 15px 0px;
-}
-
-header .registerLogin .signIn:hover {
-  color: #fff;
-  -webkit-box-shadow: inset 0px -1px #fff;
-          box-shadow: inset 0px -1px #fff;
-}
-
-header .registerLogin .register {
   line-height: 30px;
   height: 30px;
   margin: 10px 0px;
-  margin-right: 20px;
   padding: 0px 15px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--input-border);
   background: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
-header .registerLogin .register:hover {
+header .registerLogin .signIn:hover {
   color: #fff;
   border-color: #fff;
 }
@@ -649,5 +670,6 @@ form button:active {
 
 .tablewrapper table tr td {
   text-overflow: ellipsis;
+  color: var(--font-color);
 }
 /*# sourceMappingURL=styles.css.map */
