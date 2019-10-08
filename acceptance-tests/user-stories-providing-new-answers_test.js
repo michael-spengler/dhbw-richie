@@ -11,7 +11,7 @@ Scenario('As a Reviewer I add helpful answers to new questions', (I) => {
     I.askQuestionAndExpect(newQuestion, defaultAnswer)
 
     I.loginAsReviewer()
-    I.addAnswerToRecentlyAddedQuestion(newAnswer)
+    I.addAnswerToRecentlyAddedQuestion(newQuestion, newAnswer)
     I.logout()
 
     I.askQuestionAndExpect(newQuestion, newAnswer)
