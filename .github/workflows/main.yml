@@ -25,7 +25,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy-Backend
         run: |
-          ls
-          pwd
-          # sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -o StrictHostKeyChecking=no < ../deploy/multiple-commands.bash
+          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -o StrictHostKeyChecking=no < ./deploy/multiple-commands.bash
         # shell: bash
