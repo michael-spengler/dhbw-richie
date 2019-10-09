@@ -1,0 +1,72 @@
+.commentWrapper {
+  display: block;
+  width: 100%;
+}
+
+.comment {
+  display: inline-block;
+  width: 100%;
+  padding: 15px 0px;
+}
+
+.comment .message {
+  padding: 0px 10px;
+  margin-left: 5px;
+  border-left: 1px solid var(--input-border);
+  white-space: pre-line;
+}
+
+.comment .message .comment {
+  padding-bottom: 0px;
+}
+
+.comment .header {
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.comment .header * {
+  display: inline-block;
+}
+
+.comment .header .author {
+  font-weight: 700;
+  color: #08f;
+}
+
+.comment .header .author i {
+  margin-right: 10px;
+}
+
+.comment .header .date {
+  margin-left: 10px;
+}
+
+.comment .header .date:before {
+  content: '\22C5';
+  margin-right: 10px;
+}
+
+.comment .header .reply {
+  margin-left: 15px;
+  font-size: 16px;
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+.comment .header .reply:before {
+  content: 'reply';
+}
+
+.comment .header .reply:hover {
+  -webkit-box-shadow: inset 0px -1px var(--input-border);
+          box-shadow: inset 0px -1px var(--input-border);
+}
+/*# sourceMappingURL=question.component.css.map */

@@ -1,6 +1,59 @@
 <div class="landing">
-  <h1>Frage #232874</h1>
-  <h2></h2>
+  <h1>{{ question.question }}</h1>
+  <h2>#{{ question.id }}</h2>
 </div>
 
-hallo
+<div class="paragraph">
+  <h2>Antwort</h2>
+  <p>{{ question.answer }}</p>
+</div>
+
+<div class="paragraph">
+  <h2>Kommentare</h2>
+  <div class="commentWrapper">
+    <div class="comment">
+      <div class="header">
+        <div class="author"><i class="fad fa-at"></i>Test Nutzer</div>
+        <div class="date">02:34 09.10.2019</div>
+        <div class="reply"></div>
+      </div>
+      <div class="message">
+        Das ist ein Test mein lieber Leser
+        <div class="comment">
+          <div class="header">
+            <div class="author"><i class="fad fa-at"></i>Test Nutzer</div>
+            <div class="date">02:34 09.10.2019</div>
+            <div class="reply"></div>
+          </div>
+          <div class="message">
+            Das ist ein Test mein lieber Leser<br />und ich habe Spaß in zu
+            kommentieren<br /><br />Warum fragst du dich?<br />WEIL ICH ES KANN :)
+
+            <div class="comment">
+              <div class="header">
+                <div class="author"><i class="fad fa-at"></i>Test Nutzer</div>
+                <div class="date">02:34 09.10.2019</div>
+                <div class="reply"></div>
+              </div>
+              <div class="message">
+                Das ist ein Test mein lieber Leser<br />und ich habe Spaß in zu
+                kommentieren<br /><br />Warum fragst du dich?<br />WEIL ICH ES KANN :)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let comment of comments" class="comment">
+      <div class="header">
+        <div class="author"><i class="fad fa-at"></i>{{ comment.author }}</div>
+        <div class="date">{{ comment.date | date: 'HH:mm dd.MM.yyy' }}</div>
+        <div class="reply"></div>
+      </div>
+      <div class="message">{{ comment.comment }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="removeWhite"></div>

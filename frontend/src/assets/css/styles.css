@@ -5,7 +5,7 @@ html,
 body {
   margin: 0;
   background: var(--background);
-  font-family: "SF Pro Display", sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
   color: var(--font-color);
 }
 
@@ -21,6 +21,7 @@ body {
 
 p {
   text-align: justify;
+  white-space: pre-line;
 }
 
 a {
@@ -220,7 +221,7 @@ nav .routes .active:hover {
     transition: 0.5s ease;
   }
   nav:hover .title::before {
-    content: "DHBW Richie";
+    content: 'DHBW Richie';
   }
   nav:hover .routes a {
     -ms-grid-columns: 35px 1fr 40px;
@@ -241,7 +242,7 @@ nav .routes .active:hover {
     -webkit-text-fill-color: transparent;
   }
   nav .title:before {
-    content: "RW";
+    content: 'RW';
   }
   nav .navwrapper {
     display: block;
@@ -279,7 +280,7 @@ nav .routes .active:hover {
     position: absolute;
   }
   nav .title::before {
-    content: "DHBW Richie";
+    content: 'DHBW Richie';
   }
   nav .richie {
     position: absolute;
@@ -403,7 +404,7 @@ header .user {
 
 header .user::after {
   position: absolute;
-  content: " ";
+  content: ' ';
   width: 30px;
   margin: 10px;
   height: 30px;
@@ -454,7 +455,7 @@ header .user::after {
 }
 
 .landing h2:before, .landing h2:after {
-  content: "\23AF";
+  content: '\23AF';
   padding: 0 10px;
 }
 
@@ -639,8 +640,8 @@ header .user::after {
 }
 
 .selection .selected::after {
-  content: "\f054";
-  font-family: "Font Awesome 5 Free";
+  content: '\f054';
+  font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   display: none;
 }
@@ -684,7 +685,7 @@ header .user::after {
 }
 
 .selection .items .container::before {
-  content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
+  content: 'Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF';
   font-weight: 600;
   display: block;
   opacity: 0.9;
@@ -709,8 +710,8 @@ header .user::after {
 }
 
 .selection .items .container .item:before {
-  content: "\f054";
-  font-family: "Font Awesome 5 Free";
+  content: '\f054';
+  font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   display: none;
 }
@@ -785,8 +786,8 @@ header .user::after {
 }
 
 .selectionWrapper .selection .item:before {
-  content: "\f054";
-  font-family: "Font Awesome 5 Free";
+  content: '\f054';
+  font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   display: none;
 }

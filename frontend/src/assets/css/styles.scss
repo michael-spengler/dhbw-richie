@@ -1,5 +1,5 @@
-@import url("../fonts/fontfaces.css");
-@import url("../fontawesome/css/all.min.css");
+@import url('../fonts/fontfaces.css');
+@import url('../fontawesome/css/all.min.css');
 
 $phoneMax: 850px;
 $phoneMax-1: 849px;
@@ -8,7 +8,7 @@ html,
 body {
   margin: 0;
   background: var(--background);
-  font-family: "SF Pro Display", sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
   color: var(--font-color);
 }
 body {
@@ -22,6 +22,7 @@ body {
 
 p {
   text-align: justify;
+  white-space: pre-line;
 }
 
 a {
@@ -164,11 +165,7 @@ nav {
       background-image: linear-gradient(to right, #08f, rgb(78, 167, 245));
       transition: 0.6s ease;
       &:hover {
-        background-image: linear-gradient(
-          to right,
-          #08f,
-          rgb(78, 167, 245)
-        ) !important;
+        background-image: linear-gradient(to right, #08f, rgb(78, 167, 245)) !important;
       }
     }
   }
@@ -192,7 +189,7 @@ nav {
       max-width: 220px;
       transition: 0.5s ease;
       .title::before {
-        content: "DHBW Richie";
+        content: 'DHBW Richie';
       }
       .routes a {
         grid-template-columns: 35px 1fr 40px;
@@ -212,7 +209,7 @@ nav {
       background-clip: text;
       -webkit-text-fill-color: transparent;
       &:before {
-        content: "RW";
+        content: 'RW';
       }
     }
 
@@ -316,7 +313,7 @@ nav {
     position: absolute;
 
     .title::before {
-      content: "DHBW Richie";
+      content: 'DHBW Richie';
     }
 
     .richie {
@@ -433,7 +430,7 @@ header {
 
     &::after {
       position: absolute;
-      content: " ";
+      content: ' ';
       width: 30px;
       margin: 10px;
       height: 30px;
@@ -480,7 +477,7 @@ header {
 
     &:before,
     &:after {
-      content: "\23AF";
+      content: '\23AF';
       padding: 0 10px;
     }
   }
@@ -642,8 +639,8 @@ header {
   text-align: left;
   .selected {
     &::after {
-      content: "\f054";
-      font-family: "Font Awesome 5 Free";
+      content: '\f054';
+      font-family: 'Font Awesome 5 Free';
       font-weight: 900;
       display: none;
     }
@@ -679,7 +676,7 @@ header {
       transform: scale(0);
 
       &::before {
-        content: "Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF";
+        content: 'Gruppe wählen\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF';
         font-weight: 600;
         display: block;
         opacity: 0.9;
@@ -700,8 +697,8 @@ header {
         cursor: pointer;
 
         &:before {
-          content: "\f054";
-          font-family: "Font Awesome 5 Free";
+          content: '\f054';
+          font-family: 'Font Awesome 5 Free';
           font-weight: 900;
           display: none;
         }
@@ -771,8 +768,8 @@ header {
       cursor: pointer;
 
       &:before {
-        content: "\f054";
-        font-family: "Font Awesome 5 Free";
+        content: '\f054';
+        font-family: 'Font Awesome 5 Free';
         font-weight: 900;
         display: none;
       }
