@@ -8,6 +8,21 @@ import { Globals, NotificationType } from "../globals";
 })
 export class ReviewComponent implements OnInit {
   myItems: any[]; //just for testing purposes
+  selectionStyle: any = { opacity: 0.7 };
+  lectures = [
+    "Einführung IT",
+    "Logik & Algebra",
+    "Finanzmathe",
+    "Programmieren I",
+    "Programmieren II",
+    "Bilanzierung",
+    "Vertrags-Recht",
+    "Was auch immer",
+    "soll mir das",
+    "Backend schicken"
+  ];
+
+  ngOnInit() {}
 
   constructor(private globals: Globals) {
     this.myItems = [
@@ -15,34 +30,53 @@ export class ReviewComponent implements OnInit {
         status: "Neu",
         question: "Was ist der Sinn des Lebens",
         answer: 42,
-        source: "",
-        lecture: ""
+        source: "Vorlesung",
+        lecture: this.lectures[0]
       },
       {
         status: "Änderung",
         question: "Warum ist die Banane krumm",
         answer: "Sonne",
-        source: "",
-        lecture: ""
+        source: "Internet",
+        lecture: this.lectures[1]
       },
       {
         status: "Feedback",
         question: "Wie viele Sandkörner gibt es am Strand",
         answer: 42000,
-        source: "",
-        lecture: ""
+        source: "Mündlich",
+        lecture: this.lectures[2]
       },
       {
         status: "Löschen",
         question: "Was ist der Sinn des Lebens",
         answer: 42,
-        source: "",
-        lecture: ""
+        source: "Slides",
+        lecture: this.lectures[3]
       }
     ];
   }
 
-  ngOnInit() { }
+  formData = ["","","",""];
+
+  setLecture(lecture: string): void {
+    this.lectureInput = lecture;
+    this.hideSelection();
+  }
+
+  toggleSelection() {
+    if (this.selectionStyle.opacity === 1) {
+      this.hideSelection();
+    } else {
+      this.selectionStyle.opacity = 1;
+      this.selectionStyle.transform = "scale(1)";
+    }
+  }
+
+  hideSelection() {
+    this.selectionStyle.opacity = 0;
+    this.selectionStyle.transform = "scale(0)";
+  }
 
   public display = { display: "none" };
 
@@ -51,10 +85,12 @@ export class ReviewComponent implements OnInit {
       display: this.display.display == "none" ? "block" : "none"
     };
     if (item && item != null) {
-      this.questionInput = item.question;
-      this.answerInput = item.answer;
-      this.sourceInput = item.source;
-      this.lectureInput = item.lecture;
+      this.formData = [
+        item.question,
+        item.answer,
+        item.source,
+        item.lecture
+      ]
     }
   }
 
