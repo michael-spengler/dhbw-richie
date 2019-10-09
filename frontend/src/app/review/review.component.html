@@ -1,74 +1,91 @@
 <div class="landing">
-    <h1>Review-Management</h1>
-    <h2>Accept / Decline</h2>
+  <h1>Review-Management</h1>
+  <h2>Accept / Decline</h2>
 </div>
 
 <div class="paragraph">
-    <h2>Zu überprüfende Fragen: {{ this.myItems.length }}</h2>
+  <h2>Zu überprüfende Fragen: {{ this.myItems.length }}</h2>
 
-    <div class="tablewrapper">
-        <table id="itemsTable" style="width:100%">
-            <tr *ngFor="let item of myItems; let i = index" (click)="togglePopUp(item)">
-                <td>
-                    <span class="{{ item.status }}"></span>
-                </td>
-                <td>F:</td>
-                <td>{{ item.question }}</td>
-                <td>A:</td>
-                <td>{{ item.answer }}</td>
-            </tr>
-        </table>
-    </div>
+  <div class="tablewrapper">
+    <table id="itemsTable" style="width:100%">
+      <tr
+        *ngFor="let item of myItems; let i = index"
+        (click)="togglePopUp(item)"
+      >
+        <td>
+          <span class="{{ item.status }}"></span>
+        </td>
+        <td>F:</td>
+        <td>{{ item.question }}</td>
+        <td>A:</td>
+        <td>{{ item.answer }}</td>
+      </tr>
+    </table>
+  </div>
 
-    <div class="modal" [ngStyle]="display" (click)="closeModal()">
-        <div class="modal-content" (click)="onClick($event)">
-            <div class="close" (click)="closeModal()"></div>
-            <h2>Formular</h2>
+  <div class="modal" [ngStyle]="display" (click)="closeModal()">
+    <div class="modal-content" (click)="onClick($event)">
+      <div class="close" (click)="closeModal()"></div>
+      <h2>Formular</h2>
 
-            <h3>Frage</h3>
-            <textarea tabindex="1" rows="5" [(ngModel)]="formData[0]"></textarea>
+      <h3>Frage</h3>
+      <textarea tabindex="1" rows="5" [(ngModel)]="formData[0]"></textarea>
 
-            <div class="splitter_"></div>
+      <div class="splitter_"></div>
 
-            <h3>Antwort</h3>
-            <textarea tabindex="2" rows="5" [(ngModel)]="formData[1]"></textarea>
+      <h3>Antwort</h3>
+      <textarea tabindex="2" rows="5" [(ngModel)]="formData[1]"></textarea>
 
-            <div class="splitter_"></div>
+      <div class="splitter_"></div>
 
-            <div class="inputWrapper">
-                <div class="input">
-                    <h3>Quelle</h3>
-                    <input tabindex="3" type="text" [(ngModel)]="formData[2]" />
-                </div>
-                <div class="input">
-                    <h3>Vorlesung</h3>
-                    <div class="lecture" (click)="toggleSelection(); onClick($event)">
-                        <span *ngIf="formData[3].length > 0">{{ formData[3] }}</span>
-                        <span style="opacity: .6" *ngIf="formData[3].length <= 0">
-            <i class="fad fa-list-ul"></i>Bitte wähle eine Vorlesung
-          </span>
-                    </div>
-
-                    <div class="selectionWrapper" [ngStyle]="selectionStyle">
-                        <div class="selection" sTitle="Vorlesung wählen">
-                            <div *ngFor="let lecture of lectures" class="item" (click)="setLecture(lecture)">
-                                {{ lecture }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="display: block; text-align: center; margin-top: 10px;">
-                <div tabindex="5"  class="iconButton"  id="delete"  (click)="deleteQuestion()">
-                    <i class="fad fa-trash-alt"></i>Löschen
+      <div class="inputWrapper">
+        <div class="input">
+          <h3>Quelle</h3>
+          <input tabindex="3" type="text" [(ngModel)]="formData[2]" />
         </div>
-        <div tabindex="6"  class="iconButton"  id="accept"  (click)="acceptQuestion()">
-            <i class="fab fa-wpforms"></i>Frage & Antwort speichern
+        <div class="input">
+          <h3>Vorlesung</h3>
+          <div class="lecture" (click)="toggleSelection(); onClick($event)">
+            <span *ngIf="formData[3].length > 0">{{ formData[3] }}</span>
+            <span style="opacity: .6" *ngIf="formData[3].length <= 0">
+              <i class="fad fa-list-ul"></i>Bitte wähle eine Vorlesung
+            </span>
+          </div>
+
+          <div class="selectionWrapper" [ngStyle]="selectionStyle">
+            <div class="selection" sTitle="Vorlesung wählen">
+              <div
+                *ngFor="let lecture of lectures"
+                class="item"
+                (click)="setLecture(lecture)"
+              >
+                {{ lecture }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: block; text-align: center; margin-top: 10px;">
+        <div
+          tabindex="5"
+          class="iconButton"
+          id="delete"
+          (click)="deleteQuestion()"
+        >
+          <i class="fad fa-trash-alt"></i>Löschen
+        </div>
+        <div
+          tabindex="6"
+          class="iconButton"
+          id="accept"
+          (click)="acceptQuestion()"
+        >
+          <i class="fab fa-wpforms"></i>Frage & Antwort speichern
+        </div>
+      </div>
     </div>
-</div>
-</div>
-</div>
+  </div>
 </div>
 
 <div class="removeWhite"></div>
