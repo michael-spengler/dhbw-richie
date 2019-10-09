@@ -10,7 +10,7 @@ textarea {
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
   font-size: 1em;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
 }
 
 input:focus, input:hover,
