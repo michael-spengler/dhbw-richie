@@ -42,7 +42,7 @@ export class ReviewComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public display = { display: "none" };
 
@@ -57,6 +57,15 @@ export class ReviewComponent implements OnInit {
       this.lectureInput = item.lecture;
     }
   }
+
+  onClick(event) {
+    event.stopPropagation();
+  }
+
+  closeModal() {
+    this.display = { display: "none" };
+  }
+
 
   // Q&A Inputfields
   questionInput;
@@ -89,4 +98,5 @@ export class ReviewComponent implements OnInit {
     this.sourceInput = "";
     this.answerInput = "";
   }
+
 }
