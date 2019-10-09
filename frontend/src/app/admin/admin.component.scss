@@ -51,15 +51,15 @@
   }
   .userCard {
     padding: 30px;
+    min-width: 650px;
 
     i {
       font-size: 60px;
     }
 
     .information {
-      grid-template-columns: 120px 400px 120px;
+      grid-template-columns: 120px 1fr 120px;
       grid-gap: 20px;
-      margin: 0px calc(50% - 320px);
     }
   }
 }

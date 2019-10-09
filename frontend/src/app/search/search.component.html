@@ -16,6 +16,12 @@
           <i class="fas fa-search"></i>
         </div>
       </div>
+
+      <div *ngIf="isSearching" class="loaderWrapper" style="margin: -1px 20px;">
+        <div class="loader">
+          <div *ngFor="let y of [].constructor(20)"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

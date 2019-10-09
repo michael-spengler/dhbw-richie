@@ -70,7 +70,7 @@ export class AdminComponent implements OnInit {
       );
       this.isSearching = false;
       this.searchResults["max-height"] = "100%";
-    }, 1300);
+    }, 1704);
   }
 
   openUserCard(userIndex) {

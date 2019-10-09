@@ -47,6 +47,10 @@ export class AddComponent {
     event.stopPropagation();
   }
 
+  onInputKeyDown(event) {
+    if (event.key == "Enter") this.submitQuestion();
+  }
+
   submitQuestion() {
     if (this.formData.filter(x => x.length < 1).length == 0) {
       this.globals.sendNotification(

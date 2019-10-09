@@ -89,7 +89,12 @@
     </div>
 
     <div style="display: block; text-align: center; margin-top: 10px;">
-      <div tabindex="5" class="iconButton" (click)="submitQuestion()">
+      <div
+        tabindex="5"
+        class="iconButton"
+        (click)="submitQuestion()"
+        (keydown)="onInputKeyDown($event)"
+      >
         <i class="fab fa-wpforms"></i>Frage & Antwort einreichen
       </div>
     </div>

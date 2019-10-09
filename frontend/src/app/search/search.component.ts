@@ -25,22 +25,25 @@ export class SearchComponent {
     padding: "25% 10px",
     margin: "-50px 0px"
   };
+  isSearching = false;
 
   onInputKeyDown(event) {
     if (event.key == "Enter") this.startSearch();
   }
 
   startSearch() {
-    this.globals.sendNotification(
-      `Die Suche ergab folgende Treffer`,
-      NotificationType.SUCCESS
-    );
-    this.landingStyle = {
-      margin: "-50px 0px",
-      "min-height": "50px",
-      padding: "100px 10px"
-    };
-    this.landingWrapperStyle.overflow = "visible";
-    this.resultsWrapper["max-height"] = "unset";
+    if (this.isSearching) return;
+    this.isSearching = true;
+
+    setTimeout(() => {
+      this.globals.sendNotification(
+        `Die Suche ergab folgende Treffer`,
+        NotificationType.SUCCESS
+      );
+      this.landingStyle = null;
+      this.landingWrapperStyle.overflow = "visible";
+      this.resultsWrapper["max-height"] = "unset";
+      this.isSearching = false;
+    }, 1500);
   }
 }
