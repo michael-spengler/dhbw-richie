@@ -16,6 +16,12 @@ export class AdminComponent implements OnInit {
   activeUser = {};
   overlayStyle = { display: "none" };
   cardStyle = { animation: "none" };
+  isSearching = false;
+  searchResults = {
+    overflow: "hidden",
+    transition: "1s ease",
+    "max-height": "0px"
+  };
 
   selectionStyle: any = { opacity: 0.7 };
 
@@ -54,10 +60,17 @@ export class AdminComponent implements OnInit {
   }
 
   searchPlayer() {
-    this.globals.sendNotification(
-      `Die Suche nach dem Nutzer ${this.userSearch} ergab keine Treffer`,
-      NotificationType.ERROR
-    );
+    if (this.isSearching) return;
+    this.searchResults["max-height"] = "0px";
+    this.isSearching = true;
+    setTimeout(() => {
+      this.globals.sendNotification(
+        `Die Suche nach ${this.userSearch} ergab folgende Treffer`,
+        NotificationType.SUCCESS
+      );
+      this.isSearching = false;
+      this.searchResults["max-height"] = "100%";
+    }, 1300);
   }
 
   openUserCard(userIndex) {

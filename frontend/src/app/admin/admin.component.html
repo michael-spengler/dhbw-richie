@@ -128,20 +128,31 @@
     <i class="fas fa-search"></i>Suche starten
   </div>
 
-  <h3>Ergebnisse</h3>
-  <div class="tablewrapper">
-    <table>
-      <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
-        <td>{{ user.name }}</td>
-        <td>{{ user.mail }}</td>
-        <td>{{ user.created | date: "dd.MM.yyyy" }}</td>
-        <td>{{ user.rank }}</td>
-        <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
-        <td *ngIf="!user.enabled">
-          <i class="fad fa-user-times disabled"></i>
-        </td>
-      </tr>
-    </table>
+  <div *ngIf="isSearching">
+    <h3>Suche läuft</h3>
+    <div class="loaderWrapper">
+      <div class="loader">
+        <div *ngFor="let y of [].constructor(20)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngStyle]="searchResults">
+    <h3>Ergebnisse</h3>
+    <div class="tablewrapper">
+      <table>
+        <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
+          <td>{{ user.name }}</td>
+          <td>{{ user.mail }}</td>
+          <td>{{ user.created | date: "dd.MM.yyyy" }}</td>
+          <td>{{ user.rank }}</td>
+          <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
+          <td *ngIf="!user.enabled">
+            <i class="fad fa-user-times disabled"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 

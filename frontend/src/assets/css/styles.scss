@@ -796,3 +796,40 @@ header {
     }
   }
 }
+
+$boxes: 20;
+$durationAll: 0.8s;
+$duration: -$durationAll / $boxes;
+$color: #08f;
+
+.loaderWrapper {
+  display: block;
+  height: 2px;
+  margin-bottom: 10px;
+}
+
+.loader {
+  height: 2px;
+  display: flex;
+  transform: translateZ(0);
+
+  div {
+    flex: 1;
+    background: $color;
+    animation: go $durationAll infinite alternate ease;
+    box-shadow: 0 0 20px $color;
+
+    @for $i from 1 through $boxes {
+      &:nth-child(#{$i}) {
+        animation-delay: $duration * ($boxes - $i);
+      }
+    }
+  }
+}
+@keyframes go {
+  100% {
+    background: transparent;
+    flex: 10;
+    box-shadow: 0 0 0 transparent;
+  }
+}
