@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { Globals, NotificationType } from "../globals";
+import { Component, OnInit } from '@angular/core';
+import { Globals, NotificationType } from '../globals';
 
 @Component({
-  selector: "app-admin",
-  templateUrl: "./admin.component.html",
-  styleUrls: ["./admin.component.css"]
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
   constructor(public globals: Globals) {}
@@ -13,19 +13,19 @@ export class AdminComponent implements OnInit {
     this.__LOADUSERDATA();
   }
 
-  activeUser = {};
-  overlayStyle = { display: "none" };
-  cardStyle = { animation: "none" };
+  activeUser: any = {};
+  overlayStyle = { display: 'none' };
+  cardStyle = { animation: 'none' };
   isSearching = false;
   searchResults = {
-    overflow: "hidden",
-    transition: "1s ease",
-    "max-height": "0px"
+    'overflow': 'hidden',
+    'transition': '1s ease',
+    'max-height': '0px'
   };
 
   selectionStyle: any = { opacity: 0.7 };
 
-  userSearch = "";
+  userSearch = '';
   users;
 
   onInputKeyDown(event) {
@@ -41,27 +41,27 @@ export class AdminComponent implements OnInit {
       this.hideSelection();
     } else {
       this.selectionStyle.opacity = 1;
-      this.selectionStyle.transform = "scale(1)";
+      this.selectionStyle.transform = 'scale(1)';
     }
   }
   hideSelection() {
     this.selectionStyle.opacity = 0;
-    this.selectionStyle.transform = "scale(0)";
+    this.selectionStyle.transform = 'scale(0)';
   }
 
   setRankToAdmin() {
-    this.activeUser["rank"] = "Admin";
+    this.activeUser['rank'] = 'Admin';
   }
   setRankToReviewer() {
-    this.activeUser["rank"] = "Reviewer";
+    this.activeUser['rank'] = 'Reviewer';
   }
   setRankToPro() {
-    this.activeUser["rank"] = "Pro";
+    this.activeUser['rank'] = 'Pro';
   }
 
   searchPlayer() {
     if (this.isSearching) return;
-    this.searchResults["max-height"] = "0px";
+    this.searchResults['max-height'] = '0px';
     this.isSearching = true;
     setTimeout(() => {
       this.globals.sendNotification(
@@ -69,96 +69,95 @@ export class AdminComponent implements OnInit {
         NotificationType.SUCCESS
       );
       this.isSearching = false;
-      this.searchResults["max-height"] = "100%";
+      this.searchResults['max-height'] = '100%';
     }, 1704);
   }
 
   openUserCard(userIndex) {
     this.overlayStyle = {
-      display: "block"
+      display: 'block'
     };
     this.cardStyle = {
-      animation: "overlay-animation 0.4s linear both"
+      animation: 'overlay-animation 0.4s linear both'
     };
     this.activeUser = this.users[userIndex];
-    this.activeUser["id"] = userIndex;
+    this.activeUser['id'] = userIndex;
   }
 
   closeUserCard() {
-    console.log("close");
-    this.overlayStyle = { display: "none" };
-    this.cardStyle = { animation: "none" };
+    console.log('close');
+    this.overlayStyle = { display: 'none' };
+    this.cardStyle = { animation: 'none' };
     this.hideSelection();
   }
 
   toggleUserActivation() {
-    this.users[this.activeUser["id"]].enabled = !this.users[
-      this.activeUser["id"]
-    ].enabled;
+    this.users[this.activeUser['id']].enabled = !this.users[this.activeUser['id']]
+      .enabled;
   }
 
   __LOADUSERDATA() {
     this.users = [
       {
-        name: "Timo Scheuermann",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Timo Scheuermann',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         created: new Date(1569939205000),
         enabled: true
       },
       {
-        name: "Nicolas Fürhaupter",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Nicolas Fürhaupter',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       },
       {
-        name: "Moritz Jürgens",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Moritz Jürgens',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       },
       {
-        name: "Jan Gruebener",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Jan Gruebener',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       },
       {
-        name: "Aaron Schweig",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Aaron Schweig',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       },
       {
-        name: "Eger Jan",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Eger Jan',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       },
       {
-        name: "Troy Kessler",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Troy Kessler',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       },
       {
-        name: "Mr. Flo",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Mr. Flo',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       },
       {
-        name: "Prinz Marcus",
-        mail: "max.mustermann@mail.de",
-        rank: "Admin",
+        name: 'Prinz Marcus',
+        mail: 'max.mustermann@mail.de',
+        rank: 'Admin',
         enabled: true,
         created: new Date(1569939205000)
       }

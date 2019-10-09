@@ -1,15 +1,15 @@
-import { Component } from "@angular/core";
-import { Globals } from "../globals";
+import { Component } from '@angular/core';
+import { Globals } from '../globals';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private globals: Globals) {}
+  constructor(public globals: Globals) {}
 
-  openURL(url) {
-    window.open(url, "_blank");
+  openURL(url: string) {
+    window.open(url, '_blank');
   }
 }

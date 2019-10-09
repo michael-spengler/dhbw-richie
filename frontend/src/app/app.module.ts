@@ -7,7 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { AddComponent } from './add/add.component';
 import { AdminComponent } from './admin/admin.component';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { Globals } from './globals';
@@ -26,6 +25,7 @@ import { ThemeModule } from './theme/theme.module';
 
 const title = 'DHBW Richie | ';
 const appRoutes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
     component: HomeComponent,
@@ -86,8 +86,6 @@ const appRoutes: Routes = [
     component: QuestionComponent,
     data: { title: `${title}Question` }
   },
-
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: '**',
     component: PageNotFoundComponent,
@@ -98,20 +96,15 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
-    ),
     ReactiveFormsModule,
     ThemeModule.forRoot({
       themes: [lightTheme, darkTheme],
       active: 'light'
     }),
-    LayoutModule
+    LayoutModule,
+    RouterModule.forRoot(appRoutes)
   ],
   declarations: [
     AppComponent,
