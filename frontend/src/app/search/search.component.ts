@@ -7,7 +7,45 @@ import { Globals, NotificationType } from "../globals";
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent {
-  constructor(public globals: Globals) {}
+  constructor(public globals: Globals) { }
+
+  selectionStyle: any = { opacity: 0.7 };
+  formData = ["", "", "", ""];
+  lectures = [
+    "Einführung IT",
+    "Logik & Algebra",
+    "Finanzmathe",
+    "Programmieren I",
+    "Programmieren II",
+    "Bilanzierung",
+    "Vertrags-Recht",
+    "Was auch immer",
+    "soll mir das",
+    "Backend schicken"
+  ];
+
+  setLecture(lecture: string): void {
+    this.formData[3] = lecture;
+    this.hideSelection();
+  }
+
+  toggleSelection() {
+    if (this.selectionStyle.opacity === 1) {
+      this.hideSelection();
+    } else {
+      this.selectionStyle.opacity = 1;
+      this.selectionStyle.transform = "scale(1)";
+    }
+  }
+
+  hideSelection() {
+    this.selectionStyle.opacity = 0;
+    this.selectionStyle.transform = "scale(0)";
+  }
+
+  onClick(event) {
+    event.stopPropagation();
+  }
 
   searchQuery = "";
 
