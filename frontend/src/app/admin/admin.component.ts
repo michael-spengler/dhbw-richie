@@ -19,8 +19,8 @@ export class AdminComponent implements OnInit {
   isSearching = false;
   searchResults = {
     'overflow': 'hidden',
-    'transition': '1s ease',
-    'max-height': '0px'
+    'transition': '40s ease',
+    'max-height': '0'
   };
 
   selectionStyle: any = { opacity: 0.7 };
@@ -61,7 +61,7 @@ export class AdminComponent implements OnInit {
 
   searchPlayer() {
     if (this.isSearching) return;
-    this.searchResults['max-height'] = '0px';
+    this.searchResults['max-height'] = '0';
     this.isSearching = true;
     setTimeout(() => {
       this.globals.sendNotification(
@@ -69,8 +69,8 @@ export class AdminComponent implements OnInit {
         NotificationType.SUCCESS
       );
       this.isSearching = false;
-      this.searchResults['max-height'] = '100%';
-    }, 1704);
+      this.searchResults['max-height'] = '80000px';
+    }, 1703);
   }
 
   openUserCard(userIndex) {

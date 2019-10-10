@@ -94,18 +94,6 @@ nav {
           user-select: none;
 }
 
-nav .title {
-  display: inline-block;
-  font-weight: 700;
-  width: 100%;
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  -webkit-filter: brightness(110%);
-          filter: brightness(110%);
-  letter-spacing: 1px;
-}
-
 nav .hotlinks {
   position: absolute;
   margin: 5px;
@@ -135,6 +123,19 @@ nav .hotlinks a:not(:first-child) {
 
 nav .hotlinks a:hover {
   color: #fff;
+}
+
+nav .title {
+  display: block;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  -webkit-filter: brightness(110%);
+          filter: brightness(110%);
+  letter-spacing: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 50px;
 }
 
 nav .routes a {

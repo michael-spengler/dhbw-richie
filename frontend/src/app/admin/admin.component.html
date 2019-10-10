@@ -47,7 +47,7 @@
         </tr>
         <tr>
           <td>Mitglied seit</td>
-          <td>{{ activeUser.created | date: "dd.MM.yyyy" }}</td>
+          <td>{{ activeUser.created | date: 'dd.MM.yyyy' }}</td>
         </tr>
       </table>
 
@@ -144,7 +144,7 @@
         <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
           <td>{{ user.name }}</td>
           <td>{{ user.mail }}</td>
-          <td>{{ user.created | date: "dd.MM.yyyy" }}</td>
+          <td>{{ user.created | date: 'dd.MM.yyyy' }}</td>
           <td>{{ user.rank }}</td>
           <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
           <td *ngIf="!user.enabled">

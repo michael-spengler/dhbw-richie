@@ -84,17 +84,6 @@ nav {
   color: #fff;
   user-select: none;
 
-  .title {
-    display: inline-block;
-    font-weight: 700;
-    width: 100%;
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
-    filter: brightness(110%);
-    letter-spacing: 1px;
-  }
-
   .hotlinks {
     position: absolute;
     margin: 5px;
@@ -117,6 +106,18 @@ nav {
         color: #fff;
       }
     }
+  }
+
+  .title {
+    display: block;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    filter: brightness(110%);
+    letter-spacing: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 50px;
   }
 
   .routes {

@@ -5,7 +5,6 @@ textarea {
   border: 1px solid var(--input-border);
   background: var(--paragraph);
   padding: 5px 10px;
-  width: 100%;
   color: var(--font-color);
   transition: 0.2s ease;
   font-size: 1em;
@@ -19,6 +18,7 @@ textarea {
 
 textarea {
   resize: none;
+  width: calc(100% - 20px);
 }
 .input {
   display: inline-grid;
@@ -27,6 +27,7 @@ textarea {
 @media only screen and (min-width: 800px) {
   .inputWrapper {
     grid-template-columns: 3fr 1fr;
+    grid-gap: 20px;
   }
   .selectionWrapper {
     margin-left: -50px;
@@ -36,6 +37,7 @@ textarea {
 @media only screen and (max-width: 799px) {
   .inputWrapper {
     grid-template-columns: 1fr;
+    grid-gap: 0px;
   }
   .selectionWrapper {
     margin-top: -150px;
@@ -44,7 +46,6 @@ textarea {
 
 .inputWrapper {
   display: grid;
-  grid-gap: 20px;
 }
 
 .lecture {

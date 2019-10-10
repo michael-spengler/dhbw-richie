@@ -5,7 +5,6 @@ textarea {
   border: 1px solid var(--input-border);
   background: var(--paragraph);
   padding: 5px 10px;
-  width: 100%;
   color: var(--font-color);
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
@@ -21,6 +20,7 @@ textarea:hover {
 
 textarea {
   resize: none;
+  width: calc(100% - 20px);
 }
 
 .input {
@@ -32,6 +32,7 @@ textarea {
   .inputWrapper {
     -ms-grid-columns: 3fr 1fr;
         grid-template-columns: 3fr 1fr;
+    grid-gap: 20px;
   }
   .selectionWrapper {
     margin-left: -50px;
@@ -43,6 +44,7 @@ textarea {
   .inputWrapper {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+    grid-gap: 0px;
   }
   .selectionWrapper {
     margin-top: -150px;
@@ -52,7 +54,6 @@ textarea {
 .inputWrapper {
   display: -ms-grid;
   display: grid;
-  grid-gap: 20px;
 }
 
 .lecture {

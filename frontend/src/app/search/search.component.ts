@@ -1,27 +1,27 @@
-import { Component } from "@angular/core";
-import { Globals, NotificationType } from "../globals";
+import { Component } from '@angular/core';
+import { Globals, NotificationType } from '../globals';
 
 @Component({
-  selector: "app-search",
-  templateUrl: "./search.component.html",
-  styleUrls: ["./search.component.css"]
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  constructor(public globals: Globals) { }
+  constructor(public globals: Globals) {}
 
   selectionStyle: any = { opacity: 0.7 };
-  formData = ["", "", "", ""];
+  formData = ['', '', '', ''];
   lectures = [
-    "Einführung IT",
-    "Logik & Algebra",
-    "Finanzmathe",
-    "Programmieren I",
-    "Programmieren II",
-    "Bilanzierung",
-    "Vertrags-Recht",
-    "Was auch immer",
-    "soll mir das",
-    "Backend schicken"
+    'Einführung IT',
+    'Logik & Algebra',
+    'Finanzmathe',
+    'Programmieren I',
+    'Programmieren II',
+    'Bilanzierung',
+    'Vertrags-Recht',
+    'Was auch immer',
+    'soll mir das',
+    'Backend schicken'
   ];
 
   setLecture(lecture: string): void {
@@ -34,39 +34,35 @@ export class SearchComponent {
       this.hideSelection();
     } else {
       this.selectionStyle.opacity = 1;
-      this.selectionStyle.transform = "scale(1)";
+      this.selectionStyle.transform = 'scale(1)';
     }
   }
 
   hideSelection() {
     this.selectionStyle.opacity = 0;
-    this.selectionStyle.transform = "scale(0)";
+    this.selectionStyle.transform = 'scale(0)';
   }
 
   onClick(event) {
     event.stopPropagation();
   }
 
-  searchQuery = "";
+  searchQuery = '';
 
   resultsWrapper = {
-    "max-height": "0px",
-    overflow: "hidden"
+    'max-height': '0px',
+    'overflow': 'hidden'
   };
   landingWrapperStyle = {
-    overflow: "hidden",
-    "max-height": "100vh",
-    "margin-top": "-50px"
+    top: '50%'
   };
   landingStyle = {
-    "min-height": "100%",
-    padding: "25% 10px",
-    margin: "-50px 0px"
+    'min-height': '100vh'
   };
   isSearching = false;
 
   onInputKeyDown(event) {
-    if (event.key == "Enter") this.startSearch();
+    if (event.key == 'Enter') this.startSearch();
   }
 
   startSearch() {
@@ -78,9 +74,9 @@ export class SearchComponent {
         `Die Suche ergab folgende Treffer`,
         NotificationType.SUCCESS
       );
-      this.landingStyle = null;
-      this.landingWrapperStyle.overflow = "visible";
-      this.resultsWrapper["max-height"] = "unset";
+      this.landingStyle['min-height'] = '268.667px';
+      this.landingWrapperStyle.top = '144.334px';
+      this.resultsWrapper['max-height'] = 'unset';
       this.isSearching = false;
     }, 1500);
   }

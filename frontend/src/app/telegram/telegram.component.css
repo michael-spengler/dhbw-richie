@@ -10,8 +10,8 @@ tr:hover #join {
 }
 
 img {
-  height: 40px;
-  margin: -5px;
+  height: 100%;
+  margin-bottom: -10px;
   background: #eee;
   border-radius: 20px;
   user-select: none;

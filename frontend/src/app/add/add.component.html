@@ -3,16 +3,13 @@
   <h2>Anderen Helfen</h2>
 </div>
 
-<div
-  *ngIf="globals.user.signed_in; then addParagraph; else notSignedInParagraph"
-></div>
+<div *ngIf="globals.user.signed_in; then addParagraph; else notSignedInParagraph"></div>
 
 <ng-template #notSignedInParagraph class="paragraph">
   <div class="paragraph">
     <h2>Nicht angemeldet!</h2>
     <p>
-      Um neue Fragen und Antworten einreichen zu können musst du angemeldet
-      sein.
+      Um neue Fragen und Antworten einreichen zu können musst du angemeldet sein.
     </p>
     <a [routerLink]="['/login']" class="iconButton">
       <i class="fa fa-sign-in-alt"></i>Anmelden
