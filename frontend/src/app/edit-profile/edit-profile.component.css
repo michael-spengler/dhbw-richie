@@ -139,12 +139,12 @@
   opacity: 0.8;
 }
 
-h2 i {
+h3 i {
   opacity: 0.7;
   cursor: pointer;
 }
 
-h2 i:hover {
+h3 i:hover {
   opacity: 1;
 }
 
