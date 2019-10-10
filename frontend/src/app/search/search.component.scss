@@ -1,87 +1,53 @@
 @media only screen and (min-width: 850px) {
   .questionwrapper {
-    margin: 30px 0px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 20px 60px;
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 849px) {
   .questionwrapper {
-    margin: 20px 0px;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .questionwrapper {
-    margin: 20px 0px;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    margin: 20px 10px;
   }
 }
 
 .questionwrapper {
   display: grid;
-  grid-gap: 20px;
-  overflow: auto;
-}
+  grid-gap: 40px;
+  word-break: break-all;
+  margin-bottom: 30px;
 
-.questionanswer {
-  display: inline-grid;
-  text-align: left;
-  padding: 15px;
-  border-radius: 5px;
-  background: var(--background);
-}
-
-.head {
-  display: grid;
-  grid-template-columns: 1fr 20px;
-  grid-template-rows: 20px;
-  grid-gap: 10px;
-  border-bottom: 1px solid var(--input-border);
-  margin-bottom: 10px;
-
-  * {
-    line-height: 20px;
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
-  .question {
+  .questionanswer {
     display: inline-grid;
-    font-weight: 700;
-  }
-  .expand {
-    text-align: center;
-    display: inline-grid;
-    transition: 0.2s ease;
-    &:hover {
+    background: var(--paragraph);
+    border-radius: 5px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+
+    .icon {
+      position: absolute;
+      margin-top: -15px;
       color: #08f;
+      font-size: 1.8em;
     }
-  }
-}
 
-.answer {
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
+    .question {
+      padding: 10px 20px;
+      background: var(--popupBackground);
+    }
 
-.answer::before,
-.answer::after {
-  content: '"';
-}
+    .answer {
+      padding: 20px;
+    }
 
-.feedback {
-  text-align: right;
-  margin-bottom: -5px;
-  font-size: 0.8em;
-  color: var(--font-color);
-  cursor: pointer;
-  opacity: 0.5;
-  &:hover {
-    opacity: 0.75;
-  }
-  &::before {
-    content: 'Feedback';
+    .actions {
+      margin: 0px 20px;
+      padding: 10px 0px;
+      border-top: 1px solid #bbb;
+      .action {
+      }
+    }
   }
 }
 

@@ -28,7 +28,7 @@ export class EditProfileComponent {
       });
     }
     for (let i = 0; i < 2; i++) {
-      this.questionWrapper.push({ 'max-height': '0px', 'transition': '1s linear' });
+      this.questionWrapper.push({ 'max-height': '0px', 'transition': '1s ease' });
       this.iconStyle.push({
         'margin-left': '10px',
         'transform': `rotate(0deg)`,

@@ -17,7 +17,6 @@ export class SearchComponent {
           'Rel. ez. 1+1 = 2 dawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaiddawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaiddawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaid'
       });
     }
-    this.startSearch();
   }
 
   selectionStyle: any = { opacity: 0.7 };
@@ -40,7 +39,8 @@ export class SearchComponent {
 
   resultsWrapper = {
     'max-height': '0px',
-    'overflow': 'hidden'
+    'overflow': 'hidden',
+    'display': 'none'
   };
   landingWrapperStyle = {
     top: '50%'
@@ -88,8 +88,9 @@ export class SearchComponent {
       );
       this.landingStyle['min-height'] = '268.667px';
       this.landingWrapperStyle.top = '144.334px';
+      this.resultsWrapper.display = 'block';
       this.resultsWrapper['max-height'] = 'unset';
       this.isSearching = false;
-    }, 1500 / 1500);
+    }, 1500);
   }
 }

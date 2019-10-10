@@ -45,21 +45,27 @@
   </div>
 </div>
 
+<div class="paragraph" *ngIf="!globals.user.signed_in">
+  <h2>Go <span class="gradient">Pro</span>, unterrichte Richie!</h2>
+  <p>
+    Richie lebt davon neue Sachen zu lernen, um damit anderen Studenten bei Fragen schnell
+    und präzise helfen zu können. Ohne die Unterstützung eines
+    <span class="gradient">Pros</span> ist dies leider nicht möglich. Er ist auf Deine
+    Hilfe angewiesen!<br /><br />
+    Wenn du möchteste, dass Richie schlauer wird, um anderen zu Helfen, dann kannst du
+    dich ganz einfach mit einem deiner bereits existierenden Accounts anmelden. Dadurch
+    hast du dann die Möglichkeit neue Frage zu erstellen und durch einen kurzen Text zu
+    beantworten. Gleichzeitig kannst du dich mit anderen Kommilitionen über die
+    Kommentarfunktion austauschen. Anderen wird es mit Sicherheit eine Hilfe sein!
+    <a [routerLink]="['/login']">Ich möchte ein Pro werden!</a>
+  </p>
+</div>
+
 <div class="paragraph">
   <h2>Du hast Fragen zu einer Klausur?</h2>
   <a class="iconButton" [href]="globals.botURL"
     ><i class="fab fa-telegram-plane"></i>Stell sie mir</a
   >
-</div>
-
-<div class="paragraph" *ngIf="!globals.user.signed_in">
-  <h2>Go <span class="gradient">Pro</span>, unterrichte Richie!</h2>
-  <p>
-    Du möchtest, eine neue Frage einreichen, die häufig gestellt wird und durch einen
-    kurzen Text beantworten? Dann erstelle dir ganz einfach einen Account und unterstütze
-    dadurch deine Kommilitonen der DHBW.
-    <a [routerLink]="['/login']">Ich möchte ein Pro werden!</a>
-  </p>
 </div>
 
 <div class="removeWhite"></div>

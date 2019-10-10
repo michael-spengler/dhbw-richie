@@ -119,10 +119,12 @@
   }
 }
 
-h3 i {
-  opacity: 0.7;
+.toggleTable {
   cursor: pointer;
-  &:hover {
+  i {
+    opacity: 0.7;
+  }
+  &:hover i {
     opacity: 1;
   }
 }
