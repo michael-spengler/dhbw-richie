@@ -84,6 +84,12 @@ nav {
   color: #fff;
   user-select: none;
 
+  .divider {
+    margin: 20px 10px;
+    height: 1px;
+    background: #888;
+  }
+
   .hotlinks {
     position: absolute;
     margin: 5px;
@@ -296,7 +302,7 @@ nav {
   }
 }
 
-@media only screen and (max-height: 330px) {
+@media only screen and (max-height: 410px) {
   nav {
     .hotlinks {
       position: initial;

@@ -94,6 +94,12 @@ nav {
           user-select: none;
 }
 
+nav .divider {
+  margin: 20px 10px;
+  height: 1px;
+  background: #888;
+}
+
 nav .hotlinks {
   position: absolute;
   margin: 5px;
@@ -263,7 +269,7 @@ nav .routes .active:hover {
   }
 }
 
-@media only screen and (max-height: 330px) {
+@media only screen and (max-height: 410px) {
   nav .hotlinks {
     position: initial;
   }

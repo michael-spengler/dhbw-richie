@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Globals } from '../globals';
+import { Globals, NotificationType } from '../globals';
 
 @Component({
   selector: 'app-edit-profile',
@@ -55,10 +55,16 @@ export class EditProfileComponent {
   removeLikedQuestion(index, event) {
     event.stopPropagation();
     this.likedQuestions.splice(index, 1);
+    this.sendRemoveNotification();
   }
 
   removeDislikedQuestion(index, event) {
     event.stopPropagation();
     this.dislikedQuestions.splice(index, 1);
+    this.sendRemoveNotification();
+  }
+
+  sendRemoveNotification() {
+    this.globals.sendNotification('Eintrag gelöscht', NotificationType.SUCCESS);
   }
 }

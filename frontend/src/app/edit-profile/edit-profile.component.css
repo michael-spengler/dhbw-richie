@@ -87,6 +87,9 @@
         grid-template-columns: 1fr 300px;
     margin-top: -20px;
   }
+  .iconButton {
+    margin-top: 5px;
+  }
 }
 
 .informations {
@@ -164,5 +167,25 @@ tr:hover td > i {
 [routerLink]:visited,
 [routerLink]:focus {
   outline: none;
+}
+
+input {
+  padding: 5px 10px;
+  background: var(--paragraph);
+  border: 1px solid var(--input-border);
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  border-radius: 5px;
+  color: var(--font-color);
+}
+
+input:hover, input:focus {
+  background: var(--input-border);
+  outline: none;
+}
+
+td .iconButton {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
 /*# sourceMappingURL=edit-profile.component.css.map */
