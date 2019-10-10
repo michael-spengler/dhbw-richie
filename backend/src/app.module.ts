@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LoginModule } from './login/login.module';
+import { PassportModule } from './passport';
+import { RolesModule } from './roles/roles.module';
 import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
 import { User } from './entities/user.entity';
@@ -9,6 +12,9 @@ import { ConfigModule, ConfigService } from './config';
 
 @Module({
   imports: [
+    PassportModule, 
+    LoginModule, 
+    RolesModule,
     ConfigModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

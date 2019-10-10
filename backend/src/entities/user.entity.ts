@@ -1,4 +1,11 @@
-import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  CreateDateColumn,
+  BeforeInsert,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -9,14 +16,28 @@ export class User {
   email: string;
 
   @Column()
-  username: string;
+  isAdmin: boolean;
 
   @Column()
-  password: string;
+  isReviewer: boolean;
 
   @Column()
-  isAdmin: boolean; // Rechte: isReviewer + Reviewer bestimmen, Löschen (Archivieren), evtl. Benachrichtigungen/Berichte per Mail/Inbox...
+  familyName: string;
 
   @Column()
-  isReviewer: boolean; // Rechte: Neue Fragen (Data) eintragen, Data reviewen & bestätigen/ablehnen (endgültig eintragen)
+  givenName: string;
+
+  @Column()
+  picture: string;
+
+  @Column()
+  googleId: number;
+
+  @Column()
+  created: number;
+
+  @BeforeInsert()
+  updateCreated() {
+    this.created = new Date().getTime();
+  }
 }
