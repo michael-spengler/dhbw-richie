@@ -1,4 +1,11 @@
-import { Column, Entity, ObjectID, ObjectIdColumn, CreateDateColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  CreateDateColumn,
+  BeforeInsert,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -28,4 +35,9 @@ export class User {
 
   @Column()
   created: number;
+
+  @BeforeInsert()
+  updateCreated() {
+    this.created = new Date().getTime();
+  }
 }
