@@ -33,10 +33,36 @@
   background: var(--background);
 }
 
-.question {
-  font-weight: 700;
-  margin-bottom: 5px;
+.head {
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  grid-template-rows: 20px;
+  grid-gap: 10px;
   border-bottom: 1px solid var(--input-border);
+  margin-bottom: 10px;
+
+  * {
+    line-height: 20px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  .question {
+    display: inline-grid;
+    font-weight: 700;
+  }
+  .expand {
+    text-align: center;
+    display: inline-grid;
+    transition: 0.2s ease;
+    &:hover {
+      color: #08f;
+    }
+  }
+}
+
+.answer {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .answer::before,

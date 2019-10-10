@@ -38,10 +38,45 @@
   background: var(--background);
 }
 
-.question {
-  font-weight: 700;
-  margin-bottom: 5px;
+.head {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 20px;
+      grid-template-columns: 1fr 20px;
+  -ms-grid-rows: 20px;
+      grid-template-rows: 20px;
+  grid-gap: 10px;
   border-bottom: 1px solid var(--input-border);
+  margin-bottom: 10px;
+}
+
+.head * {
+  line-height: 20px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.head .question {
+  display: -ms-inline-grid;
+  display: inline-grid;
+  font-weight: 700;
+}
+
+.head .expand {
+  text-align: center;
+  display: -ms-inline-grid;
+  display: inline-grid;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.head .expand:hover {
+  color: #08f;
+}
+
+.answer {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .answer::before,

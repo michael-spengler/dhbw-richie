@@ -61,3 +61,60 @@
     }
   }
 }
+
+.answerHead {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  * {
+    align-self: center;
+  }
+  h2 {
+    display: inline-flex;
+  }
+  .actions {
+    display: inline-flex;
+    border-bottom: 1px solid var(--input-border);
+    padding: 5px;
+
+    .action {
+      display: inline-block;
+      padding: 0px 5px;
+      min-width: 30px;
+      text-align: center;
+      transition: 0.2s ease;
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+      cursor: pointer;
+      &:hover,
+      &[selected='true'] {
+        .description,
+        i {
+          opacity: 1;
+        }
+      }
+      i {
+        opacity: 0.8;
+      }
+      &[amount]::after {
+        content: attr(amount);
+        //position: absolute;
+        padding-top: 4px;
+        //margin-left: -5px;
+        display: block;
+        width: 40px;
+        opacity: 0.7;
+        font-size: 12px;
+      }
+      .description {
+        font-size: 0.8em;
+        display: inline-block;
+        opacity: 0.7;
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

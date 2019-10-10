@@ -8,10 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuestionComponent {
   constructor(public route: ActivatedRoute) {
-    route.params.subscribe(params => console.log(params));
+    route.params.subscribe(params => {
+      this.question.isValid = !isNaN(params.id);
+      this.question.id = params.id;
+    });
   }
 
   question = {
+    isValid: true,
     id: '2613762186',
     question: 'Wie verschlüssel ich eine Nachricht mit Hilfe des RSA-Algorithmus',
     answer:

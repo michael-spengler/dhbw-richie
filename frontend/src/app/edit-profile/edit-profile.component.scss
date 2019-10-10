@@ -14,7 +14,7 @@
   font-weight: 600;
 }
 .landing .mail::before {
-  content: "Deine E-Mail-Adresse lautet ";
+  content: 'Deine E-Mail-Adresse lautet ';
 }
 
 .logout {
@@ -117,4 +117,26 @@
       opacity: 0.8;
     }
   }
+}
+
+h2 i {
+  opacity: 0.7;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+td > i {
+  color: rgb(255, 59, 48);
+  opacity: 0.8;
+}
+tr:hover td > i {
+  opacity: 1;
+}
+
+[routerLink]:active,
+[routerLink]:visited,
+[routerLink]:focus {
+  outline: none;
 }

@@ -7,7 +7,18 @@ import { Globals, NotificationType } from '../globals';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  constructor(public globals: Globals) {}
+  constructor(public globals: Globals) {
+    for (let i = 0; i < 14; i++) {
+      this.results.push({
+        id: 82938290839,
+        question:
+          '1 mod x = 2 dawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaid',
+        answer:
+          'Rel. ez. 1+1 = 2 dawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaiddawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaiddawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaid'
+      });
+    }
+    this.startSearch();
+  }
 
   selectionStyle: any = { opacity: 0.7 };
   formData = ['', '', '', ''];
@@ -23,6 +34,21 @@ export class SearchComponent {
     'soll mir das',
     'Backend schicken'
   ];
+
+  searchQuery = '';
+  results = [];
+
+  resultsWrapper = {
+    'max-height': '0px',
+    'overflow': 'hidden'
+  };
+  landingWrapperStyle = {
+    top: '50%'
+  };
+  landingStyle = {
+    'min-height': '100vh'
+  };
+  isSearching = false;
 
   setLecture(lecture: string): void {
     this.formData[3] = lecture;
@@ -47,20 +73,6 @@ export class SearchComponent {
     event.stopPropagation();
   }
 
-  searchQuery = '';
-
-  resultsWrapper = {
-    'max-height': '0px',
-    'overflow': 'hidden'
-  };
-  landingWrapperStyle = {
-    top: '50%'
-  };
-  landingStyle = {
-    'min-height': '100vh'
-  };
-  isSearching = false;
-
   onInputKeyDown(event) {
     if (event.key == 'Enter') this.startSearch();
   }
@@ -78,6 +90,6 @@ export class SearchComponent {
       this.landingWrapperStyle.top = '144.334px';
       this.resultsWrapper['max-height'] = 'unset';
       this.isSearching = false;
-    }, 1500);
+    }, 1500 / 1500);
   }
 }

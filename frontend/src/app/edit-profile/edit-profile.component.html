@@ -1,7 +1,5 @@
 <div class="landing">
-  <div class="name">
-    {{ globals.user.givenName }} {{ globals.user.familyName }}
-  </div>
+  <div class="name">{{ globals.user.givenName }} {{ globals.user.familyName }}</div>
   <div class="mail">{{ globals.user.email }}</div>
   <div class="logout" (click)="globals.logOut()">
     Ausloggen
@@ -26,15 +24,13 @@
         </tr>
         <tr>
           <td>Mitglied seit</td>
-          <td>{{ globals.user.created | date: "dd.MM.yyyy" }}</td>
+          <td>{{ globals.user.created | date: 'dd.MM.yyyy' }}</td>
         </tr>
         <tr>
           <td>Rang</td>
           <td>
             <span *ngIf="globals.user.isAdmin">Admin</span>
-            <span *ngIf="!globals.user.isAdmin && globals.user.isReviewer"
-              >Reviewer</span
-            >
+            <span *ngIf="!globals.user.isAdmin && globals.user.isReviewer">Reviewer</span>
             <span *ngIf="!globals.user.isAdmin && !globals.user.isReviewer"
               ><div class="gradient">Pro</div></span
             >
@@ -49,6 +45,54 @@
         <div class="email">{{ globals.user.email }}</div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h3>
+    Fragen die mir gefallen
+    <span style="color: #08f; margin-left: 5px">{{ likedQuestions.length }}</span>
+    <i
+      class="fas fa-chevron-right"
+      (click)="toggleQuestionWrapper(0)"
+      [ngStyle]="iconStyle[0]"
+    ></i>
+  </h3>
+  <div class="tablewrapper" [ngStyle]="questionWrapper[0]">
+    <table>
+      <tr
+        *ngFor="let question of likedQuestions; let i = index"
+        [routerLink]="['/question', question.id]"
+      >
+        <td (click)="removeLikedQuestion(i, $event)"><i class="fal fa-times"></i></td>
+        <td>{{ question.question }}</td>
+        <td>{{ question.answer }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h3>
+    Fragen die ich nicht mag
+    <span style="color: #08f; margin-left: 5px">{{ dislikedQuestions.length }}</span>
+    <i
+      class="fas fa-chevron-right"
+      (click)="toggleQuestionWrapper(1)"
+      [ngStyle]="iconStyle[1]"
+    ></i>
+  </h3>
+  <div class="tablewrapper" [ngStyle]="questionWrapper[1]">
+    <table>
+      <tr
+        *ngFor="let question of dislikedQuestions; let i = index"
+        [routerLink]="['/question', question.id]"
+      >
+        <td (click)="removeDislikedQuestion(i, $event)"><i class="fal fa-times"></i></td>
+        <td>{{ question.question }}</td>
+        <td>{{ question.answer }}</td>
+      </tr>
+    </table>
   </div>
 </div>
 
