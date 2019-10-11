@@ -30,7 +30,7 @@
 </div>
 
 <div class="overlay" [ngStyle]="overlayStyle" (click)="closeUserCard()">
-  <div class="userCard" [ngStyle]="cardStyle" (click)="onClick($event)">
+  <div class="userCard" [ngStyle]="cardStyle" (click)="onClick($event); hideSelection()">
     <div class="close" (click)="closeUserCard()"></div>
     <h2>Informationen</h2>
     <div class="information">
@@ -78,12 +78,16 @@
         <span>{{ activeUser.id + 1 }}</span>
       </div>
 
-      <div class="stat" style="cursor: pointer;" (click)="toggleSelection()">
+      <div
+        class="stat"
+        style="cursor: pointer;"
+        (click)="onClick($event); toggleSelection()"
+      >
         <h1>Benutzer-<br />Gruppe</h1>
         <i class="fad fa-theater-masks"></i>
         <span>{{ activeUser.rank }}</span>
 
-        <div class="selectionWrapper" [ngStyle]="selectionStyle">
+        <div class="selectionWrapper" [ngClass]="selectionClass">
           <div class="selection" sTitle="Gruppe wählen">
             <div class="item" (click)="setRankToAdmin()">Admin</div>
             <div class="item" (click)="setRankToReviewer()">Reviewer</div>
@@ -121,7 +125,7 @@
   />
   <div
     class="iconButton"
-    style="display: inline-block"
+    style="display: inline-block; margin-bottom: -10px"
     (click)="searchPlayer()"
     tabindex="2"
   >

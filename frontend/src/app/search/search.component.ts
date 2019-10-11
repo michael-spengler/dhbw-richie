@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { Globals, NotificationType } from '../globals';
 
 @Component({
@@ -8,10 +8,12 @@ import { Globals, NotificationType } from '../globals';
 })
 export class SearchComponent implements AfterViewInit {
   ngAfterViewInit(): void {
-    this.startSearch();
+    setTimeout(() => {
+      //this.startSearch();
+    }, 20);
   }
   constructor(public globals: Globals) {
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 35; i++) {
       let question_addition = '';
       let answer_addition = '';
       for (let x = 0; x < Math.random() * 200; x++) {
@@ -65,6 +67,24 @@ export class SearchComponent implements AfterViewInit {
     'min-height': '100vh'
   };
   isSearching = false;
+  searchResultElements = [];
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event = null) {
+    if (this.searchResultElements === null || this.searchResultElements.length == 0)
+      return;
+
+    this.searchResultElements.forEach(element => {
+      let positionFromTop = element.getBoundingClientRect().top;
+      let windowHeight = window.innerHeight;
+      if (positionFromTop - windowHeight <= 0 && !element.classList.contains('come-in')) {
+        element.classList.add('come-in');
+      }
+    });
+    this.searchResultElements = this.searchResultElements.filter(
+      element => !element.classList.contains('come-in')
+    );
+  }
 
   setLecture(lecture: string): void {
     this.formData[3] = lecture;
@@ -107,6 +127,12 @@ export class SearchComponent implements AfterViewInit {
       this.resultsWrapper.display = 'block';
       this.resultsWrapper['max-height'] = 'unset';
       this.isSearching = false;
-    }, 1500 * 0);
+      this.searchResultElements = Array.from(
+        document.querySelectorAll('.questionanswer')
+      ).slice(0);
+      setTimeout(() => {
+        this.onScroll();
+      }, 700);
+    }, 1500 * 1);
   }
 }

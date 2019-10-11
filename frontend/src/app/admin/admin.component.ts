@@ -24,6 +24,7 @@ export class AdminComponent implements OnInit {
   };
 
   selectionStyle: any = { opacity: 0.7 };
+  selectionClass: string = 'hideSelect';
 
   userSearch = '';
   users;
@@ -40,11 +41,15 @@ export class AdminComponent implements OnInit {
     if (this.selectionStyle.opacity === 1) {
       this.hideSelection();
     } else {
+      this.selectionClass = 'showSelect';
+      this.selectionStyle['max-width'] = '0px';
       this.selectionStyle.opacity = 1;
       this.selectionStyle.transform = 'scale(1)';
+      this.selectionStyle['max-width'] = 'unset';
     }
   }
   hideSelection() {
+    this.selectionClass = 'hideSelect';
     this.selectionStyle.opacity = 0;
     this.selectionStyle.transform = 'scale(0)';
   }
