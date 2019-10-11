@@ -23,4 +23,73 @@
   -webkit-box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
           box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.landingFull {
+  background: var(--landing-bg);
+  background-size: cover;
+  background-position: center;
+  margin: -50px 0px;
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.landingFullWrapper {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: calc(50% + 25px);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.whyPro {
+  background: rgba(127, 127, 127, 0.4);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+  padding: 20px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-100%, -50%);
+          transform: translate(-100%, -50%);
+  color: #fff;
+}
+
+.whyPro h1 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.whyPro li {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.whyPro ul {
+  margin: 0;
+  margin-right: 5px;
+}
+
+@-webkit-keyframes leftToRight {
+  from {
+    left: 0px;
+    opacity: 0;
+  }
+  to {
+    left: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes leftToRight {
+  from {
+    left: 0px;
+    opacity: 0;
+  }
+  to {
+    left: 50%;
+    opacity: 1;
+  }
+}
 /*# sourceMappingURL=login.component.css.map */

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Globals, NotificationType } from '../globals';
 
 @Component({
@@ -6,15 +6,31 @@ import { Globals, NotificationType } from '../globals';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
+export class SearchComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    this.startSearch();
+  }
   constructor(public globals: Globals) {
     for (let i = 0; i < 14; i++) {
+      let question_addition = '';
+      let answer_addition = '';
+      for (let x = 0; x < Math.random() * 200; x++) {
+        question_addition += Math.random()
+          .toString(36)
+          .substring(7);
+      }
+      for (let x = 0; x < Math.random() * 200; x++) {
+        answer_addition += Math.random()
+          .toString(36)
+          .substring(7);
+      }
+
       this.results.push({
         id: 82938290839,
-        question:
-          '1 mod x = 2 dawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaid',
-        answer:
-          'Rel. ez. 1+1 = 2 dawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaiddawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaiddawjdiwjadwadijwaiodjwioadjwioajdiojadiojdiwaidjwaiodjwiaodjiwoajdwioajdwioajdwioajdijdijdiwjaid'
+        likes: 142,
+        dislikes: 39,
+        question: '1 mod x = 2' + question_addition,
+        answer: 'Rel. ez. 1+1 = 2' + answer_addition
       });
     }
   }
@@ -91,6 +107,6 @@ export class SearchComponent {
       this.resultsWrapper.display = 'block';
       this.resultsWrapper['max-height'] = 'unset';
       this.isSearching = false;
-    }, 1500);
+    }, 1500 * 0);
   }
 }

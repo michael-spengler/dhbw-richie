@@ -20,3 +20,57 @@
     }
   }
 }
+
+// neu
+
+.landingFull {
+  background: var(--landing-bg);
+  background-size: cover;
+  background-position: center;
+  margin: -50px 0px;
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.landingFullWrapper {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: calc(50% + 25px);
+  transform: translate(-50%, -50%);
+}
+
+.whyPro {
+  background: rgba(127, 127, 127, 0.4);
+  backdrop-filter: blur(7px);
+  padding: 20px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-100%, -50%);
+  color: #fff;
+  h1 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  li {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  ul {
+    margin: 0;
+    margin-right: 5px;
+  }
+}
+
+@keyframes leftToRight {
+  from {
+    left: 0px;
+    opacity: 0;
+  }
+  to {
+    left: 50%;
+    opacity: 1;
+  }
+}
