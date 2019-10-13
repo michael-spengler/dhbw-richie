@@ -65,8 +65,9 @@
   </ng-template>
 
   <ng-template #signedIn>
-    <div class="user" [routerLink]="['/settings']" [ngStyle]="userIcon">
-      {{ globals.user.givenName }} {{ globals.user.familyName }}
+    <div class="user" [routerLink]="['/settings']">
+      <div class="name">{{ globals.user.givenName }} {{ globals.user.familyName }}</div>
+      <img [src]="globals.user.icon" onerror="this.src = '../assets/img/richie.jpg'" />
     </div>
   </ng-template>
 </header>

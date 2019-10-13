@@ -5,7 +5,7 @@ import { Globals } from '../globals';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', '../search/search.component.css']
 })
 export class LoginComponent {
   constructor(private globals: Globals, private router: Router) {

@@ -23,33 +23,20 @@
 
 // neu
 
-.landingFull {
-  background: var(--landing-bg);
-  background-size: cover;
-  background-position: center;
-  margin: -50px 0px;
+.searchLanding {
   min-height: 100vh;
-  max-height: 100%;
+  transition: 0s !important;
 }
 
 .landingFullWrapper {
   position: absolute;
-  width: 100%;
   left: 50%;
-  top: calc(50% + 25px);
-  transform: translate(-50%, -50%);
-}
-
-.whyPro {
-  background: rgba(127, 127, 127, 0.4);
-  backdrop-filter: blur(7px);
-  padding: 20px;
-  border-radius: 10px;
   top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-100%, -50%);
-  color: #fff;
+  transform: translate(-50%, -50%);
+  background: var(--header);
+  color: var(--font-color);
+  backdrop-filter: blur(7px);
+
   h1 {
     margin: 0;
     margin-bottom: 10px;
@@ -64,13 +51,76 @@
   }
 }
 
-@keyframes leftToRight {
-  from {
-    left: 0px;
-    opacity: 0;
+.wrapper {
+  margin-left: 25px;
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  grid-template-rows: 1fr;
+
+  .loginForm {
+    background: #fff;
+    display: inline-grid;
+    height: 100vh;
   }
-  to {
-    left: 50%;
+
+  .slideShow {
+    .sliderElement {
+      position: absolute;
+      background-image: url('../../assets/img/landing_light@2k.jpg');
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: calc(100% - 630px);
+      padding: 40px;
+      animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
+      .title {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 800;
+        font-size: 2.5em;
+        animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
+      }
+      .description {
+        position: absolute;
+        top: 50%;
+        transform: translateY(50%);
+        font-weight: 650;
+        font-size: 1.6em;
+        max-width: 70%;
+      }
+    }
+  }
+}
+
+@keyframes slider-anim {
+  0% {
+    top: 110vh;
+    opacity: 0;
+    transform: scale(0) translateY(-50%);
+  }
+  10% {
+    top: 50%;
+    opacity: 0.7;
+    transform: scale(0.5) translateY(-50%);
+  }
+  15%,
+  85% {
+    top: 50%;
     opacity: 1;
+    transform: scale(1) translateY(-50%);
+  }
+  90% {
+    top: -50%;
+    opacity: 0.7;
+    transform: scale(0.5) translateY(-50%);
+  }
+  100% {
+    top: -110vh;
+    opacity: 0;
+    transform: scale(0) translateY(-50%);
   }
 }

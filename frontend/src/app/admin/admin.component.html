@@ -115,21 +115,26 @@
   <h2>Benutzerverwaltung</h2>
   <h3>Benutzer suchen</h3>
 
-  <input
-    type="text"
-    class="userSearch"
-    style="margin-bottom: 10px"
-    [(ngModel)]="userSearch"
-    (keydown)="onInputKeyDown($event)"
-    tabindex="1"
-  />
+  <div class="input" style="margin-right: 20px; width: 350px;">
+    <input
+      type="text"
+      [(ngModel)]="userSearch"
+      (keydown)="onInputKeyDown($event)"
+      tabindex="1"
+      required
+    />
+    <label>Benutzername</label>
+  </div>
   <div
     class="iconButton"
-    style="display: inline-block; margin-bottom: -10px"
+    style="display: inline-block;"
     (click)="searchPlayer()"
     tabindex="2"
   >
     <i class="fas fa-search"></i>Suche starten
+  </div>
+  <div *ngIf="!isSearching">
+    <div style="height: 10px"></div>
   </div>
 
   <div *ngIf="isSearching">

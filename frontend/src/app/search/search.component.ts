@@ -123,7 +123,8 @@ export class SearchComponent implements AfterViewInit {
         NotificationType.SUCCESS
       );
       this.landingStyle['min-height'] = '268.667px';
-      this.landingWrapperStyle.top = '144.334px';
+      this.landingStyle['margin-bottom'] = '-50px';
+      this.landingWrapperStyle.top = '124.334px';
       this.resultsWrapper.display = 'block';
       this.resultsWrapper['max-height'] = 'unset';
       this.isSearching = false;

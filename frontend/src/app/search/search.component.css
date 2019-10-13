@@ -194,30 +194,52 @@
   margin-right: 10px;
 }
 
+/*
 .searchLanding {
   background: var(--landing-bg);
   background-size: cover;
   background-position: center;
-  margin: -50px 0px;
-  -webkit-transition: 1.4s ease;
+  margin-bottom: -50px;
   transition: 1.4s ease;
 }
 
 .searchLandingWrapper {
-  -webkit-transition: 1.4s ease;
   transition: 1.4s ease;
   position: absolute;
   padding-bottom: 55px;
   width: 100%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   text-align: center;
+  h1 {
+    color: #fff;
+    margin: 0;
+  }
+}*/
+.searchLanding {
+  width: calc(100% + env(safe-area-inset-left) + env(safe-area-inset-right));
+  background: var(--landing-bg);
+  background-size: cover;
+  background-position: center;
+  -webkit-transition: 1.4s ease;
+  transition: 1.4s ease;
+  margin-left: calc(-1 * env(safe-area-inset-left));
+  margin-right: calc(-1 * env(safe-area-inset-right));
 }
 
-.searchLandingWrapper h1 {
+.searchLanding .searchLandingWrapper {
+  position: absolute;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: 1.4s ease;
+  transition: 1.4s ease;
+}
+
+.searchLanding .searchLandingWrapper h1 {
   color: #fff;
   margin: 0;
+  text-align: center;
 }
 
 .come-in {

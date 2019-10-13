@@ -24,72 +24,158 @@
           box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.landingFull {
-  background: var(--landing-bg);
-  background-size: cover;
-  background-position: center;
-  margin: -50px 0px;
+.searchLanding {
   min-height: 100vh;
-  max-height: 100%;
+  -webkit-transition: 0s !important;
+  transition: 0s !important;
 }
 
 .landingFullWrapper {
   position: absolute;
-  width: 100%;
   left: 50%;
-  top: calc(50% + 25px);
+  top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-}
-
-.whyPro {
-  background: rgba(127, 127, 127, 0.4);
+  background: var(--header);
+  color: var(--font-color);
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);
-  padding: 20px;
-  border-radius: 10px;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  -webkit-transform: translate(-100%, -50%);
-          transform: translate(-100%, -50%);
-  color: #fff;
 }
 
-.whyPro h1 {
+.landingFullWrapper h1 {
   margin: 0;
   margin-bottom: 10px;
 }
 
-.whyPro li {
+.landingFullWrapper li {
   font-size: 1.2em;
   font-weight: 500;
 }
 
-.whyPro ul {
+.landingFullWrapper ul {
   margin: 0;
   margin-right: 5px;
 }
 
-@-webkit-keyframes leftToRight {
-  from {
-    left: 0px;
+.wrapper {
+  margin-left: 25px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 500px;
+      grid-template-columns: 1fr 500px;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+}
+
+.wrapper .loginForm {
+  background: #fff;
+  display: -ms-inline-grid;
+  display: inline-grid;
+  height: 100vh;
+}
+
+.wrapper .slideShow .sliderElement {
+  position: absolute;
+  background-image: url("../../assets/img/landing_light@2k.jpg");
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  max-width: calc(100% - 630px);
+  padding: 40px;
+  -webkit-animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
+          animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
+}
+
+.wrapper .slideShow .sliderElement .title {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-weight: 800;
+  font-size: 2.5em;
+  -webkit-animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
+          animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
+}
+
+.wrapper .slideShow .sliderElement .description {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  font-weight: 650;
+  font-size: 1.6em;
+  max-width: 70%;
+}
+
+@-webkit-keyframes slider-anim {
+  0% {
+    top: 110vh;
     opacity: 0;
+    -webkit-transform: scale(0) translateY(-50%);
+            transform: scale(0) translateY(-50%);
   }
-  to {
-    left: 50%;
+  10% {
+    top: 50%;
+    opacity: 0.7;
+    -webkit-transform: scale(0.5) translateY(-50%);
+            transform: scale(0.5) translateY(-50%);
+  }
+  15%,
+  85% {
+    top: 50%;
     opacity: 1;
+    -webkit-transform: scale(1) translateY(-50%);
+            transform: scale(1) translateY(-50%);
+  }
+  90% {
+    top: -50%;
+    opacity: 0.7;
+    -webkit-transform: scale(0.5) translateY(-50%);
+            transform: scale(0.5) translateY(-50%);
+  }
+  100% {
+    top: -110vh;
+    opacity: 0;
+    -webkit-transform: scale(0) translateY(-50%);
+            transform: scale(0) translateY(-50%);
   }
 }
 
-@keyframes leftToRight {
-  from {
-    left: 0px;
+@keyframes slider-anim {
+  0% {
+    top: 110vh;
     opacity: 0;
+    -webkit-transform: scale(0) translateY(-50%);
+            transform: scale(0) translateY(-50%);
   }
-  to {
-    left: 50%;
+  10% {
+    top: 50%;
+    opacity: 0.7;
+    -webkit-transform: scale(0.5) translateY(-50%);
+            transform: scale(0.5) translateY(-50%);
+  }
+  15%,
+  85% {
+    top: 50%;
     opacity: 1;
+    -webkit-transform: scale(1) translateY(-50%);
+            transform: scale(1) translateY(-50%);
+  }
+  90% {
+    top: -50%;
+    opacity: 0.7;
+    -webkit-transform: scale(0.5) translateY(-50%);
+            transform: scale(0.5) translateY(-50%);
+  }
+  100% {
+    top: -110vh;
+    opacity: 0;
+    -webkit-transform: scale(0) translateY(-50%);
+            transform: scale(0) translateY(-50%);
   }
 }
 /*# sourceMappingURL=login.component.css.map */
