@@ -10,5 +10,8 @@ cd backend
 # install dependencies
 npm install
 
+# Stop previous running version
+pm2 delete DHBW-Richie\ Backend
+
 # Build and run production stuff
 pm2 start npm --name "DHBW-Richie Backend" -- run start:prod # Will build because of prestart skript

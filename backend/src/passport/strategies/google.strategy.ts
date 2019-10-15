@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-google-oauth20';
-import { ConfigService } from '../../config';
 import { Connection } from 'typeorm';
-import { User } from 'src/entities/user.entity';
+import { ConfigService } from '../../config';
+import { User } from '../../entities/user.entity';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor(
     private readonly configService: ConfigService,
-    private readonly connection: Connection,
+    private readonly connection: Connection
   ) {
     super({
       clientID: configService.get('GOOGLE_CLIENT_ID'),
@@ -17,7 +17,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       callbackURL: configService.get('GOOGLE_CALLBACK_URL'),
       passReqToCallback: true,
       userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
-      scope: ['email', 'profile'],
+      scope: ['email', 'profile']
     });
   }
 
@@ -26,14 +26,14 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     accessToken: string,
     refreshToken: string,
     profile,
-    done: any,
+    done: any
   ) {
     try {
       const dbUser =
         (await this.connection.manager.findOne(User, {
           where: {
-            googleId: profile._json.sub,
-          },
+            googleId: profile._json.sub
+          }
         })) || new User();
       dbUser.email = profile._json.email;
       dbUser.familyName = profile._json.family_name;
