@@ -4,7 +4,7 @@ import {
   Entity,
   ObjectID,
   ObjectIdColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from 'typeorm';
 import { Lecture } from './lecture.entity';
 import { User } from './user.entity';
@@ -34,7 +34,7 @@ export class Data {
 
   @Column({
     type: 'date',
-    default: Date.now(),
+    default: Date.now()
   })
   reviewDate: Date; // Automatisch
 

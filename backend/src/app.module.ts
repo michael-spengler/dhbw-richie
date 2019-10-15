@@ -2,18 +2,21 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LoginModule } from './login/login.module';
-import { PassportModule } from './passport';
-import { RolesModule } from './roles/roles.module';
+import { ConfigModule, ConfigService } from './config';
+import { ElasticsearchModule } from './elasticsearch/elasticsearch.module';
 import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
 import { User } from './entities/user.entity';
-import { ConfigModule, ConfigService } from './config';
+import { LectureModule } from './lecture/lecture.module';
+import { LoginModule } from './login/login.module';
+import { PassportModule } from './passport';
+import { QuestionModule } from './question/question.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
-    PassportModule, 
-    LoginModule, 
+    PassportModule,
+    LoginModule,
     RolesModule,
     ConfigModule,
     TypeOrmModule.forRootAsync({
@@ -25,13 +28,16 @@ import { ConfigModule, ConfigService } from './config';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture],
+          entities: [Data, User, Lecture]
         } as TypeOrmModuleOptions),
-        inject: [ConfigService]
+      inject: [ConfigService]
     }),
     TypeOrmModule.forFeature([Data]),
+    QuestionModule,
+    LectureModule,
+    ElasticsearchModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}
