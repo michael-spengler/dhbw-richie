@@ -166,8 +166,12 @@
   border: 1px solid transparent;
   -webkit-filter: brightness(110%);
           filter: brightness(110%);
-  background: #fff;
-  color: #222;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background: var(--font-color);
+  color: var(--paragraph);
 }
 
 .information .loginService i {

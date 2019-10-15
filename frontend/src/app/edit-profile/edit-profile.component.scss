@@ -128,8 +128,9 @@
     border: 1px solid transparent;
 
     filter: brightness(110%);
-    background: #fff;
-    color: #222;
+    user-select: none;
+    background: var(--font-color);
+    color: var(--paragraph);
 
     i {
       font-size: 18px;
