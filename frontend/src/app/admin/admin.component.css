@@ -126,6 +126,7 @@
   line-height: 40px;
   text-align: center;
   -webkit-transition: 0.1s ease;
+  -o-transition: 0.1s ease;
   transition: 0.1s ease;
   cursor: pointer;
   opacity: 0.4;
@@ -145,11 +146,15 @@
 
 .close::before {
   -webkit-transform: rotate(45deg) scale(0.7);
+      -ms-transform: rotate(45deg) scale(0.7);
+       -o-transform: rotate(45deg) scale(0.7);
           transform: rotate(45deg) scale(0.7);
 }
 
 .close::after {
   -webkit-transform: rotate(-45deg) scale(0.7);
+      -ms-transform: rotate(-45deg) scale(0.7);
+       -o-transform: rotate(-45deg) scale(0.7);
           transform: rotate(-45deg) scale(0.7);
 }
 
@@ -176,6 +181,8 @@
   display: block;
   text-align: center;
   -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
@@ -215,6 +222,7 @@
 .userCard .toggle {
   color: var(--font-color);
   -webkit-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
   transition: 0.2s ease;
   cursor: pointer;
   margin-top: 5px;
@@ -264,6 +272,15 @@
 }
 
 @-webkit-keyframes overlay-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes overlay-animation {
   0% {
     opacity: 0;
   }

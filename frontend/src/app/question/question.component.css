@@ -72,9 +72,11 @@
 
 .answerHead {
   display: -webkit-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
@@ -83,13 +85,15 @@
 }
 
 .answerHead * {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+              -ms-grid-row-align: center;
+          align-self: center;
 }
 
 .answerHead h2 {
   display: -webkit-inline-box;
+  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   padding-top: 5px;
@@ -97,6 +101,7 @@
 
 .answerHead .actions {
   display: -webkit-inline-box;
+  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   border-bottom: 1px solid var(--input-border);
@@ -109,6 +114,7 @@
   min-width: 30px;
   text-align: center;
   -webkit-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
   transition: 0.2s ease;
   cursor: pointer;
 }

@@ -9,7 +9,7 @@ import { Globals, NotificationType } from '../globals';
 export class AddComponent {
   constructor(public globals: Globals) {}
 
-  selectionStyle: any = { opacity: 0.7 };
+  selectionClass: string = 'hideSelect';
   formData = ['', '', '', ''];
   lectures = [
     'Einführung IT',
@@ -30,19 +30,16 @@ export class AddComponent {
   }
 
   toggleSelection() {
-    if (this.selectionStyle.opacity === 1) {
+    if (this.selectionClass === 'showSelect') {
       this.hideSelection();
     } else {
-      this.selectionStyle.opacity = 1;
-      this.selectionStyle.transform = 'scale(1)';
+      this.selectionClass = 'showSelect';
     }
   }
 
   hideSelection() {
-    this.selectionStyle.opacity = 0;
-    this.selectionStyle.transform = 'scale(0)';
+    this.selectionClass = 'hideSelect';
   }
-
   onClick(event) {
     event.stopPropagation();
   }

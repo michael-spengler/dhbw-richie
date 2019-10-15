@@ -37,6 +37,7 @@
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0);
   -webkit-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
   transition: 0.2s ease;
 }
 
@@ -47,16 +48,19 @@
   }
   .logout {
     margin-top: 5px !important;
-    right: calc(50% - 300px);
-    -webkit-transform: translateX(50%);
-            transform: translateX(50%);
+    right: 50%;
+    -webkit-transform: translateX(calc(50% + 35px));
+        -ms-transform: translateX(calc(50% + 35px));
+         -o-transform: translateX(calc(50% + 35px));
+            transform: translateX(calc(50% + 35px));
   }
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 849px) {
   .logout {
-    right: 50%;
     -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+         -o-transform: translateX(50%);
             transform: translateX(50%);
   }
 }
@@ -99,6 +103,28 @@
   margin-bottom: 20px;
 }
 
+.signedInWith {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.signedInWith h3 {
+  text-align: center;
+}
+
 .information {
   display: -ms-inline-grid;
   display: inline-grid;
@@ -120,26 +146,43 @@
   font-weight: 600;
 }
 
-.information .signedInWith {
-  display: inline-block;
-  text-align: left;
-  padding-left: 10px;
-}
-
-.information .signedInWith * {
-  display: inline-block;
-  width: 100%;
-}
-
-.information .signedInWith img {
-  padding-top: 0px;
-  margin-bottom: 20px;
-  max-width: 200px;
-}
-
-.information .signedInWith .email {
+.information .email {
+  text-align: center;
   font-weight: 700;
   opacity: 0.8;
+}
+
+.information .loginService {
+  text-align: center;
+  -webkit-transition: 0.4s ease;
+  -o-transition: 0.4s ease;
+  transition: 0.4s ease;
+  padding: 5px 20px;
+  border-radius: 10px;
+  margin: 0px 10px;
+  margin-bottom: 15px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid transparent;
+  -webkit-filter: brightness(110%);
+          filter: brightness(110%);
+  background: #fff;
+  color: #222;
+}
+
+.information .loginService i {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.information .loginService .serviceName {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.information .loginService .serviceName:before {
+  content: 'Signed in with ';
 }
 
 .toggleTable {
@@ -176,6 +219,7 @@ tr:hover td > i {
   border: 1px solid var(--input-border);
   text-decoration: none;
   -webkit-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
   transition: 0.2s ease;
   padding: 5px 20px;
   border-radius: 40px;

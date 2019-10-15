@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Globals, NotificationType } from '../globals';
 
 @Component({
@@ -24,7 +25,11 @@ export class ReviewComponent implements OnInit {
 
   ngOnInit() {}
 
-  constructor(private globals: Globals) {
+  constructor(private globals: Globals, private router: Router) {
+    if (!(globals.user.isAdmin || globals.user.isReviewer)) {
+      router.navigate(['/404']);
+    }
+
     this.myItems = [
       {
         status: 'Neu',
@@ -58,6 +63,7 @@ export class ReviewComponent implements OnInit {
   }
 
   formData = ['', '', '', ''];
+  selectionClass = 'hideSelect';
 
   setLecture(lecture: string): void {
     this.lectureInput = lecture;
@@ -65,17 +71,15 @@ export class ReviewComponent implements OnInit {
   }
 
   toggleSelection() {
-    if (this.selectionStyle.opacity === 1) {
+    if (this.selectionClass === 'showSelect') {
       this.hideSelection();
     } else {
-      this.selectionStyle.opacity = 1;
-      this.selectionStyle.transform = 'scale(1)';
+      this.selectionClass = 'showSelect';
     }
   }
 
   hideSelection() {
-    this.selectionStyle.opacity = 0;
-    this.selectionStyle.transform = 'scale(0)';
+    this.selectionClass = 'hideSelect';
   }
 
   public display = { display: 'none' };

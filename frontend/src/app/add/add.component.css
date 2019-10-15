@@ -7,6 +7,7 @@ textarea {
   padding: 5px 10px;
   color: var(--font-color);
   -webkit-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
   transition: 0.2s ease;
   font-size: 1em;
   font-family: 'SF Pro Display', sans-serif;

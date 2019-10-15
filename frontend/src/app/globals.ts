@@ -74,7 +74,7 @@ export class Globals {
       `Willkommen zurück, ${this.user.givenName} ${this.user.familyName}!`,
       NotificationType.INFORMATION
     );
-    //this.router.navigate(["/home"]);
+    this.router.navigate(['/home']);
   }
 
   toggleTheme() {

@@ -6,14 +6,16 @@
     <h2>#{{ question.id }}</h2>
   </div>
   <div class="paragraph">
-    <h2>Möglicherweise wurde sie gelöscht</h2>
+    <div class="iconButtonHeading">
+      <h2>Möglicherweise wurde sie gelöscht</h2>
+      <div class="iconButton" [routerLink]="['/search']">
+        <i class="fad fa-search"></i>Neue Antwort suchen
+      </div>
+    </div>
     <p>
       Solltest du dennoch weitere Fragen haben, kannst du hier ganz einfach nach einer
       Antwort suchen
     </p>
-    <div class="iconButton" [routerLink]="['/search']">
-      <i class="fad fa-search"></i>Neue Antwort suchen
-    </div>
   </div>
 </ng-template>
 

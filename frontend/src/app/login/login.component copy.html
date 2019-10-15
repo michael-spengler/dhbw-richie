@@ -1,27 +1,36 @@
-<!--<div class="searchLanding">
-  <div class="landingFullWrapper">
-    <h1>Vorteile, die ein <span class="gradient">Pro</span> hat</h1>
-    <ul>
-      <li>Neue Fragen einreichen & anderen Helfen</li>
-      <li>Fragen bearbeiten, solltest du eine einfachere Antwort haben</li>
-      <li>Fragen favorisieren, um sie später leichter zu finden</li>
-      <li>Fragen & Antworten bewerten</li>
-      <li>Kommentare unter Fragen posten</li>
-      <li>Mit anderen <span class="gradient">Pros</span> diskutieren</li>
-    </ul>
-  </div>
-</div>-->
-
 <div class="wrapper">
-  <div class="slideShow">
-    <div class="sliderElement" img="url(../../assets/img/landing_light@2k.jpg)">
-      <div class="title">Neue Fragen einreichen & anderen Helfen</div>
-      <div class="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic aspernatur unde eos
-        mollitia ipsa nulla et, quae aperiam tempore temporibus minima deleniti facilis
-        placeat cupiditate quisquam, maxime quaerat! Facilis, architecto.
+  <div class="loginArea">
+    <div class="blurBackground"></div>
+    <h2>Melde dich mit deinem Lieblingsservice an</h2>
+
+    <div class="loginServices">
+      <div class="loginService" (click)="globals.logIn()">
+        <i class="fab fa-apple"></i>
+        <div class="serviceName">Apple</div>
+      </div>
+      <div class="loginService" (click)="globals.logIn()">
+        <i class="fab fa-github"></i>
+        <div class="serviceName">GitHub</div>
+      </div>
+      <div class="loginService" (click)="globals.logIn()">
+        <i class="fab fa-google"></i>
+        <div class="serviceName">Google</div>
+      </div>
+      <div class="loginService" (click)="globals.logIn()">
+        <i class="fab fa-telegram"></i>
+        <div class="serviceName">Telegram</div>
+      </div>
+    </div>
+    <!--<h2>Vorteile als <span class="gradient">Pro</span></h2>-->
+  </div>
+
+  <div class="slider">
+    <div class="slide">
+      <div class="background" [ngStyle]="slides[currentSlide].img"></div>
+      <div class="title">
+        <h1>{{ slides[currentSlide].title }}</h1>
+        <h2>{{ slides[currentSlide].subtitle }}</h2>
       </div>
     </div>
   </div>
-  <div class="loginForm"></div>
 </div>

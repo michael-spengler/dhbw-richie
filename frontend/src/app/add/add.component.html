@@ -7,13 +7,16 @@
 
 <ng-template #notSignedInParagraph class="paragraph">
   <div class="paragraph">
-    <h2>Nicht angemeldet!</h2>
+    <div class="iconButtonHeading">
+      <h2>Nicht angemeldet!</h2>
+
+      <a class="iconButton" [routerLink]="['/login']">
+        <i class="fa-sign-in fad"></i>Anmelden
+      </a>
+    </div>
     <p>
       Um neue Fragen und Antworten einreichen zu können musst du angemeldet sein.
     </p>
-    <a [routerLink]="['/login']" class="iconButton">
-      <i class="fa fa-sign-in-alt"></i>Anmelden
-    </a>
   </div>
 </ng-template>
 
@@ -71,7 +74,7 @@
           </span>
         </div>
 
-        <div class="selectionWrapper" [ngStyle]="selectionStyle">
+        <div class="selectionWrapper" [ngClass]="selectionClass">
           <div class="selection" sTitle="Vorlesung wählen">
             <div
               *ngFor="let lecture of lectures"

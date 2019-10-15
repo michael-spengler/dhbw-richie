@@ -1,22 +1,15 @@
 @media only screen and (max-width: 650px) {
   .modal-content {
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    margin-top: 0px !important;
   }
 }
 
-@media only screen and (min-width: 650px) and (max-width: 850px) {
-  .modal-content {
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
-  }
-}
 @media only screen and (min-width: 850px) {
-  .modal-content {
-    height: 90%;
-  }
   .iconButton {
     margin: 30px 10px;
+    margin-bottom: 0;
   }
   .selectionWrapper {
     margin-left: -90px !important;
@@ -35,28 +28,6 @@
   }
 }
 
-#accept {
-  color: rgb(52, 199, 89) !important;
-  border: 1px solid rgb(52, 199, 89);
-}
-
-#accept:hover,
-#accept:focus {
-  background: rgb(52, 199, 89);
-  color: #fff !important;
-}
-
-#delete {
-  color: rgb(255, 59, 48) !important;
-  border: 1px solid rgb(255, 59, 48);
-}
-
-#delete:hover,
-#delete:focus {
-  background: rgb(255, 59, 48);
-  color: #fff !important;
-}
-
 .Neu,
 .Änderung,
 .Feedback,
@@ -69,28 +40,28 @@
 }
 
 .Neu::before {
-  content: "Neu";
+  content: 'Neu';
   background: rgb(52, 199, 89);
   border-radius: 20px;
   padding: 2px 10px;
 }
 
 .Änderung::before {
-  content: "Änderung";
+  content: 'Änderung';
   background: rgb(255, 149, 0);
   border-radius: 20px;
   padding: 2px 10px;
 }
 
 .Feedback::before {
-  content: "Feedback";
+  content: 'Feedback';
   background: rgb(0, 122, 255);
   border-radius: 20px;
   padding: 2px 10px;
 }
 
 .Löschen::before {
-  content: "Löschen";
+  content: 'Löschen';
   background: rgb(255, 59, 48);
   border-radius: 20px;
   padding: 2px 10px;
@@ -119,6 +90,7 @@
   animation-duration: 0.4s;
   max-height: 100%;
   overflow-y: auto;
+  margin-top: 20px;
 }
 
 .close {
@@ -143,7 +115,7 @@
 .close::before,
 .close::after {
   position: absolute;
-  content: "";
+  content: '';
   width: 1px;
   height: 40px;
   background: var(--font-color);
@@ -190,7 +162,7 @@ textarea {
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
   font-size: 1em;
-  font-family: "SF Pro Display", sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
 }
 
 fieldset {

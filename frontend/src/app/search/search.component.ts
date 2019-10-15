@@ -8,9 +8,9 @@ import { Globals, NotificationType } from '../globals';
 })
 export class SearchComponent implements AfterViewInit {
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      //this.startSearch();
-    }, 20);
+    // setTimeout(() => {
+    //   this.startSearch();
+    // }, 20);
   }
   constructor(public globals: Globals) {
     for (let i = 0; i < 35; i++) {

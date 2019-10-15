@@ -39,7 +39,7 @@
         <tr>
           <td>Username</td>
           <td>
-            <div class="input" style="margin-right: 20px; width: 350px;">
+            <div class="specialInput" style="margin-right: 20px">
               <input type="text" tabindex="1" required />
               <label>Benutzername</label>
             </div>
@@ -50,12 +50,13 @@
         </tr>
       </table>
     </div>
-    <div class="information">
+    <div class="information signedInWith">
       <h3>Angemeldet mittels</h3>
-      <div class="signedInWith">
-        <img src="../../assets/signInWith/apple.png" />
-        <div class="email">{{ globals.user.email }}</div>
+      <div class="loginService">
+        <i class="fab fa-apple"></i>
+        <div class="serviceName">Apple</div>
       </div>
+      <div class="email">{{ globals.user.email }}</div>
     </div>
   </div>
 </div>

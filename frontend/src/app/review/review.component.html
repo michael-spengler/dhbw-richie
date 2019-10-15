@@ -8,10 +8,7 @@
 
   <div class="tablewrapper">
     <table id="itemsTable" style="width:100%">
-      <tr
-        *ngFor="let item of myItems; let i = index"
-        (click)="togglePopUp(item)"
-      >
+      <tr *ngFor="let item of myItems; let i = index" (click)="togglePopUp(item)">
         <td>
           <span class="{{ item.status }}"></span>
         </td>
@@ -52,7 +49,7 @@
             </span>
           </div>
 
-          <div class="selectionWrapper" [ngStyle]="selectionStyle">
+          <div class="selectionWrapper" [ngClass]="selectionClass">
             <div class="selection" sTitle="Vorlesung wählen">
               <div
                 *ngFor="let lecture of lectures"
@@ -67,20 +64,10 @@
       </div>
 
       <div style="display: block; text-align: center; margin-top: 10px;">
-        <div
-          tabindex="5"
-          class="iconButton"
-          id="delete"
-          (click)="deleteQuestion()"
-        >
+        <div red tabindex="5" class="iconButton" id="delete" (click)="deleteQuestion()">
           <i class="fad fa-trash-alt"></i>Löschen
         </div>
-        <div
-          tabindex="6"
-          class="iconButton"
-          id="accept"
-          (click)="acceptQuestion()"
-        >
+        <div green tabindex="6" class="iconButton" id="accept" (click)="acceptQuestion()">
           <i class="fab fa-wpforms"></i>Frage & Antwort speichern
         </div>
       </div>

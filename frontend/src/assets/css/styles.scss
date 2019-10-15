@@ -603,6 +603,7 @@ header {
   border-radius: 5px;
   transition: 1s ease;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.09);
+  overflow: hidden;
   h3 {
     opacity: 0.8;
   }
@@ -629,8 +630,23 @@ header {
   }
 }
 
+.iconButton[green] {
+  color: rgb(52, 199, 89) !important;
+  border: 1px solid rgb(52, 199, 89) !important;
+  &::before {
+    background-color: rgb(52, 199, 89) !important;
+  }
+}
+.iconButton[red] {
+  color: rgb(255, 59, 48) !important;
+  border: 1px solid rgb(255, 59, 48) !important;
+  &::before {
+    background-color: rgb(255, 59, 48) !important;
+  }
+}
 .iconButton {
   z-index: 1;
+  display: inline-block;
   background: transparent;
   position: relative;
   color: #08f;
@@ -658,27 +674,28 @@ header {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
+    width: 0px;
+    height: 0px;
+    border-radius: 100px;
     background-color: #08f;
     transform-origin: center;
-    transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
-    transition: transform 0.45s ease-in-out;
+    transform: translate3d(-50%, -50%, 0);
+    transition: 0.35s ease-in-out;
   }
 
   &:active {
     filter: brightness(120%);
   }
 
-  &:hover {
-    color: #fff;
-    &::before {
-      transform: translate3d(-50%, -50%, 0) scale3d(15, 15, 15);
-    }
-  }
+  &:hover,
   &:focus {
+    color: #fff !important;
     outline: none;
+    &::before {
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
+      border-radius: 0;
+    }
   }
 }
 
@@ -963,13 +980,27 @@ $color: #08f;
   }
 }
 
-.iconButtonHeading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@media only screen and (min-width: 850px) {
+  .iconButtonHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
-.input {
+@media only screen and (max-width: 849px) {
+  .iconButtonHeading {
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: 100%;
+    margin-bottom: 15px;
+    .iconButton {
+      text-align: center;
+    }
+  }
+}
+
+.specialInput {
   display: inline-block;
   max-width: 100%;
   overflow: hidden;

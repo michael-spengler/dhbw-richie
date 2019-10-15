@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Globals, NotificationType } from '../globals';
 
 @Component({
@@ -7,7 +8,11 @@ import { Globals, NotificationType } from '../globals';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  constructor(public globals: Globals) {}
+  constructor(public globals: Globals, private router: Router) {
+    if (!globals.user.isAdmin) {
+      router.navigate(['/404']);
+    }
+  }
 
   ngOnInit(): void {
     this.__LOADUSERDATA();
@@ -38,20 +43,15 @@ export class AdminComponent implements OnInit {
   }
 
   toggleSelection() {
-    if (this.selectionStyle.opacity === 1) {
+    if (this.selectionClass === 'showSelect') {
       this.hideSelection();
     } else {
       this.selectionClass = 'showSelect';
-      this.selectionStyle['max-width'] = '0px';
-      this.selectionStyle.opacity = 1;
-      this.selectionStyle.transform = 'scale(1)';
-      this.selectionStyle['max-width'] = 'unset';
     }
   }
+
   hideSelection() {
     this.selectionClass = 'hideSelect';
-    this.selectionStyle.opacity = 0;
-    this.selectionStyle.transform = 'scale(0)';
   }
 
   setRankToAdmin() {

@@ -2,34 +2,25 @@
   display: block;
   width: 100vw;
   height: 100vh;
-  max-width: 100%;
-  margin-top: -50px;
-  background-size: cover;
+  -webkit-background-size: cover;
+          background-size: cover;
   background-position: bottom;
-}
-
-@media only screen and (min-width: 850px) {
-  .info {
-    left: calc(50%);
-  }
-}
-
-@media only screen and (max-width: 850px) {
-  .info {
-    left: 50%;
-  }
 }
 
 .info {
   position: fixed;
   padding: 20px;
+  padding-bottom: 15px;
   border-radius: 10px;
   background: var(--fourOfour-tile);
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);
   top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1.3);
-          transform: translate(-50%, -50%) scale(1.3);
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 40;
   display: block;
   text-align: center;
@@ -38,6 +29,7 @@
       -ms-user-select: none;
           user-select: none;
   -webkit-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
   transition: 0.5s ease;
 }
 
@@ -55,15 +47,5 @@
   margin-bottom: 15px;
   display: inline-block;
   width: 100%;
-}
-
-.iconButton {
-  background: rgba(0, 0, 0, 0);
-  margin-bottom: 0;
-  display: inline-block !important;
-}
-
-.iconButton:hover {
-  background: #08f !important;
 }
 /*# sourceMappingURL=page-not-found.component.css.map */
