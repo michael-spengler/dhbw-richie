@@ -4,14 +4,14 @@
   "description": "This is an education and fun project for [Duale Hochschule Baden Württemberg Mannheim](https://www.mannheim.dhbw.de).",
   "main": "prettier.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd acceptance-tests/ && npx codeceptjs run --steps"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michael-spengler/dhbw-richie.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "DHBW Kurs WWI18SEC",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/michael-spengler/dhbw-richie/issues"
@@ -23,6 +23,8 @@
     "pretty-quick": "^1.11.1"
   },
   "husky": {
-    "pre-commit": "pretty-quick --staged"
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run test"
+    }
   }
 }

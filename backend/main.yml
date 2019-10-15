@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: richie-backend
+  labels:
+    app: richie-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: richie-backend
+      app: richie-backend
+  template:
+    metadata:
+      labels:
+        run: richie-backend
+        app: richie-backend
+    spec:
+      containers:
+        - name: richie-backend
+          image: h4runbaba/dhbw-richie-backend:v1 # Muss noch definiert werden
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: richie-backend
+  labels:
+    run: richie-backend
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    run: richie-backend

@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -25,19 +25,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy-Backend
         run: |
-          echo hello world
-          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -t -t -o stricthostkeychecking=no
-          echo hello space
-          cd dhbw-richie
-          git pull
-          cd backend
-          npm i
-          npm run build
-        shell: bash
-          
-
-        
-          
-    
- 
-          
+          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -o StrictHostKeyChecking=no < ./deploy/deploy-backend.bash
+        # shell: bash
