@@ -38,6 +38,7 @@ export class SearchComponent implements AfterViewInit {
   }
 
   selectionStyle: any = { opacity: 0.7 };
+  selectionClass: string = 'hideSelect';
   formData = ['', '', '', ''];
   lectures = [
     'Einführung IT',
@@ -66,6 +67,8 @@ export class SearchComponent implements AfterViewInit {
   landingStyle = {
     'min-height': '100vh'
   };
+  overlayStyle = { display: 'none' };
+  cardStyle = { animation: 'none' };
   isSearching = false;
   searchResultElements = [];
 
@@ -92,11 +95,10 @@ export class SearchComponent implements AfterViewInit {
   }
 
   toggleSelection() {
-    if (this.selectionStyle.opacity === 1) {
+    if (this.selectionClass === 'showSelect') {
       this.hideSelection();
     } else {
-      this.selectionStyle.opacity = 1;
-      this.selectionStyle.transform = 'scale(1)';
+      this.selectionClass = 'showSelect';
     }
   }
 
@@ -111,6 +113,32 @@ export class SearchComponent implements AfterViewInit {
 
   onInputKeyDown(event) {
     if (event.key == 'Enter') this.startSearch();
+  }
+
+  openUserCard() {
+    console.log("Das Pop UPp öffnet sich!")
+    this.overlayStyle = {
+      display: 'block'
+    };
+    this.cardStyle = {
+      animation: 'overlay-animation 0.4s linear both'
+    };
+  }
+
+  closeUserCard() {
+    console.log('close');
+    this.overlayStyle = { display: 'none' };
+    this.cardStyle = { animation: 'none' };
+    this.hideSelection();
+  }
+
+  acceptQuestion() {
+    this.globals.sendNotification('Dein Feedback wurde eingereicht!', NotificationType.SUCCESS);
+    this.closeUserCard;
+  }
+  deleteQuestion() {
+    this.globals.sendNotification('Dein Feedback wurde gelöscht!', NotificationType.SUCCESS);
+    this.closeUserCard;
   }
 
   startSearch() {
