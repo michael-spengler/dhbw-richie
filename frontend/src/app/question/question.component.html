@@ -46,6 +46,25 @@
 
   <div class="paragraph">
     <h2>Kommentare</h2>
+
+    <div class="writeComment">
+      <textarea
+        (keyup)="autoGrowTextZone($event)"
+        placeholder="Öffentlich kommentieren..."
+        rows="1"
+        required
+      ></textarea>
+      <span></span>
+      <div class="actions">
+        <div (click)="cancel()" class="iconButton" red>
+          <i class="fal fa-times"></i>Abbrechen
+        </div>
+        <div (click)="submit()" class="iconButton" green>
+          <i class="fas fa-comment-alt"></i>Antworten
+        </div>
+      </div>
+    </div>
+
     <div class="commentWrapper">
       <div class="comment">
         <div class="header">
@@ -64,6 +83,24 @@
             <div class="message">
               Das ist ein Test mein lieber Leser<br />und ich habe Spaß in zu
               kommentieren<br /><br />Warum fragst du dich?<br />WEIL ICH ES KANN :)
+
+              <div class="writeComment">
+                <textarea
+                  (keyup)="autoGrowTextZone($event)"
+                  placeholder="Öffentlich antworten..."
+                  rows="1"
+                  required
+                ></textarea>
+                <span></span>
+                <div class="actions">
+                  <div (click)="cancel()" class="iconButton" red>
+                    <i class="fal fa-times"></i>Abbrechen
+                  </div>
+                  <div (click)="submit()" class="iconButton" green>
+                    <i class="fas fa-comment-alt"></i>Antworten
+                  </div>
+                </div>
+              </div>
 
               <div class="comment">
                 <div class="header">

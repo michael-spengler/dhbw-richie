@@ -1,6 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { QuestionComponent } from './question/question.component';
 import { ReviewComponent } from './review/review.component';
+import { RichieTextareaComponent } from './richie-textarea/richie-textarea.component';
 import { SearchComponent } from './search/search.component';
 import { TelegramComponent } from './telegram/telegram.component';
 import { darkTheme } from './theme/dark-theme';
@@ -120,9 +122,20 @@ const appRoutes: Routes = [
     LegalComponent,
     LoginComponent,
     AboutComponent,
-    QuestionComponent
+    QuestionComponent,
+    RichieTextareaComponent
   ],
   providers: [Globals],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RichieTextareaComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const customElement = createCustomElement(RichieTextareaComponent, {
+      injector: this.injector
+    });
+    customElements.define('richie-textarea', customElement);
+  }
+}
