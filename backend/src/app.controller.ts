@@ -10,4 +10,9 @@ export class AppController {
   public async getTest(): Promise<Data[]> {
     return this.appService.getTest();
   }
+
+  @Get('test2')
+  public async getTest2(): Promise<Data[]> {
+    return this.appService.getTest();
+  }
 }
