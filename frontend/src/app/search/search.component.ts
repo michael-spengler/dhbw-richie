@@ -89,57 +89,57 @@ export class SearchComponent implements AfterViewInit {
     );
   }
 
-  setLecture(lecture: string): void {
-    this.formData[3] = lecture;
-    this.hideSelection();
-  }
+  // setLecture(lecture: string): void {
+  //   this.formData[3] = lecture;
+  //   this.hideSelection();
+  // }
 
-  toggleSelection() {
-    if (this.selectionClass === 'showSelect') {
-      this.hideSelection();
-    } else {
-      this.selectionClass = 'showSelect';
-    }
-  }
+  // toggleSelection() {
+  //   if (this.selectionClass === 'showSelect') {
+  //     this.hideSelection();
+  //   } else {
+  //     this.selectionClass = 'showSelect';
+  //   }
+  // }
 
-  hideSelection() {
-    this.selectionStyle.opacity = 0;
-    this.selectionStyle.transform = 'scale(0)';
-  }
+  // hideSelection() {
+  //   this.selectionStyle.opacity = 0;
+  //   this.selectionStyle.transform = 'scale(0)';
+  // }
 
-  onClick(event) {
-    event.stopPropagation();
-  }
+  // onClick(event) {
+  //   event.stopPropagation();
+  // }
 
   onInputKeyDown(event) {
     if (event.key == 'Enter') this.startSearch();
   }
 
-  openUserCard() {
-    console.log("Das Pop UPp öffnet sich!")
-    this.overlayStyle = {
-      display: 'block'
-    };
-    this.cardStyle = {
-      animation: 'overlay-animation 0.4s linear both'
-    };
-  }
+  // openUserCard() {
+  //   console.log("Das Pop UPp öffnet sich!")
+  //   this.overlayStyle = {
+  //     display: 'block'
+  //   };
+  //   this.cardStyle = {
+  //     animation: 'overlay-animation 0.4s linear both'
+  //   };
+  // }
 
-  closeUserCard() {
-    console.log('close');
-    this.overlayStyle = { display: 'none' };
-    this.cardStyle = { animation: 'none' };
-    this.hideSelection();
-  }
+  // closeUserCard() {
+  //   console.log('close');
+  //   this.overlayStyle = { display: 'none' };
+  //   this.cardStyle = { animation: 'none' };
+  //   this.hideSelection();
+  // }
 
-  acceptQuestion() {
-    this.globals.sendNotification('Dein Feedback wurde eingereicht!', NotificationType.SUCCESS);
-    this.closeUserCard;
-  }
-  deleteQuestion() {
-    this.globals.sendNotification('Dein Feedback wurde gelöscht!', NotificationType.SUCCESS);
-    this.closeUserCard;
-  }
+  // acceptQuestion() {
+  //   this.globals.sendNotification('Dein Feedback wurde eingereicht!', NotificationType.SUCCESS);
+  //   this.closeUserCard;
+  // }
+  // deleteQuestion() {
+  //   this.globals.sendNotification('Dein Feedback wurde gelöscht!', NotificationType.SUCCESS);
+  //   this.closeUserCard;
+  // }
 
   startSearch() {
     if (this.isSearching) return;

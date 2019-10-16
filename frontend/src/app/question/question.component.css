@@ -74,6 +74,20 @@
           box-shadow: inset 0px -1px var(--input-border);
 }
 
+.comment .header .delete {
+  margin-left: 15px;
+  color: #ff3b30;
+  cursor: pointer;
+  opacity: 0.8;
+  -webkit-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.comment .header .delete:hover {
+  opacity: 1;
+}
+
 .answerHead {
   display: -webkit-box;
   display: -webkit-flex;

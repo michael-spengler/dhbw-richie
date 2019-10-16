@@ -78,6 +78,7 @@
             <div class="header">
               <div class="author"><i class="fad fa-at"></i>Test Nutzer</div>
               <div class="date">02:34 09.10.2019</div>
+              <div class="delete"><i class="fa-trash-alt fad"></i></div>
               <div class="reply"></div>
             </div>
             <div class="message">
@@ -122,6 +123,7 @@
         <div class="header">
           <div class="author"><i class="fad fa-at"></i>{{ comment.author }}</div>
           <div class="date">{{ comment.date | date: 'HH:mm dd.MM.yyy' }}</div>
+          <div class="delete"><i class="fa-trash-alt fad"></i></div>
           <div class="reply"></div>
         </div>
         <div class="message">{{ comment.comment }}</div>
