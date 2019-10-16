@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     public themeService: ThemeService,
     public titleService: Title
   ) {
-    globals.logIn();
+    globals.logIn('Google');
     router.events.subscribe(event => {
       if (window.innerWidth <= 850 && this.navVisible) this.toggleNavbar();
 

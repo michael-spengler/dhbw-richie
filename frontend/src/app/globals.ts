@@ -60,21 +60,57 @@ export class Globals {
       'Du wurdest erfolgreich abgemeldet!',
       NotificationType.INFORMATION
     );
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
-  public logIn() {
-    this.user.familyName = 'Scheuermann';
-    this.user.givenName = 'Timo';
-    this.user.email = 'max.mustermann@mail.de';
-    this.user.isAdmin = true;
-    this.user.isReviewer = true;
-    this.user.created = new Date(1569939205000);
-    this.user.signed_in = true;
-    this.user.icon = 'https://avatars2.githubusercontent.com/u/48986503';
-    this.sendNotification(
-      `Willkommen zurück, ${this.user.givenName} ${this.user.familyName}!`,
-      NotificationType.INFORMATION
+  public logIn(service: string) {
+    if (document.cookie.indexOf('token') < 0) {
+      window.location.href = `http://localhost:3000/api/auth/${service}`;
+    } else {
+      const userData = this.parseJwt(this.getCookie('token'));
+      this.user.familyName = userData['familyName'] || '';
+      this.user.givenName = userData['givenName'] || '';
+      this.user.email = userData['email'] || '';
+      this.user.isAdmin = !!userData['isAdmin'];
+      this.user.isReviewer = !!userData['isReviewer'];
+      this.user.created = new Date(userData['created']);
+      this.user.signedInWith = userData['loginMethod'] || 'CUSTOM';
+      this.user.signed_in = true;
+      this.user.icon = userData['picture'];
+      this.sendNotification(
+        `Willkommen zurück, ${this.user.givenName} ${this.user.familyName}!`,
+        NotificationType.INFORMATION
+      );
+    }
+  }
+
+  parseJwt(token) {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join('')
     );
-    //this.router.navigate(['/home']);
+    return JSON.parse(jsonPayload);
+  }
+
+  getCookie(cname) {
+    var name = cname + '=';
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
   }
 
   toggleTheme() {
