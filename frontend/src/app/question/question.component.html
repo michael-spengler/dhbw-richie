@@ -1,0 +1,134 @@
+<div *ngIf="question.isValid; then valid; else notValid"></div>
+
+<ng-template #notValid>
+  <div class="landing">
+    <h1>Diese Frage existiert nicht</h1>
+    <h2>#{{ question.id }}</h2>
+  </div>
+  <div class="paragraph">
+    <div class="iconButtonHeading">
+      <h2>Möglicherweise wurde sie gelöscht</h2>
+      <div class="iconButton" [routerLink]="['/search']">
+        <i class="fad fa-search"></i>Neue Antwort suchen
+      </div>
+    </div>
+    <p>
+      Solltest du dennoch weitere Fragen haben, kannst du hier ganz einfach nach einer
+      Antwort suchen
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #valid>
+  <div class="landing">
+    <h1>{{ question.question }}</h1>
+    <h2>#{{ question.id }}</h2>
+  </div>
+
+  <div class="paragraph">
+    <div class="answerHead">
+      <h2>Antwort</h2>
+      <div class="actions">
+        <div class="action" amount="329" style="color: rgb(52, 199, 89)">
+          <i class="fad fa-thumbs-up"></i>
+        </div>
+        <div class="action" amount="13" style="color: rgb(255, 59, 48)">
+          <i class="fad fa-thumbs-down"></i>
+        </div>
+        <div class="action">
+          <i class="fas fa-share"></i>
+          <div class="description">Teilen</div>
+        </div>
+      </div>
+    </div>
+    <p>{{ question.answer }}</p>
+  </div>
+
+  <div class="paragraph">
+    <h2>Kommentare</h2>
+
+    <div class="writeComment">
+      <textarea
+        (keyup)="autoGrowTextZone($event)"
+        placeholder="Öffentlich kommentieren..."
+        rows="1"
+        required
+      ></textarea>
+      <span></span>
+      <div class="actions">
+        <div (click)="cancel()" class="iconButton" red>
+          <i class="fal fa-times"></i>Abbrechen
+        </div>
+        <div (click)="submit()" class="iconButton" green>
+          <i class="fas fa-comment-alt"></i>Antworten
+        </div>
+      </div>
+    </div>
+
+    <div class="commentWrapper">
+      <div class="comment">
+        <div class="header">
+          <div class="author"><i class="fad fa-at"></i>Test Nutzer</div>
+          <div class="date">02:34 09.10.2019</div>
+          <div class="reply"></div>
+        </div>
+        <div class="message">
+          Das ist ein Test mein lieber Leser
+          <div class="comment">
+            <div class="header">
+              <div class="author"><i class="fad fa-at"></i>Test Nutzer</div>
+              <div class="date">02:34 09.10.2019</div>
+              <div class="delete"><i class="fa-trash-alt fad"></i></div>
+              <div class="reply"></div>
+            </div>
+            <div class="message">
+              Das ist ein Test mein lieber Leser<br />und ich habe Spaß in zu
+              kommentieren<br /><br />Warum fragst du dich?<br />WEIL ICH ES KANN :)
+
+              <div class="writeComment">
+                <textarea
+                  (keyup)="autoGrowTextZone($event)"
+                  placeholder="Öffentlich antworten..."
+                  rows="1"
+                  required
+                ></textarea>
+                <span></span>
+                <div class="actions">
+                  <div (click)="cancel()" class="iconButton" red>
+                    <i class="fal fa-times"></i>Abbrechen
+                  </div>
+                  <div (click)="submit()" class="iconButton" green>
+                    <i class="fas fa-comment-alt"></i>Antworten
+                  </div>
+                </div>
+              </div>
+
+              <div class="comment">
+                <div class="header">
+                  <div class="author"><i class="fad fa-at"></i>Test Nutzer</div>
+                  <div class="date">02:34 09.10.2019</div>
+                  <div class="reply"></div>
+                </div>
+                <div class="message">
+                  Das ist ein Test mein lieber Leser<br />und ich habe Spaß in zu
+                  kommentieren<br /><br />Warum fragst du dich?<br />WEIL ICH ES KANN :)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let comment of comments" class="comment">
+        <div class="header">
+          <div class="author"><i class="fad fa-at"></i>{{ comment.author }}</div>
+          <div class="date">{{ comment.date | date: 'HH:mm dd.MM.yyy' }}</div>
+          <div class="delete"><i class="fa-trash-alt fad"></i></div>
+          <div class="reply"></div>
+        </div>
+        <div class="message">{{ comment.comment }}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<div class="removeWhite"></div>

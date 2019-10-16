@@ -1,0 +1,34 @@
+.thatsMe::before {
+  content: '';
+  background: url("../../assets/img/richie.jpg");
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-position: center;
+  -webkit-box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+       -o-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+@media only screen and (max-width: 850px) {
+  .thatsMe {
+    -webkit-transform: translate(calc(50% - 30px), 10px);
+        -ms-transform: translate(calc(50% - 30px), 10px);
+         -o-transform: translate(calc(50% - 30px), 10px);
+            transform: translate(calc(50% - 30px), 10px);
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .thatsMe {
+    right: 50%;
+  }
+}
+/*# sourceMappingURL=home.component.css.map */
