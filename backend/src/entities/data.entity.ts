@@ -26,7 +26,9 @@ export class Data {
   @Column(() => Lecture)
   lecture: Lecture;
 
-  @Column()
+  @Column({
+    default: false
+  })
   isReviewed: boolean;
 
   @CreateDateColumn()

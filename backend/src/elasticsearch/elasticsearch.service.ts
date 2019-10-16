@@ -1,17 +1,23 @@
+import { Client } from '@elastic/elasticsearch';
 import { Injectable } from '@nestjs/common';
 import { Data } from 'src/entities/data.entity';
-import client from './client';
+import { ClientService } from './client';
 
 @Injectable()
 export class ElasticsearchService {
+  private readonly client: Client;
+
+  constructor(private readonly clientService: ClientService) {
+    this.client = this.clientService.getClient();
+  }
+
   public async isQuestionIndex() {
-    const { body } = await client.indices.exists({ index: 'question' });
+    const { body } = await this.client.indices.exists({ index: 'question' });
     return body;
   }
 
   public createQuestionIndex() {
-    // mappings hinzufügen -> priorities, no_analyze
-    return client.indices.create({
+    return this.client.indices.create({
       index: 'question'
     });
   }
@@ -24,17 +30,33 @@ export class ElasticsearchService {
       return a;
     }, []);
 
-    return client.bulk({ index: 'question', body });
+    return this.clientService.getClient().bulk({ index: 'question', body });
   }
 
   public async searchQuestions(q: string) {
-    // suche muss auch andere attribute umfassen
-    const { body } = await client.search({
+    const { body } = await this.client.search({
       index: 'question',
       body: {
         query: {
-          match: {
-            question: q
+          bool: {
+            should: [
+              {
+                match: {
+                  question: {
+                    query: q,
+                    boost: 3
+                  }
+                }
+              },
+              {
+                match: {
+                  answer: {
+                    query: q,
+                    boost: 2
+                  }
+                }
+              }
+            ]
           }
         }
       }
@@ -44,7 +66,7 @@ export class ElasticsearchService {
   }
 
   public async createQuestion(question: Data) {
-    await client.index({
+    await this.client.index({
       index: 'question',
       body: {
         ...question
@@ -53,18 +75,18 @@ export class ElasticsearchService {
   }
 
   public async updateQuestion(_id: string, question: Data) {
-    await client.index({
+    await this.client.index({
       index: 'question',
       id: _id,
+      refresh: 'true',
       body: {
         ...question
       }
     });
-    await client.indices.refresh();
   }
 
   public async deleteQuestion(_id: string) {
-    await client.delete({
+    await this.client.delete({
       index: 'question',
       id: _id
     });

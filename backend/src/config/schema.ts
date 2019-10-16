@@ -8,5 +8,7 @@ export const SCHEMA: Joi.ObjectSchema = Joi.object({
 
   FRONTEND_CALLBACK: Joi.string().required(),
   JWT_EXPIRES_IN: Joi.string().default('60m'),
-  JWT_SECRET: Joi.string().required()
+  JWT_SECRET: Joi.string().required(),
+
+  ELASTIC_PASSWORD: Joi.string().required()
 });
