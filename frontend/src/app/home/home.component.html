@@ -1,0 +1,73 @@
+<div class="landing">
+  <h1>Wissensdatenbank</h1>
+  <h2>DHBW Richie</h2>
+</div>
+
+<div class="paragraph">
+  <div class="thatsMe" title="Hi, das bin ich"></div>
+  <h2>Richie Richwood</h2>
+
+  <h3>Wer bin ich?</h3>
+  <p>
+    Ich bin von je der Ordnung Freund gewesen. Vernunft fängt wieder an zu sprechen Und
+    Hoffnung wieder an zu blühn; Man sehnt sich nach des Lebens goldner Baum. Es irrt der
+    Mensch, wenn er sie beim Kragen hätte. Ich bin von je der Ordnung Freund gewesen. Ich
+    höre schon des Dorfs Getümmel, Hier ist des Volkes wahrer Himmel, Zufrieden jauchzet
+    groß und klein, Hier bin ich nicht; doch viel ist mir bewusst. Wenn sich der Mensch,
+    wenn er sie beim Kragen hätte. Gewöhnlich glaubt der Mensch, wenn er sie beim Kragen
+    hätte. Es irrt der Mensch, wenn er nur Worte hört, Es müsse sich dabei doch auch was
+    denken lassen. So schreitet in dem engen Bretterhaus (Theater, Bühne) Den ganzen Kreis
+    der Schöpfung aus, Und wandelt mit bedächt'ger Schnelle Vom Himmel durch die Welt zur
+    Hölle! So schreitet in dem engen Bretterhaus (Theater, Bühne) Den ganzen Kreis der
+    Schöpfung aus, Und wandelt mit bedächtger Schnelle Vom Himmel durch die Welt zur
+    Hölle! Vernunft fängt wieder an zu sprechen Und Hoffnung wieder an zu blühn; Man sehnt
+    sich nach des Lebens Quelle hin. Vernunft fängt wieder an zu sprechen Und Hoffnung
+    wieder an zu sprechen Und Hoffnung wieder an zu sprechen Und Hoffnung wieder an zu
+    blühn; Man sehnt sich nach des Lebens Quelle hin.
+  </p>
+  <div class="spliter"></div>
+  <div class="media">
+    <span (click)="openURL(this.globals.telegramURL)">
+      <i style="color: #0088cc" class="fab fa-telegram-plane"></i>
+    </span>
+    <span (click)="openURL(this.globals.youtubeURL)">
+      <i style="color: #ff0000" class="fab fa-youtube"></i>
+    </span>
+    <span (click)="openURL(this.globals.twitterURL)">
+      <i style="color: #1da1f2" class="fab fa-twitter"></i>
+    </span>
+    <span (click)="openURL(this.globals.facebookURL)">
+      <i style="color: #3b5998" class="fab fa-facebook"></i>
+    </span>
+    <span (click)="openURL(this.globals.instagramURL)">
+      <i style="color: #e1306c" class="fab fa-instagram"></i>
+    </span>
+  </div>
+</div>
+
+<div *ngIf="!globals.user.signed_in" class="paragraph">
+  <h2>Go <span class="gradient">Pro</span>, unterrichte Richie!</h2>
+  <p>
+    Richie lebt davon neue Sachen zu lernen, um damit anderen Studenten bei Fragen schnell
+    und präzise helfen zu können. Ohne die Unterstützung eines
+    <span class="gradient">Pros</span> ist dies leider nicht möglich. Er ist auf Deine
+    Hilfe angewiesen!<br /><br />
+    Wenn du möchteste, dass Richie schlauer wird, um anderen zu Helfen, dann kannst du
+    dich ganz einfach mit einem deiner bereits existierenden Accounts anmelden. Dadurch
+    hast du dann die Möglichkeit neue Frage zu erstellen und durch einen kurzen Text zu
+    beantworten. Gleichzeitig kannst du dich mit anderen Kommilitionen über die
+    Kommentarfunktion austauschen. Anderen wird es mit Sicherheit eine Hilfe sein!
+    <a [routerLink]="['/login']">Ich möchte ein Pro werden!</a>
+  </p>
+</div>
+
+<div class="paragraph">
+  <div class="iconButtonHeading">
+    <h2>Du hast Fragen zu einer Klausur?</h2>
+    <a class="iconButton" [href]="globals.botURL">
+      <i class="fab fa-telegram-plane"></i>Stell sie mir
+    </a>
+  </div>
+</div>
+
+<div class="removeWhite"></div>

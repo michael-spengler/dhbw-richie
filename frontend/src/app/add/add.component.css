@@ -1,0 +1,75 @@
+input,
+textarea {
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid var(--input-border);
+  background: var(--paragraph);
+  padding: 5px 10px;
+  color: var(--font-color);
+  -webkit-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+  font-size: 1em;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+input:focus, input:hover,
+textarea:focus,
+textarea:hover {
+  background: var(--input-border);
+}
+
+textarea {
+  resize: none;
+  width: calc(100% - 20px);
+}
+
+.input {
+  display: -ms-inline-grid;
+  display: inline-grid;
+}
+
+@media only screen and (min-width: 800px) {
+  .inputWrapper {
+    -ms-grid-columns: 3fr 1fr;
+        grid-template-columns: 3fr 1fr;
+    grid-gap: 20px;
+  }
+  .selectionWrapper {
+    margin-left: -50px;
+    margin-top: -80px;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .inputWrapper {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    grid-gap: 0px;
+  }
+  .selectionWrapper {
+    margin-top: -150px;
+  }
+}
+
+.inputWrapper {
+  display: -ms-grid;
+  display: grid;
+}
+
+.lecture {
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.lecture i {
+  margin-right: 10px;
+}
+/*# sourceMappingURL=add.component.css.map */

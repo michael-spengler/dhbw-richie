@@ -1,0 +1,51 @@
+.background-gif {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-position: bottom;
+}
+
+.info {
+  position: fixed;
+  padding: 20px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+  background: var(--fourOfour-tile);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+       -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 40;
+  display: block;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.8em;
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 100%;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: inline-block;
+  width: 100%;
+}
+/*# sourceMappingURL=page-not-found.component.css.map */
