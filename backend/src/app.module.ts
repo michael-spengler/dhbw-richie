@@ -9,11 +9,12 @@ import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
 import { User } from './entities/user.entity';
 import { ConfigModule, ConfigService } from './config';
+import { TelegrammGroups } from './entities/telegrammGroups.entity';
 
 @Module({
   imports: [
-    PassportModule, 
-    LoginModule, 
+    PassportModule,
+    LoginModule,
     RolesModule,
     ConfigModule,
     TypeOrmModule.forRootAsync({
@@ -25,13 +26,13 @@ import { ConfigModule, ConfigService } from './config';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture],
+          entities: [Data, User, Lecture, TelegrammGroups],
         } as TypeOrmModuleOptions),
-        inject: [ConfigService]
+      inject: [ConfigService]
     }),
     TypeOrmModule.forFeature([Data]),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
