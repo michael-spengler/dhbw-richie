@@ -47,23 +47,13 @@
   <div class="paragraph">
     <h2>Kommentare</h2>
 
-    <div class="writeComment">
-      <textarea
-        (keyup)="autoGrowTextZone($event)"
-        placeholder="Öffentlich kommentieren..."
-        rows="1"
-        required
-      ></textarea>
-      <span></span>
-      <div class="actions">
-        <div (click)="cancel()" class="iconButton" red>
-          <i class="fal fa-times"></i>Abbrechen
-        </div>
-        <div (click)="submit()" class="iconButton" green>
-          <i class="fas fa-comment-alt"></i>Antworten
-        </div>
-      </div>
-    </div>
+    <richie-textarea
+      [placeholder]="'Öffentlich kommentieren...'"
+      [hasActions]="true"
+      (t_cancel)="cancel()"
+    ></richie-textarea>
+    <!-- (submit)="submit()"
+       -->
 
     <div class="commentWrapper">
       <div class="comment">
