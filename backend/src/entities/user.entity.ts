@@ -3,9 +3,9 @@ import {
   Entity,
   ObjectID,
   ObjectIdColumn,
-  CreateDateColumn,
-  BeforeInsert,
+  BeforeInsert
 } from 'typeorm';
+import { Data } from './data.entity';
 
 @Entity()
 export class User {
@@ -36,8 +36,15 @@ export class User {
   @Column()
   created: number;
 
+  @Column(() => Data)
+  likedQuestions: Data[];
+
+  @Column(() => Data)
+  dislikedQuestions: Data[];
+
   @BeforeInsert()
   updateCreated() {
     this.created = new Date().getTime();
   }
+
 }

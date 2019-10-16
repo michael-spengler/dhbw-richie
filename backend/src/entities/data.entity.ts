@@ -1,10 +1,11 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
   ObjectID,
   ObjectIdColumn,
   UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate
 } from 'typeorm';
 import { Lecture } from './lecture.entity';
 import { User } from './user.entity';
@@ -29,24 +30,37 @@ export class Data {
   @Column()
   isReviewed: boolean;
 
-  @CreateDateColumn()
-  creationDate: Date; // Automatisch
+  @Column()
+  creationDate: number; // Automatisch
 
-  @Column({
-    type: 'date',
-    default: Date.now(),
-  })
-  reviewDate: Date; // Automatisch
+  @Column()
+  reviewDate: number;
 
-  @UpdateDateColumn()
-  updateDate: Date; // Automatisch
+  @Column()
+  updateDate: number; // Automatisch
 
   @Column(() => User)
-  creator: User; // Username
+  creator: User;
 
   @Column(() => User)
-  modifier: User; // lastModifiedBy, ...
+  modifier: User;
 
   @Column()
   archived: boolean;
+
+  @Column(() => User)
+  likedBy: User[];
+
+  @Column(() => User)
+  dislikedBy: User[];
+
+  @BeforeInsert()
+  updateCreationDate() {
+    this.creationDate = new Date().getTime();
+  }
+
+  @BeforeUpdate()
+  updateUpdateDate() {
+    this.updateDate = new Date().getTime();
+  }
 }
