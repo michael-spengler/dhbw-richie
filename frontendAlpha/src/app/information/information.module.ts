@@ -14,6 +14,14 @@ const commonRoutes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'legal',
+    component: LegalComponent
+  },
+  {
+    path: 'impressum',
+    component: ImpressumComponent
   }
 ];
 @NgModule({

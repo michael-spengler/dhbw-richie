@@ -4,8 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InformationModule } from './information/information.module';
+import { ManagementModule } from './management/management.module';
+import { QuestionModule } from './question/question.module';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
+import { darkTheme, lightTheme } from './shared/themes';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,9 +16,14 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     SearchModule,
     InformationModule,
+    ManagementModule,
+    QuestionModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule.forRoot({
+      themes: [lightTheme, darkTheme],
+      active: 'light'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
