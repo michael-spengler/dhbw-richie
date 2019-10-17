@@ -17,9 +17,7 @@ export interface IUser {
   providedIn: 'root'
 })
 export class UserService {
-  constructor() {}
-
-  richieUser: IUser;
+  richieUser: IUser = {} as IUser;
 
   public logIn(service: SignedInWith) {
     if (localStorage.getItem('richie-user')) {

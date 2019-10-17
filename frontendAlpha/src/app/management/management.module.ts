@@ -30,7 +30,7 @@ const adminRoutes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [],
+  declarations: [AdminComponent, LoginComponent, ReviewComponent, SettingsComponent],
   imports: [CommonModule, RouterModule.forChild(adminRoutes)]
 })
 export class ManagementModule {}
