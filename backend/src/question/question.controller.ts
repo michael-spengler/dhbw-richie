@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
-import { User } from 'src/entities/user.entity';
-import { AuthenticatedUser } from 'src/passport';
+import { User } from '../entities/user.entity';
+import { AuthenticatedUser } from '../passport';
 import { Data } from '../entities/data.entity';
 import { QuestionService } from './question.service';
 

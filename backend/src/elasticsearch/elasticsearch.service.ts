@@ -1,6 +1,6 @@
 import { Client } from '@elastic/elasticsearch';
 import { Injectable } from '@nestjs/common';
-import { Data } from 'src/entities/data.entity';
+import { Data } from '../entities/data.entity';
 import { ClientService } from './client';
 
 @Injectable()

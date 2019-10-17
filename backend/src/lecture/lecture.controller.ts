@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { Lecture } from 'src/entities/lecture.entity';
+import { Lecture } from '../entities/lecture.entity';
 import { LectureService } from './lecture.service';
 
 @Controller('lecture')

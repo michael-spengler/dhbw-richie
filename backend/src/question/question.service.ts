@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ElasticsearchService } from 'src/elasticsearch/elasticsearch.service';
-import { Data } from 'src/entities/data.entity';
-import { Lecture } from 'src/entities/lecture.entity';
-import { User } from 'src/entities/user.entity';
-import RelationMapper from 'src/util/util.service';
+import { ElasticsearchService } from '../elasticsearch/elasticsearch.service';
+import { Data } from '../entities/data.entity';
+import { Lecture } from '../entities/lecture.entity';
+import { User } from '../entities/user.entity';
+import RelationMapper from '../util/util.service';
 import { MongoRepository } from 'typeorm';
 
 @Injectable()
