@@ -1,0 +1,373 @@
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  display: block;
+  color: #fff;
+  user-select: none;
+
+  .hotlinks {
+    position: absolute;
+    margin: 5px;
+    width: 210px;
+    bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    a {
+      display: inline-grid;
+      font-size: 0.8em;
+      font-weight: 400;
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.2s ease;
+      &:not(:first-child) {
+        border-left: 1px solid #ccc;
+      }
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .title {
+    display: block;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    filter: brightness(110%);
+    letter-spacing: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 50px;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  nav {
+    width: 220px;
+    height: 100%;
+
+    max-width: 50px;
+    overflow: hidden;
+    z-index: 10000;
+    transition: 0.5s ease;
+
+    .divider {
+      margin: 20px 10px;
+      height: 1px;
+      background: #888;
+    }
+
+    .hotlinks {
+      max-width: 0;
+      opacity: 0;
+    }
+    &:active,
+    &:hover {
+      max-width: 220px;
+      transition: 0.5s ease;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      .title::before {
+        content: 'DHBW Richie';
+      }
+      .routes a {
+        grid-template-columns: 35px 1fr 40px;
+      }
+      .hotlinks {
+        max-width: 100%;
+        opacity: 1;
+      }
+    }
+
+    .routes {
+      a {
+        display: grid;
+        grid-template-columns: 35px 1fr 40px;
+        padding: 0px 15px;
+        height: 40px;
+        line-height: 40px;
+        color: #ddd;
+        width: calc(100% - 30px);
+        font-weight: 500;
+        text-decoration: none;
+        transition: 0.2s ease;
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
+
+        .name {
+          display: inline-grid;
+          overflow: hidden;
+        }
+
+        i {
+          display: inline-grid;
+          font-size: 20px;
+          line-height: 40px;
+          overflow: hidden;
+        }
+
+        .type {
+          display: inline-grid;
+          color: #3d404a;
+          background: rgba(255, 255, 255, 0.75);
+          border-radius: 10px;
+          padding: 0px 10px;
+          height: 18px;
+          margin-top: 11px;
+          line-height: 18px;
+          font-size: 0.8em;
+          text-transform: capitalize;
+        }
+      }
+      .active {
+        color: #fff;
+        background-image: linear-gradient(to right, #08f, rgb(78, 167, 245));
+        transition: 0.6s ease;
+        &:hover {
+          background-image: linear-gradient(to right, #08f, rgb(78, 167, 245)) !important;
+        }
+      }
+    }
+
+    .toggleButton {
+      display: none;
+    }
+
+    .title {
+      font-weight: 700;
+      background-image: linear-gradient(to bottom right, #08f, #34e985);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      &:before {
+        content: 'RW';
+      }
+    }
+
+    .navwrapper {
+      display: block;
+      z-index: 1;
+    }
+
+    .richie {
+      display: none;
+    }
+
+    background-image: linear-gradient(
+        126deg,
+        rgba(101, 101, 101, 0.09) 0%,
+        rgba(101, 101, 101, 0.09) 68%,
+        rgba(200, 200, 200, 0.09) 68%,
+        rgba(200, 200, 200, 0.09) 100%
+      ),
+      linear-gradient(
+        164deg,
+        rgba(238, 238, 238, 0.03) 0%,
+        rgba(238, 238, 238, 0.03) 90%,
+        rgba(14, 14, 14, 0.03) 90%,
+        rgba(14, 14, 14, 0.03) 100%
+      ),
+      linear-gradient(
+        27deg,
+        rgba(214, 214, 214, 0.04) 0%,
+        rgba(214, 214, 214, 0.04) 34%,
+        rgba(104, 104, 104, 0.04) 34%,
+        rgba(104, 104, 104, 0.04) 100%
+      ),
+      linear-gradient(
+        175deg,
+        rgba(20, 20, 20, 0.01) 0%,
+        rgba(20, 20, 20, 0.01) 4%,
+        rgba(9, 9, 9, 0.01) 4%,
+        rgba(9, 9, 9, 0.01) 100%
+      ),
+      linear-gradient(
+        257deg,
+        rgba(14, 14, 14, 0.01) 0%,
+        rgba(14, 14, 14, 0.01) 28%,
+        rgba(164, 164, 164, 0.01) 28%,
+        rgba(164, 164, 164, 0.01) 100%
+      ),
+      linear-gradient(
+        311deg,
+        rgba(68, 68, 68, 0.07) 0%,
+        rgba(68, 68, 68, 0.07) 33%,
+        rgba(213, 213, 213, 0.07) 33%,
+        rgba(213, 213, 213, 0.07) 100%
+      ),
+      linear-gradient(
+        244deg,
+        rgba(43, 43, 43, 0.02) 0%,
+        rgba(43, 43, 43, 0.02) 80%,
+        rgba(161, 161, 161, 0.02) 80%,
+        rgba(161, 161, 161, 0.02) 100%
+      ),
+      linear-gradient(
+        130deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(255, 255, 255, 0.04) 49%,
+        rgba(105, 105, 105, 0.04) 49%,
+        rgba(105, 105, 105, 0.04) 100%
+      ),
+      linear-gradient(90deg, #000, #000);
+
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+
+    .hotlinks {
+      width: 210px;
+      a {
+        font-size: 0.8em;
+      }
+    }
+
+    .routes a:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Phones
+@media only screen and (max-width: 849px) {
+  nav {
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    user-select: none;
+    position: absolute;
+
+    .routes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 40px;
+      padding: 50px;
+
+      .divider {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        height: 1px;
+        background: #888;
+      }
+
+      a {
+        display: inline-grid;
+        color: #ddd;
+        font-weight: 500;
+        text-decoration: none;
+        transition: 0.2s ease;
+        text-align: center;
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
+
+        .name {
+          display: inline-block;
+          width: 100%;
+          overflow: hidden;
+        }
+
+        i {
+          display: inline-block;
+          font-size: 30px;
+          line-height: 40px;
+          width: 40px;
+          height: 40px;
+          margin-top: 10px;
+          padding: 10px;
+          margin-left: 50%;
+          transform: translateX(-50%);
+          border: 1px solid #fff;
+          border-radius: 500px;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+
+        .type {
+          display: inline-block;
+          color: #3d404a;
+          background: rgba(255, 255, 255, 0.75);
+          border-radius: 10px;
+          padding: 0px 10px;
+          height: 18px;
+          margin-top: 11px;
+          margin-left: 50%;
+          transform: translateX(-50%);
+          line-height: 18px;
+          font-size: 0.8em;
+          max-width: 2em;
+          text-transform: capitalize;
+        }
+      }
+      .active {
+        color: #08f;
+        transition: 0.6s ease;
+        i {
+          border-color: #08f;
+        }
+      }
+    }
+
+    .title::before {
+      content: 'DHBW Richie';
+    }
+
+    .richie {
+      position: fixed;
+      left: calc(env(safe-area-inset-left) + 50px);
+      top: 0px;
+      height: 50px;
+      line-height: 50px;
+      width: 200px;
+      font-weight: 600;
+      z-index: 500;
+      cursor: pointer;
+    }
+
+    .toggleButton {
+      position: fixed;
+      display: block;
+      color: #fff;
+      top: 0;
+      left: env(safe-area-inset-left);
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 20px;
+      text-align: center;
+      z-index: 6010;
+      cursor: pointer;
+    }
+    .navwrapper {
+      display: block;
+      position: fixed;
+      transition: 0.5s ease;
+      overflow: hidden;
+      width: calc(100% - env(safe-area-inset-left) - env(safe-area-inset-right));
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      height: 0%;
+      background: #000;
+      z-index: 600;
+      overflow-y: auto;
+    }
+    .hotlinks {
+      width: 100%;
+      position: initial;
+      a {
+        font-size: 1em;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    .routes {
+      a {
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
