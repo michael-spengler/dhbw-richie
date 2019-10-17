@@ -1,16 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NotificationType } from 'src/app/models';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'richie-comment',
-  template: `
-    <p>
-      comment works!
-    </p>
-  `,
+  templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
-export class CommentComponent implements OnInit {
-  constructor() {}
+export class CommentComponent {
+  constructor(public notificationService: NotificationService) {}
 
-  ngOnInit() {}
+  @Input() id: number;
+  @Input() comment: string;
+  @Input() author: string;
+  @Input() date: number;
+
+  textAreaContent = '';
+  textAreaStyle = {
+    'max-height': '0px'
+  };
+
+  public submit() {
+    this.notificationService.sendNotification(
+      'Deine Antwort wurde gespeichert!',
+      NotificationType.SUCCESS
+    );
+    const message = this.textAreaContent;
+    this.cancel();
+  }
+
+  public cancel() {
+    this.textAreaStyle = {
+      'max-height': '0px'
+    };
+    this.textAreaContent = '';
+  }
 }

@@ -1,0 +1,17 @@
+<div class="comment">
+  <div class="header">
+    <div class="author"><i class="fad fa-at"></i>{{ author }}</div>
+    <div class="date">{{ date | date: 'HH:mm dd.MM.yyy' }}</div>
+    <div class="delete"><i class="fa-trash-alt fad"></i></div>
+    <div class="reply"></div>
+  </div>
+  <div class="message">{{ comment }}</div>
+  <richie-textarea
+    [placeholder]="'Öffentlich kommentieren...'"
+    [hasActions]="true"
+    ng-model="textAreaContent"
+    (cancel)="cancel()"
+    (submit)="submit()"
+  ></richie-textarea>
+  <ng-content></ng-content>
+</div>
