@@ -12,6 +12,7 @@ import { LoginModule } from './login/login.module';
 import { PassportModule } from './passport';
 import { QuestionModule } from './question/question.module';
 import { RolesModule } from './roles/roles.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { RolesModule } from './roles/roles.module';
     TypeOrmModule.forFeature([Data]),
     QuestionModule,
     LectureModule,
-    ElasticsearchModule
+    ElasticsearchModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService]

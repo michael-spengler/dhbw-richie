@@ -1,3 +1,4 @@
+import { IsDefined, MinLength } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
@@ -14,9 +15,13 @@ export class Data {
   @ObjectIdColumn()
   _id: ObjectID;
 
+  @IsDefined()
+  @MinLength(1)
   @Column()
   question: string;
 
+  @IsDefined()
+  @MinLength(1)
   @Column()
   answer: string;
 

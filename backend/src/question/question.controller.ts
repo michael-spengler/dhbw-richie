@@ -1,4 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { User } from 'src/entities/user.entity';
+import { AuthenticatedUser } from 'src/passport';
 import { Data } from '../entities/data.entity';
 import { QuestionService } from './question.service';
 
@@ -17,7 +19,8 @@ export class QuestionController {
   }
 
   @Post()
-  public createQuestion(@Body() question: Data) {
+  public createQuestion(@Body() question: Data, @AuthenticatedUser() user: User) {
+    question.creator = user;
     return this.questionService.createQuestion(question);
   }
 

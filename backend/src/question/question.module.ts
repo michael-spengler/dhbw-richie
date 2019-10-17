@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ElasticsearchModule } from 'src/elasticsearch/elasticsearch.module';
 import { Data } from 'src/entities/data.entity';
@@ -11,6 +12,15 @@ import { QuestionService } from './question.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Data, Lecture, User]), ElasticsearchModule],
   controllers: [QuestionController],
-  providers: [QuestionService, RelationMapper]
+  providers: [
+    QuestionService,
+    RelationMapper,
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        transform: true
+      })
+    }
+  ]
 })
 export class QuestionModule {}
