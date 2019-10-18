@@ -1,7 +1,7 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-richie-textarea',
+  selector: 'richie-textarea',
   template: `
     <div class="writeComment">
       <textarea
@@ -12,25 +12,30 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
       ></textarea>
       <span></span>
       <div *ngIf="hasActions" class="actions">
-        <div (click)="cancel()" class="iconButton" red>
+        <div (click)="cancelClick($event)" class="iconButton" red>
           <i class="fal fa-times"></i>Abbrechen
         </div>
-        <div (click)="submit()" class="iconButton" green>
+        <div (click)="submitClick($event)" class="iconButton" green>
           <i class="fas fa-comment-alt"></i>Kommentieren
         </div>
       </div>
     </div>
   `,
-  styles: ['./richie-textarea.component.css'],
-  encapsulation: ViewEncapsulation.Native
+  styleUrls: ['./richie-textarea.component.css']
 })
 export class RichieTextareaComponent {
-  //Öffentlich kommentieren
-
   @Input() placeholder: string;
   @Input() hasActions: boolean;
-  @Input() cancel: any;
-  @Input() submit: any;
+  @Output() t_cancel = new EventEmitter<Event>();
+  @Output() t_submit = new EventEmitter<Event>();
+
+  submitClick(event?) {
+    this.t_submit.emit(event);
+  }
+
+  cancelClick(event?) {
+    this.t_cancel.emit(event);
+  }
 
   autoGrowTextZone(e) {
     e.target.style.height = '23px';

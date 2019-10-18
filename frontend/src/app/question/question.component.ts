@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Globals, NotificationType } from '../globals';
 
 @Component({
   selector: 'app-question',
@@ -7,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent {
-  constructor(public route: ActivatedRoute) {
+  constructor(public route: ActivatedRoute, private globals: Globals) {
     route.params.subscribe(params => {
       this.question.isValid = !isNaN(params.id);
       this.question.id = params.id;
@@ -70,4 +71,11 @@ export class QuestionComponent {
       comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
     }
   ];
+
+  cancel() {
+    this.globals.sendNotification('Cancel', NotificationType.ERROR);
+  }
+  submit() {
+    this.globals.sendNotification('Submit', NotificationType.SUCCESS);
+  }
 }
