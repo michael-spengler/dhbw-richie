@@ -1,1 +1,4 @@
-<p>richie-iconbutton works!</p>
+<a *ngIf="url" class="iconButton" [href]="url"> <i [ngClass]="icon"></i>{{ title }} </a>
+<div *ngIf="!url" class="iconButton" (click)="actionCalled($event)">
+  <i [ngClass]="icon"></i>{{ title }}
+</div>

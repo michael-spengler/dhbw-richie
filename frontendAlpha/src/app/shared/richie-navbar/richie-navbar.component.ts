@@ -8,16 +8,16 @@ import { IUser, UserService } from '../user.service';
   styleUrls: ['./richie-navbar.component.scss']
 })
 export class RichieNavbarComponent implements OnInit {
+  constructor(
+    public readonly userService: UserService,
+    public readonly themeService: ThemeService
+  ) {}
+
   public user: IUser;
   public navVisible: boolean = false;
   public navwrapperStyle: any = {
     height: window.innerWidth > 850 || this.navVisible ? '100%' : '0px'
   };
-
-  constructor(
-    public readonly userService: UserService,
-    public readonly themeService: ThemeService
-  ) {}
 
   ngOnInit(): void {
     this.user = this.userService.richieUser;

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-richie-iconbutton',
+  selector: 'richie-iconbutton',
   templateUrl: './richie-iconbutton.component.html',
   styleUrls: ['./richie-iconbutton.component.scss']
 })
-export class RichieIconbuttonComponent implements OnInit {
+export class RichieIconbuttonComponent {
+  @Input() url: string;
+  @Input() icon: string;
+  @Input() title: string;
+  @Output() action = new EventEmitter<Event>();
 
-  constructor() { }
-
-  ngOnInit() {
+  actionCalled(event?) {
+    this.action.emit(event);
   }
-
 }

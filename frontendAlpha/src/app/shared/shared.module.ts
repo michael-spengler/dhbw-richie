@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommentComponent } from './comment/comment.component';
+import { ConstantsService } from './constants.service';
+import { FunctionsService } from './functions.service';
 import { NotificationService } from './notification.service';
 import { NotificationComponent } from './notification/notification.component';
 import { RichieHeaderComponent } from './richie-header/richie-header.component';
+import { RichieIconbuttonComponent } from './richie-iconbutton/richie-iconbutton.component';
 import { RichieInputComponent } from './richie-input/richie-input.component';
 import { RichieNavbarComponent } from './richie-navbar/richie-navbar.component';
 import { RichieRouteSmallComponent } from './richie-navbar/richie-route-small/richie-route-small.component';
@@ -14,7 +17,6 @@ import { RichieTextareaComponent } from './richie-textarea/richie-textarea.compo
 import { ThemeDirective } from './theme.directive';
 import { ACTIVE_THEME, ThemeOptions, THEMES } from './theme.service';
 import { UserService } from './user.service';
-import { RichieIconbuttonComponent } from './richie-iconbutton/richie-iconbutton.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { RichieIconbuttonComponent } from './richie-iconbutton/richie-iconbutton
     RichieIconbuttonComponent
   ],
   imports: [CommonModule, RouterModule],
-  providers: [NotificationService, UserService],
+  providers: [NotificationService, UserService, FunctionsService, ConstantsService],
   exports: [
     NotificationComponent,
     ThemeDirective,
@@ -42,7 +44,8 @@ import { RichieIconbuttonComponent } from './richie-iconbutton/richie-iconbutton
     RichieInputComponent,
     CommentComponent,
     RichieNavbarComponent,
-    RichieHeaderComponent
+    RichieHeaderComponent,
+    RichieIconbuttonComponent
   ]
 })
 export class SharedModule {
