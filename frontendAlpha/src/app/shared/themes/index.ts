@@ -13,7 +13,7 @@ export const lightTheme: Theme = {
     '--scrollbar-thumb-grab': '#555',
     '--header': 'rgba(0, 0, 0, 0.3)',
     '--fourOfour-tile': 'rgba(255, 255, 255, 0.5)',
-    '--landing-bg': "url('../assets/img/landing_light@2k.jpg')"
+    '--landing-bg': "url('./assets/img/landing_light@2k.jpg')"
   }
 };
 export const darkTheme: Theme = {
@@ -29,6 +29,6 @@ export const darkTheme: Theme = {
     '--scrollbar-thumb-grab': '#aaa',
     '--header': 'rgba(0, 0, 0, 0.6)',
     '--fourOfour-tile': 'rgba(0, 0, 0, 0.5)',
-    '--landing-bg': "url('../assets/img/landing_dark2@2k.jpg')"
+    '--landing-bg': "url('./assets/img/landing_dark2@2k.jpg')"
   }
 };

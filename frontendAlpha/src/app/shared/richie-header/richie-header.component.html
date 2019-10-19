@@ -1,0 +1,20 @@
+<div *ngIf="richieUser; then signedIn; else signedOut"></div>
+
+<ng-template #signedOut>
+  <header>
+    <div class="registerLogin">
+      <div class="signIn" [routerLink]="['/login']">
+        Anmelden<i class="fad fa-sign-in"></i>
+      </div>
+    </div>
+  </header>
+</ng-template>
+
+<ng-template #signedIn>
+  <header>
+    <div class="user" [routerLink]="['/settings']">
+      <div class="name">{{ richieUser.givenName }} {{ richieUser.familyName }}</div>
+      <img [src]="richieUser.icon" onerror="this.src = '../assets/img/richie.jpg'" />
+    </div>
+  </header>
+</ng-template>

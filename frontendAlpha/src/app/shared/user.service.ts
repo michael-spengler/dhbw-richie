@@ -17,6 +17,16 @@ export interface IUser {
   providedIn: 'root'
 })
 export class UserService {
+  constructor() {
+    this.richieUser.isAdmin = true;
+    this.richieUser.givenName = 'Timo';
+    this.richieUser.familyName = 'Scheuermann';
+    this.richieUser.signedInWith = 'Apple';
+    this.richieUser.email = 'mails.sind.cool@coolemails.co.uk';
+    this.richieUser.created = new Date(12671627687676);
+    this.richieUser.icon = 'https://avatars2.githubusercontent.com/u/48986503';
+  }
+
   richieUser: IUser = {} as IUser;
 
   public logIn(service: SignedInWith) {

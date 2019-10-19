@@ -1,0 +1,73 @@
+header {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 19;
+
+  transition: 0.5s ease;
+
+  height: 50px;
+  padding: 0px 10px;
+  background: var(--header);
+  backdrop-filter: blur(7px);
+  text-align: right;
+
+  line-height: 50px;
+  user-select: none;
+  color: #ddd;
+
+  * {
+    outline: none;
+    cursor: pointer;
+    * {
+      outline: none;
+      cursor: pointer;
+    }
+  }
+
+  .registerLogin {
+    margin-right: env(safe-area-inset-right);
+
+    * {
+      display: inline-block;
+      transition: 0.2s ease;
+    }
+
+    i {
+      margin-left: 10px;
+    }
+    .signIn {
+      line-height: 30px;
+      height: 30px;
+      margin: 10px 0px;
+      padding: 0px 15px;
+      border: 1px solid var(--input-border);
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      &:hover {
+        color: #fff;
+        border-color: #fff;
+      }
+    }
+  }
+  .user {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    .name {
+      display: inline-flex;
+      margin-right: 10px;
+    }
+
+    img {
+      display: inline-flex;
+      max-width: 36px;
+      max-height: 36px;
+      border-radius: 50px;
+      margin-right: env(safe-area-inset-right);
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'richie-route-small',
   template: `
-    <a routerLink="link">{{ name }}</a>
+    <a [routerLink]="'/' + link">{{ name }}</a>
   `,
   styleUrls: ['./richie-route-small.component.scss']
 })

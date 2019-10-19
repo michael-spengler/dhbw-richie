@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'richie-route',
   template: `
-    <a routerLink="link" routerLinkActive="active">
+    <a [routerLink]="'/' + link" routerLinkActive="active">
       <i [ngClass]="icon"></i>
       <div class="name">{{ name }}</div>
       <div *ngIf="status.length" class="type">{{ status }}</div>
