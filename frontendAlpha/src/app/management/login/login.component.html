@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="wrapper">
+  <div class="loginArea">
+    <div class="blurBackground"></div>
+    <h2>Melde dich mit deinem Lieblingsservice an</h2>
+
+    <div class="loginServices">
+      <div class="loginService" (click)="userService.logIn('Apple')">
+        <i class="fab fa-apple"></i>
+        <div class="serviceName">Apple</div>
+      </div>
+      <div class="loginService" (click)="userService.logIn('GitHub')">
+        <i class="fab fa-github"></i>
+        <div class="serviceName">GitHub</div>
+      </div>
+      <div class="loginService" (click)="userService.logIn('Google')">
+        <i class="fab fa-google"></i>
+        <div class="serviceName">Google</div>
+      </div>
+      <div class="loginService" (click)="userService.logIn('Telegram')">
+        <i class="fab fa-telegram"></i>
+        <div class="serviceName">Telegram</div>
+      </div>
+    </div>
+    <!--<h2>Vorteile als <span class="gradient">Pro</span></h2>-->
+  </div>
+
+  <div class="slider">
+    <div class="slide">
+      <div class="background" [ngStyle]="slides[currentSlide].img"></div>
+      <div class="title">
+        <h1>{{ slides[currentSlide].title }}</h1>
+        <h2>{{ slides[currentSlide].subtitle }}</h2>
+      </div>
+    </div>
+  </div>
+</div>

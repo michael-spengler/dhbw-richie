@@ -1,1 +1,106 @@
-<p>add works!</p>
+<div class="landing">
+  <h1>Neue Frage mit Antwort erstellen</h1>
+  <h2>Anderen Helfen</h2>
+</div>
+
+<div
+  *ngIf="userService.richieUser != null; then addParagraph; else notSignedInParagraph"
+></div>
+
+<ng-template #notSignedInParagraph class="paragraph">
+  <div class="paragraph">
+    <div class="iconButtonHeading">
+      <h2>Nicht angemeldet!</h2>
+
+      <a class="iconButton" [routerLink]="['/login']">
+        <i class="fa-sign-in fad"></i>Anmelden
+      </a>
+    </div>
+    <p>
+      Um neue Fragen und Antworten einreichen zu können musst du angemeldet sein.
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #addParagraph>
+  <div class="paragraph come-in" (click)="hideSelection()">
+    <h2>Formular</h2>
+
+    <h3>Frage</h3>
+    <textarea
+      tabindex="1"
+      rows="5"
+      [(ngModel)]="formData[0]"
+      placeholder="Beispiel: Wie verschlüssel ich eine Nachricht mit Hilfe des RSA-Algorithmus"
+    ></textarea>
+
+    <div class="splitter_"></div>
+
+    <h3>Antwort</h3>
+    <textarea
+      tabindex="2"
+      rows="5"
+      [(ngModel)]="formData[1]"
+      placeholder="Der Klartext wird als Binärzahl m Element {0, ..., n-1} aufgefasst. Ist der Klartext zu lang, so wird er in mehrere Stücke zerlegt, die jeweils für sich verschlüsselt werden.
+        Es sind:
+          n	 	öffentliche Zahl
+          e	 	öffentlicher Schlüssel des Empfängers
+          d	 	privater Schlüssel des Empfängers
+          m < n  	 	Klartext
+          c	 	Geheimtext
+        Zur Verschlüsselung berechnet der Sender: c = me mod n
+        und erhält damit den Geheimtext c. 1)
+        Die Zahl n ist das Produkt von zwei verschiedenen Primzahlen p und q, diese sind geheim. Wie können p und q geheim sein, wenn doch n = p·q öffentlich bekannt ist? Dies beruht nur darauf, dass die Primfaktorzerlegung von n zu rechenaufwendig ist, da n sehr groß ist (z.B. 512 Bit lang).
+        Für die Zahl e muss gelten: ggt(e, φ(n)) = 1
+        Hierbei ist φ(n) = (p-1)(q-1) die Anzahl der zu n teilerfremden Zahlen, die kleiner als n sind."
+    ></textarea>
+
+    <div class="splitter_"></div>
+
+    <div class="inputWrapper">
+      <div class="input">
+        <h3>Quelle</h3>
+        <input
+          tabindex="3"
+          type="text"
+          [(ngModel)]="formData[2]"
+          placeholder="http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm"
+        />
+      </div>
+      <div class="input">
+        <h3>Vorlesung</h3>
+        <div class="lecture" (click)="toggleSelection(); onClick($event)">
+          <span *ngIf="formData[3].length > 0">{{ formData[3] }}</span>
+          <span style="" *ngIf="formData[3].length <= 0">
+            <i class="fad fa-list-ul"></i>Bitte wähle eine Vorlesung
+          </span>
+        </div>
+
+        <div class="selectionWrapper" [ngClass]="selectionClass">
+          <div class="selection" sTitle="Vorlesung wählen">
+            <div
+              *ngFor="let lecture of lectures"
+              class="item"
+              (click)="setLecture(lecture)"
+            >
+              {{ lecture }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: block; text-align: center; margin-top: 10px;">
+      <div
+        tabindex="5"
+        class="iconButton"
+        (click)="submitQuestion()"
+        (keydown)="onInputKeyDown($event)"
+      >
+        <i class="fab fa-wpforms"></i>Frage & Antwort einreichen
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="removeWhite"></div>

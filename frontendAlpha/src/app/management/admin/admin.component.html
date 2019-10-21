@@ -1,1 +1,205 @@
-<p>admin works!</p>
+<div class="landing">
+  <h1>Administrations Oberfläche</h1>
+  <h2>Verwaltung & Management</h2>
+</div>
+
+<div class="paragraph">
+  <h2>Statistik</h2>
+  <div class="stats">
+    <div class="stat">
+      <h1>Registrierte Benutzer</h1>
+      <i class="fad fa-users"></i>
+      <span>10</span>
+    </div>
+    <div class="stat">
+      <h1>Fragen eingereicht</h1>
+      <i class="fad fa-atlas"></i>
+      <span>234</span>
+    </div>
+    <div class="stat">
+      <h1>Fragen gestellt</h1>
+      <i class="fad fa-map-marker-question"></i>
+      <span>45902</span>
+    </div>
+    <div class="stat" [routerLink]="['/telegram']">
+      <h1>Telegram Channel</h1>
+      <i class="fab fa-telegram"></i>
+      <span>5</span>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" [ngStyle]="overlayStyle" (click)="closeUserCard()">
+  <div class="userCard" [ngStyle]="cardStyle" (click)="onClick($event); hideSelection()">
+    <div class="close" (click)="closeUserCard()"></div>
+    <h2>Informationen</h2>
+    <div class="information">
+      <i class="fad fa-id-card"></i>
+
+      <table>
+        <tr>
+          <td>Username</td>
+          <td>{{ activeUser.name }}</td>
+        </tr>
+        <tr>
+          <td>E-Mail-Adresse</td>
+          <td>{{ activeUser.mail }}</td>
+        </tr>
+        <tr>
+          <td>Mitglied seit</td>
+          <td>{{ activeUser.created | date: 'dd.MM.yyyy' }}</td>
+        </tr>
+      </table>
+
+      <div *ngIf="activeUser.enabled" class="status">
+        <i class="fad fa-user-check active"></i>
+        <div class="statusTitle active">Freigeschaltet</div>
+        <div class="toggle" (click)="toggleUserActivation()">
+          Deaktivieren
+        </div>
+      </div>
+
+      <div *ngIf="!activeUser.enabled" class="status">
+        <i class="fad fa-user-times disabled"></i>
+        <div class="statusTitle disabled">Deaktiviert</div>
+        <div class="toggle" (click)="toggleUserActivation()">
+          Aktivieren
+        </div>
+      </div>
+    </div>
+
+    <div class="splitter"></div>
+
+    <h2>Statistik</h2>
+    <div class="stats">
+      <div class="stat">
+        <h1>Benutzer-<br />Nummer</h1>
+        <i class="fad fa-hashtag"></i>
+        <span>{{ activeUser.id + 1 }}</span>
+      </div>
+
+      <div
+        class="stat"
+        style="cursor: pointer;"
+        (click)="onClick($event); toggleSelection()"
+      >
+        <h1>Benutzer-<br />Gruppe</h1>
+        <i class="fad fa-theater-masks"></i>
+        <span>{{ activeUser.rank }}</span>
+
+        <div class="selectionWrapper" [ngClass]="selectionClass">
+          <div class="selection" sTitle="Gruppe wählen">
+            <div class="item" (click)="setRankToAdmin()">Admin</div>
+            <div class="item" (click)="setRankToReviewer()">Reviewer</div>
+            <div class="item" (click)="setRankToPro()">Pro</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat">
+        <h1>Fragen<br />eingereicht</h1>
+        <i class="fad fa-atlas"></i>
+        <span>2</span>
+      </div>
+
+      <div class="stat">
+        <h1>Fragen<br />gestellt</h1>
+        <i class="fad fa-map-marker-question"></i>
+        <span>134</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h2>Benutzerverwaltung</h2>
+  <h3>Benutzer suchen</h3>
+
+  <div class="specialInput" style="margin-right: 20px; width: 350px;">
+    <input
+      type="text"
+      [(ngModel)]="userSearch"
+      (keydown)="onInputKeyDown($event)"
+      tabindex="1"
+      required
+    />
+    <label>Benutzername</label>
+  </div>
+
+  <richie-iconbutton
+    tabindex="2"
+    style="display: inline-block"
+    icon="fas fa-search"
+    text="Suche starten"
+    (click)="searchPlayer()"
+  ></richie-iconbutton>
+
+  <div *ngIf="!isSearching">
+    <div style="height: 10px"></div>
+  </div>
+
+  <div *ngIf="isSearching">
+    <h3>Suche läuft</h3>
+    <div class="loaderWrapper">
+      <div class="loader">
+        <div *ngFor="let y of [].constructor(20)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngStyle]="searchResults">
+    <h3>Ergebnisse</h3>
+    <div class="tablewrapper">
+      <table>
+        <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
+          <td>{{ user.name }}</td>
+          <td>{{ user.mail }}</td>
+          <td>{{ user.created | date: 'dd.MM.yyyy' }}</td>
+          <td>{{ user.rank }}</td>
+          <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
+          <td *ngIf="!user.enabled">
+            <i class="fad fa-user-times disabled"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h2>Administratoren</h2>
+  <div class="tablewrapper">
+    <table>
+      <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
+        <td>#{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.mail }}</td>
+        <td>{{ user.rank }}</td>
+        <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
+        <td *ngIf="!user.enabled">
+          <i class="fad fa-user-times disabled"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h2>Reviewer</h2>
+  <div class="tablewrapper">
+    <table>
+      <tr *ngFor="let user of users; let i = index" (click)="openUserCard(i)">
+        <td>#{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.mail }}</td>
+        <td>{{ user.rank }}</td>
+        <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
+        <td *ngIf="!user.enabled">
+          <i class="fad fa-user-times disabled"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="removeWhite"></div>

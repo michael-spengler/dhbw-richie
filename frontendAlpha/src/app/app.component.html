@@ -1,4 +1,8 @@
-<richie-navbar></richie-navbar>
-<richie-header></richie-header>
-<router-outlet></router-outlet>
-<richie-notification></richie-notification>
+<div app-theme>
+  <richie-navbar></richie-navbar>
+  <richie-header></richie-header>
+  <!-- <div [@routeAnimations]="prepareRoute(outlet)"> -->
+  <router-outlet #outlet="outlet"></router-outlet>
+  <!-- </div> -->
+  <richie-notification></richie-notification>
+</div>

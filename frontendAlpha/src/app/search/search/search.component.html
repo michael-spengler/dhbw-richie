@@ -1,1 +1,101 @@
-<p>search works!</p>
+<div class="searchLanding" [ngStyle]="landingStyle">
+  <div class="searchLandingWrapper" [ngStyle]="landingWrapperStyle">
+    <h1>Welche Frage hast du?</h1>
+
+    <div class="searchWrapper">
+      <div class="searchBar">
+        <div class="inputWrapper">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (keydown)="onInputKeyDown($event)"
+          />
+        </div>
+        <div class="search" (click)="startSearch()">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+
+      <div *ngIf="isSearching" class="loaderWrapper" style="margin: -1px 20px;">
+        <div class="loader">
+          <div *ngFor="let y of [].constructor(20)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="quickLinks">
+  <div class="link" [routerLink]="['/home']"><i class="fad fa-home"></i>Home</div>
+  <div class="link" [routerLink]="['/about']">
+    <i class="fad fa-question"></i>Was ist DHBW-Richie?
+  </div>
+</div>
+
+<div [ngStyle]="resultsWrapper">
+  <div class="paragraph">
+    <h2>Filter setzen</h2>
+
+    <div class="filterWrapper">
+      <div class="filter">
+        <h3>Filter 2</h3>
+        <div class="name"><i class="fad fa-list-ul"></i>Bitte wähle einen Filter 2</div>
+        <div class="selectionWrapper" [ngStyle]="selectionStyle">
+          <div class="selection" sTitle="Vorlesung wählen">
+            <div *ngFor="let lecture of lectures" class="item">
+              {{ lecture }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter">
+        <h3>Filter 3</h3>
+        <div class="name"><i class="fad fa-list-ul"></i>Bitte wähle einen Filter 3</div>
+        <div class="selectionWrapper" [ngStyle]="selectionStyle">
+          <div class="selection" sTitle="Vorlesung wählen">
+            <div *ngFor="let lecture of lectures" class="item">
+              {{ lecture }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paragraph">
+    <h3>Gefundene Fragen & Antworten</h3>
+  </div>
+  <div class="questionwrapper">
+    <div class="questionanswer" *ngFor="let result of results; let i = index">
+      <div class="icon"></div>
+      <div class="question">{{ result.question }}</div>
+      <div class="answer">{{ result.answer }}</div>
+      <div class="actions">
+        <div
+          class="action"
+          active="true"
+          description="329"
+          style="color: rgb(52, 199, 89)"
+        >
+          <i class="fad fa-thumbs-up"></i>
+        </div>
+        <div class="action" description="13" style="color: rgb(255, 59, 48)">
+          <i class="fad fa-thumbs-down"></i>
+        </div>
+        <div class="action" description="Feedback" style="color: #08f">
+          <i class="fab fa-wpforms"></i>
+        </div>
+        <div
+          class="action"
+          [routerLink]="['/question', 3647364276]"
+          description="Vergrößern"
+        >
+          <i class="fad fa-external-link"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="removeWhite"></div>
+</div>

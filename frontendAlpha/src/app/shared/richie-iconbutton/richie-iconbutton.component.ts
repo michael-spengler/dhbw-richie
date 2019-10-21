@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class RichieIconbuttonComponent {
   @Input() url: string;
   @Input() icon: string;
-  @Input() title: string;
+  @Input() text: string;
   @Output() action = new EventEmitter<Event>();
 
   actionCalled(event?) {

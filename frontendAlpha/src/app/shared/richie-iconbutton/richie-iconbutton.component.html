@@ -1,4 +1,4 @@
-<a *ngIf="url" class="iconButton" [href]="url"> <i [ngClass]="icon"></i>{{ title }} </a>
+<a *ngIf="url" class="iconButton" [href]="url"> <i [ngClass]="icon"></i>{{ text }} </a>
 <div *ngIf="!url" class="iconButton" (click)="actionCalled($event)">
-  <i [ngClass]="icon"></i>{{ title }}
+  <i [ngClass]="icon"></i>{{ text }}
 </div>

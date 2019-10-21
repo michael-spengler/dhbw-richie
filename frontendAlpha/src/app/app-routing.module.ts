@@ -5,12 +5,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/search',
     pathMatch: 'full'
   },
   {
     path: '**',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    data: { animation: '404' }
   }
 ];
 

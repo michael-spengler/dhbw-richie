@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConstantsService {
-  public readonly twitterURL = '';
-  public readonly instagramURL = '';
-  public readonly telegramURL = '';
-  public readonly facebookURL = '';
-  public readonly youtubeURL = '';
-  public readonly botURL = '';
+  public readonly twitterURL = 'TWITTERURL';
+  public readonly instagramURL = 'INSTAGRAMURL';
+  public readonly telegramURL = 'TELEGRAMURL';
+  public readonly facebookURL = 'FACEBOOKURL';
+  public readonly youtubeURL = 'YOUTUBEURL';
+  public readonly botURL = 'BOTURL';
 }
