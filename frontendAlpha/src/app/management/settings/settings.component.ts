@@ -45,7 +45,7 @@ export class SettingsComponent implements OnInit {
   iconStyle = [];
 
   ngOnInit(): void {
-    if (!localStorage.getItem('richie-user')) {
+    if (this.userService.richieUser === null) {
       this.router.navigate(['/login']);
     }
   }

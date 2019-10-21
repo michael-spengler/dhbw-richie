@@ -1,18 +1,24 @@
 <div class="writeComment">
   <textarea
     (keyup)="autoGrowTextZone($event)"
-    ng-model="value"
+    [(ngModel)]="value"
     placeholder="{{ placeholder }}"
     rows="1"
     required
   ></textarea>
   <span></span>
   <div *ngIf="hasActions" class="actions">
-    <div (click)="cancelClick($event)" class="iconButton" red>
-      <i class="fal fa-times"></i>Abbrechen
-    </div>
-    <div (click)="submitClick($event)" class="iconButton" green>
-      <i class="fas fa-comment-alt"></i>Kommentieren
-    </div>
+    <richie-iconbutton
+      (click)="cancelClick($event)"
+      text="Abbrechen"
+      icon="fal fa-times"
+      red
+    ></richie-iconbutton>
+    <richie-iconbutton
+      (click)="submitClick($event)"
+      text="Kommentieren"
+      icon="fas fa-comment-alt"
+      green
+    ></richie-iconbutton>
   </div>
 </div>

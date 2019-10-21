@@ -535,3 +535,18 @@ $color: #08f;
     }
   }
 }
+
+[green] .iconButton {
+  color: rgb(52, 199, 89) !important;
+  border: 1px solid rgb(52, 199, 89) !important;
+  &::before {
+    background-color: rgb(52, 199, 89) !important;
+  }
+}
+[red] .iconButton {
+  color: rgb(255, 59, 48) !important;
+  border: 1px solid rgb(255, 59, 48) !important;
+  &::before {
+    background-color: rgb(255, 59, 48) !important;
+  }
+}

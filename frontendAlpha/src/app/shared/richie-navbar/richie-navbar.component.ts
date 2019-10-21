@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
 import { ThemeService } from '../theme.service';
 import { IUser, UserService } from '../user.service';
 
@@ -10,7 +12,9 @@ import { IUser, UserService } from '../user.service';
 export class RichieNavbarComponent implements OnInit {
   constructor(
     public readonly userService: UserService,
-    public readonly themeService: ThemeService
+    public readonly themeService: ThemeService,
+    public titleService: Title,
+    public router: Router
   ) {}
 
   public user: IUser;
@@ -21,6 +25,17 @@ export class RichieNavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.richieUser;
+    this.router.events.subscribe(event => {
+      if (window.innerWidth <= 850 && this.navVisible) this.toggleNavbar();
+
+      if (event instanceof NavigationEnd) {
+        var title = this.getTitle(
+          this.router.routerState,
+          this.router.routerState.root
+        ).join('-');
+        this.titleService.setTitle(title);
+      }
+    });
   }
 
   @HostListener('window:resize')
@@ -28,6 +43,18 @@ export class RichieNavbarComponent implements OnInit {
     this.navwrapperStyle = {
       height: window.innerWidth > 850 || this.navVisible ? '100%' : '0px'
     };
+  }
+
+  getTitle(state, parent) {
+    var data = [];
+    if (parent && parent.snapshot.data && parent.snapshot.data.title) {
+      data.push(parent.snapshot.data.title);
+    }
+
+    if (state && parent) {
+      data.push(...this.getTitle(state, state.firstChild(parent)));
+    }
+    return data;
   }
 
   toggleNavbar() {

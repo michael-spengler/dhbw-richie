@@ -1,26 +1,13 @@
-.iconButton[green] {
-  color: rgb(52, 199, 89) !important;
-  border: 1px solid rgb(52, 199, 89) !important;
-  &::before {
-    background-color: rgb(52, 199, 89) !important;
-  }
-}
-.iconButton[red] {
-  color: rgb(255, 59, 48) !important;
-  border: 1px solid rgb(255, 59, 48) !important;
-  &::before {
-    background-color: rgb(255, 59, 48) !important;
-  }
-}
 .iconButton {
+  color: #08f;
+  border: 1px solid #08f;
+
   z-index: 1;
   display: inline-block;
   background: transparent;
   position: relative;
-  color: #08f;
-  font-size: 16px;
+  font-size: inherit, 16px;
   font-weight: 600;
-  border: 1px solid #08f;
   text-decoration: none;
   padding: 5px 20px;
   padding-left: 10px;
@@ -45,8 +32,9 @@
     width: 0px;
     height: 0px;
     border-radius: 100px;
-    background-color: #08f;
     transform-origin: center;
+    background-color: #08f;
+
     transform: translate3d(-50%, -50%, 0);
     transition: 0.35s ease-in-out;
   }

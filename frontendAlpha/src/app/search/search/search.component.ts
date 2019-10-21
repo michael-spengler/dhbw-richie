@@ -38,6 +38,7 @@ export class SearchComponent implements AfterViewInit {
     // }, 20);
   }
 
+  quickLinksStyle: any = { 'max-height': '60px' };
   selectionStyle: any = { opacity: 0.7 };
   selectionClass: string = 'hideSelect';
   formData = ['', '', '', ''];
@@ -151,6 +152,7 @@ export class SearchComponent implements AfterViewInit {
         `Die Suche ergab folgende Treffer`,
         NotificationType.SUCCESS
       );
+      this.quickLinksStyle = { 'max-height': '0px' };
       this.landingStyle['min-height'] = '268.667px';
       this.landingStyle['margin-bottom'] = '-50px';
       this.landingWrapperStyle.top = '124.334px';

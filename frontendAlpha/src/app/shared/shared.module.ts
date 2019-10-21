@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { CommentComponent } from './comment/comment.component';
 import { ConstantsService } from './constants.service';
 import { FunctionsService } from './functions.service';
 import { NotificationService } from './notification.service';
 import { NotificationComponent } from './notification/notification.component';
+import { RichieCommentComponent } from './richie-comment/richie-comment.component';
 import { RichieHeaderComponent } from './richie-header/richie-header.component';
 import { RichieIconbuttonComponent } from './richie-iconbutton/richie-iconbutton.component';
 import { RichieInputComponent } from './richie-input/richie-input.component';
@@ -27,12 +28,13 @@ import { UserService } from './user.service';
     RichieSelectComponent,
     RichieTextareaComponent,
     RichieInputComponent,
-    CommentComponent,
+    RichieCommentComponent,
     RichieNavbarComponent,
     RichieHeaderComponent,
-    RichieIconbuttonComponent
+    RichieIconbuttonComponent,
+    RichieCommentComponent
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   providers: [NotificationService, UserService, FunctionsService, ConstantsService],
   exports: [
     NotificationComponent,
@@ -42,7 +44,7 @@ import { UserService } from './user.service';
     RichieSelectComponent,
     RichieTextareaComponent,
     RichieInputComponent,
-    CommentComponent,
+    RichieCommentComponent,
     RichieNavbarComponent,
     RichieHeaderComponent,
     RichieIconbuttonComponent

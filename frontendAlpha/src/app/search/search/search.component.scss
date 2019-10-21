@@ -16,7 +16,7 @@
     margin-bottom: 0px;
   }
   .questionanswer {
-    margin-bottom: 20px;
+    margin: 20px 0px;
   }
 }
 
@@ -223,6 +223,7 @@
   text-align: center;
   display: block;
   user-select: none;
+  transition: 1s ease;
 
   .link {
     margin: 10px;

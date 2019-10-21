@@ -38,48 +38,17 @@ export class QuestionComponent {
       '\nHierbei ist φ(n) = (p-1)(q-1) die Anzahl der zu n teilerfremden Zahlen, die kleiner als n sind.'
   };
 
-  comments = [
-    {
-      author: 'Timo Scheuermann',
-      date: new Date(1570649695000),
-      comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
-    },
-    {
-      author: 'Timo Scheuermann',
-      date: new Date(1570649695000),
-      comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
-    },
-    {
-      author: 'Timo Scheuermann',
-      date: new Date(1570649695000),
-      comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
-    },
-    {
-      author: 'Timo Scheuermann',
-      date: new Date(1570649695000),
-      comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
-    },
-    {
-      author: 'Timo Scheuermann',
-      date: new Date(1570649695000),
-      comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
-    },
-    {
-      author: 'Timo Scheuermann',
-      date: new Date(1570649695000),
-      comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
-    },
-    {
-      author: 'Timo Scheuermann',
-      date: new Date(1570649695000),
-      comment: 'Bei A. W. ist der Algo. in der Klausur gegeben.'
-    }
-  ];
+  comments = [];
 
+  testString = 'Hallo Welt';
   cancel() {
+    this.testString = '';
     this.notificationService.sendNotification('Cancel', NotificationType.ERROR);
   }
   submit() {
-    this.notificationService.sendNotification('Submit', NotificationType.SUCCESS);
+    this.notificationService.sendNotification(
+      'Submit: ' + this.testString,
+      NotificationType.SUCCESS
+    );
   }
 }

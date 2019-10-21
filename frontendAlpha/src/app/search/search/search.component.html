@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<div class="quickLinks">
+<div class="quickLinks" [ngStyle]="quickLinksStyle">
   <div class="link" [routerLink]="['/home']"><i class="fad fa-home"></i>Home</div>
   <div class="link" [routerLink]="['/about']">
     <i class="fad fa-question"></i>Was ist DHBW-Richie?
