@@ -18,6 +18,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 export class RichieTextareaComponent implements ControlValueAccessor {
   @Input() placeholder: string;
   @Input() hasActions: boolean;
+  @Input() tabindex: number;
   @Output() cancel = new EventEmitter<Event>();
   @Output() submit = new EventEmitter<Event>();
 

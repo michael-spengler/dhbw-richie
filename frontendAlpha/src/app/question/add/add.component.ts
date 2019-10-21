@@ -14,7 +14,6 @@ export class AddComponent {
     public userService: UserService
   ) {}
 
-  selectionClass: string = 'hideSelect';
   formData = ['', '', '', ''];
   lectures = [
     'Einführung IT',
@@ -29,28 +28,12 @@ export class AddComponent {
     'Backend schicken'
   ];
 
-  setLecture(lecture: string): void {
-    this.formData[3] = lecture;
-    this.hideSelection();
-  }
-
-  toggleSelection() {
-    if (this.selectionClass === 'showSelect') {
-      this.hideSelection();
-    } else {
-      this.selectionClass = 'showSelect';
-    }
-  }
-
-  hideSelection() {
-    this.selectionClass = 'hideSelect';
-  }
-  onClick(event) {
-    event.stopPropagation();
+  selectionChanged(selection) {
+    this.formData[3] = selection;
   }
 
   onInputKeyDown(event) {
-    if (event.key == 'Enter') this.submitQuestion();
+    if (event.key === 'Enter') this.submitQuestion();
   }
 
   submitQuestion() {

@@ -13,14 +13,15 @@ export class AdminComponent implements OnInit {
   constructor(
     public userService: UserService,
     private notificationService: NotificationService,
-    private router: Router
-  ) {
-    if (!userService.richieUser.isAdmin) {
-      router.navigate(['/404']);
-    }
-  }
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
+    if (!this.userService.richieUser.isAdmin) {
+      this.router.navigate(['/404']);
+      return;
+    }
+
     this.__LOADUSERDATA();
   }
 
@@ -34,40 +35,15 @@ export class AdminComponent implements OnInit {
     'max-height': '0'
   };
 
-  selectionStyle: any = { opacity: 0.7 };
-  selectionClass: string = 'hideSelect';
-
   userSearch = '';
   users;
 
+  setGroupTo(group) {
+    this.activeUser['rank'] = group;
+  }
+
   onInputKeyDown(event) {
     if (event.keyCode == 13) this.searchPlayer();
-  }
-
-  onClick(event) {
-    event.stopPropagation();
-  }
-
-  toggleSelection() {
-    if (this.selectionClass === 'showSelect') {
-      this.hideSelection();
-    } else {
-      this.selectionClass = 'showSelect';
-    }
-  }
-
-  hideSelection() {
-    this.selectionClass = 'hideSelect';
-  }
-
-  setRankToAdmin() {
-    this.activeUser['rank'] = 'Admin';
-  }
-  setRankToReviewer() {
-    this.activeUser['rank'] = 'Reviewer';
-  }
-  setRankToPro() {
-    this.activeUser['rank'] = 'Pro';
   }
 
   searchPlayer() {
@@ -98,7 +74,6 @@ export class AdminComponent implements OnInit {
   closeUserCard() {
     this.overlayStyle = { display: 'none' };
     this.cardStyle = { animation: 'none' };
-    this.hideSelection();
   }
 
   toggleUserActivation() {

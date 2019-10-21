@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ClickOutsideDirective } from './clickOutside.directive';
 import { ConstantsService } from './constants.service';
 import { FunctionsService } from './functions.service';
 import { NotificationService } from './notification.service';
@@ -13,7 +14,9 @@ import { RichieInputComponent } from './richie-input/richie-input.component';
 import { RichieNavbarComponent } from './richie-navbar/richie-navbar.component';
 import { RichieRouteSmallComponent } from './richie-navbar/richie-route-small/richie-route-small.component';
 import { RichieRouteComponent } from './richie-navbar/richie-route/richie-route.component';
+import { RichieRevealerComponent } from './richie-revealer/richie-revealer.component';
 import { RichieSelectComponent } from './richie-select/richie-select.component';
+import { RichieStatsComponent } from './richie-stats/richie-stats.component';
 import { RichieTextareaComponent } from './richie-textarea/richie-textarea.component';
 import { ThemeDirective } from './theme.directive';
 import { ACTIVE_THEME, ThemeOptions, THEMES } from './theme.service';
@@ -32,7 +35,10 @@ import { UserService } from './user.service';
     RichieNavbarComponent,
     RichieHeaderComponent,
     RichieIconbuttonComponent,
-    RichieCommentComponent
+    RichieCommentComponent,
+    ClickOutsideDirective,
+    RichieRevealerComponent,
+    RichieStatsComponent
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   providers: [NotificationService, UserService, FunctionsService, ConstantsService],
@@ -47,7 +53,10 @@ import { UserService } from './user.service';
     RichieCommentComponent,
     RichieNavbarComponent,
     RichieHeaderComponent,
-    RichieIconbuttonComponent
+    RichieIconbuttonComponent,
+    ClickOutsideDirective,
+    RichieRevealerComponent,
+    RichieStatsComponent
   ]
 })
 export class SharedModule {

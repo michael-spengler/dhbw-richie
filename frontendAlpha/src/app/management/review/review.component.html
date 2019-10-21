@@ -26,50 +26,61 @@
       <h2>Formular</h2>
 
       <h3>Frage</h3>
-      <textarea tabindex="1" rows="5" [(ngModel)]="formData[0]"></textarea>
-
-      <div class="splitter_"></div>
+      <richie-textarea
+        [(ngModel)]="formData[0]"
+        [tabindex]="1"
+        [placeholder]="formData[0]"
+      ></richie-textarea>
 
       <h3>Antwort</h3>
-      <textarea tabindex="2" rows="5" [(ngModel)]="formData[1]"></textarea>
-
-      <div class="splitter_"></div>
+      <richie-textarea
+        [(ngModel)]="formData[1]"
+        [tabindex]="2"
+        [placeholder]="formData[1]"
+      ></richie-textarea>
 
       <div class="inputWrapper">
         <div class="input">
           <h3>Quelle</h3>
-          <input tabindex="3" type="text" [(ngModel)]="formData[2]" />
+          <richie-input
+            [tabindex]="3"
+            [(ngModel)]="formData[2]"
+            [placeholder]="formData[2]"
+          ></richie-input>
         </div>
         <div class="input">
           <h3>Vorlesung</h3>
-          <div class="lecture" (click)="toggleSelection(); onClick($event)">
-            <span *ngIf="formData[3].length > 0">{{ formData[3] }}</span>
-            <span style="opacity: .6" *ngIf="formData[3].length <= 0">
-              <i class="fad fa-list-ul"></i>Bitte wähle eine Vorlesung
-            </span>
-          </div>
 
-          <div class="selectionWrapper" [ngClass]="selectionClass">
-            <div class="selection" sTitle="Vorlesung wählen">
-              <div
-                *ngFor="let lecture of lectures"
-                class="item"
-                (click)="setLecture(lecture)"
-              >
-                {{ lecture }}
-              </div>
-            </div>
-          </div>
+          <richie-select
+            [items]="lectures"
+            [tabindex]="4"
+            (change)="selectionChanged($event)"
+            [currentItem]="formData[3]"
+            heading="Vorlesung"
+            placeholder="Vorlesung"
+          ></richie-select>
         </div>
       </div>
 
-      <div style="display: block; text-align: center; margin-top: 10px;">
-        <div red tabindex="5" class="iconButton" id="delete" (click)="deleteQuestion()">
-          <i class="fad fa-trash-alt"></i>Löschen
-        </div>
-        <div green tabindex="6" class="iconButton" id="accept" (click)="acceptQuestion()">
-          <i class="fab fa-wpforms"></i>Frage & Antwort speichern
-        </div>
+      <div style="display: block; text-align: center; margin-top: 10px;">
+        <richie-iconbutton
+          style="margin: 0px 5px"
+          [tabindex]="5"
+          (click)="deleteQuestion()"
+          (keydown)="buttonKeydown('del', $event)"
+          icon="fad fa-trash-alt"
+          text="Löschen"
+          red
+        ></richie-iconbutton>
+        <richie-iconbutton
+          style="margin: 0px 5px"
+          [tabindex]="6"
+          (click)="acceptQuestion()"
+          (keydown)="buttonKeydown('add', $event)"
+          icon="fab fa-wpforms"
+          text="Frage & Antwort speichern"
+          green
+        ></richie-iconbutton>
       </div>
     </div>
   </div>

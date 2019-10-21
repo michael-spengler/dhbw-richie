@@ -38,27 +38,23 @@
 
     <div class="filterWrapper">
       <div class="filter">
-        <h3>Filter 2</h3>
-        <div class="name"><i class="fad fa-list-ul"></i>Bitte wähle einen Filter 2</div>
-        <div class="selectionWrapper" [ngStyle]="selectionStyle">
-          <div class="selection" sTitle="Vorlesung wählen">
-            <div *ngFor="let lecture of lectures" class="item">
-              {{ lecture }}
-            </div>
-          </div>
-        </div>
+        <h3>Filter 1</h3>
+        <richie-select
+          [items]="lectures"
+          (change)="selectionChanged(0, $event)"
+          [heading]="'Vorlesung'"
+          [placeholder]="'Bitte wähle eine Vorlesung'"
+        ></richie-select>
       </div>
 
       <div class="filter">
-        <h3>Filter 3</h3>
-        <div class="name"><i class="fad fa-list-ul"></i>Bitte wähle einen Filter 3</div>
-        <div class="selectionWrapper" [ngStyle]="selectionStyle">
-          <div class="selection" sTitle="Vorlesung wählen">
-            <div *ngFor="let lecture of lectures" class="item">
-              {{ lecture }}
-            </div>
-          </div>
-        </div>
+        <h3>Filter 2</h3>
+        <richie-select
+          [items]="lectures"
+          (change)="selectionChanged(1, $event)"
+          [heading]="'Vorlesung'"
+          [placeholder]="'Bitte wähle eine Vorlesung'"
+        ></richie-select>
       </div>
     </div>
   </div>

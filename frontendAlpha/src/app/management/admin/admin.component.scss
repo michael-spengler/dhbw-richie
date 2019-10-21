@@ -70,6 +70,10 @@
   }
 }
 
+.selectionWrapper {
+  margin-top: -60px !important;
+}
+
 .stats {
   display: grid;
   width: 100%;
@@ -79,34 +83,8 @@
   [ng-reflect-router-link] {
     cursor: pointer;
   }
-}
-
-.stat {
-  display: inline-grid;
-  padding: 10px;
-  border-radius: 5px;
-  outline: none;
-  background-color: var(--background);
-  user-select: none;
-  h1 {
-    font-size: 18px;
-  }
-  i {
-    width: 100%;
-    font-size: 60px;
-    margin: 5px 0px;
-    margin-bottom: 10px;
-  }
-  span,
-  .selected {
-    color: #08f;
-    font-weight: 600;
-    font-size: 25px;
-    background: none;
-    border: none;
-    appearance: none;
-    outline: none;
-    text-align: center;
+  * {
+    display: inline-grid;
   }
 }
 
@@ -238,4 +216,9 @@
   100% {
     opacity: 1;
   }
+}
+
+richie-iconbutton {
+  margin-top: 10px;
+  font-size: 12px !important;
 }

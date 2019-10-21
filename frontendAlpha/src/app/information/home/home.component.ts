@@ -14,4 +14,8 @@ export class HomeComponent {
     public readonly constants: ConstantsService,
     public readonly functions: FunctionsService
   ) {}
+
+  selectionChanged(x) {
+    console.log('Selected:', x);
+  }
 }

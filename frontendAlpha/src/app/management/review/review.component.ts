@@ -69,23 +69,9 @@ export class ReviewComponent implements OnInit {
   }
 
   formData = ['', '', '', ''];
-  selectionClass = 'hideSelect';
 
-  setLecture(lecture: string): void {
-    this.lectureInput = lecture;
-    this.hideSelection();
-  }
-
-  toggleSelection() {
-    if (this.selectionClass === 'showSelect') {
-      this.hideSelection();
-    } else {
-      this.selectionClass = 'showSelect';
-    }
-  }
-
-  hideSelection() {
-    this.selectionClass = 'hideSelect';
+  selectionChanged(selected) {
+    this.lectureInput = selected;
   }
 
   public display = { display: 'none' };
@@ -116,6 +102,12 @@ export class ReviewComponent implements OnInit {
   lectureInput;
   lectureOutput;
 
+  buttonKeydown(name, event) {
+    if (event.key === 'Enter') {
+      if (name === 'del') this.deleteQuestion();
+      if (name === 'add') this.acceptQuestion();
+    }
+  }
   acceptQuestion() {
     this.notificationService.sendNotification(
       'Frage wurde eingetragen',

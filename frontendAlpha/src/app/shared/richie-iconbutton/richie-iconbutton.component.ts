@@ -9,6 +9,7 @@ export class RichieIconbuttonComponent {
   @Input() url: string;
   @Input() icon: string;
   @Input() text: string;
+  @Input() tabindex: number;
   @Output() action = new EventEmitter<Event>();
 
   actionCalled(event?) {

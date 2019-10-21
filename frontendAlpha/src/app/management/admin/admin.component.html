@@ -6,31 +6,31 @@
 <div class="paragraph">
   <h2>Statistik</h2>
   <div class="stats">
-    <div class="stat">
-      <h1>Registrierte Benutzer</h1>
-      <i class="fad fa-users"></i>
-      <span>10</span>
-    </div>
-    <div class="stat">
-      <h1>Fragen eingereicht</h1>
-      <i class="fad fa-atlas"></i>
-      <span>234</span>
-    </div>
-    <div class="stat">
-      <h1>Fragen gestellt</h1>
-      <i class="fad fa-map-marker-question"></i>
-      <span>45902</span>
-    </div>
-    <div class="stat" [routerLink]="['/telegram']">
-      <h1>Telegram Channel</h1>
-      <i class="fab fa-telegram"></i>
-      <span>5</span>
-    </div>
+    <richie-stats
+      text="Registrierte Benutzer"
+      icon="fad fa-users"
+      amount="10"
+    ></richie-stats>
+    <richie-stats
+      text="Fragen eingereicht"
+      icon="fad fa-atlas"
+      amount="234"
+    ></richie-stats>
+    <richie-stats
+      text="Fragen gestellt"
+      icon="fad fa-map-marker-question"
+      amount="45902"
+    ></richie-stats>
+    <richie-stats
+      text="Telegram Channel"
+      icon="fab fa-telegram"
+      amount="5"
+    ></richie-stats>
   </div>
 </div>
 
 <div class="overlay" [ngStyle]="overlayStyle" (click)="closeUserCard()">
-  <div class="userCard" [ngStyle]="cardStyle" (click)="onClick($event); hideSelection()">
+  <div class="userCard" [ngStyle]="cardStyle">
     <div class="close" (click)="closeUserCard()"></div>
     <h2>Informationen</h2>
     <div class="information">
@@ -72,41 +72,34 @@
 
     <h2>Statistik</h2>
     <div class="stats">
-      <div class="stat">
-        <h1>Benutzer-<br />Nummer</h1>
-        <i class="fad fa-hashtag"></i>
-        <span>{{ activeUser.id + 1 }}</span>
-      </div>
+      <richie-stats
+        text="Benutzer-<br />Nummer"
+        icon="fad fa-hashtag"
+        [amount]="activeUser.id + 1"
+      ></richie-stats>
 
-      <div
-        class="stat"
-        style="cursor: pointer;"
-        (click)="onClick($event); toggleSelection()"
+      <richie-select
+        heading="Gruppe wählen"
+        [items]="['Admin', 'Reviewer', 'Pro']"
+        (change)="setGroupTo($event)"
       >
-        <h1>Benutzer-<br />Gruppe</h1>
-        <i class="fad fa-theater-masks"></i>
-        <span>{{ activeUser.rank }}</span>
+        <richie-stats
+          text="Benutzer-<br />Gruppe"
+          icon="fad fa-theater-masks"
+          [amount]="activeUser.rank"
+        ></richie-stats>
+      </richie-select>
 
-        <div class="selectionWrapper" [ngClass]="selectionClass">
-          <div class="selection" sTitle="Gruppe wählen">
-            <div class="item" (click)="setRankToAdmin()">Admin</div>
-            <div class="item" (click)="setRankToReviewer()">Reviewer</div>
-            <div class="item" (click)="setRankToPro()">Pro</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="stat">
-        <h1>Fragen<br />eingereicht</h1>
-        <i class="fad fa-atlas"></i>
-        <span>2</span>
-      </div>
-
-      <div class="stat">
-        <h1>Fragen<br />gestellt</h1>
-        <i class="fad fa-map-marker-question"></i>
-        <span>134</span>
-      </div>
+      <richie-stats
+        text="Fragen<br />eingereicht"
+        icon="fad fa-atlas"
+        [amount]="2"
+      ></richie-stats>
+      <richie-stats
+        text="Fragen<br />gestellt"
+        icon="fad fa-map-marker-question"
+        [amount]="134"
+      ></richie-stats>
     </div>
   </div>
 </div>
@@ -115,23 +108,20 @@
   <h2>Benutzerverwaltung</h2>
   <h3>Benutzer suchen</h3>
 
-  <div class="specialInput" style="margin-right: 20px; width: 350px;">
-    <input
-      type="text"
-      [(ngModel)]="userSearch"
-      (keydown)="onInputKeyDown($event)"
-      tabindex="1"
-      required
-    />
-    <label>Benutzername</label>
-  </div>
+  <richie-input
+    tabindex="1"
+    [(ngModel)]="userSearch"
+    (keydown)="onInputKeyDown($event)"
+    heading="Benutzername"
+    style="width: calc(100% - 140px); margin-right: 10px; display: inline-block;"
+  ></richie-input>
 
   <richie-iconbutton
     tabindex="2"
     style="display: inline-block"
     icon="fas fa-search"
     text="Suche starten"
-    (click)="searchPlayer()"
+    (action)="searchPlayer()"
   ></richie-iconbutton>
 
   <div *ngIf="!isSearching">

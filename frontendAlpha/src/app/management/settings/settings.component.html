@@ -45,15 +45,16 @@
           </td>
         </tr>
         <tr>
-          <td>Username</td>
-          <td>
-            <div class="specialInput" style="margin-right: 20px">
-              <input type="text" tabindex="1" required />
-              <label>Benutzername</label>
-            </div>
-            <div class="iconButton" style="display: inline-block;" tabindex="2">
-              <i class="fad fa-save"></i>Speichern
-            </div>
+          <td style="padding-top: 20px">
+            <richie-input heading="Benutzername" tabindex="1"></richie-input>
+          </td>
+          <!-- Had to do it :/ because mobile... -->
+          <td style="padding: 20px 0px 0px 0px">
+            <richie-iconbutton
+              text="Speichern"
+              icon="fad fa-save"
+              tabindex="2"
+            ></richie-iconbutton>
           </td>
         </tr>
       </table>
@@ -69,44 +70,40 @@
   </div>
 </div>
 
-<div class="paragraph come-in" delay="0.2">
-  <h3 class="toggleTable" (click)="toggleQuestionWrapper(0)">
-    Fragen die mir gefallen
-    <span style="color: #08f; margin-left: 5px">{{ likedQuestions.length }}</span>
-    <i class="fas fa-chevron-right" [ngStyle]="iconStyle[0]"></i>
-  </h3>
-  <div class="tablewrapper" [ngStyle]="questionWrapper[0]">
-    <table>
-      <tr
-        *ngFor="let question of likedQuestions; let i = index"
-        [routerLink]="['/question', question.id]"
-      >
-        <td (click)="removeLikedQuestion(i, $event)"><i class="fal fa-times"></i></td>
-        <td>{{ question.question }}</td>
-        <td>{{ question.answer }}</td>
-      </tr>
-    </table>
-  </div>
+<div class="paragraph">
+  <richie-revealer heading="Fragen die ich mag" [amount]="likedQuestions.length">
+    <div class="tablewrapper">
+      <table>
+        <tr
+          *ngFor="let question of likedQuestions; let i = index"
+          [routerLink]="['/question', question.id]"
+        >
+          <td (click)="removeLikedQuestion(i, $event)"><i class="fal fa-times"></i></td>
+          <td>{{ question.question }}</td>
+          <td>{{ question.answer }}</td>
+        </tr>
+      </table>
+    </div>
+  </richie-revealer>
 </div>
 
-<div class="paragraph come-in" delay="0.4">
-  <h3 class="toggleTable" (click)="toggleQuestionWrapper(1)">
-    Fragen die ich nicht mag
-    <span style="color: #08f; margin-left: 5px">{{ dislikedQuestions.length }}</span>
-    <i class="fas fa-chevron-right" [ngStyle]="iconStyle[1]"></i>
-  </h3>
-  <div class="tablewrapper" [ngStyle]="questionWrapper[1]">
-    <table>
-      <tr
-        *ngFor="let question of dislikedQuestions; let i = index"
-        [routerLink]="['/question', question.id]"
-      >
-        <td (click)="removeDislikedQuestion(i, $event)"><i class="fal fa-times"></i></td>
-        <td>{{ question.question }}</td>
-        <td>{{ question.answer }}</td>
-      </tr>
-    </table>
-  </div>
+<div class="paragraph">
+  <richie-revealer heading="Fragen die ich nicht mag" [amount]="dislikedQuestions.length">
+    <div class="tablewrapper">
+      <table>
+        <tr
+          *ngFor="let question of dislikedQuestions; let i = index"
+          [routerLink]="['/question', question.id]"
+        >
+          <td (click)="removeDislikedQuestion(i, $event)">
+            <i class="fal fa-times"></i>
+          </td>
+          <td>{{ question.question }}</td>
+          <td>{{ question.answer }}</td>
+        </tr>
+      </table>
+    </div>
+  </richie-revealer>
 </div>
 
 <div class="removeWhite"></div>

@@ -1,0 +1,11 @@
+<div class="customInput">
+  <input
+    type="text"
+    [(ngModel)]="value"
+    [placeholder]="!heading ? placeholder : ''"
+    [tabindex]="tabindex"
+    required
+  />
+  <span></span>
+  <div *ngIf="heading" class="title">{{ heading }}</div>
+</div>
