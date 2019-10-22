@@ -7,10 +7,11 @@ import { Theme, ThemeService } from './theme.service';
   selector: '[app-theme]'
 })
 export class ThemeDirective implements OnInit {
-  private unsubscribe = new Subject();
   constructor(private _elementRef: ElementRef, private _themeService: ThemeService) {}
 
-  ngOnInit() {
+  private unsubscribe = new Subject();
+
+  ngOnInit(): void {
     const active = this._themeService.getActiveTheme();
     if (active) {
       this.updateTheme(active);
@@ -20,7 +21,7 @@ export class ThemeDirective implements OnInit {
       .subscribe((theme: Theme) => this.updateTheme(theme));
   }
 
-  updateTheme(theme: Theme) {
+  updateTheme(theme: Theme): void {
     for (const key in theme.properties) {
       this._elementRef.nativeElement
         .closest('body')

@@ -12,7 +12,7 @@ export class RichieIconbuttonComponent {
   @Input() tabindex: number;
   @Output() action = new EventEmitter<Event>();
 
-  actionCalled(event?) {
+  actionCalled(event?): void {
     this.action.emit(event);
   }
 }

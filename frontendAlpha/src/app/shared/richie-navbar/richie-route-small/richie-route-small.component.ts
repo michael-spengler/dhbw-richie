@@ -2,9 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'richie-route-small',
-  template: `
-    <a [routerLink]="'/' + link">{{ name }}</a>
-  `,
+  templateUrl: './richie-route-small.component.html',
   styleUrls: ['./richie-route-small.component.scss']
 })
 export class RichieRouteSmallComponent {

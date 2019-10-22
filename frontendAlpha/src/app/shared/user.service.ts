@@ -3,76 +3,71 @@ import { Injectable } from '@angular/core';
 type SignedInWith = 'Google' | 'Apple' | 'Telegram' | 'GitHub';
 
 export interface IUser {
+  signedIn: boolean;
   givenName: string;
   familyName: string;
   email: string;
   isAdmin: boolean;
   isReviewer: boolean;
   signedInWith: SignedInWith;
-  icon: string;
-  created: Date;
+  picture: string;
+  created: number;
+  enabled: boolean;
+  _id: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor() {
-    this.richieUser.isAdmin = true;
-    this.richieUser.givenName = 'Timo';
-    this.richieUser.familyName = 'Scheuermann';
-    this.richieUser.signedInWith = 'Apple';
-    this.richieUser.email = 'mails.sind.cool@coolemails.co.uk';
-    this.richieUser.created = new Date(12671627687676);
-    this.richieUser.icon = 'https://avatars2.githubusercontent.com/u/48986503';
-  }
-
   richieUser: IUser = {} as IUser;
 
-  public logIn(service: SignedInWith) {
+  public logIn(service: SignedInWith): void {
+    document.cookie = 'service=' + service;
     if (localStorage.getItem('richie-user')) {
-      const user = JSON.parse(localStorage.getItem('richie-user'));
+      const user: IUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
+      user.signedIn = true;
+      user.signedInWith = service;
       this.richieUser = user;
+      localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
+      window.location.reload();
     } else {
       window.location.href = `http://localhost:3000/api/auth/${service}`;
     }
   }
 
-  public checkToken() {
+  public checkToken(): void {
     if (!localStorage.getItem('richie-user')) {
-      const token = decodeURIComponent(document.cookie)
-        .split(';')
-        .filter(c => c.match(/\s?token=/))
-        .map(c => c.split('=')[1])[0];
-      this.richieUser = this.parseToken(token);
-      localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
+      const token = this.getToken();
+      if (token) {
+        document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+        this.richieUser = JSON.parse(atob(token.split('.')[1])) as IUser;
+        this.richieUser.signedIn = true;
+        this.richieUser.signedInWith = this.getService();
+        localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
+      }
+    } else {
+      this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
     }
   }
 
-  private parseToken(token: string): IUser {
-    const {
-      familyName,
-      givenName,
-      email,
-      created,
-      isAdmin,
-      isReviewer,
-      picture
-    } = JSON.parse(atob(token.split('.')[1]));
-    return {
-      created,
-      email,
-      familyName,
-      givenName,
-      icon: picture,
-      isAdmin,
-      isReviewer,
-      signedInWith: 'Apple'
-    };
+  public logOut(): void {
+    localStorage.removeItem('richie-user');
+    this.richieUser = { signedIn: false } as IUser;
+    window.location.href = 'home';
   }
 
-  public logOut() {
-    localStorage.removeItem('richie-user');
-    this.richieUser = null;
+  public getToken() {
+    return decodeURIComponent(document.cookie)
+      .split(';')
+      .filter(c => c.match(/\s?token=/))
+      .map(c => c.split('=')[1])[0];
+  }
+
+  public getService(): SignedInWith {
+    return decodeURIComponent(document.cookie)
+      .split(';')
+      .filter(c => c.match(/\s?service=/))
+      .map(c => c.split('=')[1])[0] as SignedInWith;
   }
 }

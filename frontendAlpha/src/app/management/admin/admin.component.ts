@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
 import { NotificationService } from 'src/app/shared/notification.service';
-import { UserService } from 'src/app/shared/user.service';
+import { SharedFunctions } from 'src/app/shared/sharedFunctions.service';
+import { IUser, UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +15,9 @@ export class AdminComponent implements OnInit {
   constructor(
     public userService: UserService,
     private notificationService: NotificationService,
-    public router: Router
+    public router: Router,
+    public httpClient: HttpClient,
+    public sharedFunctions: SharedFunctions
   ) {}
 
   ngOnInit(): void {
@@ -21,131 +25,108 @@ export class AdminComponent implements OnInit {
       this.router.navigate(['/404']);
       return;
     }
-
-    this.__LOADUSERDATA();
+    this.getPlayersWithRank();
   }
 
-  activeUser: any = {};
-  overlayStyle = { display: 'none' };
-  cardStyle = { animation: 'none' };
-  isSearching = false;
-  searchResults = {
+  activeUser: IUser = {} as IUser;
+  overlayStyle: any = { display: 'none' };
+  isSearching: boolean = false;
+  searchResults: any = {
     'overflow': 'hidden',
     'transition': '40s ease',
     'max-height': '0'
   };
 
-  userSearch = '';
-  users;
+  userSearch: any = '';
 
-  setGroupTo(group) {
-    this.activeUser['rank'] = group;
+  foundUsers: IUser[] = [];
+  userList: IUser[] = [];
+
+  pushUserToList(list: IUser[], user: IUser) {
+    if (list.filter(x => x._id === user._id).length == 0) {
+      list.push(user);
+    }
   }
 
-  onInputKeyDown(event) {
-    if (event.keyCode == 13) this.searchPlayer();
+  filterByAdmin(): IUser[] {
+    return this.userList.filter(x => x.isAdmin);
   }
 
-  searchPlayer() {
+  filterByReviewer(): IUser[] {
+    return this.userList.filter(x => !x.isAdmin && x.isReviewer);
+  }
+
+  setGroupTo(group): void {
+    this.activeUser.isAdmin = group === 'Admin';
+    this.activeUser.isReviewer = group === 'Reviewer';
+    this.sendUpdatedUserToDB();
+  }
+
+  toggleUserActivation(): void {
+    this.activeUser.enabled = !this.activeUser.enabled;
+    this.sendUpdatedUserToDB();
+  }
+
+  sendUpdatedUserToDB(): void {
+    // TODO: POST updated USER
+  }
+
+  onInputKeyDown(event): void {
+    if (event.key === 'Enter') this.searchPlayer();
+  }
+
+  searchPlayer(): void {
     if (this.isSearching) return;
     this.searchResults['max-height'] = '0';
     this.isSearching = true;
-    setTimeout(() => {
-      this.notificationService.sendNotification(
-        `Die Suche nach ${this.userSearch} ergab folgende Treffer`,
-        NotificationType.SUCCESS
+
+    // TODO: ADD URL
+    this.httpClient
+      .get(
+        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/foundUsers.json'
+      )
+      .subscribe(
+        data => {
+          JSON.parse(JSON.stringify(data)).forEach(user => {
+            this.pushUserToList(this.foundUsers, user);
+          });
+          this.notificationService.sendNotification(
+            `Die Suche nach ${this.userSearch} ergab folgende Treffer`,
+            NotificationType.SUCCESS
+          );
+          this.isSearching = false;
+          this.searchResults['max-height'] = '80000px';
+        },
+        error => {
+          console.log('Error => ', error);
+        }
       );
-      this.isSearching = false;
-      this.searchResults['max-height'] = '80000px';
-    }, 1703);
   }
 
-  openUserCard(userIndex) {
-    this.overlayStyle = {
-      display: 'block'
-    };
-    this.cardStyle = {
-      animation: 'overlay-animation 0.4s linear both'
-    };
-    this.activeUser = this.users[userIndex];
-    this.activeUser['id'] = userIndex;
+  openUserCard(userID, list): void {
+    this.overlayStyle = { display: 'block' };
+    this.activeUser = list.filter(x => x._id === userID)[0];
   }
 
-  closeUserCard() {
+  closeUserCard(): void {
     this.overlayStyle = { display: 'none' };
-    this.cardStyle = { animation: 'none' };
   }
 
-  toggleUserActivation() {
-    this.users[this.activeUser['id']].enabled = !this.users[this.activeUser['id']]
-      .enabled;
-  }
-
-  __LOADUSERDATA() {
-    this.users = [
-      {
-        name: 'Timo Scheuermann',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        created: new Date(1569939205000),
-        enabled: true
-      },
-      {
-        name: 'Nicolas Fürhaupter',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      },
-      {
-        name: 'Moritz Jürgens',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      },
-      {
-        name: 'Jan Gruebener',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      },
-      {
-        name: 'Aaron Schweig',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      },
-      {
-        name: 'Eger Jan',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      },
-      {
-        name: 'Troy Kessler',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      },
-      {
-        name: 'Mr. Flo',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      },
-      {
-        name: 'Prinz Marcus',
-        mail: 'max.mustermann@mail.de',
-        rank: 'Admin',
-        enabled: true,
-        created: new Date(1569939205000)
-      }
-    ];
+  getPlayersWithRank(): void {
+    // TODO: ADD URL
+    this.httpClient
+      .get(
+        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/usersWithRanks.json'
+      )
+      .subscribe(
+        data => {
+          JSON.parse(JSON.stringify(data)).forEach(user => {
+            this.pushUserToList(this.userList, user);
+          });
+        },
+        error => {
+          console.log('Error => ', error);
+        }
+      );
   }
 }

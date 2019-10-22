@@ -4,7 +4,7 @@
 </div>
 
 <div
-  *ngIf="userService.richieUser != null; then addParagraph; else notSignedInParagraph"
+  *ngIf="userService.richieUser.signedIn; then addParagraph; else notSignedInParagraph"
 ></div>
 
 <ng-template #notSignedInParagraph class="paragraph">
@@ -27,14 +27,14 @@
 
     <h3>Frage</h3>
     <richie-textarea
-      [(ngModel)]="formData[0]"
+      [(ngModel)]="question.question"
       [tabindex]="1"
       [placeholder]="'Beispiel: Was ist die Antwort auf alles?'"
     ></richie-textarea>
 
     <h3>Antwort</h3>
     <richie-textarea
-      [(ngModel)]="formData[1]"
+      [(ngModel)]="question.answer"
       [tabindex]="2"
       [placeholder]="'Beispiel: 42'"
     ></richie-textarea>
@@ -44,7 +44,7 @@
         <h3>Quelle</h3>
         <richie-input
           [tabindex]="3"
-          [(ngModel)]="formData[2]"
+          [(ngModel)]="question.source"
           heading="http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm"
         ></richie-input>
       </div>
@@ -52,7 +52,7 @@
         <h3>Vorlesung</h3>
 
         <richie-select
-          [items]="lectures"
+          [items]="constants.lectures"
           [tabindex]="4"
           (change)="selectionChanged($event)"
           heading="Vorlesung"
@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <div style="display: block; text-align: center; margin-top: 10px;">
+    <div class="centerButtons">
       <richie-iconbutton
         [tabindex]="5"
         (click)="submitQuestion()"

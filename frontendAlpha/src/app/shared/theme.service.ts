@@ -24,7 +24,7 @@ export class ThemeService {
     @Inject(ACTIVE_THEME) public theme: string
   ) {}
 
-  getActiveTheme() {
+  getActiveTheme(): Theme {
     const theme = this.themes.find(t => t.name === this.theme);
     if (!theme) {
       throw new Error(`Theme not found: '${this.theme}'`);
@@ -32,12 +32,12 @@ export class ThemeService {
     return theme;
   }
 
-  setTheme(name: string) {
+  setTheme(name: string): void {
     this.theme = name;
     this.themeChange.emit(this.getActiveTheme());
   }
 
-  toggleTheme() {
+  toggleTheme(): void {
     this.theme == 'light' ? this.setTheme('dark') : this.setTheme('light');
   }
 }

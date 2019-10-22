@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ThemeService } from '../theme.service';
 import { IUser, UserService } from '../user.service';
 
@@ -35,17 +35,20 @@ export class RichieNavbarComponent implements OnInit {
         ).join('-');
         this.titleService.setTitle(title);
       }
+      if (event instanceof NavigationStart) {
+        this.userService.checkToken();
+      }
     });
   }
 
   @HostListener('window:resize')
-  getScreenSize() {
+  getScreenSize(): void {
     this.navwrapperStyle = {
       height: window.innerWidth > 850 || this.navVisible ? '100%' : '0px'
     };
   }
 
-  getTitle(state, parent) {
+  getTitle(state, parent): any[] {
     var data = [];
     if (parent && parent.snapshot.data && parent.snapshot.data.title) {
       data.push(parent.snapshot.data.title);
@@ -57,7 +60,7 @@ export class RichieNavbarComponent implements OnInit {
     return data;
   }
 
-  toggleNavbar() {
+  toggleNavbar(): void {
     this.navVisible = !this.navVisible;
     this.navwrapperStyle = { height: this.navVisible ? '100%' : '0px' };
   }

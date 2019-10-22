@@ -31,17 +31,9 @@
         <tr>
           <td>Rang</td>
           <td>
-            <span *ngIf="userService.richieUser.isAdmin">Admin</span>
-            <span
-              *ngIf="!userService.richieUser.isAdmin && userService.richieUser.isReviewer"
-              >Reviewer</span
-            >
-            <span
-              *ngIf="
-                !userService.richieUser.isAdmin && !userService.richieUser.isReviewer
-              "
-              ><div class="gradient">Pro</div></span
-            >
+            <span class="gradient">
+              {{ sharedFunctions.getUserRank(userService.richieUser) }}
+            </span>
           </td>
         </tr>
         <tr>
@@ -62,7 +54,9 @@
     <div class="information signedInWith">
       <h3>Angemeldet mittels</h3>
       <div class="loginService">
-        <i class="fab fa-apple"></i>
+        <i
+          [ngClass]="'fab fa-' + userService.richieUser.signedInWith.toLocaleLowerCase()"
+        ></i>
         <div class="serviceName">{{ userService.richieUser.signedInWith }}</div>
       </div>
       <div class="email">{{ userService.richieUser.email }}</div>
@@ -75,10 +69,10 @@
     <div class="tablewrapper">
       <table>
         <tr
-          *ngFor="let question of likedQuestions; let i = index"
-          [routerLink]="['/question', question.id]"
+          *ngFor="let question of likedQuestions"
+          [routerLink]="['/question', question._id]"
         >
-          <td (click)="removeLikedQuestion(i, $event)"><i class="fal fa-times"></i></td>
+          <td (click)="removeQuestion(question, true)"><i class="fal fa-times"></i></td>
           <td>{{ question.question }}</td>
           <td>{{ question.answer }}</td>
         </tr>
@@ -92,10 +86,10 @@
     <div class="tablewrapper">
       <table>
         <tr
-          *ngFor="let question of dislikedQuestions; let i = index"
-          [routerLink]="['/question', question.id]"
+          *ngFor="let question of dislikedQuestions"
+          [routerLink]="['/question', question._id]"
         >
-          <td (click)="removeDislikedQuestion(i, $event)">
+          <td (click)="removeQuestion(question, false)">
             <i class="fal fa-times"></i>
           </td>
           <td>{{ question.question }}</td>

@@ -17,5 +17,9 @@
 
 .wrapper {
   transition: 1s ease;
-  overflow: hidden;
+  overflow: auto;
+}
+
+.addWhiteSpace {
+  height: 15px;
 }

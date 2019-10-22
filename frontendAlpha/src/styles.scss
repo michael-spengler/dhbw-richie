@@ -212,7 +212,6 @@ a {
     border-collapse: collapse;
     max-width: 100%;
     width: 100%;
-    margin-bottom: 10px;
 
     tr {
       cursor: pointer;
@@ -303,5 +302,21 @@ $color: #08f;
   border: 1px solid rgb(255, 59, 48) !important;
   &::before {
     background-color: rgb(255, 59, 48) !important;
+  }
+}
+
+.centerButtons {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  * {
+    display: inline-block;
+    margin: 0px 5px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

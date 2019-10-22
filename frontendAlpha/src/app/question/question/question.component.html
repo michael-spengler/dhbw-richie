@@ -1,16 +1,18 @@
-<div *ngIf="question.isValid; then valid; else notValid"></div>
+<div *ngIf="isValid; then valid; else notValid"></div>
 
 <ng-template #notValid>
   <div class="landing">
     <h1>Diese Frage existiert nicht</h1>
-    <h2>#{{ question.id }}</h2>
+    <h2>#{{ question._id }}</h2>
   </div>
   <div class="paragraph">
     <div class="iconButtonHeading">
       <h2>Möglicherweise wurde sie gelöscht</h2>
-      <div class="iconButton" [routerLink]="['/search']">
-        <i class="fad fa-search"></i>Neue Antwort suchen
-      </div>
+      <richie-iconbutton
+        text="Neue Antwort suchen"
+        icon="fad fa-search"
+        url="search"
+      ></richie-iconbutton>
     </div>
     <p>
       Solltest du dennoch weitere Fragen haben, kannst du hier ganz einfach nach einer
@@ -22,17 +24,25 @@
 <ng-template #valid>
   <div class="landing">
     <h1>{{ question.question }}</h1>
-    <h2>#{{ question.id }}</h2>
+    <h2>#{{ question._id }}</h2>
   </div>
 
   <div class="paragraph">
     <div class="answerHead">
       <h2>Antwort</h2>
       <div class="actions">
-        <div class="action" amount="329" style="color: rgb(52, 199, 89)">
+        <div
+          class="action"
+          [attr.amount]="question.likes"
+          style="color: rgb(52, 199, 89)"
+        >
           <i class="fad fa-thumbs-up"></i>
         </div>
-        <div class="action" amount="13" style="color: rgb(255, 59, 48)">
+        <div
+          class="action"
+          [attr.amount]="question.dislikes"
+          style="color: rgb(255, 59, 48)"
+        >
           <i class="fad fa-thumbs-down"></i>
         </div>
         <div class="action">
@@ -49,7 +59,7 @@
 
     <richie-textarea
       [placeholder]="'Öffentlich kommentieren...'"
-      [(ngModel)]="testString"
+      [(ngModel)]="publicComment"
       [hasActions]="true"
       (cancel)="cancel()"
       (submit)="submit()"

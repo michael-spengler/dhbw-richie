@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ConstantsService } from 'src/app/shared/constants.service';
-import { FunctionsService } from 'src/app/shared/functions.service';
+import { constants } from 'src/app/shared/constants';
+import { SharedFunctions } from 'src/app/shared/sharedFunctions.service';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -11,11 +11,9 @@ import { UserService } from 'src/app/shared/user.service';
 export class HomeComponent {
   constructor(
     public readonly userService: UserService,
-    public readonly constants: ConstantsService,
-    public readonly functions: FunctionsService
-  ) {}
-
-  selectionChanged(x) {
-    console.log('Selected:', x);
+    public readonly functions: SharedFunctions
+  ) {
+    this.constants = constants;
   }
+  public readonly constants: any;
 }

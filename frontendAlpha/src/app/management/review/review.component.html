@@ -4,39 +4,37 @@
 </div>
 
 <div class="paragraph">
-  <h2>Zu überprüfende Fragen: {{ this.myItems.length }}</h2>
+  <h2>Zu überprüfende Fragen: {{ this.questions.length }}</h2>
 
   <div class="tablewrapper">
     <table id="itemsTable" style="width:100%">
-      <tr *ngFor="let item of myItems; let i = index" (click)="togglePopUp(item)">
+      <tr *ngFor="let question of questions" (click)="togglePopUp(question)">
         <td>
-          <span class="{{ item.status }}"></span>
+          <span [ngClass]="question.state"></span>
         </td>
-        <td>F:</td>
-        <td>{{ item.question }}</td>
-        <td>A:</td>
-        <td>{{ item.answer }}</td>
+        <td>{{ question.question }}</td>
+        <td>{{ question.answer }}</td>
       </tr>
     </table>
   </div>
 
-  <div class="modal" [ngStyle]="display" (click)="closeModal()">
-    <div class="modal-content" (click)="onClick($event)">
-      <div class="close" (click)="closeModal()"></div>
+  <div class="modal" [ngStyle]="overlayStyle">
+    <div class="modal-content" clickOutside (clickOutside)="closePopUp()">
+      <div class="close" (click)="closePopUp()"></div>
       <h2>Formular</h2>
 
       <h3>Frage</h3>
       <richie-textarea
-        [(ngModel)]="formData[0]"
+        [(ngModel)]="currentQuestion.question"
         [tabindex]="1"
-        [placeholder]="formData[0]"
+        [placeholder]="currentQuestion.question"
       ></richie-textarea>
 
       <h3>Antwort</h3>
       <richie-textarea
-        [(ngModel)]="formData[1]"
+        [(ngModel)]="currentQuestion.answer"
         [tabindex]="2"
-        [placeholder]="formData[1]"
+        [placeholder]="currentQuestion.answer"
       ></richie-textarea>
 
       <div class="inputWrapper">
@@ -44,27 +42,26 @@
           <h3>Quelle</h3>
           <richie-input
             [tabindex]="3"
-            [(ngModel)]="formData[2]"
-            [placeholder]="formData[2]"
+            [(ngModel)]="currentQuestion.source"
+            [placeholder]="currentQuestion.source"
           ></richie-input>
         </div>
         <div class="input">
           <h3>Vorlesung</h3>
 
           <richie-select
-            [items]="lectures"
+            [items]="constants.lectures"
             [tabindex]="4"
             (change)="selectionChanged($event)"
-            [currentItem]="formData[3]"
+            [currentItem]="currentQuestion.lecture"
             heading="Vorlesung"
             placeholder="Vorlesung"
           ></richie-select>
         </div>
       </div>
 
-      <div style="display: block; text-align: center; margin-top: 10px;">
+      <div class="centerButtons">
         <richie-iconbutton
-          style="margin: 0px 5px"
           [tabindex]="5"
           (click)="deleteQuestion()"
           (keydown)="buttonKeydown('del', $event)"
@@ -73,7 +70,6 @@
           red
         ></richie-iconbutton>
         <richie-iconbutton
-          style="margin: 0px 5px"
           [tabindex]="6"
           (click)="acceptQuestion()"
           (keydown)="buttonKeydown('add', $event)"

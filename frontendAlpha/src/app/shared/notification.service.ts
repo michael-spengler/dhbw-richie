@@ -15,14 +15,12 @@ export class NotificationService {
   public state: boolean = false;
   public currentNotification: Subject<INotification> = new Subject();
 
-  constructor() {}
-
-  public sendNotification(message: string, type: SingleNotificationType) {
+  public sendNotification(message: string, type: SingleNotificationType): void {
     this.queue.unshift({ message, type });
     this.loop();
   }
 
-  private loop() {
+  private loop(): void {
     if (!this.state) {
       const notification = this.queue.pop();
       if (notification) {

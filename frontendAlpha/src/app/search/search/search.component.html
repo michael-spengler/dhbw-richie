@@ -40,7 +40,7 @@
       <div class="filter">
         <h3>Filter 1</h3>
         <richie-select
-          [items]="lectures"
+          [items]="constants.lectures"
           (change)="selectionChanged(0, $event)"
           [heading]="'Vorlesung'"
           [placeholder]="'Bitte wähle eine Vorlesung'"
@@ -50,7 +50,7 @@
       <div class="filter">
         <h3>Filter 2</h3>
         <richie-select
-          [items]="lectures"
+          [items]="constants.lectures"
           (change)="selectionChanged(1, $event)"
           [heading]="'Vorlesung'"
           [placeholder]="'Bitte wähle eine Vorlesung'"
@@ -63,33 +63,8 @@
     <h3>Gefundene Fragen & Antworten</h3>
   </div>
   <div class="questionwrapper">
-    <div class="questionanswer" *ngFor="let result of results; let i = index">
-      <div class="icon"></div>
-      <div class="question">{{ result.question }}</div>
-      <div class="answer">{{ result.answer }}</div>
-      <div class="actions">
-        <div
-          class="action"
-          active="true"
-          description="329"
-          style="color: rgb(52, 199, 89)"
-        >
-          <i class="fad fa-thumbs-up"></i>
-        </div>
-        <div class="action" description="13" style="color: rgb(255, 59, 48)">
-          <i class="fad fa-thumbs-down"></i>
-        </div>
-        <div class="action" description="Feedback" style="color: #08f">
-          <i class="fab fa-wpforms"></i>
-        </div>
-        <div
-          class="action"
-          [routerLink]="['/question', 3647364276]"
-          description="Vergrößern"
-        >
-          <i class="fad fa-external-link"></i>
-        </div>
-      </div>
+    <div *ngFor="let question of foundQuestions" class="resultWrapper">
+      <richie-question [question]="question"></richie-question>
     </div>
   </div>
 

@@ -20,14 +20,14 @@ export class RichieCommentComponent {
   answer: string;
   textareaStyle: any;
 
-  public toggleTextarea() {
+  public toggleTextarea(): void {
     this.answer = '';
     this.textareaStyle = {
       display: this.textareaStyle.display === 'block' ? 'none' : 'block'
     };
   }
 
-  public deleteComment() {
+  public deleteComment(): void {
     this.comment = '$_DEL';
     this.notificationService.sendNotification(
       `Kommentar #${this.id} gelöscht`,
@@ -35,7 +35,7 @@ export class RichieCommentComponent {
     );
   }
 
-  public submit() {
+  public submit(): void {
     this.notificationService.sendNotification(
       `Antwort "${this.answer}" auf #${this.id} gespeichert`,
       NotificationType.SUCCESS
@@ -43,7 +43,7 @@ export class RichieCommentComponent {
     this.cancel();
   }
 
-  public cancel() {
+  public cancel(): void {
     this.textareaStyle = { display: 'none' };
   }
 }

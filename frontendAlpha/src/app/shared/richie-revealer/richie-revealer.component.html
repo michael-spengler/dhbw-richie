@@ -6,3 +6,4 @@
 <div class="wrapper" [ngStyle]="wrapper">
   <ng-content></ng-content>
 </div>
+<div *ngIf="wrapper['max-height'] !== '0px'" class="addWhiteSpace"></div>

@@ -1,3 +1,4 @@
+/* tslint:disable:member-ordering */
 import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Directive({

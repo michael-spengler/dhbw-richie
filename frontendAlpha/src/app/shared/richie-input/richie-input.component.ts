@@ -34,21 +34,21 @@ export class RichieInputComponent implements ControlValueAccessor {
     }
   }
 
-  onBlur() {
+  onBlur(): void {
     this.onTouchedCallback();
   }
 
-  writeValue(value: any) {
+  writeValue(value: any): void {
     if (value !== this.innerValue) {
       this.innerValue = value;
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 }

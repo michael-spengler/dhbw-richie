@@ -1,4 +1,4 @@
-<div *ngIf="richieUser; then signedIn; else signedOut"></div>
+<div *ngIf="userService.richieUser.signedIn; then signedIn; else signedOut"></div>
 
 <ng-template #signedOut>
   <header>
@@ -13,8 +13,13 @@
 <ng-template #signedIn>
   <header>
     <div class="user" [routerLink]="['/settings']">
-      <div class="name">{{ richieUser.givenName }} {{ richieUser.familyName }}</div>
-      <img [src]="richieUser.icon" onerror="this.src = '../assets/img/richie.jpg'" />
+      <div class="name">
+        {{ userService.richieUser.givenName }} {{ userService.richieUser.familyName }}
+      </div>
+      <img
+        [src]="userService.richieUser.picture"
+        onerror="this.src = '../assets/img/richie.jpg'"
+      />
     </div>
   </header>
 </ng-template>

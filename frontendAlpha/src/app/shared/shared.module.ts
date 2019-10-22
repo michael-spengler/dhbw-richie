@@ -3,8 +3,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClickOutsideDirective } from './clickOutside.directive';
-import { ConstantsService } from './constants.service';
-import { FunctionsService } from './functions.service';
 import { NotificationService } from './notification.service';
 import { NotificationComponent } from './notification/notification.component';
 import { RichieCommentComponent } from './richie-comment/richie-comment.component';
@@ -14,6 +12,7 @@ import { RichieInputComponent } from './richie-input/richie-input.component';
 import { RichieNavbarComponent } from './richie-navbar/richie-navbar.component';
 import { RichieRouteSmallComponent } from './richie-navbar/richie-route-small/richie-route-small.component';
 import { RichieRouteComponent } from './richie-navbar/richie-route/richie-route.component';
+import { RichieQuestionComponent } from './richie-question/richie-question.component';
 import { RichieRevealerComponent } from './richie-revealer/richie-revealer.component';
 import { RichieSelectComponent } from './richie-select/richie-select.component';
 import { RichieStatsComponent } from './richie-stats/richie-stats.component';
@@ -36,12 +35,13 @@ import { UserService } from './user.service';
     RichieHeaderComponent,
     RichieIconbuttonComponent,
     RichieCommentComponent,
-    ClickOutsideDirective,
     RichieRevealerComponent,
-    RichieStatsComponent
+    RichieStatsComponent,
+    RichieQuestionComponent,
+    ClickOutsideDirective
   ],
   imports: [CommonModule, RouterModule, FormsModule],
-  providers: [NotificationService, UserService, FunctionsService, ConstantsService],
+  providers: [NotificationService, UserService],
   exports: [
     NotificationComponent,
     ThemeDirective,
@@ -54,9 +54,10 @@ import { UserService } from './user.service';
     RichieNavbarComponent,
     RichieHeaderComponent,
     RichieIconbuttonComponent,
-    ClickOutsideDirective,
     RichieRevealerComponent,
-    RichieStatsComponent
+    RichieStatsComponent,
+    RichieQuestionComponent,
+    ClickOutsideDirective
   ]
 })
 export class SharedModule {

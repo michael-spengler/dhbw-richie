@@ -1,0 +1,32 @@
+<div class="questionanswer">
+  <div class="icon"></div>
+  <div class="question">{{ question.question }}</div>
+  <div class="answer">{{ question.answer }}</div>
+  <div class="actions">
+    <div
+      class="action"
+      active="true"
+      [attr.description]="question.likes"
+      style="color: rgb(52, 199, 89)"
+    >
+      <i class="fad fa-thumbs-up"></i>
+    </div>
+    <div
+      class="action"
+      [attr.description]="question.dislikes"
+      style="color: rgb(255, 59, 48)"
+    >
+      <i class="fad fa-thumbs-down"></i>
+    </div>
+    <div class="action" description="Feedback" style="color: #08f">
+      <i class="fab fa-wpforms"></i>
+    </div>
+    <div
+      class="action"
+      [routerLink]="['/question', question._id]"
+      description="Vergrößern"
+    >
+      <i class="fad fa-external-link"></i>
+    </div>
+  </div>
+</div>

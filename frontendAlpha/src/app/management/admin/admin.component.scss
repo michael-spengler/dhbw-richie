@@ -1,4 +1,8 @@
-@media only screen and (max-width: 650px) {
+@import '../../scss/variables';
+
+$inbetween: 650px;
+
+@media only screen and (max-width: $inbetween) {
   .userCard {
     width: calc(100% - 40px - env(safe-area-inset-left) - env(safe-area-inset-right));
     height: calc(100% - 40px - env(safe-area-inset-bottom) - env(safe-area-inset-top));
@@ -26,7 +30,7 @@
   }
 }
 
-@media only screen and (min-width: 650px) and (max-width: 850px) {
+@media only screen and (min-width: $inbetween) and (max-width: $mobile) {
   .stats {
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 20px;
@@ -50,7 +54,7 @@
   }
 }
 
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: $browser) {
   .stats {
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 10px;
@@ -207,15 +211,6 @@
 }
 .disabled {
   color: rgb(255, 59, 48);
-}
-
-@keyframes overlay-animation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 richie-iconbutton {

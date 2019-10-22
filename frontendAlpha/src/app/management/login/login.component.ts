@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
 
@@ -7,15 +7,15 @@ import { UserService } from 'src/app/shared/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss', '../../search/search/search.component.scss']
 })
-export class LoginComponent implements OnDestroy, OnInit {
+export class LoginComponent implements OnDestroy, OnInit, AfterViewInit {
   constructor(public userService: UserService, private router: Router) {}
   interval: any;
 
   ngOnInit(): void {
     this.startSlider();
-    // TODO: remove later
-    return;
-    if (localStorage.getItem('richie-user')) {
+  }
+  ngAfterViewInit(): void {
+    if (this.userService.richieUser.signedIn) {
       this.router.navigate(['/settings']);
       return;
     }
@@ -25,7 +25,7 @@ export class LoginComponent implements OnDestroy, OnInit {
     clearInterval(this.interval);
   }
 
-  startSlider() {
+  startSlider(): void {
     this.interval = setInterval(() => {
       this.currentSlide = ++this.currentSlide % this.slides.length;
     }, 5000);
@@ -55,7 +55,6 @@ export class LoginComponent implements OnDestroy, OnInit {
         'Hierduch kannst du ganz schnell gespeicherte Fragen abrufen und benötigst keine Lesezeichen in deinem Browser',
       img: {
         background: "url('https://i.giphy.com/media/XreQmk7ETCak0/source.gif')"
-        //background: "url('https://i.giphy.com/media/awXuQy3EFjOLu/giphy.webp')"
       }
     },
 

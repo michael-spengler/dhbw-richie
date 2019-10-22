@@ -13,7 +13,7 @@ export class RichieRevealerComponent {
   wrapper: any = { 'max-height': '0px' };
   iconStyle: any = { transform: `rotate(0deg)` };
 
-  toggleReveal() {
+  toggleReveal(): void {
     if (this.wrapper['max-height'] === '0px') {
       this.wrapper['max-height'] = '600px';
       this.iconStyle.transform = 'rotate(90deg)';

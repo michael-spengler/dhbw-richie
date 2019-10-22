@@ -16,22 +16,22 @@ export class RichieSelectComponent {
   selectionClass: string = 'hideSelect';
   selectionStyle: any = { display: 'none' };
 
-  onClick(event) {
+  onClick(event): void {
     event.stopPropagation();
   }
 
-  toggleSelection() {
+  toggleSelection(): void {
     this.selectionStyle = { display: 'block' };
     this.selectionClass === 'showSelect'
       ? this.hideSelection()
       : (this.selectionClass = 'showSelect');
   }
 
-  hideSelection() {
+  hideSelection(): void {
     this.selectionClass = 'hideSelect';
   }
 
-  selectionHasChanged(toItem: number) {
+  selectionHasChanged(toItem: number): void {
     this.hideSelection();
     this.currentItem = this.items[toItem];
     this.change.emit(this.currentItem);

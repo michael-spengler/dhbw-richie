@@ -1,126 +1,117 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, HostListener } from '@angular/core';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
+import { IQuestion } from 'src/app/models/question.model';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { constants } from '../../shared/constants';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements AfterViewInit {
-  constructor(public notificationService: NotificationService) {
-    for (let i = 0; i < 35; i++) {
-      let question_addition = '';
-      let answer_addition = '';
-      for (let x = 0; x < Math.random() * 200; x++) {
-        question_addition += Math.random()
-          .toString(36)
-          .substring(7);
-      }
-      for (let x = 0; x < Math.random() * 200; x++) {
-        answer_addition += Math.random()
-          .toString(36)
-          .substring(7);
-      }
-
-      this.results.push({
-        id: 82938290839,
-        likes: 142,
-        dislikes: 39,
-        question: '1 mod x = 2' + question_addition,
-        answer: 'Rel. ez. 1+1 = 2' + answer_addition
-      });
-    }
-  }
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.startSearch();
-    }, 20);
+export class SearchComponent {
+  constructor(
+    public notificationService: NotificationService,
+    public httpClient: HttpClient
+  ) {
+    this.constants = constants;
+    this.showSearchbar();
   }
 
-  quickLinksStyle: any = { 'max-height': '60px' };
-  selectionStyle: any = { opacity: 0.7 };
-  selectionClass: string = 'hideSelect';
-  formData = ['', '', '', ''];
-  lectures = [
-    'Einführung IT',
-    'Logik & Algebra',
-    'Finanzmathe',
-    'Programmieren I',
-    'Programmieren II',
-    'Bilanzierung',
-    'Vertrags-Recht',
-    'Was auch immer',
-    'soll mir das',
-    'Backend schicken'
-  ];
-
+  constants: any;
   searchQuery = '';
-  results = [];
-
-  resultsWrapper = {
-    'max-height': '0px',
-    'overflow': 'hidden',
-    'display': 'none'
-  };
-  landingWrapperStyle = {
-    top: '50%'
-  };
-  landingStyle = {
-    'min-height': '100vh'
-  };
-  overlayStyle = { display: 'none' };
-  cardStyle = { animation: 'none' };
-  isSearching = false;
+  foundQuestions: IQuestion[] = [];
+  isSearching: boolean = false;
   searchResultElements = [];
+  resultsWrapper: any = { overflow: 'hidden' };
+  landingStyle: any = {};
+  quickLinksStyle: any = {};
+  landingWrapperStyle: any = {};
+
+  selectionChanged(filterNmbr, selection): void {
+    console.log('Filter %i -> %s', filterNmbr, selection);
+  }
+
+  onInputKeyDown(event): void {
+    if (event.key === 'Enter') this.startSearch();
+  }
+
+  startSearch(): void {
+    if (this.isSearching) return;
+    this.isSearching = true;
+    this.showSearchbar();
+
+    // TODO: ADD GET
+    this.httpClient
+      .get(
+        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/foundQuestions.json'
+      )
+      .subscribe(
+        data => {
+          this.foundQuestions = [];
+          JSON.parse(JSON.stringify(data)).forEach(question => {
+            this.foundQuestions.push(question as IQuestion);
+          });
+
+          this.showResults();
+          this.isSearching = false;
+          this.notificationService.sendNotification(
+            `Die Suche ergab folgende Treffer`,
+            NotificationType.SUCCESS
+          );
+
+          setTimeout(() => {
+            this.searchResultElements = Array.from(
+              document.querySelectorAll('.resultWrapper')
+            ).slice(0);
+          }, 20);
+
+          setTimeout(() => {
+            this.onScroll();
+          }, 700);
+        },
+        error => {
+          console.log('Error => ', error);
+        }
+      );
+  }
+
+  showSearchbar(): void {
+    this.quickLinksStyle = { 'max-height': '60px' };
+    this.landingStyle['min-height'] = '100vh';
+    this.landingStyle['margin-bottom'] = '0px';
+    this.landingWrapperStyle.top = '50%';
+    this.resultsWrapper.display = 'none';
+    this.resultsWrapper['max-height'] = '0px';
+  }
+
+  showResults(): void {
+    this.quickLinksStyle = { 'max-height': '0px' };
+    this.landingStyle['min-height'] = '268.667px';
+    this.landingStyle['margin-bottom'] = '-50px';
+    this.landingWrapperStyle.top = '124.334px';
+    this.resultsWrapper.display = 'block';
+    this.resultsWrapper['max-height'] = 'unset';
+  }
 
   @HostListener('window:scroll', ['$event'])
-  onScroll(event = null) {
-    if (this.searchResultElements === null || this.searchResultElements.length == 0)
+  onScroll(event = null): void {
+    if (this.searchResultElements === null || this.searchResultElements.length == 0) {
+      console.log('iwie leer...');
       return;
+    }
 
     this.searchResultElements.forEach(element => {
       let positionFromTop = element.getBoundingClientRect().top;
       let windowHeight = window.innerHeight;
       if (positionFromTop - windowHeight <= 0 && !element.classList.contains('come-in')) {
+        element.classList.remove('resultWrapper');
         element.classList.add('come-in');
       }
     });
     this.searchResultElements = this.searchResultElements.filter(
       element => !element.classList.contains('come-in')
     );
-  }
-
-  selectionChanged(filterNmbr, selection) {
-    console.log('Filter %i -> %s', filterNmbr, selection);
-  }
-
-  onInputKeyDown(event) {
-    if (event.key == 'Enter') this.startSearch();
-  }
-
-  startSearch() {
-    if (this.isSearching) return;
-    this.isSearching = true;
-
-    setTimeout(() => {
-      this.notificationService.sendNotification(
-        `Die Suche ergab folgende Treffer`,
-        NotificationType.SUCCESS
-      );
-      this.quickLinksStyle = { 'max-height': '0px' };
-      this.landingStyle['min-height'] = '268.667px';
-      this.landingStyle['margin-bottom'] = '-50px';
-      this.landingWrapperStyle.top = '124.334px';
-      this.resultsWrapper.display = 'block';
-      this.resultsWrapper['max-height'] = 'unset';
-      this.isSearching = false;
-      this.searchResultElements = Array.from(
-        document.querySelectorAll('.questionanswer')
-      ).slice(0);
-      setTimeout(() => {
-        this.onScroll();
-      }, 700);
-    }, 1500 * 1);
   }
 }

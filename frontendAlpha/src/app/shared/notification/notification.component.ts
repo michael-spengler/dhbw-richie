@@ -55,7 +55,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.notificationService.currentNotification.unsubscribe();
   }
 }

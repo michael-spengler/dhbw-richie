@@ -22,22 +22,22 @@ export class RichieTextareaComponent implements ControlValueAccessor {
   @Output() cancel = new EventEmitter<Event>();
   @Output() submit = new EventEmitter<Event>();
 
-  submitClick(event?) {
-    this.submit.emit(event);
-  }
-
-  cancelClick(event?) {
-    this.cancel.emit(event);
-  }
-
-  autoGrowTextZone(e) {
-    e.target.style.height = '20px';
-    e.target.style.height = e.target.scrollHeight - 4 + 'px';
-  }
-
   private innerValue: any = '';
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
+
+  submitClick(event?): void {
+    this.submit.emit(event);
+  }
+
+  cancelClick(event?): void {
+    this.cancel.emit(event);
+  }
+
+  autoGrowTextZone(e): void {
+    e.target.style.height = '20px';
+    e.target.style.height = e.target.scrollHeight - 4 + 'px';
+  }
 
   get value(): any {
     return this.innerValue;
@@ -50,21 +50,21 @@ export class RichieTextareaComponent implements ControlValueAccessor {
     }
   }
 
-  onBlur() {
+  onBlur(): void {
     this.onTouchedCallback();
   }
 
-  writeValue(value: any) {
+  writeValue(value: any): void {
     if (value !== this.innerValue) {
       this.innerValue = value;
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 }

@@ -1,5 +1,5 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ThemeService } from './shared/theme.service';
 
 @Component({
@@ -19,5 +19,10 @@ export class AppComponent implements OnInit {
       .subscribe((state: BreakpointState) => {
         this.themeService.setTheme(state.matches ? 'dark' : 'light');
       });
+  }
+
+  @HostListener('click', ['$event'])
+  stopPropa(event?): void {
+    event.stopPropagation();
   }
 }

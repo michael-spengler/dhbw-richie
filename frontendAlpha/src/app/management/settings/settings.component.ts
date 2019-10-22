@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
+import { IQuestion } from 'src/app/models/question.model';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { SharedFunctions } from 'src/app/shared/sharedFunctions.service';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -13,69 +16,68 @@ export class SettingsComponent implements OnInit {
   constructor(
     public notificationService: NotificationService,
     public userService: UserService,
-    public router: Router
-  ) {
-    for (let i = 0; i < 9; i++) {
-      this.dislikedQuestions.push({
-        id: 12939839798,
-        question: 'Was ist 1 + 1',
-        answer:
-          'Das ist ganz einfach 1 + 1 = 2. Warum das so ist kann ich aber leider nicht beweisen'
-      });
-      this.likedQuestions.push({
-        id: 12939839798,
-        question: 'Was ist 1 + 2',
-        answer:
-          'Das ist ganz einfach 1 + 2 = 3. Warum das so ist kann ich aber leider nicht beweisen'
-      });
-    }
-    for (let i = 0; i < 2; i++) {
-      this.questionWrapper.push({ 'max-height': '0px', 'transition': '1s ease' });
-      this.iconStyle.push({
-        'margin-left': '10px',
-        'transform': `rotate(0deg)`,
-        'transition': '.5s ease'
-      });
-    }
-  }
+    public router: Router,
+    public sharedFunctions: SharedFunctions,
+    public httpClient: HttpClient
+  ) {}
 
-  dislikedQuestions = [];
-  likedQuestions = [];
-  questionWrapper = [];
-  iconStyle = [];
+  dislikedQuestions: IQuestion[] = [];
+  likedQuestions: IQuestion[] = [];
 
   ngOnInit(): void {
-    if (this.userService.richieUser === null) {
+    if (!this.userService.richieUser.signedIn) {
       this.router.navigate(['/login']);
+      return;
     }
+    this.loadDislikedQuestion();
+    this.loadLikedQuestion();
   }
 
-  toggleQuestionWrapper(pos) {
-    if (this.questionWrapper[pos]['max-height'] === '0px') {
-      this.questionWrapper[pos]['max-height'] = '600px';
-      this.iconStyle[pos].transform = 'rotate(90deg)';
-    } else {
-      this.questionWrapper[pos]['max-height'] = '0px';
-      this.iconStyle[pos].transform = 'rotate(0deg)';
-    }
-  }
-
-  removeLikedQuestion(index, event) {
+  removeQuestion(question: IQuestion, wasLike: boolean): void {
     event.stopPropagation();
-    this.likedQuestions.splice(index, 1);
-    this.sendRemoveNotification();
-  }
 
-  removeDislikedQuestion(index, event) {
-    event.stopPropagation();
-    this.dislikedQuestions.splice(index, 1);
-    this.sendRemoveNotification();
-  }
+    this.dislikedQuestions = this.dislikedQuestions.filter(x => x._id !== question._id);
+    this.likedQuestions = this.likedQuestions.filter(x => x._id !== question._id);
 
-  sendRemoveNotification() {
     this.notificationService.sendNotification(
       'Eintrag gelöscht',
       NotificationType.SUCCESS
     );
+  }
+
+  loadLikedQuestion(): void {
+    // TODO: ADD GET
+    this.httpClient
+      .get(
+        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/likedQuestions.json'
+      )
+      .subscribe(
+        data => {
+          JSON.parse(JSON.stringify(data)).forEach(question => {
+            this.likedQuestions.push(question as IQuestion);
+          });
+        },
+        error => {
+          console.log('Error => ', error);
+        }
+      );
+  }
+
+  loadDislikedQuestion(): void {
+    // TODO: ADD GET
+    this.httpClient
+      .get(
+        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/dislikedQuestions.json'
+      )
+      .subscribe(
+        data => {
+          JSON.parse(JSON.stringify(data)).forEach(question => {
+            this.dislikedQuestions.push(question as IQuestion);
+          });
+        },
+        error => {
+          console.log('Error => ', error);
+        }
+      );
   }
 }
