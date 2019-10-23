@@ -21,63 +21,26 @@ export class SettingsComponent implements OnInit {
     public httpClient: HttpClient
   ) {}
 
-  dislikedQuestions: IQuestion[] = [];
-  likedQuestions: IQuestion[] = [];
-
   ngOnInit(): void {
     if (!this.userService.richieUser.signedIn) {
       this.router.navigate(['/login']);
       return;
     }
-    this.loadDislikedQuestion();
-    this.loadLikedQuestion();
   }
 
   removeQuestion(question: IQuestion, wasLike: boolean): void {
     event.stopPropagation();
 
-    this.dislikedQuestions = this.dislikedQuestions.filter(x => x._id !== question._id);
-    this.likedQuestions = this.likedQuestions.filter(x => x._id !== question._id);
+    this.userService.richieUser.dislikedQuestions = this.userService.richieUser.dislikedQuestions.filter(
+      x => x._id !== question._id
+    );
+    this.userService.richieUser.likedQuestions = this.userService.richieUser.likedQuestions.filter(
+      x => x._id !== question._id
+    );
 
     this.notificationService.sendNotification(
       'Eintrag gelöscht',
       NotificationType.SUCCESS
     );
-  }
-
-  loadLikedQuestion(): void {
-    // TODO: ADD GET
-    this.httpClient
-      .get(
-        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/likedQuestions.json'
-      )
-      .subscribe(
-        data => {
-          JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.likedQuestions.push(question as IQuestion);
-          });
-        },
-        error => {
-          console.log('Error => ', error);
-        }
-      );
-  }
-
-  loadDislikedQuestion(): void {
-    // TODO: ADD GET
-    this.httpClient
-      .get(
-        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/dislikedQuestions.json'
-      )
-      .subscribe(
-        data => {
-          JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.dislikedQuestions.push(question as IQuestion);
-          });
-        },
-        error => {
-          console.log('Error => ', error);
-        }
-      );
   }
 }
