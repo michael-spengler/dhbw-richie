@@ -8,7 +8,6 @@ import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
 import { TelegrammGroups } from './entities/telegrammGroups.entity';
 import { User } from './entities/user.entity';
-import { TelegrammGroups } from './entities/telegrammGroups.entity';
 import { LectureModule } from './lecture/lecture.module';
 import { LoginModule } from './login/login.module';
 import { PassportModule } from './passport';
@@ -31,7 +30,7 @@ import { UserModule } from './user/user.module';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture, TelegrammGroups],
+          entities: [Data, User, Lecture, TelegrammGroups]
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
     }),
@@ -44,4 +43,4 @@ import { UserModule } from './user/user.module';
   controllers: [AppController],
   providers: [AppService]
 })
-export class AppModule { }
+export class AppModule {}
