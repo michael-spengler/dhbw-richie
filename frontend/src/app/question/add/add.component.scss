@@ -1,0 +1,23 @@
+.inputWrapper {
+  display: grid;
+  .input {
+    display: inline-grid;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .inputWrapper {
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 20px;
+  }
+}
+@media only screen and (max-width: 799px) {
+  .inputWrapper {
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
+  }
+}
+
+table {
+  margin-bottom: 10px;
+}

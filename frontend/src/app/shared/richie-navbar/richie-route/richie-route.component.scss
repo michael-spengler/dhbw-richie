@@ -1,0 +1,114 @@
+@import '../../../scss/variables';
+
+a {
+  &:hover {
+    box-shadow: none !important;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media only screen and (max-width: $mobile) {
+  a {
+    display: inline-grid;
+
+    grid-template-columns: 1fr;
+    color: #ddd;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s ease;
+    text-align: center;
+
+    .name {
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    i {
+      display: inline-block;
+      font-size: 30px;
+      line-height: 40px;
+      width: 40px;
+      height: 40px;
+      margin-top: 10px;
+      padding: 10px;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      border: 1px solid #fff;
+      border-radius: 500px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .type {
+      display: inline-block;
+      color: #3d404a;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 10px;
+      padding: 0px 10px;
+      height: 18px;
+      margin-top: 11px;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      line-height: 18px;
+      font-size: 0.8em;
+      max-width: 2em;
+      text-transform: capitalize;
+    }
+  }
+  .active {
+    color: #08f;
+    transition: 0.6s ease;
+    i {
+      border-color: #08f;
+    }
+  }
+}
+
+@media only screen and (min-width: $browser) {
+  a {
+    display: grid;
+    grid-template-columns: 35px 1fr 40px;
+    padding: 0px 15px;
+    height: 40px;
+    line-height: 40px;
+    color: #ddd;
+    width: calc(100% - 30px);
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s ease;
+
+    .name {
+      display: inline-grid;
+      overflow: hidden;
+    }
+
+    i {
+      display: inline-grid;
+      font-size: 20px;
+      line-height: 40px;
+      overflow: hidden;
+    }
+
+    .type {
+      display: inline-grid;
+      color: #3d404a;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 10px;
+      padding: 0px 10px;
+      height: 18px;
+      margin-top: 11px;
+      line-height: 18px;
+      font-size: 0.8em;
+      text-transform: capitalize;
+    }
+  }
+  .active {
+    color: #fff;
+    background-image: linear-gradient(to right, #08f, rgb(78, 167, 245));
+    transition: 0.6s ease;
+    &:hover {
+      background-image: linear-gradient(to right, #08f, rgb(78, 167, 245)) !important;
+    }
+  }
+}

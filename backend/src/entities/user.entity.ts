@@ -1,4 +1,5 @@
 import { BeforeInsert, Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
+import { Data } from './data.entity';
 
 @Entity()
 export class User {
@@ -28,6 +29,12 @@ export class User {
 
   @Column()
   created: number;
+
+  @Column(() => Data)
+  likedQuestions: Data[];
+
+  @Column(() => Data)
+  dislikedQuestions: Data[];
 
   @BeforeInsert()
   updateCreated() {

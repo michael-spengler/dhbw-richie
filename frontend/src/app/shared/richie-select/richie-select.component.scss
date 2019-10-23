@@ -1,0 +1,130 @@
+.selectedItem {
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  user-select: none;
+  outline: none;
+  transition: 0.2s ease;
+
+  &:hover,
+  &:focus {
+    border-color: #08f;
+    outline: none;
+  }
+
+  i {
+    margin-right: 10px;
+  }
+}
+.selectionWrapper {
+  position: absolute;
+
+  margin-top: inherit, -250px;
+  font-size: 1.3em;
+
+  background: var(--popupBackground);
+  box-shadow: 2px 4px 10px var(--popupShadow);
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  user-select: none;
+  overflow-x: hidden;
+
+  transform: scale(0);
+  max-width: 0px;
+  transition: 0.2s ease;
+
+  z-index: 10;
+
+  .selection {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 200px;
+    min-width: 200px;
+
+    &::before {
+      content: attr(sTitle)
+        '\00a0\00a0\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF\23AF';
+      font-weight: 600;
+      display: block;
+      opacity: 0.9;
+      line-height: 35px;
+      font-size: 0.9em;
+      padding: 0px 10px;
+      word-wrap: none;
+    }
+
+    .item {
+      font-size: 0.9em;
+      padding: 5px 10px;
+      margin: 1px 0px;
+      display: list-item;
+      list-style: none;
+      background: transparent;
+      opacity: 0.7;
+      text-align: left;
+      cursor: pointer;
+
+      &:before {
+        content: '\f054';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        display: none;
+      }
+
+      i {
+        color: var(--font-color);
+        font-size: 0.8em;
+        padding-right: 10px;
+        opacity: 0.4;
+      }
+
+      &:hover,
+      &:focus {
+        color: #fff;
+        opacity: 1;
+        background: linear-gradient(to right, #08f, rgb(78, 167, 245));
+        i {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.showSelect {
+  animation: showSelect 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.hideSelect {
+  animation: hideSelect 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes showSelect {
+  from {
+    transform: scale(0);
+    opacity: 1;
+    max-width: 0px;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+    max-width: unset;
+  }
+}
+
+@keyframes hideSelect {
+  0% {
+    opacity: 1;
+    max-width: 100%;
+
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    max-width: 0px;
+  }
+}

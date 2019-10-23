@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from './config';
 import { ElasticsearchModule } from './elasticsearch/elasticsearch.module';
 import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
+import { TelegrammGroups } from './entities/telegrammGroups.entity';
 import { User } from './entities/user.entity';
 import { LectureModule } from './lecture/lecture.module';
 import { LoginModule } from './login/login.module';
@@ -29,7 +30,7 @@ import { UserModule } from './user/user.module';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture]
+          entities: [Data, User, Lecture, TelegrammGroups]
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
     }),

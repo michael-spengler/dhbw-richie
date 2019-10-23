@@ -1,0 +1,5 @@
+<div class="stat">
+  <h1 [innerHTML]="domSanitizer.bypassSecurityTrustHtml(text)"></h1>
+  <i [ngClass]="icon"></i>
+  <span>{{ amount }}</span>
+</div>
