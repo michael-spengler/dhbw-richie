@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../management/auth.guard';
 import { SharedModule } from '../shared/shared.module';
 import { AddComponent } from './add/add.component';
+import { QuestionService } from './question.service';
 import { QuestionComponent } from './question/question.component';
 
 const questionRoutes: Routes = [
@@ -26,6 +27,7 @@ const questionRoutes: Routes = [
     RouterModule.forChild(questionRoutes),
     SharedModule,
     FormsModule
-  ]
+  ],
+  providers: [QuestionService]
 })
 export class QuestionModule {}
