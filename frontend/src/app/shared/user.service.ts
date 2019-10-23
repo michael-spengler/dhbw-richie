@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { IQuestion } from '../models/question.model';
 
 type SignedInWith = 'Google' | 'Apple' | 'Telegram' | 'GitHub';
 
 export interface IUser {
+  _id: string;
   signedIn: boolean;
   givenName: string;
   familyName: string;
@@ -14,7 +16,8 @@ export interface IUser {
   picture: string;
   created: number;
   enabled: boolean;
-  _id: string;
+  likedQuestions: IQuestion[];
+  dislikedQuestions: IQuestion[];
 }
 
 @Injectable({

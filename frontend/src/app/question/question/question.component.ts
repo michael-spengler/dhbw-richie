@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, NgZone } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
 import { IQuestion } from 'src/app/models/question.model';
@@ -14,8 +14,7 @@ export class QuestionComponent implements AfterViewInit {
   constructor(
     public route: ActivatedRoute,
     private notificationService: NotificationService,
-    private httpClient: HttpClient,
-    private ngZone: NgZone
+    private httpClient: HttpClient
   ) {
     route.params.subscribe(params => {
       this.question._id = params.id;

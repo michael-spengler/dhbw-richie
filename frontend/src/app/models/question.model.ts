@@ -6,9 +6,14 @@ export interface IQuestion {
   answer: string;
   lecture: string;
   source: string;
-  likes: number;
-  dislikes: number;
-  comments: any;
-  author: IUser;
-  state: string;
+  comment: any;
+  isReviewed: boolean;
+  creationDate: number;
+  reviewDate: number;
+  updateDate: number;
+  creator: IUser;
+  modifier: IUser;
+  archived: boolean;
+  likedBy: IUser[];
+  dislikedBy: IUser[];
 }

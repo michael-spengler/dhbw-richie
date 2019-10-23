@@ -33,14 +33,14 @@
       <div class="actions">
         <div
           class="action"
-          [attr.amount]="question.likes"
+          [attr.amount]="question.likedBy.length"
           style="color: rgb(52, 199, 89)"
         >
           <i class="fad fa-thumbs-up"></i>
         </div>
         <div
           class="action"
-          [attr.amount]="question.dislikes"
+          [attr.amount]="question.dislikedBy.length"
           style="color: rgb(255, 59, 48)"
         >
           <i class="fad fa-thumbs-down"></i>
