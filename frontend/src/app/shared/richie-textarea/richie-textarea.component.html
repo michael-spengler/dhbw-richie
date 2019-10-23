@@ -1,0 +1,27 @@
+<div class="writeComment">
+  <textarea
+    (keyup)="autoGrowTextZone($event)"
+    [(ngModel)]="value"
+    [placeholder]="placeholder"
+    [tabindex]="tabindex"
+    rows="1"
+    required
+  ></textarea>
+  <span></span>
+  <div *ngIf="hasActions" class="actions">
+    <richie-iconbutton
+      (click)="cancelClick($event)"
+      [tabindex]="tabindex + 1"
+      text="Abbrechen"
+      icon="fal fa-times"
+      red
+    ></richie-iconbutton>
+    <richie-iconbutton
+      (click)="submitClick($event)"
+      [tabindex]="tabindex + 2"
+      text="Kommentieren"
+      icon="fas fa-comment-alt"
+      green
+    ></richie-iconbutton>
+  </div>
+</div>

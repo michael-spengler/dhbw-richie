@@ -1,0 +1,62 @@
+.customInput {
+  display: block;
+  position: relative;
+  input {
+    width: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+    resize: none;
+
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 500;
+    color: var(--font-color);
+    font-size: 16px;
+    overflow: hidden;
+
+    &::placeholder {
+      font-family: 'SF Pro Display', sans-serif;
+      font-weight: 500;
+      color: var(--font-color);
+      opacity: 0.7;
+    }
+  }
+  input:focus ~ span::before {
+    width: 100%;
+  }
+  span {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    margin-top: 25px;
+    left: 0;
+    background: var(--input-border);
+    &::before {
+      content: '';
+      transition: 0.4s ease;
+      position: absolute;
+      width: 0%;
+      height: 1px;
+      background: #08f;
+    }
+  }
+  .title {
+    position: absolute;
+    top: 2px;
+    font-weight: 700;
+    opacity: 0.8;
+    transition: 0.3s ease;
+    pointer-events: none;
+    user-select: none;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  input:valid ~ .title {
+    top: -20px;
+    font-weight: 600;
+    opacity: 0.5;
+    font-size: 0.9em;
+  }
+}

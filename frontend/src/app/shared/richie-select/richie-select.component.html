@@ -1,0 +1,34 @@
+<ng-container>
+  <div #ref (click)="toggleSelection(); onClick($event)" style="cursor: pointer;">
+    <ng-content></ng-content>
+  </div>
+</ng-container>
+<ng-container *ngIf="ref.childNodes.length == 0">
+  <div
+    [tabindex]="tabindex"
+    class="selectedItem"
+    (click)="toggleSelection(); onClick($event)"
+  >
+    <span *ngIf="currentItem">{{ currentItem }}</span>
+    <span *ngIf="!currentItem" style="opacity: 0.8">
+      <i class="fad fa-list-ul"></i>{{ placeholder }}
+    </span>
+  </div>
+</ng-container>
+
+<div
+  class="selectionWrapper"
+  [ngClass]="selectionClass"
+  [ngStyle]="selectionStyle"
+  (clickOutside)="hideSelection()"
+>
+  <div class="selection" [attr.sTitle]="heading">
+    <div
+      *ngFor="let item of items; let i = index"
+      class="item"
+      (click)="selectionHasChanged(i)"
+    >
+      {{ item }}
+    </div>
+  </div>
+</div>
