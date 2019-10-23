@@ -23,7 +23,7 @@ export class ConfigService {
   }
 
   public get(key: string): string {
-    return this.envConfig[key] || process.env[key];
+    return process.env[key];
   }
 
   private validateEnvFile(envConfig: EnvConfig): EnvConfig {
