@@ -1,0 +1,27 @@
+@import '../../../scss/variables';
+
+a {
+  display: inline-grid;
+  font-weight: 400;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.2s ease;
+  &:not(:first-child) {
+    border-left: 1px solid #ccc;
+  }
+  &:hover {
+    color: #fff;
+  }
+}
+
+@media only screen and (max-width: $mobile) {
+  a {
+    font-size: 1em;
+  }
+}
+
+@media only screen and (min-width: $browser) {
+  a {
+    font-size: 0.8em;
+  }
+}

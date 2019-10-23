@@ -1,0 +1,116 @@
+<div *ngIf="isValid; then valid; else notValid"></div>
+
+<ng-template #notValid>
+  <div class="landing">
+    <h1>Diese Frage existiert nicht</h1>
+    <h2>#{{ question._id }}</h2>
+  </div>
+  <div class="paragraph">
+    <div class="iconButtonHeading">
+      <h2>Möglicherweise wurde sie gelöscht</h2>
+      <richie-iconbutton
+        text="Neue Antwort suchen"
+        icon="fad fa-search"
+        url="search"
+      ></richie-iconbutton>
+    </div>
+    <p>
+      Solltest du dennoch weitere Fragen haben, kannst du hier ganz einfach nach einer
+      Antwort suchen
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #valid>
+  <div class="landing">
+    <h1>{{ question.question }}</h1>
+    <h2>#{{ question._id }}</h2>
+  </div>
+
+  <div class="paragraph">
+    <div class="answerHead">
+      <h2>Antwort</h2>
+      <div class="actions">
+        <div
+          class="action"
+          [attr.amount]="question.likes"
+          style="color: rgb(52, 199, 89)"
+        >
+          <i class="fad fa-thumbs-up"></i>
+        </div>
+        <div
+          class="action"
+          [attr.amount]="question.dislikes"
+          style="color: rgb(255, 59, 48)"
+        >
+          <i class="fad fa-thumbs-down"></i>
+        </div>
+        <div class="action">
+          <i class="fas fa-share"></i>
+          <div class="description">Teilen</div>
+        </div>
+      </div>
+    </div>
+    <p>{{ question.answer }}</p>
+  </div>
+
+  <div class="paragraph">
+    <h2>Kommentare</h2>
+
+    <richie-textarea
+      [placeholder]="'Öffentlich kommentieren...'"
+      [(ngModel)]="publicComment"
+      [hasActions]="true"
+      (cancel)="cancel()"
+      (submit)="submit()"
+    ></richie-textarea>
+
+    <div class="commentWrapper">
+      <richie-comment
+        id="0"
+        comment="Hallo Welt"
+        author="Das bin ich"
+        date="62376274676468"
+      >
+        <richie-comment
+          id="0"
+          comment="Hallo Welt"
+          author="Das bin ich"
+          date="62376274676468"
+        >
+          <richie-comment
+            id="0"
+            comment="Hallo Welt"
+            author="Das bin ich"
+            date="62376274676468"
+          ></richie-comment
+        ></richie-comment>
+        <richie-comment
+          id="0"
+          comment="Hallo Welt"
+          author="Das bin ich"
+          date="62376274676468"
+        ></richie-comment
+      ></richie-comment>
+      <richie-comment
+        id="0"
+        comment="Hallo Welt"
+        author="Das bin ich"
+        date="62376274676468"
+      ></richie-comment>
+      <richie-comment
+        id="0"
+        comment="Hallo Welt"
+        author="Das bin ich"
+        date="62376274676468"
+      ></richie-comment>
+      <richie-comment
+        id="0"
+        comment="Hallo Welt"
+        author="Das bin ich"
+        date="62376274676468"
+      ></richie-comment>
+    </div>
+  </div>
+</ng-template>
+<div class="removeWhite"></div>

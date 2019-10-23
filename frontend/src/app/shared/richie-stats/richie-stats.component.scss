@@ -1,0 +1,27 @@
+.stat {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  background-color: var(--background);
+  user-select: none;
+  h1 {
+    font-size: 18px;
+  }
+  i {
+    width: 100%;
+    font-size: 60px;
+    margin: 5px 0px;
+    margin-bottom: 10px;
+  }
+  span,
+  .selected {
+    color: #08f;
+    font-weight: 600;
+    font-size: 25px;
+    background: none;
+    border: none;
+    appearance: none;
+    outline: none;
+    text-align: center;
+  }
+}
