@@ -1,6 +1,4 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
-import dotenv from 'dotenv';
-import { readFileSync } from 'fs';
 import { SCHEMA } from '../schema';
 
 interface EnvConfig {
@@ -17,15 +15,15 @@ export class ConfigService {
     this.LOGGER.debug(`Loading config from: ${path}`);
 
     this.LOGGER.debug(`Validating file`);
-    const parsed = dotenv.parse(readFileSync(path));
+    /* const parsed = dotenv.parse(readFileSync(path));
     const validatedEnv = this.validateEnvFile(parsed);
 
     this.LOGGER.debug(`Configuring enviroment`);
-    this.envConfig = this.applyConfigToEnv(validatedEnv);
+    this.envConfig = this.applyConfigToEnv(validatedEnv); */
   }
 
   public get(key: string): string {
-    return this.envConfig[key];
+    return this.envConfig[key] || process.env[key];
   }
 
   private validateEnvFile(envConfig: EnvConfig): EnvConfig {
