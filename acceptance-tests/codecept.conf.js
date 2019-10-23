@@ -3,8 +3,9 @@ exports.config = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'http://localhost',
-      show: false
+      url: 'http://localhost:4200',
+      show: false,
+      window_size: 'maximize'
     }
   },
   include: {
@@ -13,4 +14,4 @@ exports.config = {
   bootstrap: null,
   mocha: {},
   name: 'acceptance-tests'
-}
+};
