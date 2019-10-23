@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /*
+spec:
+  rules:
+   - http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: richie-backend
+          servicePort: 3000
+      - path: /
+        backend:
+          serviceName: richie-frontend
+          servicePort: 80
+
