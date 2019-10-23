@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 type SignedInWith = 'Google' | 'Apple' | 'Telegram' | 'GitHub';
 
@@ -32,7 +33,7 @@ export class UserService {
       localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
       window.location.reload();
     } else {
-      window.location.href = `http://localhost:3000/api/auth/${service}`;
+      window.location.href = `${environment.backend}/api/auth/${service}`;
     }
   }
 
