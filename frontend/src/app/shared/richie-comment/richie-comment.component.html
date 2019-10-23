@@ -1,0 +1,36 @@
+<div class="comment">
+  <div class="header">
+    <div class="author"><i class="fad fa-at"></i>{{ author }}</div>
+    <div class="date">{{ date | date: 'HH:mm dd.MM.yyy' }}</div>
+    <!-- TODO: ngIf -->
+    <div *ngIf="author === author" class="delete" (click)="deleteComment()">
+      <i class="fa-trash-alt fad"></i>
+    </div>
+  </div>
+  <div class="message">
+    <span *ngIf="comment !== '$_DEL'">
+      {{ comment }}
+      <div
+        *ngIf="textareaStyle.display === 'none'"
+        class="reply"
+        (click)="toggleTextarea()"
+      >
+        <i class="fad fa-reply"></i>Antworten...
+      </div>
+
+      <div class="answerWrapper" [ngStyle]="textareaStyle">
+        <richie-textarea
+          [placeholder]="'Öffentlich antworten...'"
+          [(ngModel)]="answer"
+          [hasActions]="true"
+          (cancel)="cancel()"
+          (submit)="submit()"
+        >
+        </richie-textarea>
+      </div>
+    </span>
+    <span *ngIf="comment === '$_DEL'" class="deleted"></span>
+
+    <ng-content></ng-content>
+  </div>
+</div>

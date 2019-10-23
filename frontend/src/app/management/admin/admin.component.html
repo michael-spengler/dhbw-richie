@@ -1,0 +1,204 @@
+<div class="landing">
+  <h1>Administrations Oberfläche</h1>
+  <h2>Verwaltung & Management</h2>
+</div>
+
+<div class="paragraph">
+  <h2>Statistik</h2>
+  <div class="stats">
+    <richie-stats
+      text="Registrierte Benutzer"
+      icon="fad fa-users"
+      amount="10"
+    ></richie-stats>
+    <richie-stats
+      text="Fragen eingereicht"
+      icon="fad fa-atlas"
+      amount="234"
+    ></richie-stats>
+    <richie-stats
+      text="Fragen gestellt"
+      icon="fad fa-map-marker-question"
+      amount="45902"
+    ></richie-stats>
+    <richie-stats
+      text="Telegram Channel"
+      icon="fab fa-telegram"
+      amount="5"
+    ></richie-stats>
+  </div>
+</div>
+
+<div class="overlay" [ngStyle]="overlayStyle">
+  <div class="userCard" clickOutside (clickOutside)="closeUserCard()">
+    <div class="close" (click)="closeUserCard()"></div>
+    <h2>Informationen</h2>
+    <div class="information">
+      <i class="fad fa-id-card"></i>
+
+      <table>
+        <tr>
+          <td>Username</td>
+          <td>{{ activeUser.givenName + ' ' + activeUser.familyName }}</td>
+        </tr>
+        <tr>
+          <td>E-Mail-Adresse</td>
+          <td>{{ activeUser.email }}</td>
+        </tr>
+        <tr>
+          <td>Mitglied seit</td>
+          <td>{{ activeUser.created | date: 'dd.MM.yyyy' }}</td>
+        </tr>
+      </table>
+
+      <div *ngIf="activeUser.enabled" class="status">
+        <i class="fad fa-user-check active"></i>
+        <div class="statusTitle active">Freigeschaltet</div>
+        <div class="toggle" (click)="toggleUserActivation()">
+          Deaktivieren
+        </div>
+      </div>
+
+      <div *ngIf="!activeUser.enabled" class="status">
+        <i class="fad fa-user-times disabled"></i>
+        <div class="statusTitle disabled">Deaktiviert</div>
+        <div class="toggle" (click)="toggleUserActivation()">
+          Aktivieren
+        </div>
+      </div>
+    </div>
+
+    <div class="splitter"></div>
+
+    <h2>Statistik</h2>
+    <div class="stats">
+      <richie-stats
+        text="Benutzer-<br />Nummer"
+        icon="fad fa-hashtag"
+        [amount]="activeUser._id"
+      ></richie-stats>
+
+      <richie-select
+        heading="Gruppe wählen"
+        [items]="['Admin', 'Reviewer', 'Pro']"
+        (change)="setGroupTo($event)"
+      >
+        <richie-stats
+          text="Benutzer-<br />Gruppe"
+          icon="fad fa-theater-masks"
+          [amount]="sharedFunctions.getUserRank(activeUser)"
+        ></richie-stats>
+      </richie-select>
+
+      <richie-stats
+        text="Fragen<br />eingereicht"
+        icon="fad fa-atlas"
+        [amount]="2"
+      ></richie-stats>
+      <richie-stats
+        text="Fragen<br />gestellt"
+        icon="fad fa-map-marker-question"
+        [amount]="134"
+      ></richie-stats>
+    </div>
+  </div>
+</div>
+
+<div class="paragraph">
+  <h2>Benutzerverwaltung</h2>
+  <h3>Benutzer suchen</h3>
+
+  <!-- for the input to be next to the bottom -->
+  <richie-input
+    tabindex="1"
+    [(ngModel)]="userSearch"
+    (keydown)="onInputKeyDown($event)"
+    heading="Benutzername"
+    style="width: calc(100% - 140px); margin-right: 10px; display: inline-block;"
+  ></richie-input>
+
+  <!-- style="display: inline-block" -->
+  <richie-iconbutton
+    tabindex="2"
+    icon="fas fa-search"
+    text="Suche starten"
+    (action)="searchPlayer()"
+  ></richie-iconbutton>
+
+  <div *ngIf="!isSearching">
+    <div style="height: 10px"></div>
+  </div>
+
+  <div *ngIf="isSearching">
+    <h3>Suche läuft</h3>
+    <div class="loaderWrapper">
+      <div class="loader">
+        <div *ngFor="let y of [].constructor(20)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div [ngStyle]="searchResults">
+    <h3>Ergebnisse</h3>
+    <div class="tablewrapper">
+      <table>
+        <tr *ngFor="let user of foundUsers" (click)="openUserCard(user._id, foundUsers)">
+          <td>{{ user.givenName + ' ' + user.familyName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.created | date: 'dd.MM.yyyy' }}</td>
+          <td>{{ sharedFunctions.getUserRank(user) }}</td>
+          <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
+          <td *ngIf="!user.enabled">
+            <i class="fad fa-user-times disabled"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="paragraph">
+  <richie-revealer heading="Administratoren" [amount]="filterByAdmin().length">
+    <div class="tablewrapper">
+      <table>
+        <tr
+          *ngFor="let user of filterByAdmin()"
+          (click)="openUserCard(user._id, userList)"
+        >
+          <td>#{{ user._id }}</td>
+          <td>{{ user.givenName + ' ' + user.familyName }}</td>
+          <td>{{ user.email }}</td>
+          <td>Admin</td>
+          <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
+          <td *ngIf="!user.enabled">
+            <i class="fad fa-user-times disabled"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </richie-revealer>
+</div>
+
+<div class="paragraph">
+  <richie-revealer heading="Reviewer" [amount]="filterByReviewer().length">
+    <div class="tablewrapper">
+      <table>
+        <tr
+          *ngFor="let user of filterByReviewer()"
+          (click)="openUserCard(user._id, userList)"
+        >
+          <td>#{{ user._id }}</td>
+          <td>{{ user.givenName + ' ' + user.familyName }}</td>
+          <td>{{ user.email }}</td>
+          <td>Reviewer</td>
+          <td *ngIf="user.enabled"><i class="fad fa-user-check active"></i></td>
+          <td *ngIf="!user.enabled">
+            <i class="fad fa-user-times disabled"></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </richie-revealer>
+</div>
+
+<div class="removeWhite"></div>
