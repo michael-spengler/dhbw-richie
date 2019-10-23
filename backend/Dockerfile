@@ -31,7 +31,7 @@ COPY --from=build-stage /app/node_modules /app/node_modules
 # copy runtime code for albatross
 COPY --from=build-stage /app/dist /app/dist
 COPY --from=build-stage /app/*.json /app/
-COPY --from=build-stage /app/*.env /app/
+# COPY --from=build-stage /app/*.env /app/
 
 WORKDIR /app/
 CMD ["node", "dist/main.js"]
