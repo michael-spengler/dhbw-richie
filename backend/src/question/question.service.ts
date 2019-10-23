@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { MongoRepository } from 'typeorm';
 import { ElasticsearchService } from '../elasticsearch/elasticsearch.service';
 import { Data } from '../entities/data.entity';
 import { Lecture } from '../entities/lecture.entity';
 import { User } from '../entities/user.entity';
 import RelationMapper from '../util/util.service';
-import { MongoRepository } from 'typeorm';
 
 @Injectable()
 export class QuestionService {
@@ -18,29 +18,31 @@ export class QuestionService {
     private readonly elasticsearchService: ElasticsearchService,
     private readonly relationMapper: RelationMapper
   ) {
-    this.LOGGER.debug('Setting up Elastic Search');
-    this.elasticsearchService.isQuestionIndex().then(isIndex => {
-      this.getQuestions().then(questions => {
-        this.LOGGER.debug('Synchronizing Elastic Search with Database');
-        if (!isIndex) {
-          this.elasticsearchService.createQuestionIndex().then(() => {
-            this.elasticsearchService.indexQuestions(questions).then(() => {
-              this.LOGGER.debug('Elastic Search initialized');
-            });
-          });
-        } else {
-          this.elasticsearchService.indexQuestions(questions).then(() => {
-            this.LOGGER.debug('Elastic Search initialized');
-          });
-        }
-      });
-    });
+    // copy data from database to elasticsearch
+    // this.LOGGER.debug('Setting up Elastic Search');
+    // this.elasticsearchService.isQuestionIndex().then(isIndex => {
+    //   this.getQuestions().then(questions => {
+    //     this.LOGGER.debug('Synchronizing Elastic Search with Database');
+    //     if (!isIndex) {
+    //       this.elasticsearchService.createQuestionIndex().then(() => {
+    //         this.elasticsearchService.indexQuestions(questions).then(() => {
+    //           this.LOGGER.debug('Elastic Search initialized');
+    //         });
+    //       });
+    //     } else {
+    //       this.elasticsearchService.indexQuestions(questions).then(() => {
+    //         this.LOGGER.debug('Elastic Search initialized');
+    //       });
+    //     }
+    //   });
+    // });
   }
 
   public getQuestions(q: string | null = null) {
-    if (q) {
-      return this.elasticsearchService.searchQuestions(q);
-    }
+    // search with elasticsearch if query parameter is available
+    // if (q) {
+    //   return this.elasticsearchService.searchQuestions(q);
+    // }
     return this.dataRepo.find();
   }
 
@@ -51,7 +53,7 @@ export class QuestionService {
   public async createQuestion(question: Data) {
     try {
       const q = await this.relationMapper.createRelation(question, 'lecture', Lecture);
-      await this.elasticsearchService.createQuestion(q);
+      // await this.elasticsearchService.createQuestion(q);
 
       return this.dataRepo.save(q);
     } catch {
@@ -62,7 +64,7 @@ export class QuestionService {
   public async updateQuestion(_id: string, question: Data) {
     try {
       const q = await this.relationMapper.createRelation(question, 'lecture', Lecture);
-      await this.elasticsearchService.updateQuestion(_id, question);
+      // await this.elasticsearchService.updateQuestion(_id, question);
 
       await this.dataRepo.update(_id, q);
       return this.dataRepo.findOne(_id);
@@ -73,7 +75,7 @@ export class QuestionService {
 
   public async deleteQuestion(_id: string) {
     try {
-      await this.elasticsearchService.deleteQuestion(_id);
+      // await this.elasticsearchService.deleteQuestion(_id);
 
       await this.dataRepo.delete(_id);
       return { deleted: true };
