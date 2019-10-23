@@ -1,14 +1,4 @@
-import {
-  BeforeInsert,
-  BeforeUpdate,
-  Column,
-  Entity,
-  ObjectID,
-  ObjectIdColumn,
-  UpdateDateColumn,
-  BeforeInsert,
-  BeforeUpdate
-} from 'typeorm';
+import { BeforeInsert, BeforeUpdate, Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
 import { Lecture } from './lecture.entity';
 import { User } from './user.entity';
 
@@ -17,13 +7,9 @@ export class Data {
   @ObjectIdColumn()
   _id: ObjectID;
 
-  // @IsDefined()
-  // @MinLength(1)
   @Column()
   question: string;
 
-  // @IsDefined()
-  // @MinLength(1)
   @Column()
   answer: string;
 
@@ -53,7 +39,9 @@ export class Data {
   @Column(() => User)
   modifier: User;
 
-  @Column()
+  @Column({
+    default: false
+  })
   archived: boolean;
 
   @Column(() => User)
@@ -61,6 +49,9 @@ export class Data {
 
   @Column(() => User)
   dislikedBy: User[];
+
+  @Column()
+  source: string;
 
   @BeforeInsert()
   updateCreationDate() {

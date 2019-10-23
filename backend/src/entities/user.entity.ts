@@ -3,8 +3,12 @@ import { Data } from './data.entity';
 
 @Entity()
 export class User {
+
   @ObjectIdColumn()
   _id: ObjectID;
+
+  @Column()
+  userName: string;
 
   @Column()
   email: string;
@@ -35,6 +39,11 @@ export class User {
 
   @Column(() => Data)
   dislikedQuestions: Data[];
+
+  @Column({
+    default: true
+  })
+  enabled: boolean;
 
   @BeforeInsert()
   updateCreated() {
