@@ -8,7 +8,7 @@ export class ClientService {
 
   constructor(private readonly configService: ConfigService) {
     this.client = new Client({
-      node: 'http://localhost:9200'
+      node: configService.get('ELASTIC_URL')
     });
   }
 

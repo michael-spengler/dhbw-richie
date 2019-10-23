@@ -1,4 +1,6 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import dotenv from 'dotenv';
+import { readFileSync } from 'fs';
 import { SCHEMA } from '../schema';
 
 interface EnvConfig {
@@ -12,14 +14,18 @@ export class ConfigService {
 
   constructor() {
     const path = '.env';
-    this.LOGGER.debug(`Loading config from: ${path}`);
+    if (!process.env.SKIP_ENV_FILE) {
+      this.LOGGER.debug(`Loading config from: ${path}`);
 
-    this.LOGGER.debug(`Validating file`);
-    /* const parsed = dotenv.parse(readFileSync(path));
-    const validatedEnv = this.validateEnvFile(parsed);
+      this.LOGGER.debug(`Validating file`);
+      const parsed = dotenv.parse(readFileSync(path));
+      const validatedEnv = this.validateEnvFile(parsed);
 
-    this.LOGGER.debug(`Configuring enviroment`);
-    this.envConfig = this.applyConfigToEnv(validatedEnv); */
+      this.LOGGER.debug(`Configuring enviroment`);
+      this.envConfig = this.applyConfigToEnv(validatedEnv);
+    } else {
+      this.LOGGER.debug('Skipping .env file due to SKIP_ENV_FILE Flag');
+    }
   }
 
   public get(key: string): string {
