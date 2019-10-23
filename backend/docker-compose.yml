@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  elastic:
+    container_name: elastic
+    restart: always
+    image: elasticsearch:7.4.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - ELASTIC_PASSWORD=edx3v9gynzfg3Ay9
+    volumes:
+      - ./src/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml

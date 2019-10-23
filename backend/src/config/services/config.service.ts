@@ -1,9 +1,4 @@
-import Joi from '@hapi/joi';
-import {
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import dotenv from 'dotenv';
 import { readFileSync } from 'fs';
 import { SCHEMA } from '../schema';
@@ -36,9 +31,7 @@ export class ConfigService {
   private validateEnvFile(envConfig: EnvConfig): EnvConfig {
     const { error, value: validatedEnvConfig } = SCHEMA.validate(envConfig);
     if (error) {
-      throw new InternalServerErrorException(
-        `Config validation error: ${error.message}`,
-      );
+      throw new InternalServerErrorException(`Config validation error: ${error.message}`);
     }
     return validatedEnvConfig;
   }
@@ -49,7 +42,7 @@ export class ConfigService {
         process.env[key] = envConfig[key];
       } else {
         this.LOGGER.debug(
-          `"${key}" is already defined in \`process.env\` and will not be overwritten`,
+          `"${key}" is already defined in \`process.env\` and will not be overwritten`
         );
       }
       appliedEnv[key] = process.env[key];
