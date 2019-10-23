@@ -1,4 +1,6 @@
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   ObjectID,
@@ -15,9 +17,13 @@ export class Data {
   @ObjectIdColumn()
   _id: ObjectID;
 
+  // @IsDefined()
+  // @MinLength(1)
   @Column()
   question: string;
 
+  // @IsDefined()
+  // @MinLength(1)
   @Column()
   answer: string;
 
@@ -27,7 +33,9 @@ export class Data {
   @Column(() => Lecture)
   lecture: Lecture;
 
-  @Column()
+  @Column({
+    default: false
+  })
   isReviewed: boolean;
 
   @Column()

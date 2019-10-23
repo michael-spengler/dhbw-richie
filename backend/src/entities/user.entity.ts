@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  ObjectID,
-  ObjectIdColumn,
-  BeforeInsert
-} from 'typeorm';
+import { BeforeInsert, Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
 import { Data } from './data.entity';
 
 @Entity()
