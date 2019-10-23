@@ -8,11 +8,7 @@ export class ClientService {
 
   constructor(private readonly configService: ConfigService) {
     this.client = new Client({
-      node: 'http://localhost:9200',
-      auth: {
-        username: 'elastic',
-        password: process.env.ELASTIC_PASSWORD
-      }
+      node: 'http://localhost:9200'
     });
   }
 

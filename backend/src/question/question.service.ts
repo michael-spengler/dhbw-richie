@@ -19,30 +19,30 @@ export class QuestionService {
     private readonly relationMapper: RelationMapper
   ) {
     // copy data from database to elasticsearch
-    // this.LOGGER.debug('Setting up Elastic Search');
-    // this.elasticsearchService.isQuestionIndex().then(isIndex => {
-    //   this.getQuestions().then(questions => {
-    //     this.LOGGER.debug('Synchronizing Elastic Search with Database');
-    //     if (!isIndex) {
-    //       this.elasticsearchService.createQuestionIndex().then(() => {
-    //         this.elasticsearchService.indexQuestions(questions).then(() => {
-    //           this.LOGGER.debug('Elastic Search initialized');
-    //         });
-    //       });
-    //     } else {
-    //       this.elasticsearchService.indexQuestions(questions).then(() => {
-    //         this.LOGGER.debug('Elastic Search initialized');
-    //       });
-    //     }
-    //   });
-    // });
+    this.LOGGER.debug('Setting up Elastic Search');
+    this.elasticsearchService.isQuestionIndex().then(isIndex => {
+      this.getQuestions().then(questions => {
+        this.LOGGER.debug('Synchronizing Elastic Search with Database');
+        if (!isIndex) {
+          this.elasticsearchService.createQuestionIndex().then(() => {
+            this.elasticsearchService.indexQuestions(questions).then(() => {
+              this.LOGGER.debug('Elastic Search initialized');
+            });
+          });
+        } else {
+          this.elasticsearchService.indexQuestions(questions).then(() => {
+            this.LOGGER.debug('Elastic Search initialized');
+          });
+        }
+      });
+    });
   }
 
   public getQuestions(q: string | null = null) {
     // search with elasticsearch if query parameter is available
-    // if (q) {
-    //   return this.elasticsearchService.searchQuestions(q);
-    // }
+    if (q) {
+      return this.elasticsearchService.searchQuestions(q);
+    }
     return this.dataRepo.find();
   }
 
@@ -53,7 +53,7 @@ export class QuestionService {
   public async createQuestion(question: Data) {
     try {
       const q = await this.relationMapper.createRelation(question, 'lecture', Lecture);
-      // await this.elasticsearchService.createQuestion(q);
+      await this.elasticsearchService.createQuestion(q);
 
       return this.dataRepo.save(q);
     } catch {
@@ -64,7 +64,7 @@ export class QuestionService {
   public async updateQuestion(_id: string, question: Data) {
     try {
       const q = await this.relationMapper.createRelation(question, 'lecture', Lecture);
-      // await this.elasticsearchService.updateQuestion(_id, question);
+      await this.elasticsearchService.updateQuestion(_id, question);
 
       await this.dataRepo.update(_id, q);
       return this.dataRepo.findOne(_id);
@@ -75,7 +75,7 @@ export class QuestionService {
 
   public async deleteQuestion(_id: string) {
     try {
-      // await this.elasticsearchService.deleteQuestion(_id);
+      await this.elasticsearchService.deleteQuestion(_id);
 
       await this.dataRepo.delete(_id);
       return { deleted: true };
