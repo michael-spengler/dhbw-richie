@@ -21,6 +21,10 @@ import { UserModule } from './user/user.module';
     LoginModule,
     RolesModule,
     ConfigModule,
+    QuestionModule,
+    LectureModule,
+    ElasticsearchModule,
+    UserModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>
@@ -34,11 +38,7 @@ import { UserModule } from './user/user.module';
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([Data]),
-    QuestionModule,
-    LectureModule,
-    ElasticsearchModule,
-    UserModule
+    TypeOrmModule.forFeature([Data])
   ],
   controllers: [AppController],
   providers: [AppService]

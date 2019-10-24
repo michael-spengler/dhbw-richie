@@ -1,39 +1,107 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, HostListener } from '@angular/core';
+import { state, style, transition, trigger } from '@angular/animations';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
+import { delay, skipWhile } from 'rxjs/operators';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
 import { IQuestion } from 'src/app/models/question.model';
 import { NotificationService } from 'src/app/shared/notification.service';
+import { QuestionService } from '../../question/question.service';
 import { constants } from '../../shared/constants';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  animations: [
+    trigger('quickLinks', [
+      state('linksOpen', style({ 'max-height': '60px' })),
+      state('linksClose', style({ 'max-height': '0px' })),
+      transition('linksOpen <=> linksClose', [])
+    ]),
+    trigger('landingStyle', [
+      state(
+        'landingOpen',
+        style({
+          'min-height': '100vh',
+          'margin-bottom': '0px'
+        })
+      ),
+      state(
+        'landingClose',
+        style({
+          'min-height': '268.667px',
+          'margin-bottom': '-50px'
+        })
+      ),
+      transition('landingOpen <=> landingClose', [])
+    ]),
+    trigger('landingWrapper', [
+      state('landingWrapperOpen', style({ top: '50%' })),
+      state('landingWrapperClose', style({ top: '124.334px' })),
+      transition('landingWrapperOpen <=> landingWrapperClose', [])
+    ]),
+    trigger('resultsWrapper', [
+      state(
+        'resultsWrapperOpen',
+        style({
+          'display': 'none',
+          'max-height': '0px'
+        })
+      ),
+      state(
+        'resultsWrapperClose',
+        style({
+          'display': 'block',
+          'max-height': 'unset'
+        })
+      ),
+      transition('resultsWrapperOpen <=> resultsWrapperClose', [])
+    ])
+  ]
 })
-export class SearchComponent {
+export class SearchComponent implements AfterViewInit {
   constructor(
     public notificationService: NotificationService,
-    public httpClient: HttpClient
+    public questionService: QuestionService
   ) {
     this.constants = constants;
-    this.showSearchbar();
+    //this.showSearchbar();
   }
+
+  @ViewChildren('qs')
+  qElements: QueryList<ElementRef<HTMLDivElement>>;
+
+  // Animation trigger / Style Flags
+  quickLinks: boolean = true;
+  landing: boolean = true;
+  landingWrapper: boolean = true;
+  resultsWrapper: boolean = true;
 
   constants: any;
   searchQuery = '';
   foundQuestions: IQuestion[] = [];
   isSearching: boolean = false;
-  searchResultElements = [];
-  resultsWrapper: any = { overflow: 'hidden' };
-  landingStyle: any = {};
-  quickLinksStyle: any = {};
-  landingWrapperStyle: any = {};
 
-  selectionChanged(filterNmbr, selection): void {
+  selectionChanged(filterNmbr: number, selection: string): void {
     console.log('Filter %i -> %s', filterNmbr, selection);
   }
 
-  onInputKeyDown(event): void {
+  ngAfterViewInit() {
+    this.qElements.changes
+      .pipe(
+        skipWhile(v => !v.length),
+        delay(700)
+      )
+      .subscribe(() => this.onScroll());
+  }
+
+  onInputKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter') this.startSearch();
   }
 
@@ -41,77 +109,46 @@ export class SearchComponent {
     if (this.isSearching) return;
     this.isSearching = true;
     this.showSearchbar();
-
-    // TODO: ADD GET
-    this.httpClient
-      .get(
-        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/foundQuestions.json'
-      )
-      .subscribe(
-        data => {
-          this.foundQuestions = [];
-          JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.foundQuestions.push(question as IQuestion);
-          });
-
-          this.showResults();
-          this.isSearching = false;
-          this.notificationService.sendNotification(
-            `Die Suche ergab folgende Treffer`,
-            NotificationType.SUCCESS
-          );
-
-          setTimeout(() => {
-            this.searchResultElements = Array.from(
-              document.querySelectorAll('.resultWrapper')
-            ).slice(0);
-          }, 20);
-
-          setTimeout(() => {
-            this.onScroll();
-          }, 700);
-        },
-        error => {
-          console.log('Error => ', error);
-        }
+    this.questionService.searchForKeyword().subscribe(q => {
+      this.foundQuestions = q;
+      this.showResults();
+      this.isSearching = false;
+      this.notificationService.sendNotification(
+        `Die Suche ergab folgende Treffer`,
+        NotificationType.SUCCESS
       );
+    });
   }
 
   showSearchbar(): void {
-    this.quickLinksStyle = { 'max-height': '60px' };
-    this.landingStyle['min-height'] = '100vh';
-    this.landingStyle['margin-bottom'] = '0px';
-    this.landingWrapperStyle.top = '50%';
-    this.resultsWrapper.display = 'none';
-    this.resultsWrapper['max-height'] = '0px';
+    this.quickLinks = true;
+    this.landing = true;
+    this.landingWrapper = true;
+    this.resultsWrapper = true;
   }
 
   showResults(): void {
-    this.quickLinksStyle = { 'max-height': '0px' };
-    this.landingStyle['min-height'] = '268.667px';
-    this.landingStyle['margin-bottom'] = '-50px';
-    this.landingWrapperStyle.top = '124.334px';
-    this.resultsWrapper.display = 'block';
-    this.resultsWrapper['max-height'] = 'unset';
+    this.quickLinks = false;
+    this.landing = false;
+    this.landingWrapper = false;
+    this.resultsWrapper = false;
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event = null): void {
-    if (this.searchResultElements === null || this.searchResultElements.length == 0) {
-      console.log('iwie leer...');
+  @HostListener('window:scroll')
+  onScroll(): void {
+    if (!this.qElements || !this.qElements.length) {
       return;
     }
-
-    this.searchResultElements.forEach(element => {
-      let positionFromTop = element.getBoundingClientRect().top;
-      let windowHeight = window.innerHeight;
-      if (positionFromTop - windowHeight <= 0 && !element.classList.contains('come-in')) {
+    this.qElements.forEach(e => {
+      const element = e.nativeElement;
+      const positionFromTop = element.getBoundingClientRect().top;
+      if (
+        positionFromTop - window.innerHeight <= 0 &&
+        !element.classList.contains('come-in')
+      ) {
         element.classList.remove('resultWrapper');
         element.classList.add('come-in');
       }
     });
-    this.searchResultElements = this.searchResultElements.filter(
-      element => !element.classList.contains('come-in')
-    );
   }
 }

@@ -1,6 +1,6 @@
-@import './assets/fonts/fontfaces.css';
-@import './assets/fontawesome/css/all.min.css';
-@import './app/scss/variables';
+@import '../../assets/fontawesome/css/all.min.css';
+@import './_variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 html {
   overflow-y: scroll;
@@ -10,7 +10,7 @@ html,
 body {
   margin: 0;
   background: var(--background);
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: var(--font-color);
   overflow-x: hidden;
   max-width: 100%;

@@ -5,7 +5,7 @@ import { IUser } from './user.service';
   providedIn: 'root'
 })
 export class SharedFunctions {
-  public openURL(url): void {
+  public openURL(url: string): void {
     window.open(url, '_blank');
   }
 
