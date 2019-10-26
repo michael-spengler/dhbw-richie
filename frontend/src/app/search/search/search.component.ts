@@ -109,7 +109,7 @@ export class SearchComponent implements AfterViewInit {
     if (this.isSearching) return;
     this.isSearching = true;
     this.showSearchbar();
-    this.questionService.searchForKeyword().subscribe(q => {
+    this.questionService.searchForKeyword(this.searchQuery).subscribe(q => {
       this.foundQuestions = q;
       this.showResults();
       this.isSearching = false;

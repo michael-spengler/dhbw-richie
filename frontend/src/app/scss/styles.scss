@@ -1,6 +1,5 @@
 @import '../../assets/fontawesome/css/all.min.css';
 @import './_variables.scss';
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 html {
   overflow-y: scroll;
@@ -10,7 +9,8 @@ html,
 body {
   margin: 0;
   background: var(--background);
-  font-family: 'Montserrat', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   color: var(--font-color);
   overflow-x: hidden;
   max-width: 100%;
