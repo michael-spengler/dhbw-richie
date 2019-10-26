@@ -68,4 +68,18 @@ export class Data {
   updateUpdateDate() {
     this.updateDate = new Date().getTime();
   }
+
+  static transform(question: Data | Data[]) {
+    if (typeof question === 'object') {
+      return (question as Data[]).map(q => {
+        q['id'] = q._id;
+        delete q._id;
+        return q;
+      });
+    } else {
+      (question as Data)['id'] = (question as Data)._id;
+      delete (question as Data)._id;
+      return question as Data;
+    }
+  }
 }

@@ -19,7 +19,7 @@ export class QuestionService {
     private readonly relationMapper: RelationMapper
   ) {
     // copy data from database to elasticsearch
-    this.LOGGER.debug('Setting up Elastic Search');
+    /* this.LOGGER.debug('Setting up Elastic Search');
     this.elasticsearchService.isQuestionIndex().then(isIndex => {
       this.getQuestions().then(questions => {
         this.LOGGER.debug('Synchronizing Elastic Search with Database');
@@ -35,39 +35,47 @@ export class QuestionService {
           });
         }
       });
-    });
+    }); */
   }
 
-  public getQuestions(q: string | null = null) {
+  public async getQuestions(q: string | null = null) {
     // search with elasticsearch if query parameter is available
-    if (q) {
-      return this.elasticsearchService.searchQuestions(q);
+    try {
+      if (q) {
+        return this.elasticsearchService.searchQuestions(q);
+      }
+      return this.dataRepo.find().then(Data.transform);
+    } catch (error) {
+      console.log(error);
     }
-    return this.dataRepo.find();
   }
 
   public getQuestionById(_id: string) {
-    return this.dataRepo.findOne(_id);
+    return this.dataRepo.findOne(_id).then(Data.transform);
   }
 
   public async createQuestion(question: Data) {
     try {
-      const q = await this.relationMapper.createRelation(question, 'lecture', Lecture);
-      await this.elasticsearchService.createQuestion(q);
+      if (question.lecture) {
+        question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
+      }
+      await this.elasticsearchService.createQuestion(question);
 
-      return this.dataRepo.save(q);
-    } catch {
+      return this.dataRepo.save(question).then(Data.transform);
+    } catch (err) {
+      console.log(err);
       throw new HttpException('Creation failed', HttpStatus.NOT_ACCEPTABLE);
     }
   }
 
   public async updateQuestion(_id: string, question: Data) {
     try {
-      const q = await this.relationMapper.createRelation(question, 'lecture', Lecture);
+      if (question.lecture) {
+        question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
+      }
+      await this.dataRepo.update(_id, question);
       await this.elasticsearchService.updateQuestion(_id, question);
-
-      await this.dataRepo.update(_id, q);
-      return this.dataRepo.findOne(_id);
+      return this.dataRepo.findOne(_id).then(Data.transform);
     } catch {
       throw new HttpException('Update failed', HttpStatus.INTERNAL_SERVER_ERROR);
     }

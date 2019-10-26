@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
-import { IQuestion } from 'src/app/models/question.model';
+import { Question } from 'src/app/models/question.model';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { UserService } from 'src/app/shared/user.service';
 import { constants } from '../../shared/constants';
@@ -22,8 +22,8 @@ export class ReviewComponent implements OnInit {
   }
 
   public constants;
-  public currentQuestion: IQuestion = {} as IQuestion;
-  public questions: IQuestion[] = [];
+  public currentQuestion: Question = {} as Question;
+  public questions: Question[] = [];
   public overlayStyle: any = { display: 'none' };
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class ReviewComponent implements OnInit {
     this.currentQuestion.lecture = selected;
   }
 
-  public togglePopUp(question: IQuestion): void {
+  public togglePopUp(question: Question): void {
     this.currentQuestion = question;
     this.overlayStyle = {
       display: this.overlayStyle.display == 'none' ? 'block' : 'none'
@@ -82,7 +82,7 @@ export class ReviewComponent implements OnInit {
       .subscribe(
         data => {
           JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.questions.push(question as IQuestion);
+            this.questions.push(question as Question);
           });
         },
         error => {
