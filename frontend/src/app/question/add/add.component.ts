@@ -50,13 +50,7 @@ export class AddComponent {
 
       const q = await this.questionService.addQuestion(this.question);
 
-      console.log(q);
-      this.question = {
-        question: '',
-        answer: '',
-        source: '',
-        lecture: ''
-      } as Question;
+      this.question = this.question.reset();
     } else {
       this.notificationService.sendNotification(
         'Bitte fülle alle Felder aus!',

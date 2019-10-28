@@ -18,4 +18,12 @@ export class Question {
   get dislikes(): number {
     return this.dislikedBy.length;
   }
+
+  public reset() {
+    this.question = '';
+    this.answer = '';
+    this.source = '';
+    this.lecture = '';
+    return this;
+  }
 }
