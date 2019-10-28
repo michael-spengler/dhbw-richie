@@ -4,7 +4,6 @@ This is an education and fun project for [Duale Hochschule Baden Württemberg Ma
 
 ## TODOS
 
-- find a way to include Apple-Font over cdn
 - better Environment stuff --> Local Dev has to work with backend too
 
 ## Building Blocks
