@@ -48,6 +48,7 @@ export class QuestionService {
         ...question,
         likedBy: question.likedBy.push(this.userService.richieUser)
       })
+      .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }
 
@@ -57,6 +58,7 @@ export class QuestionService {
         ...question,
         dislikedBy: question.dislikedBy.push(this.userService.richieUser)
       })
+      .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }
 }
