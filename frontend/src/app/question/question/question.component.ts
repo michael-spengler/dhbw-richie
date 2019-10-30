@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
@@ -15,14 +14,9 @@ export class QuestionComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     private notificationService: NotificationService,
-    private httpClient: HttpClient,
-
     private questionService: QuestionService
-  ) {
-    route.params.subscribe(params => {
-      this.question.id = params.id;
-    });
-  }
+  ) {}
+
   public publicComment: any;
   public question: Question = {} as Question;
 
