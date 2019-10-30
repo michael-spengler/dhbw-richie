@@ -13,7 +13,7 @@ jobs:
       - name: Deploy-Frontend
         run: |
           SYSTEM="$(cut -d'-' -f1 <<< ${GITHUB_REF/refs\/tags\//})"
-          if ["$SYSTEM" == "frontend"]; then
+          if [[ $SYSTEM == *"frontend"* ]]; then
             VERSION="$(cut -d'-' -f2 <<< ${GITHUB_REF/refs\/tags\//})"
             echo "$VERSION"
             #sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de DOCKER_TAG=$VERSION -o StrictHostKeyChecking=no < ./deploy/deploy-frontend.bash
@@ -22,7 +22,7 @@ jobs:
           fi
       - name: Deploy-Backend
         run: |
-          if ["$SYSTEM" == "backend"]; then
+          if [[ $SYSTEM == *"backend"* ]]; then
             VERSION="$(cut -d'-' -f2 <<< ${GITHUB_REF/refs\/tags\//})"
             #sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de DOCKER_TAG=$VERSION -o StrictHostKeyChecking=no < ./deploy/deploy-backend.bash
           else
