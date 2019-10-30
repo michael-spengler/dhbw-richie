@@ -65,11 +65,18 @@
 </div>
 
 <div class="paragraph">
-  <richie-revealer heading="Fragen die ich mag" [amount]="likedQuestions.length">
+  <richie-revealer
+    heading="Fragen die ich mag"
+    [amount]="
+      userService.richieUser.likedQuestions
+        ? userService.richieUser.likedQuestions.length
+        : 0
+    "
+  >
     <div class="tablewrapper">
       <table>
         <tr
-          *ngFor="let question of likedQuestions"
+          *ngFor="let question of userService.richieUser.likedQuestions"
           [routerLink]="['/question', question._id]"
         >
           <td (click)="removeQuestion(question, true)"><i class="fal fa-times"></i></td>
@@ -82,11 +89,18 @@
 </div>
 
 <div class="paragraph">
-  <richie-revealer heading="Fragen die ich nicht mag" [amount]="dislikedQuestions.length">
+  <richie-revealer
+    heading="Fragen die ich nicht mag"
+    [amount]="
+      userService.richieUser.dislikedQuestions
+        ? userService.richieUser.dislikedQuestions.length
+        : 0
+    "
+  >
     <div class="tablewrapper">
       <table>
         <tr
-          *ngFor="let question of dislikedQuestions"
+          *ngFor="let question of userService.richieUser.dislikedQuestions"
           [routerLink]="['/question', question._id]"
         >
           <td (click)="removeQuestion(question, false)">

@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
-    data: { animation: '404' }
+    data: { title: 'Richie | Not Found' }
   }
 ];
 

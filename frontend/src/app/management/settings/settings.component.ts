@@ -29,8 +29,6 @@ export class SettingsComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    this.loadDislikedQuestion();
-    this.loadLikedQuestion();
   }
 
   removeQuestion(question: Question, wasLike: boolean): void {

@@ -11,22 +11,22 @@ const commonRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    data: { animation: 'home' }
+    data: { title: 'Richie | Home' }
   },
   {
     path: 'about',
     component: AboutComponent,
-    data: { animation: 'about' }
+    data: { title: 'Richie | About' }
   },
   {
     path: 'legal',
     component: LegalComponent,
-    data: { animation: 'legal' }
+    data: { title: 'Richie | Legal' }
   },
   {
     path: 'impressum',
     component: ImpressumComponent,
-    data: { animation: 'impressum' }
+    data: { title: 'Richie | Impressum' }
   }
 ];
 @NgModule({

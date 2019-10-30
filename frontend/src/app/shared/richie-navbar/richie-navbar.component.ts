@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ThemeService } from '../theme.service';
-import { IUser, UserService } from '../user.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'richie-navbar',
@@ -17,14 +17,12 @@ export class RichieNavbarComponent implements OnInit {
     public router: Router
   ) {}
 
-  public user: IUser;
   public navVisible: boolean = false;
   public navwrapperStyle: any = {
     height: window.innerWidth > 850 || this.navVisible ? '100%' : '0px'
   };
 
   ngOnInit(): void {
-    this.user = this.userService.richieUser;
     this.router.events.subscribe(event => {
       if (window.innerWidth <= 850 && this.navVisible) this.toggleNavbar();
 
