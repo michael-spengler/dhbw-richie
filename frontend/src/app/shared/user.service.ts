@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { plainToClass } from 'class-transformer';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Question } from '../models/question.model';
 
@@ -18,6 +21,7 @@ export interface IUser {
   enabled: boolean;
   likedQuestions: Question[];
   dislikedQuestions: Question[];
+  token: string;
 }
 
 @Injectable({
@@ -26,42 +30,51 @@ export interface IUser {
 export class UserService {
   richieUser: IUser = {} as IUser;
 
+  constructor(private readonly http: HttpClient) {}
+
   public logIn(service: SignedInWith): void {
     if (localStorage.getItem('richie-user')) {
       this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
-      //console.log('Local Storage already had user: ', this.richieUser);
     } else {
-      //console.log('Local Storage has no richie-user');
       document.cookie = 'service=' + service;
       window.location.href = `${environment.backend}/api/auth/${service}`;
     }
   }
 
   public checkToken(): void {
-    //console.log('Cookie: ', document.cookie);
     if (localStorage.getItem('richie-user')) {
       this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
-
-      //console.log('Local Storage has user: ', this.richieUser);
       return;
     }
     const token = this.getToken();
-    if (token) {
-      this.richieUser = JSON.parse(atob(token.split('.')[1])) as IUser;
-      this.richieUser.signedIn = true;
-      this.richieUser.signedInWith = this.getService();
-      localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
-
-      //console.log('Cookie (Token) found => ', this.richieUser);
+    if (!token) {
       return;
     }
-    //console.error('Cookie (Token) not set!');
+    this.richieUser = {
+      ...(JSON.parse(atob(token.split('.')[1])) as IUser),
+      signedIn: true,
+      signedInWith: this.getService(),
+      token
+    };
+    localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
+  }
+
+  public getQuestionsForUser() {
+    return this.http
+      .get<IUser>(`${environment.backend}/api/user/${this.richieUser._id}`)
+      .pipe(
+        map(u => ({
+          likedQuestions: u.likedQuestions.map(x => plainToClass(Question, x)),
+          dislikedQuestions: u.dislikedQuestions.map(x => plainToClass(Question, x))
+        }))
+      )
+      .toPromise();
   }
 
   public logOut(): void {
     localStorage.removeItem('richie-user');
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     this.richieUser = { signedIn: false } as IUser;
-    window.location.href = 'home';
   }
 
   public getToken() {

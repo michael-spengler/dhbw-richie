@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map, mergeMap } from 'rxjs/operators';
 import { ThemeService } from '../theme.service';
 import { UserService } from '../user.service';
 
@@ -13,6 +14,7 @@ export class RichieNavbarComponent implements OnInit {
   constructor(
     public readonly userService: UserService,
     public readonly themeService: ThemeService,
+    public readonly activatedRoute: ActivatedRoute,
     public titleService: Title,
     public router: Router
   ) {}
@@ -23,20 +25,27 @@ export class RichieNavbarComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.router.events.subscribe(event => {
-      if (window.innerWidth <= 850 && this.navVisible) this.toggleNavbar();
-
-      if (event instanceof NavigationEnd) {
-        var title = this.getTitle(
-          this.router.routerState,
-          this.router.routerState.root
-        ).join('-');
-        this.titleService.setTitle(title);
-      }
-      if (event instanceof NavigationStart) {
-        this.userService.checkToken();
-      }
-    });
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => {
+          if (window.innerWidth <= 850 && this.navVisible) {
+            this.toggleNavbar();
+          }
+          let route = this.activatedRoute;
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+          return route;
+        }),
+        mergeMap(route => route.data),
+        map(data => {
+          if (data.title) {
+            return data.title;
+          }
+        })
+      )
+      .subscribe(pathString => this.titleService.setTitle(pathString));
   }
 
   @HostListener('window:resize')
@@ -44,18 +53,6 @@ export class RichieNavbarComponent implements OnInit {
     this.navwrapperStyle = {
       height: window.innerWidth > 850 || this.navVisible ? '100%' : '0px'
     };
-  }
-
-  getTitle(state, parent): any[] {
-    var data = [];
-    if (parent && parent.snapshot.data && parent.snapshot.data.title) {
-      data.push(parent.snapshot.data.title);
-    }
-
-    if (state && parent) {
-      data.push(...this.getTitle(state, state.firstChild(parent)));
-    }
-    return data;
   }
 
   toggleNavbar(): void {
