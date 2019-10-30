@@ -12,10 +12,11 @@ jobs:
       - uses: actions/checkout@master
       - name: Deploy-Frontend
         run: |
-          echo ${GITHUB_REF/refs\/tags\//}
-          # sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de -o StrictHostKeyChecking=no < ./deploy/deploy-frontend.bash
+          VERSION="$(cut -d'-' -f2 <<< ${GITHUB_REF/refs\/tags\//})"
+          echo "$VERSION"
+          # sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de DOCKER_TAG=$VERSION -o StrictHostKeyChecking=no < ./deploy/deploy-frontend.bash
       - name: Deploy-Backend
         run: |
           echo ${GITHUB_REF/refs\/tags\//}
-          # sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de -o StrictHostKeyChecking=no < ./deploy/deploy-backend.bash
+          # sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de DOCKER_TAG=$VERSION -o StrictHostKeyChecking=no < ./deploy/deploy-backend.bash
         # shell: bash
