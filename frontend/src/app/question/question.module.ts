@@ -11,12 +11,14 @@ import { QuestionComponent } from './question/question.component';
 const questionRoutes: Routes = [
   {
     path: 'question/:id',
-    component: QuestionComponent
+    component: QuestionComponent,
+    data: { title: 'Richie | Question' }
   },
   {
     path: 'add',
     component: AddComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { title: 'Richie | Add' }
   }
 ];
 

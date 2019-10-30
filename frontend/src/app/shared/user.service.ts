@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { plainToClass } from 'class-transformer';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Question } from '../models/question.model';
 
 type SignedInWith = 'Google' | 'Apple' | 'Telegram' | 'GitHub';
 
 export interface IUser {
+  _id: string;
   signedIn: boolean;
   givenName: string;
   familyName: string;
@@ -14,7 +19,9 @@ export interface IUser {
   picture: string;
   created: number;
   enabled: boolean;
-  _id: string;
+  likedQuestions: Question[];
+  dislikedQuestions: Question[];
+  token: string;
 }
 
 @Injectable({
@@ -23,39 +30,51 @@ export interface IUser {
 export class UserService {
   richieUser: IUser = {} as IUser;
 
+  constructor(private readonly http: HttpClient) {}
+
   public logIn(service: SignedInWith): void {
-    document.cookie = 'service=' + service;
     if (localStorage.getItem('richie-user')) {
-      const user: IUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
-      user.signedIn = true;
-      user.signedInWith = service;
-      this.richieUser = user;
-      localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
-      window.location.reload();
+      this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
     } else {
+      document.cookie = 'service=' + service;
       window.location.href = `${environment.backend}/api/auth/${service}`;
     }
   }
 
   public checkToken(): void {
-    if (!localStorage.getItem('richie-user')) {
-      const token = this.getToken();
-      if (token) {
-        document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
-        this.richieUser = JSON.parse(atob(token.split('.')[1])) as IUser;
-        this.richieUser.signedIn = true;
-        this.richieUser.signedInWith = this.getService();
-        localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
-      }
-    } else {
+    if (localStorage.getItem('richie-user')) {
       this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
+      return;
     }
+    const token = this.getToken();
+    if (!token) {
+      return;
+    }
+    this.richieUser = {
+      ...(JSON.parse(atob(token.split('.')[1])) as IUser),
+      signedIn: true,
+      signedInWith: this.getService(),
+      token
+    };
+    localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
+  }
+
+  public getQuestionsForUser() {
+    return this.http
+      .get<IUser>(`${environment.backend}/api/user/${this.richieUser._id}`)
+      .pipe(
+        map(u => ({
+          likedQuestions: u.likedQuestions.map(x => plainToClass(Question, x)),
+          dislikedQuestions: u.dislikedQuestions.map(x => plainToClass(Question, x))
+        }))
+      )
+      .toPromise();
   }
 
   public logOut(): void {
     localStorage.removeItem('richie-user');
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     this.richieUser = { signedIn: false } as IUser;
-    window.location.href = 'home';
   }
 
   public getToken() {

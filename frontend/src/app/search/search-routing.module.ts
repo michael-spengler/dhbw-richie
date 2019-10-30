@@ -5,7 +5,8 @@ import { SearchComponent } from './search/search.component';
 const searchRoutes: Routes = [
   {
     path: 'search',
-    component: SearchComponent
+    component: SearchComponent,
+    data: { title: 'Richie | Frage' }
   }
 ];
 

@@ -1,13 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../entities/user.entity';
+import { Data } from 'src/entities/data.entity';
 import { MongoRepository } from 'typeorm';
+import { User } from '../entities/user.entity';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private readonly userRepo: MongoRepository<User>) {}
+  constructor(
+    @InjectRepository(User) private readonly userRepo: MongoRepository<User>,
+    @InjectRepository(Data) private readonly dataRepo: MongoRepository<Data>
+  ) {}
 
   public getUsers() {
     return this.userRepo.find();
+  }
+
+  public async getUserDetails(id: string) {
+    const user = await this.userRepo.findOne(id);
+    const lik = await this.dataRepo.find({
+      likedBy: [user._id.toString()]
+    });
+    const dis = await this.dataRepo.find({
+      dislikedBy: [user._id.toString()]
+    });
+    return { ...user, likedQuestions: lik, dislikedQuestions: dis };
   }
 }

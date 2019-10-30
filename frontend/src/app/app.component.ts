@@ -1,5 +1,6 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ThemeService } from './shared/theme.service';
 
 @Component({
@@ -7,14 +8,16 @@ import { ThemeService } from './shared/theme.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   constructor(
     public breakpointObserver: BreakpointObserver,
     public themeService: ThemeService
   ) {}
 
+  private subcription: Subscription;
+
   ngOnInit(): void {
-    this.breakpointObserver
+    this.subcription = this.breakpointObserver
       .observe(['(prefers-color-scheme: dark)'])
       .subscribe((state: BreakpointState) => {
         this.themeService.setTheme(state.matches ? 'dark' : 'light');
@@ -22,7 +25,11 @@ export class AppComponent implements OnInit {
   }
 
   @HostListener('click', ['$event'])
-  stopPropa(event?): void {
+  stopPropa(event?: Event): void {
     event.stopPropagation();
+  }
+
+  ngOnDestroy(): void {
+    this.subcription.unsubscribe();
   }
 }
