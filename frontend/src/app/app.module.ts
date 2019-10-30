@@ -8,6 +8,7 @@ import { InformationModule } from './information/information.module';
 import { ManagementModule } from './management/management.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { QuestionModule } from './question/question.module';
+import './scss/styles.scss';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
 import { darkTheme, lightTheme } from './shared/themes';

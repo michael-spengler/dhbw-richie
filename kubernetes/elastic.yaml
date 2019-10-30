@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elastic
+  labels:
+    app: elastic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: elastic
+      app: elastic
+  template:
+    metadata:
+      labels:
+        run: elastic
+        app: elastic
+    spec:
+      containers:
+      - name: elastic
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.3.2
+        ports:
+        - containerPort: 9200
+        env:
+          - name: ES_JAVA_OPTS
+            value: "-Xms512m -Xmx512m"
+          - name: cluster.name
+            value: "WoopCluster"
+          - name: network.host
+            value: "0.0.0.0"
+          - name: discovery.type
+            value: "single-node"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elastic
+  labels:
+    run: elastic
+spec:
+  clusterIP: 10.152.183.217
+  ports:
+  - port: 9200
+    targetPort: 9200
+    protocol: TCP
+  selector:
+    run: elastic

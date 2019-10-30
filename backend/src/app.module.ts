@@ -8,7 +8,6 @@ import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
 import { TelegrammGroups } from './entities/telegrammGroups.entity';
 import { User } from './entities/user.entity';
-import { TelegrammGroups } from './entities/telegrammGroups.entity';
 import { LectureModule } from './lecture/lecture.module';
 import { LoginModule } from './login/login.module';
 import { PassportModule } from './passport';
@@ -22,6 +21,10 @@ import { UserModule } from './user/user.module';
     LoginModule,
     RolesModule,
     ConfigModule,
+    QuestionModule,
+    LectureModule,
+    ElasticsearchModule,
+    UserModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>
@@ -31,17 +34,13 @@ import { UserModule } from './user/user.module';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture, TelegrammGroups],
+          entities: [Data, User, Lecture, TelegrammGroups]
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([Data]),
-    QuestionModule,
-    LectureModule,
-    ElasticsearchModule,
-    UserModule
+    TypeOrmModule.forFeature([Data])
   ],
   controllers: [AppController],
   providers: [AppService]
 })
-export class AppModule { }
+export class AppModule {}
