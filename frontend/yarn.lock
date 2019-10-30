@@ -103,12 +103,31 @@
     rxjs "6.4.0"
     source-map "0.7.3"
 
+"@angular-devkit/core@8.3.15":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-8.3.15.tgz#54629457e81c75952e6075d64214e2ada5e39efa"
+  integrity sha512-FYUYNcggvRm7glfmqsRgBA1N6ubkINVx2nquZZX10AeCIs4MRqlG4UsddFbOvVckIF/4Q+tBK5P/NngpP1zGXA==
+  dependencies:
+    ajv "6.10.2"
+    fast-json-stable-stringify "2.0.0"
+    magic-string "0.25.3"
+    rxjs "6.4.0"
+    source-map "0.7.3"
+
 "@angular-devkit/schematics@8.3.14":
   version "8.3.14"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-8.3.14.tgz#844573822805c2f50f513418e4850a4c28bcb91a"
   integrity sha512-5gPmTBN85a2gTxz/FsM5fO9Bxw4KG6uJNLMDAWfPG8vvSQEl7J64ujyqxPz39TernQTEKeuhRC4I5H1aaW9I/Q==
   dependencies:
     "@angular-devkit/core" "8.3.14"
+    rxjs "6.4.0"
+
+"@angular-devkit/schematics@8.3.15":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-8.3.15.tgz#3ccc77043e2970ef48871864b1c1da902fb3ec53"
+  integrity sha512-BWi4gpF0RK6k4tD6YKz7cHkwlympnG/x5KZqtmnFYRvw22W3cc/zadu+xQ91EZLFmSycpV10+pZWfE6Kl4V6rA==
+  dependencies:
+    "@angular-devkit/core" "8.3.15"
     rxjs "6.4.0"
 
 "@angular/animations@~8.2.9":
@@ -216,10 +235,27 @@
   dependencies:
     tslib "^1.9.0"
 
+"@angular/pwa@^0.803.13":
+  version "0.803.15"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.15.tgz#21a5190e38261fe924e3bb44509bf8eeb4b9039a"
+  integrity sha512-adnmtyA+9w92copQLEATccWMwfX+hFq3LIlQFcIzwzfmXwkrTvkBhXCZZvcS25grcPqcUJwutE69fotYMDwb3A==
+  dependencies:
+    "@angular-devkit/core" "8.3.15"
+    "@angular-devkit/schematics" "8.3.15"
+    "@schematics/angular" "8.3.15"
+    parse5-html-rewriting-stream "5.1.0"
+
 "@angular/router@~8.2.9":
   version "8.2.12"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-8.2.12.tgz#292866fa8094b110f0c077d7d2974d4ba958dfcb"
   integrity sha512-mq1FethFpYosSVzChstMpxZlL+oUFeaA+FrzZQL7zJP/mm61yFkkhoYGVG6pG0NWSzpJE4NY6YvGCvHgN4ZECw==
+  dependencies:
+    tslib "^1.9.0"
+
+"@angular/service-worker@~8.2.9":
+  version "8.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-8.2.13.tgz#c3d821361a111fed03afee0513fe85389f41d89b"
+  integrity sha512-9P0ode6zNbyiv76nG8D03SRbNR92/hWNLuCeXST53SvC2uvhp45/oVTVc0TCXNsodd0slOchQbq6RLN/LSAdHQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -877,6 +913,14 @@
     "@angular-devkit/core" "8.3.14"
     "@angular-devkit/schematics" "8.3.14"
 
+"@schematics/angular@8.3.15":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-8.3.15.tgz#3f1b0fb0086bb8446b0f50f6c406a3b67386ac77"
+  integrity sha512-SrIxJU/7cJmfQDuBSjnGUvXi0tUb5PrFYKbL+Lek8qsaicO0y738HXjmeZqLnXoMg0J/9tOeIgdydeEtPCEjoQ==
+  dependencies:
+    "@angular-devkit/core" "8.3.15"
+    "@angular-devkit/schematics" "8.3.15"
+
 "@schematics/update@0.803.14":
   version "0.803.14"
   resolved "https://registry.yarnpkg.com/@schematics/update/-/update-0.803.14.tgz#831c7f816f75d98aeec370cdfa490c7431130af8"
@@ -1213,6 +1257,16 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
+
+angular-http-server@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/angular-http-server/-/angular-http-server-1.9.0.tgz#4d3d1dcc28512805c1025541532d15dfa8046254"
+  integrity sha512-CVMqVrjd93JEYoLyD7Tx2IIKDMKWrJVJdK7EM+AVakjIYK2yajLgJiRfzofZ6PYYq8Mr5juKGzFCPrdg4rc7tQ==
+  dependencies:
+    mime "^1.3.6"
+    minimist "^1.2.0"
+    opn "^5.3.0"
+    pem "^1.9.7"
 
 ansi-colors@4.1.1:
   version "4.1.1"
@@ -2018,6 +2072,11 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
+charenc@~0.0.1:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/charenc/-/charenc-0.0.2.tgz#c0a1d2f3a7092e03774bfa83f14c0fc5790a8667"
+  integrity sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=
+
 "chokidar@>=2.0.0 <4.0.0":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.2.2.tgz#a433973350021e09f2b853a2287781022c0dc935"
@@ -2441,6 +2500,11 @@ cross-spawn@^6.0.0:
     semver "^5.5.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+crypt@~0.0.1:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
+  integrity sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
@@ -2959,6 +3023,11 @@ es6-promisify@^5.0.0:
   integrity sha1-UQnWLz5W6pZ8S2NQWu8IKRyKUgM=
   dependencies:
     es6-promise "^4.0.3"
+
+es6-promisify@^6.0.0:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/es6-promisify/-/es6-promisify-6.0.2.tgz#525c23725b8510f5f1f2feb5a1fbad93a93e29b4"
+  integrity sha512-eO6vFm0JvqGzjWIQA6QVKjxpmELfhWbDUWHm1rPfIbn55mhKPiAa5xpLmQWJrNa629ZIeQ8ZvMAi13kvrjK6Mg==
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -4007,7 +4076,7 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
-is-buffer@^1.1.5:
+is-buffer@^1.1.5, is-buffer@~1.1.1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
@@ -4821,6 +4890,15 @@ md5.js@^1.3.4:
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
 
+md5@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/md5/-/md5-2.2.1.tgz#53ab38d5fe3c8891ba465329ea23fac0540126f9"
+  integrity sha1-U6s41f48iJG6RlMp6iP6wFQBJvk=
+  dependencies:
+    charenc "~0.0.1"
+    crypt "~0.0.1"
+    is-buffer "~1.1.1"
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -4910,7 +4988,7 @@ mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.19, mime-types@~2.1.24:
   dependencies:
     mime-db "1.40.0"
 
-mime@1.6.0, mime@^1.4.1:
+mime@1.6.0, mime@^1.3.6, mime@^1.4.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
@@ -5420,7 +5498,7 @@ open@6.4.0:
   dependencies:
     is-wsl "^1.1.0"
 
-opn@^5.5.0:
+opn@^5.3.0, opn@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/opn/-/opn-5.5.0.tgz#fc7164fab56d235904c51c3b27da6758ca3b9bfc"
   integrity sha512-PqHpggC9bLV0VeWcdKhkpxY+3JTzetLSqTCWL/z/tFIbI6G8JCjondXklT1JinczLz2Xib62sSp0T/gKT4KksA==
@@ -5461,7 +5539,7 @@ os-locale@^3.0.0, os-locale@^3.1.0:
     lcid "^2.0.0"
     mem "^4.0.0"
 
-os-tmpdir@^1.0.0, os-tmpdir@~1.0.1, os-tmpdir@~1.0.2:
+os-tmpdir@^1.0.0, os-tmpdir@^1.0.1, os-tmpdir@~1.0.1, os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
@@ -5595,12 +5673,27 @@ parse-json@^4.0.0:
     error-ex "^1.3.1"
     json-parse-better-errors "^1.0.1"
 
+parse5-html-rewriting-stream@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/parse5-html-rewriting-stream/-/parse5-html-rewriting-stream-5.1.0.tgz#63f92c958764aea8cbe3aa68f2e5895c32068ab8"
+  integrity sha512-hZlaOTHJs4dpC5yFHnOSEMh26ErsqTsLzxKqkuRcUqtiu0kMsBQ9pkgANkECDyoBUhJ3+hvb2DPLsyqbtcS61Q==
+  dependencies:
+    parse5 "^5.1.0"
+    parse5-sax-parser "^5.1.0"
+
+parse5-sax-parser@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/parse5-sax-parser/-/parse5-sax-parser-5.1.0.tgz#ec234d23223a8054a74ff173aa3dc2da74c5bbd9"
+  integrity sha512-VEhdEDhBkoSILPmsZ96SoIIUow3hZbtgQsqXw7r8DxxnqsCIO0fwkT9mWgBcf9SPjVUh92liuEprHrrYzXBPWQ==
+  dependencies:
+    parse5 "^5.1.0"
+
 parse5@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
 
-parse5@^5.0.0:
+parse5@^5.0.0, parse5@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.0.tgz#c59341c9723f414c452975564c7c00a68d58acd2"
   integrity sha512-fxNG2sQjHvlVAYmzBZS9YlDp6PTSSDwa98vkD4QgVDDCAo84z5X1t5XyJQ62ImdLXx5NdIIfihey6xpum9/gRQ==
@@ -5691,6 +5784,16 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+pem@^1.9.7:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/pem/-/pem-1.14.3.tgz#347e5a5c194a5f7612b88083e45042fcc4fb4901"
+  integrity sha512-Q+AMVMD3fzeVvZs5PHeI+pVt0hgZY2fjhkliBW43qyONLgCXPVk1ryim43F9eupHlNGLJNT5T/NNrzhUdiC5Zg==
+  dependencies:
+    es6-promisify "^6.0.0"
+    md5 "^2.2.1"
+    os-tmpdir "^1.0.1"
+    which "^1.3.1"
 
 performance-now@^2.1.0:
   version "2.1.0"

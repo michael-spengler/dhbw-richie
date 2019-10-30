@@ -12,7 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     public breakpointObserver: BreakpointObserver,
     public themeService: ThemeService
-  ) {}
+  ) { }
 
   private subcription: Subscription;
 
