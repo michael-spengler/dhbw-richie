@@ -53,11 +53,11 @@ export class Data {
   @Column()
   archived: boolean;
 
-  @Column(() => User)
-  likedBy: User[];
+  @Column()
+  likedBy: string[];
 
-  @Column(() => User)
-  dislikedBy: User[];
+  @Column()
+  dislikedBy: string[];
 
   @BeforeInsert()
   updateCreationDate() {
@@ -67,5 +67,19 @@ export class Data {
   @BeforeUpdate()
   updateUpdateDate() {
     this.updateDate = new Date().getTime();
+  }
+
+  static transform(question: Data | Data[]) {
+    if ((question as Data[]).length) {
+      return (question as Data[]).map(q => {
+        q['id'] = q._id;
+        delete q._id;
+        return q;
+      });
+    } else {
+      (question as Data)['id'] = (question as Data)._id;
+      delete (question as Data)._id;
+      return question as Data;
+    }
   }
 }

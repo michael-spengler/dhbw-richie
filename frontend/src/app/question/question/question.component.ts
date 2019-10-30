@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
-import { IQuestion } from 'src/app/models/question.model';
+import { Question } from 'src/app/models/question.model';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { QuestionService } from '../question.service';
 
@@ -18,18 +18,24 @@ export class QuestionComponent implements OnInit {
   ) {}
 
   public publicComment: any;
-  public question: IQuestion = {} as IQuestion;
+  public question: Question = {} as Question;
 
   get isValid(): boolean {
     return !!this.question.question;
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.questionService.getQuestionById(params.id).subscribe(q => {
-        this.question = q;
-      });
+    this.route.params.subscribe(async params => {
+      this.question = await this.questionService.getQuestionById(params.id);
     });
+  }
+
+  public async likeOrDislikeQuestion(type: 'like' | 'dislike') {
+    if (type === 'like') {
+      this.question = await this.questionService.likeQuestion(this.question);
+    } else {
+      this.question = await this.questionService.dislikeQuestion(this.question);
+    }
   }
 
   public cancel(): void {

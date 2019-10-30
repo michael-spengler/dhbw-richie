@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { delay, skipWhile } from 'rxjs/operators';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
-import { IQuestion } from 'src/app/models/question.model';
+import { Question } from 'src/app/models/question.model';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { QuestionService } from '../../question/question.service';
 import { constants } from '../../shared/constants';
@@ -71,7 +71,6 @@ export class SearchComponent implements AfterViewInit {
     public questionService: QuestionService
   ) {
     this.constants = constants;
-    //this.showSearchbar();
   }
 
   @ViewChildren('qs')
@@ -85,7 +84,7 @@ export class SearchComponent implements AfterViewInit {
 
   constants: any;
   searchQuery = '';
-  foundQuestions: IQuestion[] = [];
+  foundQuestions: Question[] = [];
   isSearching: boolean = false;
 
   selectionChanged(filterNmbr: number, selection: string): void {
@@ -108,10 +107,10 @@ export class SearchComponent implements AfterViewInit {
   startSearch(): void {
     if (this.isSearching) return;
     this.isSearching = true;
-    this.showSearchbar();
-    this.questionService.searchForKeyword().subscribe(q => {
+    this.toggleStyles(true);
+    this.questionService.searchForKeyword(this.searchQuery).subscribe(q => {
       this.foundQuestions = q;
-      this.showResults();
+      this.toggleStyles(false);
       this.isSearching = false;
       this.notificationService.sendNotification(
         `Die Suche ergab folgende Treffer`,
@@ -120,18 +119,11 @@ export class SearchComponent implements AfterViewInit {
     });
   }
 
-  showSearchbar(): void {
-    this.quickLinks = true;
-    this.landing = true;
-    this.landingWrapper = true;
-    this.resultsWrapper = true;
-  }
-
-  showResults(): void {
-    this.quickLinks = false;
-    this.landing = false;
-    this.landingWrapper = false;
-    this.resultsWrapper = false;
+  toggleStyles(toggle: boolean): void {
+    this.quickLinks = toggle;
+    this.landing = toggle;
+    this.landingWrapper = toggle;
+    this.resultsWrapper = toggle;
   }
 
   @HostListener('window:scroll')

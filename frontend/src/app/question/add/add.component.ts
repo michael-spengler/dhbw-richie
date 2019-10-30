@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
-import { IQuestion } from 'src/app/models/question.model';
+import { Question } from 'src/app/models/question.model';
 import { constants } from 'src/app/shared/constants';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { UserService } from 'src/app/shared/user.service';
+import { QuestionService } from '../question.service';
 
 @Component({
   selector: 'app-add',
@@ -13,18 +14,19 @@ import { UserService } from 'src/app/shared/user.service';
 export class AddComponent {
   constructor(
     public notificationService: NotificationService,
-    public userService: UserService
+    public userService: UserService,
+    private readonly questionService: QuestionService
   ) {
     this.constants = constants;
   }
 
   public readonly constants: any;
-  public question: IQuestion = {
+  public question: Question = {
     question: '',
     answer: '',
     source: '',
     lecture: ''
-  } as IQuestion;
+  } as Question;
 
   selectionChanged(selection): void {
     this.question.lecture = selection;
@@ -34,8 +36,8 @@ export class AddComponent {
     if (event.key === 'Enter') this.submitQuestion();
   }
 
-  submitQuestion(): void {
-    var totalLenght =
+  async submitQuestion(): Promise<void> {
+    const totalLenght =
       this.question.answer.length +
       this.question.question.length +
       this.question.lecture.length +
@@ -46,14 +48,9 @@ export class AddComponent {
         NotificationType.SUCCESS
       );
 
-      // TODO: Post Method
+      const q = await this.questionService.addQuestion(this.question);
 
-      this.question = {
-        question: '',
-        answer: '',
-        source: '',
-        lecture: ''
-      } as IQuestion;
+      this.question = this.question.reset();
     } else {
       this.notificationService.sendNotification(
         'Bitte fülle alle Felder aus!',
