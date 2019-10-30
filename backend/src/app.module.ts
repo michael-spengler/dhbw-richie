@@ -2,14 +2,18 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LoginModule } from './login/login.module';
-import { PassportModule } from './passport';
-import { RolesModule } from './roles/roles.module';
+import { ConfigModule, ConfigService } from './config';
+import { ElasticsearchModule } from './elasticsearch/elasticsearch.module';
 import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
-import { User } from './entities/user.entity';
-import { ConfigModule, ConfigService } from './config';
 import { TelegrammGroups } from './entities/telegrammGroups.entity';
+import { User } from './entities/user.entity';
+import { LectureModule } from './lecture/lecture.module';
+import { LoginModule } from './login/login.module';
+import { PassportModule } from './passport';
+import { QuestionModule } from './question/question.module';
+import { RolesModule } from './roles/roles.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -17,6 +21,10 @@ import { TelegrammGroups } from './entities/telegrammGroups.entity';
     LoginModule,
     RolesModule,
     ConfigModule,
+    QuestionModule,
+    LectureModule,
+    ElasticsearchModule,
+    UserModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>
@@ -26,13 +34,13 @@ import { TelegrammGroups } from './entities/telegrammGroups.entity';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture, TelegrammGroups],
+          entities: [Data, User, Lecture, TelegrammGroups]
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([Data]),
+    TypeOrmModule.forFeature([Data])
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
-export class AppModule { }
+export class AppModule {}

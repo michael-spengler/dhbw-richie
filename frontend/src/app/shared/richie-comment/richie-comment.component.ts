@@ -1,3 +1,4 @@
+import { state, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
 import { NotificationType } from 'src/app/models';
 import { NotificationService } from '../notification.service';
@@ -5,26 +6,39 @@ import { NotificationService } from '../notification.service';
 @Component({
   selector: 'richie-comment',
   templateUrl: './richie-comment.component.html',
-  styleUrls: ['./richie-comment.component.scss']
+  styleUrls: ['./richie-comment.component.scss'],
+  animations: [
+    trigger('toggleTextarea', [
+      state(
+        'open',
+        style({
+          display: 'block'
+        })
+      ),
+      state(
+        'closed',
+        style({
+          display: 'none'
+        })
+      ),
+      transition('open <=> closed', [])
+    ])
+  ]
 })
 export class RichieCommentComponent {
-  constructor(public notificationService: NotificationService) {
-    this.cancel();
-  }
-
   @Input() id: number;
   @Input() comment: string;
   @Input() author: string;
   @Input() date: number;
 
   answer: string;
-  textareaStyle: any;
+  textareaStyle: boolean = false;
+
+  constructor(public notificationService: NotificationService) {}
 
   public toggleTextarea(): void {
     this.answer = '';
-    this.textareaStyle = {
-      display: this.textareaStyle.display === 'block' ? 'none' : 'block'
-    };
+    this.textareaStyle = !this.textareaStyle;
   }
 
   public deleteComment(): void {
@@ -44,6 +58,6 @@ export class RichieCommentComponent {
   }
 
   public cancel(): void {
-    this.textareaStyle = { display: 'none' };
+    this.textareaStyle = false;
   }
 }

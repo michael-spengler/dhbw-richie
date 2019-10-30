@@ -1,11 +1,10 @@
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   ObjectID,
-  ObjectIdColumn,
-  UpdateDateColumn,
-  BeforeInsert,
-  BeforeUpdate
+  ObjectIdColumn
 } from 'typeorm';
 import { Lecture } from './lecture.entity';
 import { User } from './user.entity';
@@ -15,9 +14,13 @@ export class Data {
   @ObjectIdColumn()
   _id: ObjectID;
 
+  // @IsDefined()
+  // @MinLength(1)
   @Column()
   question: string;
 
+  // @IsDefined()
+  // @MinLength(1)
   @Column()
   answer: string;
 
@@ -27,7 +30,9 @@ export class Data {
   @Column(() => Lecture)
   lecture: Lecture;
 
-  @Column()
+  @Column({
+    default: false
+  })
   isReviewed: boolean;
 
   @Column()
@@ -48,11 +53,11 @@ export class Data {
   @Column()
   archived: boolean;
 
-  @Column(() => User)
-  likedBy: User[];
+  @Column()
+  likedBy: string[];
 
-  @Column(() => User)
-  dislikedBy: User[];
+  @Column()
+  dislikedBy: string[];
 
   @BeforeInsert()
   updateCreationDate() {
@@ -62,5 +67,19 @@ export class Data {
   @BeforeUpdate()
   updateUpdateDate() {
     this.updateDate = new Date().getTime();
+  }
+
+  static transform(question: Data | Data[]) {
+    if ((question as Data[]).length) {
+      return (question as Data[]).map(q => {
+        q['id'] = q._id;
+        delete q._id;
+        return q;
+      });
+    } else {
+      (question as Data)['id'] = (question as Data)._id;
+      delete (question as Data)._id;
+      return question as Data;
+    }
   }
 }

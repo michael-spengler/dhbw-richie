@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   backend: 'https://dhbw-richie.de'
+  //backend: 'http://localhost:3000'
 };
 
 /*

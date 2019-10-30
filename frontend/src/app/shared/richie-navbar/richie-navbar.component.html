@@ -1,6 +1,10 @@
 <nav>
   <div class="toggleButton" (click)="toggleNavbar()">
-    <i class="fas fa-bars"></i>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 
   <div class="richie" (click)="toggleNavbar()">DHBW Richie</div>
@@ -19,7 +23,9 @@
         [icon]="'fad fa-check-double'"
         name="Review"
         link="review"
-        *ngIf="user.isAdmin || user.isReviewer"
+        *ngIf="
+          this.userService.richieUser.isAdmin || this.userService.richieUser.isReviewer
+        "
       ></richie-route>
       <richie-route [icon]="'fad fa-search'" name="Suche" link="/search"></richie-route>
       <richie-route
@@ -32,7 +38,7 @@
         [icon]="'fad fa-user-cog'"
         name="Administration"
         link="admin"
-        *ngIf="user.isAdmin"
+        *ngIf="this.userService.richieUser.isAdmin"
       ></richie-route>
       <div class="divider"></div>
       <richie-route

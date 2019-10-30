@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { IQuestion } from '../models/question.model';
+import { Question } from '../models/question.model';
 
 type SignedInWith = 'Google' | 'Apple' | 'Telegram' | 'GitHub';
 
@@ -16,8 +16,8 @@ export interface IUser {
   picture: string;
   created: number;
   enabled: boolean;
-  likedQuestions: IQuestion[];
-  dislikedQuestions: IQuestion[];
+  likedQuestions: Question[];
+  dislikedQuestions: Question[];
 }
 
 @Injectable({
@@ -29,20 +29,20 @@ export class UserService {
   public logIn(service: SignedInWith): void {
     if (localStorage.getItem('richie-user')) {
       this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
-      console.log('Local Storage already had user: ', this.richieUser);
+      //console.log('Local Storage already had user: ', this.richieUser);
     } else {
-      console.log('Local Storage has no richie-user');
-      //document.cookie = 'service=' + service;
+      //console.log('Local Storage has no richie-user');
+      document.cookie = 'service=' + service;
       window.location.href = `${environment.backend}/api/auth/${service}`;
     }
   }
 
   public checkToken(): void {
-    console.log(document.cookie);
+    //console.log('Cookie: ', document.cookie);
     if (localStorage.getItem('richie-user')) {
       this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
 
-      console.log('Local Storage has user: ', this.richieUser);
+      //console.log('Local Storage has user: ', this.richieUser);
       return;
     }
     const token = this.getToken();
@@ -52,10 +52,10 @@ export class UserService {
       this.richieUser.signedInWith = this.getService();
       localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
 
-      console.log('Cookie (Token) found => ', this.richieUser);
+      //console.log('Cookie (Token) found => ', this.richieUser);
       return;
     }
-    console.error('Cookie (Token) not set!');
+    //console.error('Cookie (Token) not set!');
   }
 
   public logOut(): void {

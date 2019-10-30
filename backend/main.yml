@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: richie-backend
-          image: h4runbaba/dhbw-richie-backend:v1 # Muss noch definiert werden
+          image: h4runbaba/dhbw-richie-backend:latest # Muss noch definiert werden
           ports:
             - containerPort: 3000
 ---
