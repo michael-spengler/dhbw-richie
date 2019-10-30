@@ -1,5 +1,8 @@
-<div class="searchLanding" [ngStyle]="landingStyle">
-  <div class="searchLandingWrapper" [ngStyle]="landingWrapperStyle">
+<div class="searchLanding" [@landingStyle]="landing ? 'landingOpen' : 'landingClose'">
+  <div
+    class="searchLandingWrapper"
+    [@landingWrapper]="landingWrapper ? 'landingWrapperOpen' : 'landingWrapperClose'"
+  >
     <h1>Welche Frage hast du?</h1>
 
     <div class="searchWrapper">
@@ -25,14 +28,17 @@
   </div>
 </div>
 
-<div class="quickLinks" [ngStyle]="quickLinksStyle">
+<div class="quickLinks" [@quickLinks]="quickLinks ? 'linksOpen' : 'linksClose'">
   <div class="link" [routerLink]="['/home']"><i class="fad fa-home"></i>Home</div>
   <div class="link" [routerLink]="['/about']">
     <i class="fad fa-question"></i>Was ist DHBW-Richie?
   </div>
 </div>
 
-<div [ngStyle]="resultsWrapper">
+<div
+  [@resultsWrapper]="resultsWrapper ? 'resultsWrapperOpen' : 'resultsWrapperClose'"
+  style="overflow: hidden;"
+>
   <div class="paragraph">
     <h2>Filter setzen</h2>
 
@@ -63,7 +69,7 @@
     <h3>Gefundene Fragen & Antworten</h3>
   </div>
   <div class="questionwrapper">
-    <div *ngFor="let question of foundQuestions" class="resultWrapper">
+    <div *ngFor="let question of foundQuestions" class="resultWrapper" #qs>
       <richie-question [question]="question"></richie-question>
     </div>
   </div>

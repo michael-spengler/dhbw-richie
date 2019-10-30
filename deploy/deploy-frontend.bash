@@ -1,0 +1,1 @@
+kubectl set image deployment/richie-frontend name=dhbwrichie/richie-frontend:$VERSION

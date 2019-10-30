@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IQuestion } from 'src/app/models/question.model';
+import { Question } from 'src/app/models/question.model';
 
 @Component({
   selector: 'richie-question',
@@ -7,5 +7,5 @@ import { IQuestion } from 'src/app/models/question.model';
   styleUrls: ['./richie-question.component.scss']
 })
 export class RichieQuestionComponent {
-  @Input() question: IQuestion;
+  @Input() question: Question;
 }

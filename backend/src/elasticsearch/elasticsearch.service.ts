@@ -66,11 +66,10 @@ export class ElasticsearchService {
   }
 
   public async createQuestion(question: Data) {
+    delete question._id;
     await this.client.index({
       index: 'question',
-      body: {
-        ...question
-      }
+      body: question
     });
   }
 

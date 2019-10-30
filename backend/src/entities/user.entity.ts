@@ -1,10 +1,13 @@
 import { BeforeInsert, Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
-import { Data } from './data.entity';
 
 @Entity()
 export class User {
+
   @ObjectIdColumn()
   _id: ObjectID;
+
+  @Column()
+  userName: string;
 
   @Column()
   email: string;
@@ -30,15 +33,19 @@ export class User {
   @Column()
   created: number;
 
-  @Column(() => Data)
-  likedQuestions: Data[];
+  @Column()
+  likedQuestions: string[];
 
-  @Column(() => Data)
-  dislikedQuestions: Data[];
+  @Column()
+  dislikedQuestions: string[];
+
+  @Column({
+    default: true
+  })
+  enabled: boolean;
 
   @BeforeInsert()
   updateCreated() {
     this.created = new Date().getTime();
   }
-
 }
