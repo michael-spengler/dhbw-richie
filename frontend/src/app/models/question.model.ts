@@ -6,14 +6,6 @@ export class Question {
   answer: string;
   lecture: string;
   source: string;
-  comment: any;
-  isReviewed: boolean;
-  creationDate: number;
-  reviewDate: number;
-  updateDate: number;
-  creator: IUser;
-  modifier: IUser;
-  archived: boolean;
   likedBy: IUser[] = [];
   dislikedBy: IUser[] = [];
   comments: any;
