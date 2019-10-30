@@ -11,6 +11,8 @@ import { QuestionModule } from './question/question.module';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
 import { darkTheme, lightTheme } from './shared/themes';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -26,7 +28,8 @@ import { darkTheme, lightTheme } from './shared/themes';
     SharedModule.forRoot({
       themes: [lightTheme, darkTheme],
       active: 'light'
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

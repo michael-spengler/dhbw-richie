@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   constructor(
     public breakpointObserver: BreakpointObserver,
     public themeService: ThemeService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.breakpointObserver
