@@ -5,8 +5,9 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: nginx
-#  annotations:
-#    nginx.ingress.kubernetes.io/rewrite-target: /*
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "token"
+    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
 spec:
   rules:
    - http:

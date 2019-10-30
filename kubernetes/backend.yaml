@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: richie-backend
-        image: h4runbaba/dhbw-richie-backend:v1
+        image: dhbwrichie/richie-backend:v0.0.3 
         ports:
         - containerPort: 3000
         livenessProbe:
@@ -36,8 +36,11 @@ spec:
         env:
           - name: MONGO_URL
             value: "mongodb://10.152.183.216:27017/dhbw-richie?retryWrites=true&w=majority"
-          - name: GOOGLE_CALLBACK_URL
-            value: "https://dhbw-richie.de/api/auth/google/callback"
+          - name: SKIP_ENV_FILE
+            value: "true"
+          - name: ELASTIC_URL
+            value: "http://10.152.183.217:9200"
+        # imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service

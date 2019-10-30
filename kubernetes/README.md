@@ -21,7 +21,7 @@ microk8s.enable ingress
 ## Zertifikate
 
 ```
-kubectl -n kube-system create secret tls --cert cert.pem --key priv.pem ingress-nginx-tls -n ingress --dry-run -o yaml | kubectl apply -f -
+kubectl -n ingress create secret tls --cert cert.pem --key priv.pem ingress-nginx-tls --dry-run -o yaml | kubectl apply -f -
 ```
 
 ```
@@ -35,6 +35,15 @@ Hier die Konfiguration überschreiben:
 ```
 
 ## Deployment
+
+Die Datei "backend.yaml" muss noch um die folgenden Umgebungsvariablen erweitert werden:
+
+- GOOGLE_CLIENT_ID
+- GOOGLE_CLIENT_SECRET
+- GOOGLE_CALLBACK_URL
+- FRONTEND_CALLBACK
+- JWT_EXPIRES_IN
+- JWT_SECRET
 
 Alle .yaml mit dem folgendem Befehl ausführen.
 
