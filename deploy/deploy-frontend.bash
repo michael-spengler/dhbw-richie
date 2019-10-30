@@ -1,1 +1,1 @@
-kubectl set image deployment/richie-frontend name=dhbwrichie/richie-frontend:$DOCKER_TAG
+kubectl set image deployment/richie-frontend richie-frontend=dhbwrichie/richie-frontend:$DOCKER_TAG
