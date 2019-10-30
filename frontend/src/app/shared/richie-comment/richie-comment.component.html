@@ -10,15 +10,11 @@
   <div class="message">
     <span *ngIf="comment !== '$_DEL'">
       {{ comment }}
-      <div
-        *ngIf="textareaStyle.display === 'none'"
-        class="reply"
-        (click)="toggleTextarea()"
-      >
+      <div class="reply" (click)="toggleTextarea()" *ngIf="!textareaStyle">
         <i class="fad fa-reply"></i>Antworten...
       </div>
 
-      <div class="answerWrapper" [ngStyle]="textareaStyle">
+      <div class="answerWrapper" [@toggleTextarea]="textareaStyle ? 'open' : 'closed'">
         <richie-textarea
           [placeholder]="'Öffentlich antworten...'"
           [(ngModel)]="answer"

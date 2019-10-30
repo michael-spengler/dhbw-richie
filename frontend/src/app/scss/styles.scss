@@ -1,6 +1,5 @@
-@import './assets/fonts/fontfaces.css';
-@import './assets/fontawesome/css/all.min.css';
-@import './app/scss/variables';
+@import '../../assets/fontawesome/css/all.min.css';
+@import './_variables.scss';
 
 html {
   overflow-y: scroll;
@@ -10,7 +9,8 @@ html,
 body {
   margin: 0;
   background: var(--background);
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   color: var(--font-color);
   overflow-x: hidden;
   max-width: 100%;
@@ -317,6 +317,59 @@ $color: #08f;
     }
     &:last-child {
       margin-right: 0;
+    }
+  }
+}
+
+[custom-title] {
+  position: relative;
+  cursor: help;
+
+  &::before {
+    content: attr(customTitle);
+    padding: 2px 10px;
+    background: #08f;
+    border-radius: 5px;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  &::after {
+    content: '';
+    margin-bottom: -20px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top: 10px solid #08f;
+  }
+
+  &:hover,
+  &:active {
+    &::before,
+    &::after {
+      display: block;
+      animation: customTitleAnim 0.5s;
+      bottom: 45px;
+    }
+  }
+  &::before,
+  &::after {
+    position: absolute;
+    display: none;
+  }
+
+  @keyframes customTitleAnim {
+    from {
+      opacity: 0;
+      bottom: 0;
+      letter-spacing: -10px;
+    }
+    to {
+      opacity: 1;
+      bottom: 45px;
+      letter-spacing: normal;
     }
   }
 }

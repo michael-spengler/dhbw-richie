@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
-import { IQuestion } from 'src/app/models/question.model';
+import { Question } from 'src/app/models/question.model';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { SharedFunctions } from 'src/app/shared/sharedFunctions.service';
 import { UserService } from 'src/app/shared/user.service';
@@ -21,8 +21,8 @@ export class SettingsComponent implements OnInit {
     public httpClient: HttpClient
   ) {}
 
-  dislikedQuestions: IQuestion[] = [];
-  likedQuestions: IQuestion[] = [];
+  dislikedQuestions: Question[] = [];
+  likedQuestions: Question[] = [];
 
   ngOnInit(): void {
     if (!this.userService.richieUser.signedIn) {
@@ -33,11 +33,11 @@ export class SettingsComponent implements OnInit {
     this.loadLikedQuestion();
   }
 
-  removeQuestion(question: IQuestion, wasLike: boolean): void {
+  removeQuestion(question: Question, wasLike: boolean): void {
     event.stopPropagation();
 
-    this.dislikedQuestions = this.dislikedQuestions.filter(x => x._id !== question._id);
-    this.likedQuestions = this.likedQuestions.filter(x => x._id !== question._id);
+    this.dislikedQuestions = this.dislikedQuestions.filter(x => x.id !== question.id);
+    this.likedQuestions = this.likedQuestions.filter(x => x.id !== question.id);
 
     this.notificationService.sendNotification(
       'Eintrag gelöscht',
@@ -54,7 +54,7 @@ export class SettingsComponent implements OnInit {
       .subscribe(
         data => {
           JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.likedQuestions.push(question as IQuestion);
+            this.likedQuestions.push(question as Question);
           });
         },
         error => {
@@ -72,7 +72,7 @@ export class SettingsComponent implements OnInit {
       .subscribe(
         data => {
           JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.dislikedQuestions.push(question as IQuestion);
+            this.dislikedQuestions.push(question as Question);
           });
         },
         error => {
