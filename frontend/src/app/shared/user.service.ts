@@ -27,32 +27,35 @@ export class UserService {
   richieUser: IUser = {} as IUser;
 
   public logIn(service: SignedInWith): void {
-    document.cookie = 'service=' + service;
     if (localStorage.getItem('richie-user')) {
-      const user: IUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
-      user.signedIn = true;
-      user.signedInWith = service;
-      this.richieUser = user;
-      localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
-      window.location.reload();
+      this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
+      console.log('Local Storage already had user: ', this.richieUser);
     } else {
+      console.log('Local Storage has no richie-user');
+      //document.cookie = 'service=' + service;
       window.location.href = `${environment.backend}/api/auth/${service}`;
     }
   }
 
   public checkToken(): void {
-    if (!localStorage.getItem('richie-user')) {
-      const token = this.getToken();
-      if (token) {
-        document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
-        this.richieUser = JSON.parse(atob(token.split('.')[1])) as IUser;
-        this.richieUser.signedIn = true;
-        this.richieUser.signedInWith = this.getService();
-        localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
-      }
-    } else {
+    console.log(document.cookie);
+    if (localStorage.getItem('richie-user')) {
       this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
+
+      console.log('Local Storage has user: ', this.richieUser);
+      return;
     }
+    const token = this.getToken();
+    if (token) {
+      this.richieUser = JSON.parse(atob(token.split('.')[1])) as IUser;
+      this.richieUser.signedIn = true;
+      this.richieUser.signedInWith = this.getService();
+      localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
+
+      console.log('Cookie (Token) found => ', this.richieUser);
+      return;
+    }
+    console.error('Cookie (Token) not set!');
   }
 
   public logOut(): void {

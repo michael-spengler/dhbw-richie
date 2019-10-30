@@ -1,16 +1,18 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ThemeService } from './shared/theme.service';
+import { UserService } from './shared/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   constructor(
     public breakpointObserver: BreakpointObserver,
-    public themeService: ThemeService
+    public themeService: ThemeService,
+    public userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -19,6 +21,10 @@ export class AppComponent implements OnInit {
       .subscribe((state: BreakpointState) => {
         this.themeService.setTheme(state.matches ? 'dark' : 'light');
       });
+  }
+
+  ngOnDestroy(): void {
+    this.userService.logOut();
   }
 
   @HostListener('click', ['$event'])

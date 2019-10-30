@@ -67,7 +67,11 @@
 <div class="paragraph">
   <richie-revealer
     heading="Fragen die ich mag"
-    [amount]="userService.richieUser.likedQuestions.length"
+    [amount]="
+      userService.richieUser.likedQuestions
+        ? userService.richieUser.likedQuestions.length
+        : 0
+    "
   >
     <div class="tablewrapper">
       <table>
@@ -87,7 +91,11 @@
 <div class="paragraph">
   <richie-revealer
     heading="Fragen die ich nicht mag"
-    [amount]="userService.richieUser.dislikedQuestions.length"
+    [amount]="
+      userService.richieUser.dislikedQuestions
+        ? userService.richieUser.dislikedQuestions.length
+        : 0
+    "
   >
     <div class="tablewrapper">
       <table>
