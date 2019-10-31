@@ -1,11 +1,25 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Logger,
+  Param,
+  Post,
+  Put,
+  Query,
+  UseGuards
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Data } from '../entities/data.entity';
 import { User } from '../entities/user.entity';
 import { AuthenticatedUser } from '../passport';
-import { Data } from '../entities/data.entity';
 import { QuestionService } from './question.service';
 
 @Controller('question')
 export class QuestionController {
+  private readonly LOGGER = new Logger(QuestionController.name);
+
   constructor(private readonly questionService: QuestionService) {}
 
   @Get()
@@ -13,12 +27,31 @@ export class QuestionController {
     return this.questionService.getQuestions(q);
   }
 
+  @Get('reacted')
+  @UseGuards(AuthGuard('jwt'))
+  public getInteractedQuestionForUser(@AuthenticatedUser() user: User) {
+    return this.questionService.getInteractedQuestionForUser(user._id.toString());
+  }
+
   @Get(':_id')
   public getQuestionById(@Param('_id') _id: string) {
     return this.questionService.getQuestionById(_id);
   }
 
+  @Get(':id/like')
+  @UseGuards(AuthGuard('jwt'))
+  public likeQuestion(@AuthenticatedUser() user: User, @Param('id') id: string) {
+    return this.questionService.likeOrDislikeQuestion(id, user._id.toString(), 'like');
+  }
+
+  @Get(':id/dislike')
+  @UseGuards(AuthGuard('jwt'))
+  public dislikeQuestion(@AuthenticatedUser() user: User, @Param('id') id: string) {
+    return this.questionService.likeOrDislikeQuestion(id, user._id.toString(), 'dislike');
+  }
+
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   public createQuestion(@Body() question: Data, @AuthenticatedUser() user: User) {
     question.creator = user;
     return this.questionService.createQuestion(question);

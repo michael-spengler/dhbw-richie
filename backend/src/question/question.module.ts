@@ -5,12 +5,17 @@ import { ElasticsearchModule } from '../elasticsearch/elasticsearch.module';
 import { Data } from '../entities/data.entity';
 import { Lecture } from '../entities/lecture.entity';
 import { User } from '../entities/user.entity';
+import { PassportModule } from '../passport';
 import RelationMapper from '../util/util.service';
 import { QuestionController } from './question.controller';
 import { QuestionService } from './question.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Data, Lecture, User]), ElasticsearchModule],
+  imports: [
+    TypeOrmModule.forFeature([Data, Lecture, User]),
+    ElasticsearchModule,
+    PassportModule
+  ],
   controllers: [QuestionController],
   providers: [
     QuestionService,
