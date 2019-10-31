@@ -112,7 +112,7 @@ export class QuestionService implements OnModuleInit {
         _id: new ObjectId(questionId)
       },
       {
-        $push: {
+        $addToSet: {
           [`${operation}dBy`]: userId
         }
       }
