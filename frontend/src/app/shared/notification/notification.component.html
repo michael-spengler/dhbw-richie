@@ -1,8 +1,4 @@
 <div class="notificationWrapper">
-  <!-- <div
-    [@toggleNotification]="notificationService.state ? 'open' : 'closed'"
-    class="notification"
-  > -->
   <div [ngStyle]="style" class="notification">
     <span [class]="currentNotification?.type?.class">
       <i [class]="currentNotification?.type?.icon"></i>

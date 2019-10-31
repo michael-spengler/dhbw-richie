@@ -8,10 +8,9 @@
     font-size: 18px;
   }
   i {
-    width: 100%;
     font-size: 60px;
-    margin: 5px 0px;
-    margin-bottom: 10px;
+    position: absolute;
+    transform: translateX(-50%);
   }
   span,
   .selected {
@@ -23,5 +22,9 @@
     appearance: none;
     outline: none;
     text-align: center;
+  }
+  span {
+    margin-top: 80px;
+    display: block;
   }
 }

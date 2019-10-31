@@ -1,17 +1,17 @@
 <div class="comment">
   <div class="header">
-    <div class="author"><i class="fad fa-at"></i>{{ author }}</div>
+    <div class="author"><i class="ti ti-at"></i>{{ author }}</div>
     <div class="date">{{ date | date: 'HH:mm dd.MM.yyy' }}</div>
     <!-- TODO: ngIf -->
     <div *ngIf="author === author" class="delete" (click)="deleteComment()">
-      <i class="fa-trash-alt fad"></i>
+      <i class="ti ti-delete"></i>
     </div>
   </div>
   <div class="message">
     <span *ngIf="comment !== '$_DEL'">
       {{ comment }}
       <div class="reply" (click)="toggleTextarea()" *ngIf="!textareaStyle">
-        <i class="fad fa-reply"></i>Antworten...
+        <i class="ti ti-reply"></i>Antworten...
       </div>
 
       <div class="answerWrapper" [@toggleTextarea]="textareaStyle ? 'open' : 'closed'">

@@ -3,75 +3,55 @@
   <h2>Anderen Helfen</h2>
 </div>
 
-<div
-  *ngIf="userService.richieUser.signedIn; then addParagraph; else notSignedInParagraph"
-></div>
+<div class="paragraph">
+  <h2>Formular</h2>
 
-<ng-template #notSignedInParagraph class="paragraph">
-  <div class="paragraph">
-    <div class="iconButtonHeading">
-      <h2>Nicht angemeldet!</h2>
-      <richie-iconbutton
-        icon="fad fa-sign-in"
-        text="Anmelden"
-        url="login"
-      ></richie-iconbutton>
+  <h3>Frage</h3>
+  <richie-textarea
+    [(ngModel)]="question.question"
+    [tabindex]="1"
+    [placeholder]="'Beispiel: Was ist die Antwort auf alles?'"
+  ></richie-textarea>
+
+  <h3>Antwort</h3>
+  <richie-textarea
+    [(ngModel)]="question.answer"
+    [tabindex]="2"
+    [placeholder]="'Beispiel: 42'"
+  ></richie-textarea>
+
+  <div class="inputWrapper">
+    <div class="input">
+      <h3>Quelle</h3>
+      <richie-input
+        [tabindex]="3"
+        [(ngModel)]="question.source"
+        heading="Quelle"
+        [placeholder]="'http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm'"
+      ></richie-input>
     </div>
-    <p>Um neue Fragen und Antworten einreichen zu können musst du angemeldet sein.</p>
-  </div>
-</ng-template>
+    <div class="input">
+      <h3>Vorlesung</h3>
 
-<ng-template #addParagraph>
-  <div class="paragraph">
-    <h2>Formular</h2>
-
-    <h3>Frage</h3>
-    <richie-textarea
-      [(ngModel)]="question.question"
-      [tabindex]="1"
-      [placeholder]="'Beispiel: Was ist die Antwort auf alles?'"
-    ></richie-textarea>
-
-    <h3>Antwort</h3>
-    <richie-textarea
-      [(ngModel)]="question.answer"
-      [tabindex]="2"
-      [placeholder]="'Beispiel: 42'"
-    ></richie-textarea>
-
-    <div class="inputWrapper">
-      <div class="input">
-        <h3>Quelle</h3>
-        <richie-input
-          [tabindex]="3"
-          [(ngModel)]="question.source"
-          heading="Quelle"
-          [placeholder]="'http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm'"
-        ></richie-input>
-      </div>
-      <div class="input">
-        <h3>Vorlesung</h3>
-
-        <richie-select
-          [items]="lectures"
-          [tabindex]="4"
-          (change)="selectionChanged($event)"
-          heading="Vorlesung"
-          placeholder="Vorlesung"
-        ></richie-select>
-      </div>
-    </div>
-
-    <div class="centerButtons">
-      <richie-iconbutton
-        [tabindex]="5"
-        (click)="submitQuestion()"
-        (keydown)="onInputKeyDown($event)"
-        icon="fab fa-wpforms"
-        text="Frage & Antwort speichern"
-      ></richie-iconbutton>
+      <richie-select
+        [items]="lectures"
+        [tabindex]="4"
+        (change)="selectionChanged($event)"
+        heading="Vorlesung"
+        placeholder="Vorlesung"
+      ></richie-select>
     </div>
   </div>
-</ng-template>
+
+  <div class="centerButtons">
+    <richie-iconbutton
+      [tabindex]="5"
+      (click)="submitQuestion()"
+      (keydown)="onInputKeyDown($event)"
+      icon="ti ti-save"
+      text="Frage & Antwort speichern"
+    ></richie-iconbutton>
+  </div>
+</div>
 
 <div class="removeWhite"></div>

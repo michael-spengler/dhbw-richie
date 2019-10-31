@@ -32,6 +32,7 @@ export class ReviewComponent implements OnInit {
     ) {
       this.router.navigate(['/404']);
     }
+    this.questions = [];
     this.getUnansweredQuestions();
   }
 

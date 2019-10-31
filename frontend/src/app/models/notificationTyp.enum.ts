@@ -4,15 +4,15 @@ export interface SingleNotificationType {
 }
 export const NotificationType: { [key: string]: SingleNotificationType } = {
   INFORMATION: {
-    icon: 'fad fa-info-circle',
+    icon: 'ti ti-info',
     class: 'inf'
   },
   ERROR: {
-    icon: 'fad fa-exclamation-circle',
+    icon: 'ti ti-error',
     class: 'err'
   },
   SUCCESS: {
-    icon: 'fad fa-check-circle',
+    icon: 'ti ti-success',
     class: 'suc'
   }
 };
