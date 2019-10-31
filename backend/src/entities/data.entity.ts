@@ -14,13 +14,9 @@ export class Data {
   @ObjectIdColumn()
   _id: ObjectID;
 
-  // @IsDefined()
-  // @MinLength(1)
   @Column()
   question: string;
 
-  // @IsDefined()
-  // @MinLength(1)
   @Column()
   answer: string;
 
@@ -50,7 +46,9 @@ export class Data {
   @Column(() => User)
   modifier: User;
 
-  @Column()
+  @Column({
+    default: false
+  })
   archived: boolean;
 
   @Column()
@@ -58,6 +56,9 @@ export class Data {
 
   @Column()
   dislikedBy: string[];
+
+  @Column()
+  source: string;
 
   @BeforeInsert()
   updateCreationDate() {

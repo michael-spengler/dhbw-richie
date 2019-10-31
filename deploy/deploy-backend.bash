@@ -1,1 +1,1 @@
-kubectl set image deployment/richie-backend name=dhbwrichie/richie-backend:$VERSION
+kubectl set image deployment/richie-backend richie-backend=dhbwrichie/richie-backend:$DOCKER_TAG

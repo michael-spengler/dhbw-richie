@@ -33,7 +33,7 @@
       <div class="actions">
         <div
           class="action"
-          [attr.amount]="question.likedBy && question.likedBy.length"
+          [attr.amount]="question.likedBy?.length || 0"
           style="color: rgb(52, 199, 89)"
           (click)="likeOrDislikeQuestion('like')"
         >
@@ -41,7 +41,7 @@
         </div>
         <div
           class="action"
-          [attr.amount]="question.dislikedBy && question.dislikedBy.length"
+          [attr.amount]="question.dislikedBy?.length || 0"
           style="color: rgb(255, 59, 48)"
           (click)="likeOrDislikeQuestion('dislike')"
         >

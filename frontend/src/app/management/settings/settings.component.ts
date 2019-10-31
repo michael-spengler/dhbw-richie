@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationType } from 'src/app/models/notificationTyp.enum';
-import { Question } from 'src/app/models/question.model';
-import { NotificationService } from 'src/app/shared/notification.service';
-import { SharedFunctions } from 'src/app/shared/sharedFunctions.service';
-import { UserService } from 'src/app/shared/user.service';
+import { NotificationType } from '../../models/notificationTyp.enum';
+import { Question } from '../../models/question.model';
+import { QuestionService } from '../../question/question.service';
+import { NotificationService } from '../../shared/notification.service';
+import { SharedFunctions } from '../../shared/sharedFunctions.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,19 +16,16 @@ export class SettingsComponent implements OnInit {
   constructor(
     public notificationService: NotificationService,
     public userService: UserService,
+    public questionService: QuestionService,
     public router: Router,
-    public sharedFunctions: SharedFunctions,
-    public httpClient: HttpClient
+    public sharedFunctions: SharedFunctions
   ) {}
 
   dislikedQuestions: Question[] = [];
   likedQuestions: Question[] = [];
 
-  ngOnInit(): void {
-    if (!this.userService.richieUser.signedIn) {
-      this.router.navigate(['/login']);
-      return;
-    }
+  ngOnInit() {
+    this.loadQuestions();
   }
 
   removeQuestion(question: Question, wasLike: boolean): void {
@@ -36,46 +33,24 @@ export class SettingsComponent implements OnInit {
 
     this.dislikedQuestions = this.dislikedQuestions.filter(x => x.id !== question.id);
     this.likedQuestions = this.likedQuestions.filter(x => x.id !== question.id);
-
+    // TODO: ADD HTTP CALL
     this.notificationService.sendNotification(
       'Eintrag gelöscht',
       NotificationType.SUCCESS
     );
   }
 
-  loadLikedQuestion(): void {
-    // TODO: ADD GET
-    this.httpClient
-      .get(
-        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/likedQuestions.json'
-      )
-      .subscribe(
-        data => {
-          JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.likedQuestions.push(question as Question);
-          });
-        },
-        error => {
-          console.log('Error => ', error);
-        }
-      );
+  logOut() {
+    this.userService.logOut();
+    this.router.navigate(['/home'], { replaceUrl: true });
   }
 
-  loadDislikedQuestion(): void {
-    // TODO: ADD GET
-    this.httpClient
-      .get(
-        'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie/dislikedQuestions.json'
-      )
-      .subscribe(
-        data => {
-          JSON.parse(JSON.stringify(data)).forEach(question => {
-            this.dislikedQuestions.push(question as Question);
-          });
-        },
-        error => {
-          console.log('Error => ', error);
-        }
-      );
+  async loadQuestions(): Promise<void> {
+    const {
+      likedQuestions,
+      dislikedQuestions
+    } = await this.questionService.getReactedQuestions();
+    this.likedQuestions = likedQuestions;
+    this.dislikedQuestions = dislikedQuestions;
   }
 }

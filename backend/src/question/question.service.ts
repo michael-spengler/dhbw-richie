@@ -6,11 +6,11 @@ import {
   OnModuleInit
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ObjectId } from 'mongodb';
 import { MongoRepository } from 'typeorm';
 import { ElasticsearchService } from '../elasticsearch/elasticsearch.service';
 import { Data } from '../entities/data.entity';
 import { Lecture } from '../entities/lecture.entity';
-import { User } from '../entities/user.entity';
 import RelationMapper from '../util/util.service';
 
 @Injectable()
@@ -19,8 +19,6 @@ export class QuestionService implements OnModuleInit {
 
   constructor(
     @InjectRepository(Data) private readonly dataRepo: MongoRepository<Data>,
-    @InjectRepository(Lecture) private readonly lectureRepo: MongoRepository<Lecture>,
-    @InjectRepository(User) private readonly userRepo: MongoRepository<Lecture>,
     private readonly elasticsearchService: ElasticsearchService,
     private readonly relationMapper: RelationMapper
   ) {}
@@ -52,6 +50,29 @@ export class QuestionService implements OnModuleInit {
     return this.dataRepo.findOne(_id).then(Data.transform);
   }
 
+  public async getInteractedQuestionForUser(userId: string) {
+    const [liked, disliked] = await Promise.all([
+      this.dataRepo.find({
+        where: {
+          likedBy: {
+            $in: [userId]
+          }
+        }
+      }),
+      this.dataRepo.find({
+        where: {
+          dislikedBy: {
+            $in: [userId]
+          }
+        }
+      })
+    ]);
+    return {
+      likedQuestions: Data.transform(liked) as Data[],
+      dislikedQuestions: Data.transform(disliked) as Data[]
+    };
+  }
+
   public async createQuestion(question: Data) {
     try {
       if (question.lecture) {
@@ -79,6 +100,26 @@ export class QuestionService implements OnModuleInit {
     } catch {
       throw new HttpException('Update failed', HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  public async likeOrDislikeQuestion(
+    questionId: string,
+    userId: string,
+    operation: 'like' | 'dislike'
+  ) {
+    await this.dataRepo.updateOne(
+      {
+        _id: new ObjectId(questionId)
+      },
+      {
+        $addToSet: {
+          [`${operation}dBy`]: userId
+        }
+      }
+    );
+    const question = await this.dataRepo.findOne(questionId).then(Data.transform);
+    this.elasticsearchService.updateQuestion(questionId, question as Data);
+    return question;
   }
 
   public async deleteQuestion(_id: string) {

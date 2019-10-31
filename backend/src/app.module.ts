@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from './config';
 import { ElasticsearchModule } from './elasticsearch/elasticsearch.module';
 import { Data } from './entities/data.entity';
@@ -39,8 +37,6 @@ import { UserModule } from './user/user.module';
       inject: [ConfigService]
     }),
     TypeOrmModule.forFeature([Data])
-  ],
-  controllers: [AppController],
-  providers: [AppService]
+  ]
 })
 export class AppModule {}

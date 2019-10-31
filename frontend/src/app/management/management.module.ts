@@ -31,7 +31,6 @@ const adminRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [AuthGuard],
     data: { title: 'Richie | Login' }
   }
 ];

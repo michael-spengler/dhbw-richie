@@ -6,15 +6,17 @@
     <div
       class="action"
       active="true"
-      [attr.description]="question.likedBy && question.likedBy.length"
+      [attr.description]="question.likedBy?.length || 0"
       style="color: rgb(52, 199, 89)"
+      (click)="handleAction('like')"
     >
       <i class="fad fa-thumbs-up"></i>
     </div>
     <div
       class="action"
-      [attr.description]="question.dislikedBy && question.dislikedBy.length"
+      [attr.description]="question.dislikedBy?.length || 0"
       style="color: rgb(255, 59, 48)"
+      (click)="handleAction('dislike')"
     >
       <i class="fad fa-thumbs-down"></i>
     </div>

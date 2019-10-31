@@ -45,14 +45,15 @@
         <richie-input
           [tabindex]="3"
           [(ngModel)]="question.source"
-          heading="http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm"
+          heading="Quelle"
+          [placeholder]="'http://www.inf.fh-flensburg.de/lang/krypto/protokolle/rsa.htm'"
         ></richie-input>
       </div>
       <div class="input">
         <h3>Vorlesung</h3>
 
         <richie-select
-          [items]="constants.lectures"
+          [items]="lectures"
           [tabindex]="4"
           (change)="selectionChanged($event)"
           heading="Vorlesung"

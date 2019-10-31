@@ -2,8 +2,12 @@ import { BeforeInsert, Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm'
 
 @Entity()
 export class User {
+
   @ObjectIdColumn()
   _id: ObjectID;
+
+  @Column()
+  userName: string;
 
   @Column()
   email: string;
@@ -34,6 +38,11 @@ export class User {
 
   @Column()
   dislikedQuestions: string[];
+
+  @Column({
+    default: true
+  })
+  enabled: boolean;
 
   @BeforeInsert()
   updateCreated() {
