@@ -5,7 +5,7 @@
   <div class="mail">{{ userService.richieUser.email }}</div>
   <div class="logout" (click)="logOut()">
     Ausloggen
-    <i class="fad fa-sign-out"></i>
+    <i class="ti ti-logout"></i>
   </div>
 </div>
 <div class="paragraph come-in">
@@ -44,7 +44,7 @@
           <td style="padding: 20px 0px 0px 0px">
             <richie-iconbutton
               text="Speichern"
-              icon="fad fa-save"
+              icon="ti ti-save"
               tabindex="2"
             ></richie-iconbutton>
           </td>
@@ -55,9 +55,7 @@
       <h3>Angemeldet mittels</h3>
       <div class="loginService">
         <i
-          [ngClass]="
-            'fab fa-' + userService.richieUser?.signedInWith?.toLocaleLowerCase()
-          "
+          [ngClass]="'ti ti-' + userService.richieUser?.signedInWith?.toLocaleLowerCase()"
         ></i>
         <div class="serviceName">{{ userService.richieUser.signedInWith }}</div>
       </div>
@@ -74,7 +72,7 @@
           *ngFor="let question of likedQuestions"
           [routerLink]="['/question', question.id]"
         >
-          <td (click)="removeQuestion(question, true)"><i class="fal fa-times"></i></td>
+          <td (click)="removeQuestion(question, true)"><i class="ti ti-remove"></i></td>
           <td>{{ question.question }}</td>
           <td>{{ question.answer }}</td>
         </tr>
@@ -95,7 +93,7 @@
           [routerLink]="['/question', question.id]"
         >
           <td (click)="removeQuestion(question, false)">
-            <i class="fal fa-times"></i>
+            <i class="ti ti-remove"></i>
           </td>
           <td>{{ question.question }}</td>
           <td>{{ question.answer }}</td>

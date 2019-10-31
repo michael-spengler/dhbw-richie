@@ -13,10 +13,6 @@
     border-color: #08f;
     outline: none;
   }
-
-  i {
-    margin-right: 10px;
-  }
 }
 .selectionWrapper {
   position: absolute;
@@ -127,4 +123,11 @@
     transform: scale(1);
     max-width: 0px;
   }
+}
+
+.listIcon {
+  opacity: 0.8;
+  margin-right: 20px;
+  position: relative;
+  top: 2px;
 }

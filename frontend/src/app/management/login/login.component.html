@@ -4,9 +4,21 @@
     <h2>Melde dich mit deinem Lieblingsservice an</h2>
 
     <div class="loginServices">
+      <div class="loginService" (click)="userService.logIn('Apple')">
+        <i class="ti ti-apple"></i>
+        <div class="serviceName">Apple</div>
+      </div>
+      <div class="loginService" (click)="userService.logIn('GitHub')">
+        <i class="ti ti-github"></i>
+        <div class="serviceName">GitHub</div>
+      </div>
       <div class="loginService" (click)="userService.logIn('Google')">
-        <i class="fab fa-google"></i>
+        <i class="ti ti-google"></i>
         <div class="serviceName">Google</div>
+      </div>
+      <div class="loginService" (click)="userService.logIn('Telegram')">
+        <i class="ti ti-telegram"></i>
+        <div class="serviceName">Telegram</div>
       </div>
     </div>
     <!--<h2>Vorteile als <span class="gradient">Pro</span></h2>-->

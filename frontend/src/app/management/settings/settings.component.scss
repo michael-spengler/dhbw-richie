@@ -37,10 +37,21 @@
     filter: brightness(115%);
     border: 1px solid #fff;
   }
+
   i {
-    padding: 0 !important;
-    margin: 0 !important;
-    margin-left: 10px !important;
+    margin: 0;
+    margin-left: 10px;
+    padding-right: 10px;
+    top: 2px;
+  }
+}
+
+@media only screen and(min-width: 1101px) {
+  .logout {
+    i {
+      padding: 0;
+      padding-right: 10px;
+    }
   }
 }
 
@@ -132,8 +143,9 @@
     color: var(--paragraph);
 
     i {
-      font-size: 18px;
-      margin-right: 10px;
+      font-size: 19px;
+      top: 5px;
+      margin-right: 28px;
     }
     .serviceName {
       display: inline-block;
@@ -149,6 +161,7 @@
 td > i {
   color: rgb(255, 59, 48);
   opacity: 0.8;
+  top: -7px;
 }
 tr:hover td > i {
   opacity: 1;

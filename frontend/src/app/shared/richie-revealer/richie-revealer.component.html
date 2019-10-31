@@ -1,7 +1,7 @@
 <h3 class="revealTitle" [ngStyle]="{ margin: margin + 'px' }" (click)="toggleReveal()">
   {{ heading }}
   <span *ngIf="amount" class="amount">{{ amount }}</span>
-  <i class="fas fa-chevron-right" [ngStyle]="iconStyle"></i>
+  <span class="iconWrapper" [ngStyle]="iconStyle"><i class="ti ti-arrow"></i></span>
 </h3>
 <div class="wrapper" [ngStyle]="wrapper">
   <ng-content></ng-content>

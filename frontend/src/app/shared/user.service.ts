@@ -30,7 +30,12 @@ export interface IUser {
 export class UserService {
   richieUser: IUser = {} as IUser;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+    this.richieUser.signedIn = true;
+    this.richieUser.givenName = 'Timo';
+    this.richieUser.isAdmin = true;
+    this.richieUser.signedInWith = 'Google';
+  }
 
   public logIn(service: SignedInWith): void {
     if (localStorage.getItem('richie-user')) {

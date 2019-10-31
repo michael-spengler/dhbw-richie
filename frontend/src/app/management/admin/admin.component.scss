@@ -65,6 +65,7 @@ $inbetween: 650px;
 
     i {
       font-size: 60px;
+      left: 30%;
     }
 
     .information {
@@ -89,6 +90,7 @@ $inbetween: 650px;
   }
   * {
     display: inline-grid;
+    width: 100%;
   }
 }
 
@@ -147,6 +149,7 @@ $inbetween: 650px;
   display: block;
   text-align: center;
   transform: translate(-50%, -50%);
+  overflow-x: hidden;
 
   h2 {
     margin-top: 0;
@@ -165,6 +168,8 @@ $inbetween: 650px;
     i {
       font-size: 30px;
       width: 100%;
+      left: 50%;
+      transform: translateX(-12px);
     }
   }
   .statusTitle {
@@ -201,6 +206,20 @@ $inbetween: 650px;
       height: 25px;
       &:not(:first-child) {
         border-top: 1px solid var(--input-border);
+      }
+    }
+  }
+}
+
+.tablewrapper {
+  table {
+    tr {
+      td {
+        i {
+          font-size: 24px;
+          top: -13px;
+          right: 5px;
+        }
       }
     }
   }

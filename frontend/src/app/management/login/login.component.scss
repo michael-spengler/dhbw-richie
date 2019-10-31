@@ -21,82 +21,6 @@
   }
 }
 
-// neu
-
-// .searchLanding {
-//   min-height: 100vh;
-//   transition: 0s !important;
-// }
-
-// .landingFullWrapper {
-//   position: absolute;
-//   left: 50%;
-//   top: 50%;
-//   transform: translate3d(-50%,-50%,0);
-//   background: var(--header);
-//   color: var(--font-color);
-//   backdrop-filter: blur(7px);
-
-//   h1 {
-//     margin: 0;
-//     margin-bottom: 10px;
-//   }
-//   li {
-//     font-size: 1.2em;
-//     font-weight: 500;
-//   }
-//   ul {
-//     margin: 0;
-//     margin-right: 5px;
-//   }
-// }
-
-// .wrapper {
-//   margin-left: 25px;
-//   display: grid;
-//   grid-template-columns: 1fr 500px;
-//   grid-template-rows: 1fr;
-
-//   .loginForm {
-//     background: #fff;
-//     display: inline-grid;
-//     height: 100vh;
-//   }
-
-//   .slideShow {
-//     .sliderElement {
-//       position: absolute;
-//       background-image: url('../../assets/img/landing_light@2k.jpg');
-//       height: 100vh;
-//       width: 100%;
-//       background-size: cover;
-//       background-position: center;
-//       top: 50%;
-//       transform: translateY(-50%);
-//       max-width: calc(100% - 630px);
-//       padding: 40px;
-//       animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
-//       .title {
-//         position: absolute;
-//         top: 50%;
-//         transform: translateY(-50%);
-//         font-weight: 800;
-//         font-size: 2.5em;
-//         animation: slider-anim 10s cubic-bezier(0.39, 0.575, 0.565, 1) infinite both;
-//       }
-//       .description {
-//         position: absolute;
-//         top: 50%;
-
-//         transform: translateY(50%);
-//         font-weight: 650;
-//         font-size: 1.6em;
-//         max-width: 70%;
-//       }
-//     }
-//   }
-// }
-
 @keyframes slider-anim {
   0% {
     top: 110vh;
@@ -338,8 +262,9 @@
     border: 1px solid transparent;
 
     i {
-      font-size: 18px;
-      margin-right: 10px;
+      font-size: 19px;
+      top: 5px;
+      margin-right: 28px;
     }
     .serviceName {
       display: inline-block;

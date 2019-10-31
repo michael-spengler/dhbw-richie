@@ -16,10 +16,10 @@ export class RichieRevealerComponent {
   toggleReveal(): void {
     if (this.wrapper['max-height'] === '0px') {
       this.wrapper['max-height'] = '600px';
-      this.iconStyle.transform = 'rotate(90deg)';
+      this.iconStyle.transform = 'rotate(90deg) translate(-150%, -50%)';
     } else {
       this.wrapper['max-height'] = '0px';
-      this.iconStyle.transform = 'rotate(0deg)';
+      this.iconStyle.transform = 'rotate(0deg) translate(0, 0)';
     }
   }
 }

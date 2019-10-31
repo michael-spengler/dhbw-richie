@@ -10,8 +10,8 @@
     (click)="toggleSelection(); onClick($event)"
   >
     <span *ngIf="currentItem">{{ currentItem }}</span>
-    <span *ngIf="!currentItem" style="opacity: 0.8">
-      <i class="fad fa-list-ul"></i>{{ placeholder }}
+    <span *ngIf="!currentItem">
+      <i class="ti ti-list listIcon"></i>{{ placeholder }}
     </span>
   </div>
 </ng-container>
