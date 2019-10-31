@@ -11,6 +11,7 @@ import { LoginModule } from './login/login.module';
 import { PassportModule } from './passport';
 import { QuestionModule } from './question/question.module';
 import { RolesModule } from './roles/roles.module';
+import { SchedulingModule } from './scheduling/scheduling.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -23,6 +24,7 @@ import { UserModule } from './user/user.module';
     LectureModule,
     ElasticsearchModule,
     UserModule,
+    SchedulingModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>
