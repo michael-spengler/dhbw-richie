@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationType } from 'src/app/models/notificationTyp.enum';
-import { Question } from 'src/app/models/question.model';
-import { NotificationService } from 'src/app/shared/notification.service';
-import { SharedFunctions } from 'src/app/shared/sharedFunctions.service';
-import { UserService } from 'src/app/shared/user.service';
+import { NotificationType } from '../../models/notificationTyp.enum';
+import { Question } from '../../models/question.model';
+import { QuestionService } from '../../question/question.service';
+import { NotificationService } from '../../shared/notification.service';
+import { SharedFunctions } from '../../shared/sharedFunctions.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -15,6 +16,7 @@ export class SettingsComponent implements OnInit {
   constructor(
     public notificationService: NotificationService,
     public userService: UserService,
+    public questionService: QuestionService,
     public router: Router,
     public sharedFunctions: SharedFunctions
   ) {}
@@ -44,11 +46,10 @@ export class SettingsComponent implements OnInit {
   }
 
   async loadQuestions(): Promise<void> {
-    // TODO: ADD GET
     const {
       likedQuestions,
       dislikedQuestions
-    } = await this.userService.getQuestionsForUser();
+    } = await this.questionService.getReactedQuestions();
     this.likedQuestions = likedQuestions;
     this.dislikedQuestions = dislikedQuestions;
   }

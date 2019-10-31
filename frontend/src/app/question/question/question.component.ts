@@ -31,11 +31,10 @@ export class QuestionComponent implements OnInit {
   }
 
   public async likeOrDislikeQuestion(type: 'like' | 'dislike') {
-    if (type === 'like') {
-      this.question = await this.questionService.likeQuestion(this.question);
-    } else {
-      this.question = await this.questionService.dislikeQuestion(this.question);
-    }
+    this.question = await this.questionService.likeOrDislikeQuestion(
+      this.question.id,
+      type
+    );
   }
 
   public cancel(): void {

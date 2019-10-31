@@ -4,7 +4,6 @@ import { plainToClass } from 'class-transformer';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Question } from '../models/question.model';
-import { UserService } from '../shared/user.service';
 
 const backend_url =
   'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie';
@@ -13,10 +12,7 @@ const backend_url =
   providedIn: 'root'
 })
 export class QuestionService {
-  constructor(
-    private readonly http: HttpClient,
-    private readonly userService: UserService
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getQuestionById(id: string = '') {
     return this.http
@@ -42,22 +38,25 @@ export class QuestionService {
       .toPromise();
   }
 
-  public likeQuestion(question: Question) {
+  public getReactedQuestions() {
     return this.http
-      .put<Question>(`${environment.backend}/api/question/${question.id}`, {
-        ...question,
-        likedBy: question.likedBy.push(this.userService.richieUser)
-      })
-      .pipe(map(x => plainToClass(Question, x)))
+      .get<{ likedQuestions: Question[]; dislikedQuestions: Question[] }>(
+        `${environment.backend}/api/question/reacted`
+      )
+      .pipe(
+        map(x => {
+          return {
+            likedQuestions: x.likedQuestions.map(q => plainToClass(Question, q)),
+            dislikedQuestions: x.dislikedQuestions.map(q => plainToClass(Question, q))
+          };
+        })
+      )
       .toPromise();
   }
 
-  public dislikeQuestion(question: Question) {
+  public likeOrDislikeQuestion(questionId: string, type: 'like' | 'dislike') {
     return this.http
-      .put<Question>(`${environment.backend}/api/question/${question.id}`, {
-        ...question,
-        dislikedBy: question.dislikedBy.push(this.userService.richieUser)
-      })
+      .get<Question>(`${environment.backend}/api/question/${questionId}/${type}`)
       .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }

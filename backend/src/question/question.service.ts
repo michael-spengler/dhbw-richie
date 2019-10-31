@@ -68,8 +68,8 @@ export class QuestionService implements OnModuleInit {
       })
     ]);
     return {
-      likedQuestions: liked,
-      dislikedQuestions: disliked
+      likedQuestions: Data.transform(liked) as Data[],
+      dislikedQuestions: Data.transform(disliked) as Data[]
     };
   }
 
@@ -117,7 +117,9 @@ export class QuestionService implements OnModuleInit {
         }
       }
     );
-    return this.dataRepo.findOne(questionId);
+    const question = await this.dataRepo.findOne(questionId).then(Data.transform);
+    this.elasticsearchService.updateQuestion(questionId, question as Data);
+    return question;
   }
 
   public async deleteQuestion(_id: string) {
