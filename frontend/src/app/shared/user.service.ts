@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { plainToClass } from 'class-transformer';
-import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Question } from '../models/question.model';
 
@@ -30,12 +28,7 @@ export interface IUser {
 export class UserService {
   richieUser: IUser = {} as IUser;
 
-  constructor(private readonly http: HttpClient) {
-    this.richieUser.signedIn = true;
-    this.richieUser.givenName = 'Timo';
-    this.richieUser.isAdmin = true;
-    this.richieUser.signedInWith = 'Google';
-  }
+  constructor(private readonly http: HttpClient) {}
 
   public logIn(service: SignedInWith): void {
     if (localStorage.getItem('richie-user')) {
@@ -62,18 +55,6 @@ export class UserService {
       token
     };
     localStorage.setItem('richie-user', JSON.stringify(this.richieUser));
-  }
-
-  public getQuestionsForUser() {
-    return this.http
-      .get<IUser>(`${environment.backend}/api/user/${this.richieUser._id}`)
-      .pipe(
-        map(u => ({
-          likedQuestions: u.likedQuestions.map(x => plainToClass(Question, x)),
-          dislikedQuestions: u.dislikedQuestions.map(x => plainToClass(Question, x))
-        }))
-      )
-      .toPromise();
   }
 
   public logOut(): void {
