@@ -7,7 +7,6 @@ import {
   ObjectIdColumn
 } from 'typeorm';
 import { Lecture } from './lecture.entity';
-import { User } from './user.entity';
 
 @Entity()
 export class Question {
@@ -40,11 +39,11 @@ export class Question {
   @Column()
   updateDate: number; // Automatisch
 
-  @Column(() => User)
-  creator: User;
+  @Column(() => String)
+  creator: ObjectID;
 
-  @Column(() => User)
-  modifier: User;
+  @Column(() => String)
+  modifier: ObjectID;
 
   @Column({
     default: false

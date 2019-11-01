@@ -53,7 +53,7 @@ export class QuestionController {
   @Post()
   @UseGuards(AuthGuard('jwt'))
   public createQuestion(@Body() question: Question, @AuthenticatedUser() user: User) {
-    question.creator = user;
+    question.creator = user._id;
     return this.questionService.createQuestion(question);
   }
 

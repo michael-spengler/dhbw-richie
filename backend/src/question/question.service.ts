@@ -85,13 +85,9 @@ export class QuestionService implements OnModuleInit {
         this.LOGGER.debug('Matching lecture');
         question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
       }
-      return this.dataRepo.save(question).then(async q => {
-        // await this.elasticsearchService.createQuestion(q);
-        return Question.transform(q);
-      });
-    } catch (err) {
-      console.log(err);
-      throw new HttpException('Creation failed', HttpStatus.NOT_ACCEPTABLE);
+      return this.dataRepo.save(question).then(Question.transform);
+    } catch {
+      throw new HttpException('Creation failed', HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -100,9 +96,7 @@ export class QuestionService implements OnModuleInit {
       if (question.lecture) {
         question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
       }
-      await this.dataRepo.update(_id, question);
-      // await this.elasticsearchService.updateQuestion(_id, question);
-      return this.dataRepo.findOne(_id).then(Question.transform);
+      return this.dataRepo.save(question).then(Question.transform);
     } catch {
       throw new HttpException('Update failed', HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -124,14 +118,11 @@ export class QuestionService implements OnModuleInit {
       }
     );
     const question = await this.dataRepo.findOne(questionId).then(Question.transform);
-    // this.elasticsearchService.updateQuestion(questionId, question as Data);
     return question;
   }
 
   public async deleteQuestion(_id: string) {
     try {
-      // await this.elasticsearchService.deleteQuestion(_id);
-
       await this.dataRepo.delete(_id);
       return { deleted: true };
     } catch {
