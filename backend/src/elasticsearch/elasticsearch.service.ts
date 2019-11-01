@@ -1,6 +1,6 @@
 import { Client } from '@elastic/elasticsearch';
 import { Injectable } from '@nestjs/common';
-import { Data } from '../entities/data.entity';
+import { Question } from '../entities/question.entity';
 import { ClientService } from './client';
 
 @Injectable()
@@ -22,15 +22,17 @@ export class ElasticsearchService {
     });
   }
 
-  public indexQuestions(questions: Data[]) {
-    const body = questions.reduce((a, b) => {
-      a.push({ index: { _index: 'question', _id: b._id } });
-      delete b._id;
-      a.push({ ...b });
-      return a;
-    }, []);
+  public indexQuestions(questions: Question[]) {
+    if (questions.length) {
+      const body = questions.reduce((a, b) => {
+        a.push({ index: { _index: 'question', _id: b._id } });
+        delete b._id;
+        a.push({ ...b });
+        return a;
+      }, []);
 
-    return this.clientService.getClient().bulk({ index: 'question', body });
+      return this.clientService.getClient().bulk({ index: 'question', body });
+    }
   }
 
   public async searchQuestions(q: string) {
@@ -65,7 +67,7 @@ export class ElasticsearchService {
     return body.hits.hits.map(s => ({ id: s._id, ...s._source }));
   }
 
-  public async createQuestion(question: Data) {
+  public async createQuestion(question: Question) {
     delete question._id;
     await this.client.index({
       index: 'question',
@@ -73,7 +75,7 @@ export class ElasticsearchService {
     });
   }
 
-  public async updateQuestion(_id: string, question: Data) {
+  public async updateQuestion(_id: string, question: Question) {
     await this.client.index({
       index: 'question',
       id: _id,

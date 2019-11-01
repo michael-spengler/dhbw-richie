@@ -10,7 +10,7 @@ import { Lecture } from './lecture.entity';
 import { User } from './user.entity';
 
 @Entity()
-export class Data {
+export class Question {
   @ObjectIdColumn()
   _id: ObjectID;
 
@@ -70,17 +70,17 @@ export class Data {
     this.updateDate = new Date().getTime();
   }
 
-  static transform(question: Data | Data[]) {
-    if ((question as Data[]).length) {
-      return (question as Data[]).map(q => {
+  static transform(question: Question | Question[]) {
+    if ((question as Question[]).length) {
+      return (question as Question[]).map(q => {
         q['id'] = q._id;
         delete q._id;
         return q;
       });
     } else {
-      (question as Data)['id'] = (question as Data)._id;
-      delete (question as Data)._id;
-      return question as Data;
+      (question as Question)['id'] = (question as Question)._id;
+      delete (question as Question)._id;
+      return question as Question;
     }
   }
 }
