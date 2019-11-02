@@ -38,6 +38,10 @@ a {
       border-radius: 500px;
       overflow: hidden;
       margin-bottom: 10px;
+      &[class^='ti ti-']::before {
+        left: 14px;
+        top: 15px;
+      }
     }
 
     .type {

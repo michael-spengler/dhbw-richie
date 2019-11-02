@@ -11,12 +11,12 @@
       <richie-iconbutton
         text="Neue Antwort suchen"
         icon="ti ti-search"
-        url="search"
+        [routerLink]="['../../search']"
       ></richie-iconbutton>
     </div>
     <p>
-      Solltest du dennoch weitere Fragen haben, kannst du hier ganz einfach nach einer
-      Antwort suchen
+      Solltest du dennoch weitere Fragen haben, kannst du
+      <a [routerLink]="['../../search']">hier</a> ganz einfach nach einer Antwort suchen
     </p>
   </div>
 </ng-template>

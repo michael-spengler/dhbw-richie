@@ -1,18 +1,25 @@
 <div class="cookies" [ngStyle]="cookieStyle">
   <div class="title">Wir schätzen deine Privatsphäre</div>
   <div class="content">
-    Wenn Sie DHBW-Richie.de besuchen, verwenden wir Cookies und andere Methoden, um Ihre
-    personenbezogenen Daten zu verarbeiten und um Inhalte und Ihre Website-Erfahrung zu
-    verbessern.
-    <br />
-    Bitte klicken Sie auf "Akzeptieren", um der Verwendung Ihrer Daten zu zustimmen.
-    <br />
-    Weitere Informationen darüber, wie wir Ihre personenbezogenen Daten verarbeiten,
-    finden Sie in unseren
-    <a [routerLink]="['legal']" (click)="hide()">Datenschutzbestimmungen</a>.
+    <p>
+      Sie DHBW-Richie.de besuchen, verwenden wir Cookies und andere Methoden, um Ihre
+      personenbezogenen Daten zu verarbeiten und um Inhalte und Ihre Website-Erfahrung zu
+      verbessern.
+    </p>
+    <p>
+      Bitte klicken Sie auf "Akzeptieren", um der Verwendung Ihrer Daten zu zustimmen.
+    </p>
+
+    <p>
+      Weitere Informationen darüber, wie wir Ihre personenbezogenen Daten verarbeiten,
+      finden Sie in unseren
+      <a [routerLink]="['legal']" fragment="cookies" (click)="hide()"
+        >Datenschutzbestimmungen</a
+      >.
+    </p>
   </div>
   <div class="buttons">
-    <a [routerLink]="['legal']" (click)="hide()">Privacy Policy</a>
+    <a [routerLink]="['legal']" fragment="cookies" (click)="hide()">Privacy Policy</a>
     <div (click)="decline()">Ablehnen</div>
     <div (click)="accept()">Akzeptieren</div>
   </div>
