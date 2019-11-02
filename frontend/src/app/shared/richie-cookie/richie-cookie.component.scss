@@ -30,10 +30,15 @@
     margin-bottom: 10px;
   }
   .content {
-    font-size: 18px;
+    p {
+      font-size: 18px;
+      text-align: left;
+      margin: 0px;
+      margin-top: 10px;
+    }
   }
   .buttons {
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
 
     * {

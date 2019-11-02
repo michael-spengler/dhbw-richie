@@ -16,18 +16,19 @@ export class RichieCookieComponent {
     this.cookieStyle = { transform: 'translateZ(600px) translateY(300px)', opacity: 0 };
   }
 
-  public decline(): void {
+  private sendNotification(): void {
     this.notificationService.sendNotification(
-      'Wir haben deine Einstellungen gespeichert!',
+      'Einstellungen gespeichert!',
       NotificationType.INFORMATION
     );
+  }
+
+  public decline(): void {
+    this.sendNotification();
     this.hide();
   }
   public accept(): void {
-    this.notificationService.sendNotification(
-      'Wir haben deine Einstellungen gespeichert!',
-      NotificationType.INFORMATION
-    );
+    this.sendNotification();
     this.hide();
   }
 }
