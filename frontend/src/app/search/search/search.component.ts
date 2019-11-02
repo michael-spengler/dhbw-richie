@@ -87,7 +87,7 @@ export class SearchComponent implements AfterViewInit, OnInit {
   resultsWrapper: boolean = true;
 
   constants: any;
-  searchQuery = '';
+  searchQuery: string = '';
   foundQuestions: Question[] = [];
   isSearching: boolean = false;
 
