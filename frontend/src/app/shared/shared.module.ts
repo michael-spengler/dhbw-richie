@@ -6,6 +6,7 @@ import { ClickOutsideDirective } from './clickOutside.directive';
 import { NotificationService } from './notification.service';
 import { NotificationComponent } from './notification/notification.component';
 import { RichieCommentComponent } from './richie-comment/richie-comment.component';
+import { RichieCookieComponent } from './richie-cookie/richie-cookie.component';
 import { RichieHeaderComponent } from './richie-header/richie-header.component';
 import { RichieIconbuttonComponent } from './richie-iconbutton/richie-iconbutton.component';
 import { RichieInputComponent } from './richie-input/richie-input.component';
@@ -38,7 +39,8 @@ import { UserService } from './user.service';
     RichieRevealerComponent,
     RichieStatsComponent,
     RichieQuestionComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    RichieCookieComponent
   ],
   imports: [CommonModule, RouterModule, FormsModule],
   providers: [NotificationService, UserService],
@@ -57,7 +59,8 @@ import { UserService } from './user.service';
     RichieRevealerComponent,
     RichieStatsComponent,
     RichieQuestionComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    RichieCookieComponent
   ]
 })
 export class SharedModule {

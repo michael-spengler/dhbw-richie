@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SharedFunctions } from '../sharedFunctions.service';
 
 @Component({
   selector: 'richie-iconbutton',
@@ -6,6 +7,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./richie-iconbutton.component.scss']
 })
 export class RichieIconbuttonComponent {
+  constructor(public readonly sharedFunctions: SharedFunctions) {}
+
   @Input() url: string;
   @Input() icon: string;
   @Input() text: string;
