@@ -1,1 +1,1 @@
-export const METADATA_KEY = '_albatross_cron';
+export const METADATA_KEY = '_richie_cron';

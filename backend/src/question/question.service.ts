@@ -9,8 +9,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ObjectId } from 'mongodb';
 import { MongoRepository } from 'typeorm';
 import { ElasticsearchService } from '../elasticsearch/elasticsearch.service';
-import { Data } from '../entities/data.entity';
 import { Lecture } from '../entities/lecture.entity';
+import { Question } from '../entities/question.entity';
+import { Cron } from '../scheduling';
 import RelationMapper from '../util/util.service';
 
 @Injectable()
@@ -18,7 +19,7 @@ export class QuestionService implements OnModuleInit {
   private readonly LOGGER = new Logger(QuestionService.name);
 
   constructor(
-    @InjectRepository(Data) private readonly dataRepo: MongoRepository<Data>,
+    @InjectRepository(Question) private readonly dataRepo: MongoRepository<Question>,
     private readonly elasticsearchService: ElasticsearchService,
     private readonly relationMapper: RelationMapper
   ) {}
@@ -31,14 +32,19 @@ export class QuestionService implements OnModuleInit {
       this.LOGGER.debug('Creating Question Index');
       await this.elasticsearchService.createQuestionIndex();
     }
-    this.LOGGER.debug('Synchronizing Elastic Search with Database');
-    const questions = await this.dataRepo.find();
-    await this.elasticsearchService.indexQuestions(questions);
+    await this.syncQuestionsWithElastic();
     this.LOGGER.debug('Elastic Search initialized');
   }
 
-  public async getQuestions(q: string | null = null): Promise<Data[]> {
-    // search with elasticsearch if query parameter is available
+  @Cron('*/5 * * * *')
+  private async syncQuestionsWithElastic() {
+    this.LOGGER.debug('Synchronizing Elastic Search with Database');
+    const questions = await this.dataRepo.find();
+    this.LOGGER.debug(`Indexing ${questions.length} questions`);
+    await this.elasticsearchService.indexQuestions(questions);
+  }
+
+  public async getQuestions(q: string | null = null): Promise<Question[]> {
     if (q) {
       return this.elasticsearchService.searchQuestions(q);
     }
@@ -47,7 +53,7 @@ export class QuestionService implements OnModuleInit {
   }
 
   public getQuestionById(_id: string) {
-    return this.dataRepo.findOne(_id).then(Data.transform);
+    return this.dataRepo.findOne(_id).then(Question.transform);
   }
 
   public async getInteractedQuestionForUser(userId: string) {
@@ -68,35 +74,29 @@ export class QuestionService implements OnModuleInit {
       })
     ]);
     return {
-      likedQuestions: Data.transform(liked) as Data[],
-      dislikedQuestions: Data.transform(disliked) as Data[]
+      likedQuestions: Question.transform(liked) as Question[],
+      dislikedQuestions: Question.transform(disliked) as Question[]
     };
   }
 
-  public async createQuestion(question: Data) {
+  public async createQuestion(question: Question) {
     try {
       if (question.lecture) {
         this.LOGGER.debug('Matching lecture');
         question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
       }
-      return this.dataRepo.save(question).then(async q => {
-        await this.elasticsearchService.createQuestion(q);
-        return Data.transform(q);
-      });
-    } catch (err) {
-      console.log(err);
-      throw new HttpException('Creation failed', HttpStatus.NOT_ACCEPTABLE);
+      return this.dataRepo.save(question).then(Question.transform);
+    } catch {
+      throw new HttpException('Creation failed', HttpStatus.BAD_REQUEST);
     }
   }
 
-  public async updateQuestion(_id: string, question: Data) {
+  public async updateQuestion(_id: string, question: Question) {
     try {
       if (question.lecture) {
         question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
       }
-      await this.dataRepo.update(_id, question);
-      await this.elasticsearchService.updateQuestion(_id, question);
-      return this.dataRepo.findOne(_id).then(Data.transform);
+      return this.dataRepo.save(question).then(Question.transform);
     } catch {
       throw new HttpException('Update failed', HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -117,15 +117,12 @@ export class QuestionService implements OnModuleInit {
         }
       }
     );
-    const question = await this.dataRepo.findOne(questionId).then(Data.transform);
-    this.elasticsearchService.updateQuestion(questionId, question as Data);
+    const question = await this.dataRepo.findOne(questionId).then(Question.transform);
     return question;
   }
 
   public async deleteQuestion(_id: string) {
     try {
-      await this.elasticsearchService.deleteQuestion(_id);
-
       await this.dataRepo.delete(_id);
       return { deleted: true };
     } catch {

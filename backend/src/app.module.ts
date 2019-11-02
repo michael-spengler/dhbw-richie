@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from './config';
 import { ElasticsearchModule } from './elasticsearch/elasticsearch.module';
-import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
+import { Question } from './entities/question.entity';
 import { TelegrammGroups } from './entities/telegrammGroups.entity';
 import { User } from './entities/user.entity';
 import { LectureModule } from './lecture/lecture.module';
@@ -34,11 +34,11 @@ import { UserModule } from './user/user.module';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture, TelegrammGroups]
+          entities: [Question, User, Lecture, TelegrammGroups]
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([Data])
+    TypeOrmModule.forFeature([Question])
   ]
 })
 export class AppModule {}

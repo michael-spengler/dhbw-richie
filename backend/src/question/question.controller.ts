@@ -11,7 +11,7 @@ import {
   UseGuards
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { Data } from '../entities/data.entity';
+import { Question } from '../entities/question.entity';
 import { User } from '../entities/user.entity';
 import { AuthenticatedUser } from '../passport';
 import { QuestionService } from './question.service';
@@ -52,13 +52,13 @@ export class QuestionController {
 
   @Post()
   @UseGuards(AuthGuard('jwt'))
-  public createQuestion(@Body() question: Data, @AuthenticatedUser() user: User) {
-    question.creator = user;
+  public createQuestion(@Body() question: Question, @AuthenticatedUser() user: User) {
+    question.creator = user._id;
     return this.questionService.createQuestion(question);
   }
 
   @Put(':_id')
-  public updateQuestion(@Param('_id') _id: string, @Body() question: Data) {
+  public updateQuestion(@Param('_id') _id: string, @Body() question: Question) {
     return this.questionService.updateQuestion(_id, question);
   }
 
