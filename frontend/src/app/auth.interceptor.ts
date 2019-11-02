@@ -13,12 +13,14 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private readonly userService: UserService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({
-      headers: req.headers.set(
-        'Authorization',
-        `Bearer ${this.userService.richieUser.token || ''}`
-      )
-    });
+    if (!req.url.includes('giphy')) {
+      req = req.clone({
+        headers: req.headers.set(
+          'Authorization',
+          `Bearer ${this.userService.richieUser.token || ''}`
+        )
+      });
+    }
     return next.handle(req);
   }
 }
