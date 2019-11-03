@@ -10,7 +10,7 @@
     <table id="itemsTable" style="width:100%">
       <tr *ngFor="let question of questions" (click)="togglePopUp(question)">
         <td>
-          <span [ngClass]="question.state"></span>
+          <span [ngClass]="question.isReviewed"></span>
         </td>
         <td>{{ question.question }}</td>
         <td>{{ question.answer }}</td>
@@ -50,7 +50,7 @@
           <h3>Vorlesung</h3>
 
           <richie-select
-            [items]="constants.lectures"
+            [items]="lectures"
             [tabindex]="4"
             (change)="selectionChanged($event)"
             [currentItem]="currentQuestion.lecture"

@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { plainToClass } from 'class-transformer';
-import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { NotificationType } from '../models';
 import { Question } from '../models/question.model';
+import { NotificationService } from '../shared/notification.service';
 
 const backend_url =
   'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie';
@@ -12,7 +15,10 @@ const backend_url =
   providedIn: 'root'
 })
 export class QuestionService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly notificationService: NotificationService
+  ) {}
 
   public getQuestionById(id: string = '') {
     return this.http
@@ -44,6 +50,16 @@ export class QuestionService {
         `${environment.backend}/api/question/reacted`
       )
       .pipe(
+        catchError(() => {
+          this.notificationService.sendNotification(
+            'Fehler beim Laden',
+            NotificationType.ERROR
+          );
+          return of<{ likedQuestions: Question[]; dislikedQuestions: Question[] }>({
+            likedQuestions: [],
+            dislikedQuestions: []
+          });
+        }),
         map(x => {
           return {
             likedQuestions: x.likedQuestions.map(q => plainToClass(Question, q)),
@@ -51,6 +67,13 @@ export class QuestionService {
           };
         })
       )
+      .toPromise();
+  }
+
+  public getQuestionsInReviewState() {
+    return this.http
+      .get<Question[]>(`${environment.backend}/api/question/review`)
+      .pipe(map(x => x.map(q => plainToClass(Question, q))))
       .toPromise();
   }
 

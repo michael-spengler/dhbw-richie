@@ -22,10 +22,13 @@ export class AuthGuard implements CanActivate {
   }
 
   private checkLogin() {
-    if (this.userService.richieUser.signedIn) {
-      return true;
+    if (!this.userService.richieUser.signedIn) {
+      this.router.navigate(['/login']);
     }
-
-    this.router.navigate(['/login']);
+    const date = new Date(this.userService.richieUser['exp']);
+    if (date >= new Date()) {
+      this.router.navigate(['/login']);
+    }
+    return true;
   }
 }

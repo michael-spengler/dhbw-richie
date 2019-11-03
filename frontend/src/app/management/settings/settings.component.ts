@@ -29,10 +29,9 @@ export class SettingsComponent implements OnInit {
   }
 
   removeQuestion(question: Question, wasLike: boolean): void {
-    event.stopPropagation();
-
-    this.dislikedQuestions = this.dislikedQuestions.filter(x => x.id !== question.id);
-    this.likedQuestions = this.likedQuestions.filter(x => x.id !== question.id);
+    this[`${wasLike ? '' : 'dis'}likedQuestions`] = this[
+      `${wasLike ? '' : 'dis'}likedQuestions`
+    ].filter((x: Question) => x.id !== question.id);
     // TODO: ADD HTTP CALL
     this.notificationService.sendNotification(
       'Eintrag gelöscht',

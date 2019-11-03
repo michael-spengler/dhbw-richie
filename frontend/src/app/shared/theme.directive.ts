@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Theme, ThemeService } from './theme.service';
@@ -6,7 +6,7 @@ import { Theme, ThemeService } from './theme.service';
 @Directive({
   selector: '[app-theme]'
 })
-export class ThemeDirective implements OnInit {
+export class ThemeDirective implements OnInit, OnDestroy {
   constructor(private _elementRef: ElementRef, private _themeService: ThemeService) {}
 
   private unsubscribe = new Subject();
@@ -18,14 +18,18 @@ export class ThemeDirective implements OnInit {
     }
     this._themeService.themeChange
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe((theme: Theme) => this.updateTheme(theme));
+      .subscribe(t => this.updateTheme(t));
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.complete();
   }
 
   updateTheme(theme: Theme): void {
     for (const key in theme.properties) {
-      this._elementRef.nativeElement
-        .closest('body')
-        .style.setProperty(key, theme.properties[key]);
+      (this._elementRef.nativeElement.closest(
+        'body'
+      ) as HTMLBodyElement).style.setProperty(key, theme.properties[key]);
     }
   }
 }

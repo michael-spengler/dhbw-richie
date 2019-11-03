@@ -1,7 +1,7 @@
 import {
-  HttpException,
-  HttpStatus,
+  BadRequestException,
   Injectable,
+  InternalServerErrorException,
   Logger,
   OnModuleInit
 } from '@nestjs/common';
@@ -19,7 +19,7 @@ export class QuestionService implements OnModuleInit {
   private readonly LOGGER = new Logger(QuestionService.name);
 
   constructor(
-    @InjectRepository(Question) private readonly dataRepo: MongoRepository<Question>,
+    @InjectRepository(Question) private readonly questionRepo: MongoRepository<Question>,
     private readonly elasticsearchService: ElasticsearchService,
     private readonly relationMapper: RelationMapper
   ) {}
@@ -39,7 +39,7 @@ export class QuestionService implements OnModuleInit {
   @Cron('*/5 * * * *')
   private async syncQuestionsWithElastic() {
     this.LOGGER.debug('Synchronizing Elastic Search with Database');
-    const questions = await this.dataRepo.find();
+    const questions = await this.questionRepo.find();
     this.LOGGER.debug(`Indexing ${questions.length} questions`);
     await this.elasticsearchService.indexQuestions(questions);
   }
@@ -48,24 +48,24 @@ export class QuestionService implements OnModuleInit {
     if (q) {
       return this.elasticsearchService.searchQuestions(q);
     }
-    const questions = await this.dataRepo.find();
+    const questions = await this.questionRepo.find();
     return questions;
   }
 
   public getQuestionById(_id: string) {
-    return this.dataRepo.findOne(_id).then(Question.transform);
+    return this.questionRepo.findOne(_id).then(Question.transform);
   }
 
   public async getInteractedQuestionForUser(userId: string) {
     const [liked, disliked] = await Promise.all([
-      this.dataRepo.find({
+      this.questionRepo.find({
         where: {
           likedBy: {
             $in: [userId]
           }
         }
       }),
-      this.dataRepo.find({
+      this.questionRepo.find({
         where: {
           dislikedBy: {
             $in: [userId]
@@ -79,15 +79,27 @@ export class QuestionService implements OnModuleInit {
     };
   }
 
+  public async getQuestionsInReview() {
+    try {
+      return this.questionRepo.find({
+        where: {
+          isReviewed: false
+        }
+      });
+    } catch {
+      throw new InternalServerErrorException('Cannot find Questions!');
+    }
+  }
+
   public async createQuestion(question: Question) {
     try {
       if (question.lecture) {
         this.LOGGER.debug('Matching lecture');
         question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
       }
-      return this.dataRepo.save(question).then(Question.transform);
+      return this.questionRepo.save(question).then(Question.transform);
     } catch {
-      throw new HttpException('Creation failed', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException('Creation Failed');
     }
   }
 
@@ -96,9 +108,9 @@ export class QuestionService implements OnModuleInit {
       if (question.lecture) {
         question = await this.relationMapper.createRelation(question, 'lecture', Lecture);
       }
-      return this.dataRepo.save(question).then(Question.transform);
+      return this.questionRepo.save(question).then(Question.transform);
     } catch {
-      throw new HttpException('Update failed', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new InternalServerErrorException('Update failed');
     }
   }
 
@@ -107,7 +119,7 @@ export class QuestionService implements OnModuleInit {
     userId: string,
     operation: 'like' | 'dislike'
   ) {
-    await this.dataRepo.updateOne(
+    await this.questionRepo.updateOne(
       {
         _id: new ObjectId(questionId)
       },
@@ -117,16 +129,16 @@ export class QuestionService implements OnModuleInit {
         }
       }
     );
-    const question = await this.dataRepo.findOne(questionId).then(Question.transform);
+    const question = await this.questionRepo.findOne(questionId).then(Question.transform);
     return question;
   }
 
   public async deleteQuestion(_id: string) {
     try {
-      await this.dataRepo.delete(_id);
+      await this.questionRepo.delete(_id);
       return { deleted: true };
     } catch {
-      throw new HttpException('Deletion failed', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new InternalServerErrorException('Deletion failed');
     }
   }
 }

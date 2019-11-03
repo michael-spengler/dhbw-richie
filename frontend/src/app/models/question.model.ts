@@ -10,7 +10,7 @@ export class Question {
   dislikedBy: IUser[] = [];
   comments: any;
   author: IUser;
-  state: string;
+  isReviewed: boolean;
 
   constructor(
     { question, answer, source, lecture }: Partial<Question> = {

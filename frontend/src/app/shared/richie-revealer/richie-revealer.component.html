@@ -1,9 +1,15 @@
-<h3 class="revealTitle" [ngStyle]="{ margin: margin + 'px' }" (click)="toggleReveal()">
+<h3
+  class="revealTitle"
+  [ngStyle]="{ margin: margin + 'px' }"
+  (click)="toggleReveal(iconStyle)"
+>
   {{ heading }}
   <span *ngIf="amount" class="amount">{{ amount }}</span>
-  <span class="iconWrapper" [ngStyle]="iconStyle"><i class="ti ti-arrow"></i></span>
+  <span class="iconWrapper" [@iconStyle]="iconStyle ? 'iconOpen' : 'iconClosed'"
+    ><i class="ti ti-arrow"></i
+  ></span>
 </h3>
-<div class="wrapper" [ngStyle]="wrapper">
+<div class="wrapper" [@wrapper]="wrapper ? 'wrapperOpen' : 'wrapperClosed'">
   <ng-content></ng-content>
 </div>
-<div *ngIf="wrapper['max-height'] !== '0px'" class="addWhiteSpace"></div>
+<div *ngIf="wrapper" class="addWhiteSpace"></div>

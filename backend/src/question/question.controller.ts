@@ -33,6 +33,12 @@ export class QuestionController {
     return this.questionService.getInteractedQuestionForUser(user._id.toString());
   }
 
+  @Get('review')
+  @UseGuards(AuthGuard('jwt'))
+  public getQuestionsInReviewState() {
+    return this.questionService.getQuestionsInReview();
+  }
+
   @Get(':_id')
   public getQuestionById(@Param('_id') _id: string) {
     return this.questionService.getQuestionById(_id);

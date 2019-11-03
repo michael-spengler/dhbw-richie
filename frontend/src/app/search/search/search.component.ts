@@ -129,6 +129,14 @@ export class SearchComponent implements AfterViewInit, OnInit {
       queryParamsHandling: 'merge'
     });
     this.questionService.searchForKeyword(this.searchQuery).subscribe(q => {
+      if (!q.length) {
+        this.notificationService.sendNotification(
+          'Es konnten leider keiner Suchergebnisse gefunden werden',
+          NotificationType.ERROR
+        );
+        this.isSearching = false;
+        return;
+      }
       this.foundQuestions = q;
       this.toggleStyles(false);
       this.isSearching = false;

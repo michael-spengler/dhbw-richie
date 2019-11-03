@@ -1,4 +1,4 @@
-<div class="cookies" [ngStyle]="cookieStyle">
+<div class="cookies" [@hideCookie]="cookieStyle ? 'open' : 'closed'">
   <div class="title">Wir schätzen deine Privatsphäre</div>
   <div class="content">
     <p>
