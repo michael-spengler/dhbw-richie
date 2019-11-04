@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from './config';
 import { ElasticsearchModule } from './elasticsearch/elasticsearch.module';
-import { Data } from './entities/data.entity';
 import { Lecture } from './entities/lecture.entity';
+import { Question } from './entities/question.entity';
 import { TelegrammGroups } from './entities/telegrammGroups.entity';
 import { User } from './entities/user.entity';
 import { LectureModule } from './lecture/lecture.module';
@@ -13,6 +11,7 @@ import { LoginModule } from './login/login.module';
 import { PassportModule } from './passport';
 import { QuestionModule } from './question/question.module';
 import { RolesModule } from './roles/roles.module';
+import { SchedulingModule } from './scheduling/scheduling.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -25,6 +24,7 @@ import { UserModule } from './user/user.module';
     LectureModule,
     ElasticsearchModule,
     UserModule,
+    SchedulingModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>
@@ -34,13 +34,11 @@ import { UserModule } from './user/user.module';
           useNewUrlParser: true,
           useUnifiedTopology: true,
           synchronize: true,
-          entities: [Data, User, Lecture, TelegrammGroups]
+          entities: [Question, User, Lecture, TelegrammGroups]
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
     }),
-    TypeOrmModule.forFeature([Data])
-  ],
-  controllers: [AppController],
-  providers: [AppService]
+    TypeOrmModule.forFeature([Question])
+  ]
 })
 export class AppModule {}

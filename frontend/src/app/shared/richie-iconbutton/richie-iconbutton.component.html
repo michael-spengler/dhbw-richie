@@ -1,4 +1,9 @@
-<a *ngIf="url" [tabindex]="tabindex" class="iconButton" [href]="url">
+<a
+  *ngIf="url"
+  [tabindex]="tabindex"
+  class="iconButton"
+  (click)="sharedFunctions.openURL(url)"
+>
   <i [ngClass]="icon"></i>{{ text }}
 </a>
 <div *ngIf="!url" [tabindex]="tabindex" class="iconButton" (click)="actionCalled($event)">

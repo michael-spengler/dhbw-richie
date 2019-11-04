@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { plainToClass } from 'class-transformer';
-import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { NotificationType } from '../models';
 import { Question } from '../models/question.model';
-import { UserService } from '../shared/user.service';
+import { NotificationService } from '../shared/notification.service';
 
 const backend_url =
   'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie';
@@ -15,7 +17,7 @@ const backend_url =
 export class QuestionService {
   constructor(
     private readonly http: HttpClient,
-    private readonly userService: UserService
+    private readonly notificationService: NotificationService
   ) {}
 
   public getQuestionById(id: string = '') {
@@ -42,21 +44,43 @@ export class QuestionService {
       .toPromise();
   }
 
-  public likeQuestion(question: Question) {
+  public getReactedQuestions() {
     return this.http
-      .put<Question>(`${environment.backend}/api/question/${question.id}`, {
-        ...question,
-        likedBy: question.likedBy.push(this.userService.richieUser)
-      })
+      .get<{ likedQuestions: Question[]; dislikedQuestions: Question[] }>(
+        `${environment.backend}/api/question/reacted`
+      )
+      .pipe(
+        catchError(() => {
+          this.notificationService.sendNotification(
+            'Fehler beim Laden',
+            NotificationType.ERROR
+          );
+          return of<{ likedQuestions: Question[]; dislikedQuestions: Question[] }>({
+            likedQuestions: [],
+            dislikedQuestions: []
+          });
+        }),
+        map(x => {
+          return {
+            likedQuestions: x.likedQuestions.map(q => plainToClass(Question, q)),
+            dislikedQuestions: x.dislikedQuestions.map(q => plainToClass(Question, q))
+          };
+        })
+      )
       .toPromise();
   }
 
-  public dislikeQuestion(question: Question) {
+  public getQuestionsInReviewState() {
     return this.http
-      .put<Question>(`${environment.backend}/api/question/${question.id}`, {
-        ...question,
-        dislikedBy: question.dislikedBy.push(this.userService.richieUser)
-      })
+      .get<Question[]>(`${environment.backend}/api/question/review`)
+      .pipe(map(x => x.map(q => plainToClass(Question, q))))
+      .toPromise();
+  }
+
+  public likeOrDislikeQuestion(questionId: string, type: 'like' | 'dislike') {
+    return this.http
+      .get<Question>(`${environment.backend}/api/question/${questionId}/${type}`)
+      .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }
 }

@@ -3,10 +3,13 @@
     color: #08f;
     margin-left: 5px;
   }
-  i {
-    margin-left: 10px;
+  .iconWrapper {
     transition: 0.5s ease;
-    opacity: 0.7;
+    position: absolute;
+    i {
+      margin-left: 10px;
+      opacity: 0.7;
+    }
   }
   cursor: pointer;
 

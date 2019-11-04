@@ -6,27 +6,6 @@ import { INotification, NotificationService } from '../notification.service';
   selector: 'richie-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
-  /*   animations: [
-    trigger('toggleNotification', [
-      state(
-        'open',
-        style({
-          display: 'block',
-          animation:
-            'notification-animation 5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
-        })
-      ),
-      state(
-        'closed',
-        style({
-          display: 'none',
-          animation: 'none'
-        })
-      ),
-      transition('open => closed', []),
-      transition('closed => open', [])
-    ])
-  ] */
 })
 export class NotificationComponent implements OnInit, OnDestroy {
   currentNotification: INotification = {} as INotification;
@@ -37,7 +16,6 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   constructor(public readonly notificationService: NotificationService) {}
 
-  // TODO: Matthias Fragen
   ngOnInit(): void {
     this.notificationService.currentNotification.subscribe(n => {
       this.currentNotification = n;

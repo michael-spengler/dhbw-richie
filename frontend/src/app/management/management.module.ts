@@ -13,22 +13,25 @@ const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { title: 'Richie | Admin' }
   },
   {
     path: 'settings',
     component: SettingsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { title: 'Richie | Settings' }
   },
   {
     path: 'review',
     component: ReviewComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { title: 'Richie | Review' }
   },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [AuthGuard]
+    data: { title: 'Richie | Login' }
   }
 ];
 @NgModule({

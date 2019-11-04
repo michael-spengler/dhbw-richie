@@ -15,7 +15,7 @@
           />
         </div>
         <div class="search" (click)="startSearch()">
-          <i class="fas fa-search"></i>
+          <i class="ti ti-search"></i>
         </div>
       </div>
 
@@ -29,9 +29,9 @@
 </div>
 
 <div class="quickLinks" [@quickLinks]="quickLinks ? 'linksOpen' : 'linksClose'">
-  <div class="link" [routerLink]="['/home']"><i class="fad fa-home"></i>Home</div>
+  <div class="link" [routerLink]="['/home']"><i class="ti ti-home"></i>Home</div>
   <div class="link" [routerLink]="['/about']">
-    <i class="fad fa-question"></i>Was ist DHBW-Richie?
+    <i class="ti ti-questionmark"></i>Was ist DHBW-Richie?
   </div>
 </div>
 
@@ -69,8 +69,11 @@
     <h3>Gefundene Fragen & Antworten</h3>
   </div>
   <div class="questionwrapper">
-    <div *ngFor="let question of foundQuestions" class="resultWrapper" #qs>
-      <richie-question [question]="question"></richie-question>
+    <div *ngFor="let question of foundQuestions; let i = index" class="resultWrapper" #qs>
+      <richie-question
+        [question]="question"
+        (likeOrDislike)="likeOrDislike($event, i)"
+      ></richie-question>
     </div>
   </div>
 

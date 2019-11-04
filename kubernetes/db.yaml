@@ -1,0 +1,65 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: microk8s-hostpath
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: microk8s.io/hostpath
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  labels:
+    run: mongodb
+spec:
+  clusterIP: 10.152.183.216
+  ports:
+  - port: 27017
+    targetPort: 27017
+    protocol: TCP
+  selector:
+    run: mongodb
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodb
+  labels:
+    app: mongodb
+    run: mongodb
+spec:
+ selector:
+   matchLabels:
+     app: mongodb
+     run: mongodb
+ serviceName: "mongo"
+ replicas: 1 # DO NOT CHANGE THIS!!!
+ template:
+   metadata:
+      labels:
+        run: mongodb
+        app: mongodb
+   spec:
+     containers:
+      - name: mongodb
+        image: mongo
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+     volumes:
+        - name: mongo-persistent-storage
+          hostPath:
+            path: /mnt/db
+ volumeClaimTemplates:
+ - metadata:
+     name: mongo-persistent-storage
+     annotations:
+       volume.beta.kubernetes.io/storage-class: "microk8s-hostpath"
+   spec:
+     accessModes: [ "ReadWriteOnce" ]
+     resources:
+       requests:
+         storage: 2Gi

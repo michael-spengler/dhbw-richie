@@ -11,6 +11,4 @@ export class Lecture {
   @Column()
   name: string;
 
-  @Column()
-  source: string;
 }

@@ -39,7 +39,7 @@
       cursor: pointer;
       i {
         transform: rotateY(180deg);
-        margin-right: 5px;
+        margin-right: 18px;
       }
       &:hover {
         opacity: 0.9;
@@ -63,7 +63,8 @@
       font-weight: 700;
       color: #08f;
       i {
-        margin-right: 10px;
+        margin-right: 5px;
+        top: 2px;
       }
     }
     .date {
@@ -73,18 +74,6 @@
         margin-right: 10px;
       }
     }
-    // .reply {
-    //   margin-left: 15px;
-    //   font-size: 16px;
-    //   color: var(--font-color);
-    //   cursor: pointer;
-    //   &:before {
-    //     content: 'reply';
-    //   }
-    //   &:hover {
-    //     box-shadow: inset 0px -1px var(--input-border);
-    //   }
-    // }
     .delete {
       margin-left: 15px;
       color: rgb(255, 59, 48);
@@ -93,6 +82,10 @@
       transition: 0.2s ease;
       &:hover {
         opacity: 1;
+      }
+      i {
+        top: 3px;
+        font-size: 16px;
       }
     }
   }

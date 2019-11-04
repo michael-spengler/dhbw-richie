@@ -4,7 +4,7 @@ export const constants = {
   telegramURL: 'TELEGRAMURL',
   facebookURL: 'FACEBOOKURL',
   youtubeURL: 'YOUTUBEURL',
-  botURL: 'BOTURL',
+  botURL: 'https://t.me/dhbw_richie_bot',
   lectures: [
     'Einführung IT',
     'Logik & Algebra',

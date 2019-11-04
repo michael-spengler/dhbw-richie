@@ -10,7 +10,7 @@
     <table id="itemsTable" style="width:100%">
       <tr *ngFor="let question of questions" (click)="togglePopUp(question)">
         <td>
-          <span [ngClass]="question.state"></span>
+          <span [ngClass]="question.isReviewed"></span>
         </td>
         <td>{{ question.question }}</td>
         <td>{{ question.answer }}</td>
@@ -50,7 +50,7 @@
           <h3>Vorlesung</h3>
 
           <richie-select
-            [items]="constants.lectures"
+            [items]="lectures"
             [tabindex]="4"
             (change)="selectionChanged($event)"
             [currentItem]="currentQuestion.lecture"
@@ -65,7 +65,7 @@
           [tabindex]="5"
           (click)="deleteQuestion()"
           (keydown)="buttonKeydown('del', $event)"
-          icon="fad fa-trash-alt"
+          icon="ti ti-delete"
           text="Löschen"
           red
         ></richie-iconbutton>
@@ -73,7 +73,7 @@
           [tabindex]="6"
           (click)="acceptQuestion()"
           (keydown)="buttonKeydown('add', $event)"
-          icon="fab fa-wpforms"
+          icon="ti ti-save"
           text="Frage & Antwort speichern"
           green
         ></richie-iconbutton>

@@ -4,9 +4,11 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnInit,
   QueryList,
   ViewChildren
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { delay, skipWhile } from 'rxjs/operators';
 import { NotificationType } from 'src/app/models/notificationTyp.enum';
 import { Question } from 'src/app/models/question.model';
@@ -65,10 +67,12 @@ import { constants } from '../../shared/constants';
     ])
   ]
 })
-export class SearchComponent implements AfterViewInit {
+export class SearchComponent implements AfterViewInit, OnInit {
   constructor(
     public notificationService: NotificationService,
-    public questionService: QuestionService
+    public questionService: QuestionService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router
   ) {
     this.constants = constants;
   }
@@ -83,12 +87,21 @@ export class SearchComponent implements AfterViewInit {
   resultsWrapper: boolean = true;
 
   constants: any;
-  searchQuery = '';
+  searchQuery: string = '';
   foundQuestions: Question[] = [];
   isSearching: boolean = false;
 
   selectionChanged(filterNmbr: number, selection: string): void {
     console.log('Filter %i -> %s', filterNmbr, selection);
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params.q) {
+        this.searchQuery = params.q;
+        this.startSearch();
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -108,7 +121,22 @@ export class SearchComponent implements AfterViewInit {
     if (this.isSearching) return;
     this.isSearching = true;
     this.toggleStyles(true);
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParams: {
+        q: this.searchQuery
+      },
+      queryParamsHandling: 'merge'
+    });
     this.questionService.searchForKeyword(this.searchQuery).subscribe(q => {
+      if (!q.length) {
+        this.notificationService.sendNotification(
+          'Es konnten leider keiner Suchergebnisse gefunden werden',
+          NotificationType.ERROR
+        );
+        this.isSearching = false;
+        return;
+      }
       this.foundQuestions = q;
       this.toggleStyles(false);
       this.isSearching = false;
@@ -124,6 +152,22 @@ export class SearchComponent implements AfterViewInit {
     this.landing = toggle;
     this.landingWrapper = toggle;
     this.resultsWrapper = toggle;
+  }
+
+  async likeOrDislike(
+    {
+      action,
+      question
+    }: {
+      action: 'like' | 'dislike';
+      question: Question;
+    },
+    index: number
+  ) {
+    this.foundQuestions[index] = await this.questionService.likeOrDislikeQuestion(
+      question.id,
+      action
+    );
   }
 
   @HostListener('window:scroll')

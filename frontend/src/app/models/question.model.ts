@@ -10,7 +10,21 @@ export class Question {
   dislikedBy: IUser[] = [];
   comments: any;
   author: IUser;
-  state: string;
+  isReviewed: boolean;
+
+  constructor(
+    { question, answer, source, lecture }: Partial<Question> = {
+      question: '',
+      answer: '',
+      source: '',
+      lecture: ''
+    }
+  ) {
+    this.question = question;
+    this.answer = answer;
+    this.source = source;
+    this.lecture = lecture;
+  }
 
   get likes(): number {
     return this.likedBy.length;
@@ -25,5 +39,9 @@ export class Question {
     this.source = '';
     this.lecture = '';
     return this;
+  }
+
+  public isValid() {
+    return this.answer.length && this.question.length;
   }
 }

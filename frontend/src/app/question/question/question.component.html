@@ -10,13 +10,13 @@
       <h2>Möglicherweise wurde sie gelöscht</h2>
       <richie-iconbutton
         text="Neue Antwort suchen"
-        icon="fad fa-search"
-        url="search"
+        icon="ti ti-search"
+        [routerLink]="['../../search']"
       ></richie-iconbutton>
     </div>
     <p>
-      Solltest du dennoch weitere Fragen haben, kannst du hier ganz einfach nach einer
-      Antwort suchen
+      Solltest du dennoch weitere Fragen haben, kannst du
+      <a [routerLink]="['../../search']">hier</a> ganz einfach nach einer Antwort suchen
     </p>
   </div>
 </ng-template>
@@ -33,22 +33,22 @@
       <div class="actions">
         <div
           class="action"
-          [attr.amount]="question.likes"
+          [attr.amount]="question.likedBy?.length || 0"
           style="color: rgb(52, 199, 89)"
           (click)="likeOrDislikeQuestion('like')"
         >
-          <i class="fad fa-thumbs-up"></i>
+          <i class="ti ti-like"></i>
         </div>
         <div
           class="action"
-          [attr.amount]="question.dislikes"
+          [attr.amount]="question.dislikedBy?.length || 0"
           style="color: rgb(255, 59, 48)"
           (click)="likeOrDislikeQuestion('dislike')"
         >
-          <i class="fad fa-thumbs-down"></i>
+          <i class="ti ti-dislike"></i>
         </div>
         <div class="action">
-          <i class="fas fa-share"></i>
+          <i class="ti ti-share"></i>
           <div class="description">Teilen</div>
         </div>
       </div>
