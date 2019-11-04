@@ -1,7 +1,7 @@
 {
-  "name": "frontendAlpha",
-  "short_name": "frontendAlpha",
-  "theme_color": "#1976d2",
+  "name": "DHBW-Richie",
+  "short_name": "Richie",
+  "theme_color": "#0088ff",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
