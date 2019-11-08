@@ -1,15 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { plainToClass } from 'class-transformer';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { NotificationType } from '../models';
 import { Question } from '../models/question.model';
 import { NotificationService } from '../shared/notification.service';
 
-const backend_url =
-  'https://raw.githubusercontent.com/TimoScheuermann/cdn/master/DHBW%20Richie';
+const transformToQuestion = () => map(x => plainToClass(Question, x));
 
 @Injectable({
   providedIn: 'root'
@@ -20,27 +19,27 @@ export class QuestionService {
     private readonly notificationService: NotificationService
   ) {}
 
-  public getQuestionById(id: string = '') {
+  public getQuestionById(id: string = ''): Promise<Question> {
     return this.http
       .get<Question>(`${environment.backend}/api/question/${id}`)
-      .pipe(map(x => plainToClass(Question, x)))
+      .pipe(transformToQuestion())
       .toPromise();
   }
 
-  public searchForKeyword(keyword: string = '') {
+  public searchForKeyword(keyword: string = ''): Observable<Question[]> {
     return this.http
       .get<Question[]>(`${environment.backend}/api/question`, {
         params: {
           q: keyword
         }
       })
-      .pipe(map(qs => qs.map(q => plainToClass(Question, q))));
+      .pipe(map(x => plainToClass(Question, x)));
   }
 
   public addQuestion(question: Question) {
     return this.http
       .post<Question>(`${environment.backend}/api/question`, question)
-      .pipe(map(x => plainToClass(Question, x)))
+      .pipe(transformToQuestion())
       .toPromise();
   }
 
@@ -60,12 +59,10 @@ export class QuestionService {
             dislikedQuestions: []
           });
         }),
-        map(x => {
-          return {
-            likedQuestions: x.likedQuestions.map(q => plainToClass(Question, q)),
-            dislikedQuestions: x.dislikedQuestions.map(q => plainToClass(Question, q))
-          };
-        })
+        map(x => ({
+          likedQuestions: plainToClass(Question, x.likedQuestions),
+          dislikedQuestions: plainToClass(Question, x.dislikedQuestions)
+        }))
       )
       .toPromise();
   }
@@ -73,14 +70,14 @@ export class QuestionService {
   public getQuestionsInReviewState() {
     return this.http
       .get<Question[]>(`${environment.backend}/api/question/review`)
-      .pipe(map(x => x.map(q => plainToClass(Question, q))))
+      .pipe(transformToQuestion())
       .toPromise();
   }
 
   public likeOrDislikeQuestion(questionId: string, type: 'like' | 'dislike') {
     return this.http
       .get<Question>(`${environment.backend}/api/question/${questionId}/${type}`)
-      .pipe(map(x => plainToClass(Question, x)))
+      .pipe(transformToQuestion())
       .toPromise();
   }
 }
