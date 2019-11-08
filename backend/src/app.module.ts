@@ -37,8 +37,7 @@ import { UserModule } from './user/user.module';
           entities: [Question, User, Lecture, TelegrammGroups]
         } as TypeOrmModuleOptions),
       inject: [ConfigService]
-    }),
-    TypeOrmModule.forFeature([Question])
+    })
   ]
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import TelegramBot from 'node-telegram-bot-api';
 import { ConfigService } from '../config';
 import { QuestionService } from './question.service';
@@ -182,8 +182,10 @@ const cancelKeyboard = {
 };
 
 @Injectable()
-export class TelegramService {
+export class TelegramService implements OnModuleInit {
   public bot: TelegramBot;
+  private LOGGER: Logger = new Logger(TelegramService.name);
+  static exclusions = ['fragen', 'austausch', 'abbrechen'];
 
   constructor(
     private readonly configService: ConfigService,
@@ -192,39 +194,23 @@ export class TelegramService {
     this.bot = new TelegramBot(this.configService.get('TG_TOKEN'), {
       polling: true
     });
+    this.LOGGER.debug('Connected to Telegram');
+  }
 
-    this.bot.onText(/💬 Fragen/, msg => {
+  private isOtherwiseRoutable(message: string): boolean {
+    const split = message.split(/\s/);
+    if (split.some(s => TelegramService.exclusions.includes(s.toLowerCase()))) {
+      return true;
+    }
+    return false;
+  }
+
+  onModuleInit() {
+    this.bot.onText(/fragen/i, msg => {
       this.bot.sendMessage(msg.chat.id, 'Was möchtest du wissen?', cancelKeyboard);
-
-      this.bot.addListener('message', async msg => {
-        try {
-          if (!msg.text || msg.text === '✖️️ Abbrechen') {
-            return;
-          }
-          const a = await this.questionService.getQuestions(msg.text);
-          if (!a.length) {
-            this.bot.sendMessage(
-              msg.chat.id,
-              'Leider gibt es keine Antwort auf deine Frage',
-              cancelKeyboard
-            );
-            return;
-          }
-          const answers = a
-            .map(a => `Frage: ${a.question}\nAntwort: ${a.answer}`)
-            .join('\n');
-          // Falls ihr einzelne Antworten senden wollt
-          /* answers.forEach(message => {
-            this.bot.sendMessage(msg.chat.id, message, cancelKeyboard);
-          }); */
-          this.bot.sendMessage(msg.chat.id, answers, cancelKeyboard);
-        } catch {
-          this.bot.sendMessage(msg.chat.id, '666 Error');
-        }
-      });
     });
 
-    this.bot.onText(/👥 Austausch/, msg => {
+    this.bot.onText(/austausch/i, msg => {
       this.bot.sendMessage(msg.chat.id, '📚 Auswahl', inlineKeyboard);
       this.bot.sendMessage(
         msg.chat.id,
@@ -233,9 +219,34 @@ export class TelegramService {
       );
     });
 
-    this.bot.onText(/✖️️ Abbrechen/, msg => {
-      this.bot.removeAllListeners('message');
+    this.bot.onText(/abbrechen/i, msg => {
       this.bot.sendMessage(msg.chat.id, 'Dann halt nicht.', startKeyboard);
+    });
+
+    this.bot.onText(/(.+)/, async question => {
+      try {
+        if (!question.text) {
+          return;
+        }
+        if (this.isOtherwiseRoutable(question.text)) {
+          return;
+        }
+        const a = await this.questionService.getQuestions(question.text);
+        if (!a.length) {
+          this.bot.sendMessage(
+            question.chat.id,
+            'Leider gibt es keine Antwort auf deine Frage',
+            cancelKeyboard
+          );
+          return;
+        }
+        const answers = a
+          .map(a => `Frage: ${a.question}\nAntwort: ${a.answer}`)
+          .join('\n\n');
+        this.bot.sendMessage(question.chat.id, answers, cancelKeyboard);
+      } catch {
+        this.bot.sendMessage(question.chat.id, '666 Error');
+      }
     });
   }
 }

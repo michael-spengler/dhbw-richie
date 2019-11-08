@@ -1,5 +1,4 @@
-import { Module, ValidationPipe } from '@nestjs/common';
-import { APP_PIPE } from '@nestjs/core';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '../config';
 import { ElasticsearchModule } from '../elasticsearch/elasticsearch.module';
@@ -19,17 +18,7 @@ import { TelegramService } from './telegram.service';
     PassportModule
   ],
   controllers: [QuestionController],
-  providers: [
-    QuestionService,
-    RelationMapper,
-    {
-      provide: APP_PIPE,
-      useValue: new ValidationPipe({
-        transform: true
-      })
-    },
-    TelegramService,
-    ConfigService
-  ]
+  providers: [QuestionService, RelationMapper, TelegramService, ConfigService],
+  exports: [QuestionService, RelationMapper]
 })
 export class QuestionModule {}
