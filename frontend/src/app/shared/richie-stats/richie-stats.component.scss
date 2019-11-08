@@ -1,0 +1,30 @@
+.stat {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  background-color: var(--background);
+  user-select: none;
+  h1 {
+    font-size: 18px;
+  }
+  i {
+    font-size: 60px;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+  span,
+  .selected {
+    color: #08f;
+    font-weight: 600;
+    font-size: 25px;
+    background: none;
+    border: none;
+    appearance: none;
+    outline: none;
+    text-align: center;
+  }
+  span {
+    margin-top: 80px;
+    display: block;
+  }
+}

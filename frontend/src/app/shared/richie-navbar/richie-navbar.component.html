@@ -1,0 +1,57 @@
+<nav>
+  <div class="toggleButton" (click)="toggleNavbar()">
+    <div class="hamburger" [attr.open]="this.navVisible">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="richie" (click)="toggleNavbar()">DHBW Richie</div>
+
+  <div class="navwrapper" [ngStyle]="navwrapperStyle">
+    <div class="title" (click)="themeService.toggleTheme()"></div>
+    <div class="routes">
+      <richie-route [icon]="'ti ti-home'" name="Home" link="/home"></richie-route>
+      <richie-route
+        [icon]="'ti ti-add'"
+        name="Add"
+        status="Pro"
+        link="add"
+      ></richie-route>
+      <richie-route
+        [icon]="'ti ti-review'"
+        name="Review"
+        link="review"
+        *ngIf="
+          this.userService.richieUser.isAdmin || this.userService.richieUser.isReviewer
+        "
+      ></richie-route>
+      <richie-route [icon]="'ti ti-search'" name="Suche" link="/search"></richie-route>
+      <richie-route
+        [icon]="'ti ti-telegram'"
+        name="Telegram"
+        status="WIP"
+        link="telegram"
+      ></richie-route>
+      <richie-route
+        [icon]="'ti ti-admin'"
+        name="Administration"
+        link="admin"
+        *ngIf="this.userService.richieUser.isAdmin"
+      ></richie-route>
+      <div class="divider"></div>
+      <richie-route
+        [icon]="'ti ti-questionmark'"
+        name="Lerngruppen"
+        status="WIP"
+        link="/wip"
+      ></richie-route>
+    </div>
+    <div class="hotlinks">
+      <richie-route-small name="Impressum" link="/impressum"></richie-route-small>
+      <richie-route-small name="About" link="/about"></richie-route-small>
+      <richie-route-small name="Legal" link="/legal"></richie-route-small>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,36 @@
+<div class="questionanswer">
+  <div class="icon">
+    <i class="ti ti-questionmark"></i>
+  </div>
+  <div class="question">{{ question.question }}</div>
+  <div class="answer">{{ question.answer }}</div>
+  <div class="actions">
+    <div
+      class="action"
+      active="true"
+      [attr.description]="question.likedBy?.length || 0"
+      style="color: rgb(52, 199, 89)"
+      (click)="handleAction('like')"
+    >
+      <i class="ti ti-like"></i>
+    </div>
+    <div
+      class="action"
+      [attr.description]="question.dislikedBy?.length || 0"
+      style="color: rgb(255, 59, 48)"
+      (click)="handleAction('dislike')"
+    >
+      <i class="ti ti-dislike"></i>
+    </div>
+    <div class="action" description="Feedback" style="color: #08f">
+      <i class="ti ti-feedback"></i>
+    </div>
+    <div
+      class="action"
+      [routerLink]="['/question', question.id]"
+      description="Vergrößern"
+    >
+      <i class="ti ti-share"></i>
+    </div>
+  </div>
+</div>

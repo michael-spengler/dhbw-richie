@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: richie-backend
+  labels:
+    app: richie-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: richie-backend
+      app: richie-backend
+  template:
+    metadata:
+      labels:
+        run: richie-backend
+        app: richie-backend
+    spec:
+      containers:
+      - name: richie-backend
+        image: dhbwrichie/richie-backend:v0.0.3 
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /api/test
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /api/test
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 3
+        env:
+          - name: MONGO_URL
+            value: "mongodb://10.152.183.216:27017/dhbw-richie?retryWrites=true&w=majority"
+          - name: SKIP_ENV_FILE
+            value: "true"
+          - name: ELASTIC_URL
+            value: "http://10.152.183.217:9200"
+        # imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: richie-backend
+  labels:
+    run: richie-backend
+spec:
+  clusterIP: 10.152.183.219  
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    run: richie-backend

@@ -1,0 +1,81 @@
+<div class="searchLanding" [@landingStyle]="landing ? 'landingOpen' : 'landingClose'">
+  <div
+    class="searchLandingWrapper"
+    [@landingWrapper]="landingWrapper ? 'landingWrapperOpen' : 'landingWrapperClose'"
+  >
+    <h1>Welche Frage hast du?</h1>
+
+    <div class="searchWrapper">
+      <div class="searchBar">
+        <div class="inputWrapper">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (keydown)="onInputKeyDown($event)"
+          />
+        </div>
+        <div class="search" (click)="startSearch()">
+          <i class="ti ti-search"></i>
+        </div>
+      </div>
+
+      <div *ngIf="isSearching" class="loaderWrapper" style="margin: -1px 20px;">
+        <div class="loader">
+          <div *ngFor="let y of [].constructor(20)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="quickLinks" [@quickLinks]="quickLinks ? 'linksOpen' : 'linksClose'">
+  <div class="link" [routerLink]="['/home']"><i class="ti ti-home"></i>Home</div>
+  <div class="link" [routerLink]="['/about']">
+    <i class="ti ti-questionmark"></i>Was ist DHBW-Richie?
+  </div>
+</div>
+
+<div
+  [@resultsWrapper]="resultsWrapper ? 'resultsWrapperOpen' : 'resultsWrapperClose'"
+  style="overflow: hidden;"
+>
+  <div class="paragraph">
+    <h2>Filter setzen</h2>
+
+    <div class="filterWrapper">
+      <div class="filter">
+        <h3>Filter 1</h3>
+        <richie-select
+          [items]="constants.lectures"
+          (change)="selectionChanged(0, $event)"
+          [heading]="'Vorlesung'"
+          [placeholder]="'Bitte wähle eine Vorlesung'"
+        ></richie-select>
+      </div>
+
+      <div class="filter">
+        <h3>Filter 2</h3>
+        <richie-select
+          [items]="constants.lectures"
+          (change)="selectionChanged(1, $event)"
+          [heading]="'Vorlesung'"
+          [placeholder]="'Bitte wähle eine Vorlesung'"
+        ></richie-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="paragraph">
+    <h3>Gefundene Fragen & Antworten</h3>
+  </div>
+  <div class="questionwrapper">
+    <div *ngFor="let question of foundQuestions; let i = index" class="resultWrapper" #qs>
+      <richie-question
+        [question]="question"
+        (likeOrDislike)="likeOrDislike($event, i)"
+      ></richie-question>
+    </div>
+  </div>
+
+  <div class="removeWhite"></div>
+</div>

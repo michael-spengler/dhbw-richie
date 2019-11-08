@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-with-sw": "angular-http-server -p 8080 --path dist/frontendAlpha",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -16,18 +18,19 @@
     "@angular/common": "~8.2.9",
     "@angular/compiler": "~8.2.9",
     "@angular/core": "~8.2.9",
-    "@angular/elements": "^8.2.10",
     "@angular/forms": "~8.2.9",
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
+    "@angular/pwa": "^0.803.13",
     "@angular/router": "~8.2.9",
-    "@mdi/font": "^4.5.95",
-    "ng-click-outside": "^5.1.1",
+    "@angular/service-worker": "~8.2.9",
+    "class-transformer": "^0.2.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "angular-http-server": "^1.9.0",
     "@angular-devkit/build-angular": "~0.803.8",
     "@angular/cli": "~8.3.8",
     "@angular/compiler-cli": "~8.2.9",

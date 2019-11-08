@@ -1,0 +1,106 @@
+<div class="landing">
+  <div class="name">
+    {{ userService.richieUser.givenName }} {{ userService.richieUser.familyName }}
+  </div>
+  <div class="mail">{{ userService.richieUser.email }}</div>
+  <div class="logout" (click)="logOut()">
+    Ausloggen
+    <i class="ti ti-logout"></i>
+  </div>
+</div>
+<div class="paragraph come-in">
+  <h1>Account</h1>
+
+  <div class="informations">
+    <div class="information">
+      <h3>Informationen</h3>
+
+      <table>
+        <tr>
+          <td>Vorname</td>
+          <td>{{ userService.richieUser.givenName }}</td>
+        </tr>
+        <tr>
+          <td>Nachname</td>
+          <td>{{ userService.richieUser.familyName }}</td>
+        </tr>
+        <tr>
+          <td>Mitglied seit</td>
+          <td>{{ userService.richieUser.created | date: 'dd.MM.yyyy' }}</td>
+        </tr>
+        <tr>
+          <td>Rang</td>
+          <td>
+            <span class="gradient">
+              {{ sharedFunctions.getUserRank(userService.richieUser) }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-top: 20px">
+            <richie-input heading="Benutzername" tabindex="1"></richie-input>
+          </td>
+          <!-- Had to do it :/ because mobile... -->
+          <td style="padding: 20px 0px 0px 0px">
+            <richie-iconbutton
+              text="Speichern"
+              icon="ti ti-save"
+              tabindex="2"
+            ></richie-iconbutton>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="information signedInWith">
+      <h3>Angemeldet mittels</h3>
+      <div class="loginService">
+        <i
+          [ngClass]="'ti ti-' + userService.richieUser?.signedInWith?.toLocaleLowerCase()"
+        ></i>
+        <div class="serviceName">{{ userService.richieUser.signedInWith }}</div>
+      </div>
+      <div class="email">{{ userService.richieUser.email }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="paragraph">
+  <richie-revealer heading="Fragen die ich mag" [amount]="likedQuestions.length || 0">
+    <div class="tablewrapper">
+      <table>
+        <tr
+          *ngFor="let question of likedQuestions"
+          [routerLink]="['/question', question.id]"
+        >
+          <td (click)="removeQuestion(question, true)"><i class="ti ti-remove"></i></td>
+          <td>{{ question.question }}</td>
+          <td>{{ question.answer }}</td>
+        </tr>
+      </table>
+    </div>
+  </richie-revealer>
+</div>
+
+<div class="paragraph">
+  <richie-revealer
+    heading="Fragen die ich nicht mag"
+    [amount]="dislikedQuestions.length || 0"
+  >
+    <div class="tablewrapper">
+      <table>
+        <tr
+          *ngFor="let question of dislikedQuestions"
+          [routerLink]="['/question', question.id]"
+        >
+          <td (click)="removeQuestion(question, false)">
+            <i class="ti ti-remove"></i>
+          </td>
+          <td>{{ question.question }}</td>
+          <td>{{ question.answer }}</td>
+        </tr>
+      </table>
+    </div>
+  </richie-revealer>
+</div>
+
+<div class="removeWhite"></div>

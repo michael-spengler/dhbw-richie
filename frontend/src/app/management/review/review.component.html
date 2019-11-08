@@ -1,0 +1,85 @@
+<div class="landing">
+  <h1>Review-Management</h1>
+  <h2>Accept / Decline</h2>
+</div>
+
+<div class="paragraph">
+  <h2>Zu überprüfende Fragen: {{ this.questions.length }}</h2>
+
+  <div class="tablewrapper">
+    <table id="itemsTable" style="width:100%">
+      <tr *ngFor="let question of questions" (click)="togglePopUp(question)">
+        <td>
+          <span [ngClass]="question.isReviewed"></span>
+        </td>
+        <td>{{ question.question }}</td>
+        <td>{{ question.answer }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="modal" [ngStyle]="overlayStyle">
+    <div class="modal-content" clickOutside (clickOutside)="closePopUp()">
+      <div class="close" (click)="closePopUp()"></div>
+      <h2>Formular</h2>
+
+      <h3>Frage</h3>
+      <richie-textarea
+        [(ngModel)]="currentQuestion.question"
+        [tabindex]="1"
+        [placeholder]="currentQuestion.question"
+      ></richie-textarea>
+
+      <h3>Antwort</h3>
+      <richie-textarea
+        [(ngModel)]="currentQuestion.answer"
+        [tabindex]="2"
+        [placeholder]="currentQuestion.answer"
+      ></richie-textarea>
+
+      <div class="inputWrapper">
+        <div class="input">
+          <h3>Quelle</h3>
+          <richie-input
+            [tabindex]="3"
+            [(ngModel)]="currentQuestion.source"
+            [placeholder]="currentQuestion.source"
+          ></richie-input>
+        </div>
+        <div class="input">
+          <h3>Vorlesung</h3>
+
+          <richie-select
+            [items]="lectures"
+            [tabindex]="4"
+            (change)="selectionChanged($event)"
+            [currentItem]="currentQuestion.lecture"
+            heading="Vorlesung"
+            placeholder="Vorlesung"
+          ></richie-select>
+        </div>
+      </div>
+
+      <div class="centerButtons">
+        <richie-iconbutton
+          [tabindex]="5"
+          (click)="deleteQuestion()"
+          (keydown)="buttonKeydown('del', $event)"
+          icon="ti ti-delete"
+          text="Löschen"
+          red
+        ></richie-iconbutton>
+        <richie-iconbutton
+          [tabindex]="6"
+          (click)="acceptQuestion()"
+          (keydown)="buttonKeydown('add', $event)"
+          icon="ti ti-save"
+          text="Frage & Antwort speichern"
+          green
+        ></richie-iconbutton>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="removeWhite"></div>

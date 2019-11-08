@@ -1,0 +1,25 @@
+<div *ngIf="userService.richieUser.signedIn; then signedIn; else signedOut"></div>
+
+<ng-template #signedOut>
+  <header>
+    <div class="registerLogin">
+      <div class="signIn" [routerLink]="['/login']">
+        Anmelden<i class="ti ti-login"></i>
+      </div>
+    </div>
+  </header>
+</ng-template>
+
+<ng-template #signedIn>
+  <header>
+    <div class="user" [routerLink]="['/settings']">
+      <div class="name">
+        {{ userService.richieUser.givenName }} {{ userService.richieUser.familyName }}
+      </div>
+      <img
+        [src]="userService.richieUser.picture"
+        onerror="this.src = '../assets/img/richie.jpg'"
+      />
+    </div>
+  </header>
+</ng-template>

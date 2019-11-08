@@ -2,28 +2,29 @@ name: CI/CD
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
-      - name: Build
+      - name: Deploy-Frontend
         run: |
-          cd frontend
-          npm install
-          npm run build
-      - name: Deploy
-        if: success()
-        uses: docker://crazymax/ghaction-github-pages
-        env:
-          INPUT_TARGET_BRANCH: gh-pages
-          INPUT_BUILD_DIR: frontend/dist/frontend
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SYSTEM="$(cut -d'-' -f1 <<< ${GITHUB_REF/refs\/tags\//})"
+          if [[ $SYSTEM == *"frontend"* ]]; then
+            VERSION="$(cut -d'-' -f2 <<< ${GITHUB_REF/refs\/tags\//})"
+            echo "$VERSION"
+            sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de DOCKER_TAG=$VERSION -o StrictHostKeyChecking=no < ./deploy/deploy-frontend.bash
+          else
+            echo "Skipped because tag was not matching"
+          fi
       - name: Deploy-Backend
         run: |
-          sshpass -p ${{ secrets.pw }} ssh root@95.217.10.3 -o StrictHostKeyChecking=no < ./deploy/deploy-backend.bash
-        # shell: bash
+          if [[ $SYSTEM == *"backend"* ]]; then
+            VERSION="$(cut -d'-' -f2 <<< ${GITHUB_REF/refs\/tags\//})"
+            sshpass -p ${{ secrets.pw }} ssh root@dhbw-richie.de DOCKER_TAG=$VERSION -o StrictHostKeyChecking=no < ./deploy/deploy-backend.bash
+          else
+            echo "Skipped because tag was not matching"
+          fi
