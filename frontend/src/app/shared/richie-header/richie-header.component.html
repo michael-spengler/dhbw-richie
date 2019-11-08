@@ -16,10 +16,7 @@
       <div class="name">
         {{ userService.richieUser.givenName }} {{ userService.richieUser.familyName }}
       </div>
-      <img
-        [src]="userService.richieUser.picture"
-        onerror="this.src = '../assets/img/richie.jpg'"
-      />
+      <img [src]="userService.richieUser.picture" onerror="this.src = '../assets/img/richie.png'" />
     </div>
   </header>
 </ng-template>
