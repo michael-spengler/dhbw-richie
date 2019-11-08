@@ -20,10 +20,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "nest-schedule": "^0.6.3",
-    "@nestjs-plus/discovery": "^2.0.2",
     "@elastic/elasticsearch": "^7.4.0",
     "@hapi/joi": "^16.1.5",
+    "@nestjs-plus/discovery": "^2.0.2",
     "@nestjs/common": "^6.8.2",
     "@nestjs/core": "^6.8.2",
     "@nestjs/jwt": "^6.1.1",
@@ -36,6 +35,8 @@
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.1.0",
     "mongodb": "^3.3.2",
+    "nest-schedule": "^0.6.3",
+    "node-telegram-bot-api": "^0.40.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "passport-jwt": "^4.0.0",
@@ -53,6 +54,7 @@
     "@types/jest": "^24.0.18",
     "@types/mongodb": "^3.3.7",
     "@types/node": "^12.7.11",
+    "@types/node-telegram-bot-api": "^0.40.0",
     "@types/passport-jwt": "^3.0.2",
     "@types/passport-local": "^1.0.33",
     "@types/supertest": "^2.0.8",
