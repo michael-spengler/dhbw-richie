@@ -1,6 +1,7 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigService } from '../config';
 import { ElasticsearchModule } from '../elasticsearch/elasticsearch.module';
 import { Lecture } from '../entities/lecture.entity';
 import { Question } from '../entities/question.entity';
@@ -9,6 +10,7 @@ import { PassportModule } from '../passport';
 import RelationMapper from '../util/util.service';
 import { QuestionController } from './question.controller';
 import { QuestionService } from './question.service';
+import { TelegramService } from './telegram.service';
 
 @Module({
   imports: [
@@ -25,7 +27,9 @@ import { QuestionService } from './question.service';
       useValue: new ValidationPipe({
         transform: true
       })
-    }
+    },
+    TelegramService,
+    ConfigService
   ]
 })
 export class QuestionModule {}
