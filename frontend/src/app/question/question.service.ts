@@ -8,8 +8,6 @@ import { NotificationType } from '../models';
 import { Question } from '../models/question.model';
 import { NotificationService } from '../shared/notification.service';
 
-const transformToQuestion = () => map(x => plainToClass(Question, x));
-
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +20,7 @@ export class QuestionService {
   public getQuestionById(id: string = ''): Promise<Question> {
     return this.http
       .get<Question>(`${environment.backend}/api/question/${id}`)
-      .pipe(transformToQuestion())
+      .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }
 
@@ -39,7 +37,7 @@ export class QuestionService {
   public addQuestion(question: Question) {
     return this.http
       .post<Question>(`${environment.backend}/api/question`, question)
-      .pipe(transformToQuestion())
+      .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }
 
@@ -70,14 +68,14 @@ export class QuestionService {
   public getQuestionsInReviewState() {
     return this.http
       .get<Question[]>(`${environment.backend}/api/question/review`)
-      .pipe(transformToQuestion())
+      .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }
 
   public likeOrDislikeQuestion(questionId: string, type: 'like' | 'dislike') {
     return this.http
       .get<Question>(`${environment.backend}/api/question/${questionId}/${type}`)
-      .pipe(transformToQuestion())
+      .pipe(map(x => plainToClass(Question, x)))
       .toPromise();
   }
 }

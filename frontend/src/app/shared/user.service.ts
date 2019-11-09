@@ -31,6 +31,12 @@ export class UserService {
   constructor(private readonly http: HttpClient) {}
 
   public logIn(service: SignedInWith): void {
+    if (Date.now() <= this.richieUser['exp']) {
+      this.logOut();
+      document.cookie = 'service=' + service;
+      window.location.href = `${environment.backend}/api/auth/${service}`;
+      return;
+    }
     if (localStorage.getItem('richie-user')) {
       this.richieUser = JSON.parse(localStorage.getItem('richie-user')) as IUser;
     } else {
@@ -59,8 +65,12 @@ export class UserService {
 
   public logOut(): void {
     localStorage.removeItem('richie-user');
-    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    this.clearTokenCookie();
     this.richieUser = { signedIn: false } as IUser;
+  }
+
+  private clearTokenCookie() {
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   }
 
   public getToken() {

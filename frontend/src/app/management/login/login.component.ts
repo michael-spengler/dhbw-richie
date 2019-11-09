@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { interval, Subscription } from 'rxjs';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class LoginComponent implements OnDestroy, OnInit, AfterViewInit {
   constructor(public userService: UserService, private router: Router) {}
-  interval: any;
+  private interval: Subscription;
 
   ngOnInit(): void {
     this.startSlider();
@@ -22,13 +23,13 @@ export class LoginComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.interval);
+    this.interval.unsubscribe();
   }
 
   startSlider(): void {
-    this.interval = setInterval(() => {
+    this.interval = interval(5000).subscribe(() => {
       this.currentSlide = ++this.currentSlide % this.slides.length;
-    }, 5000);
+    });
   }
 
   // Neue Fragen einreichen & anderen Helfen
